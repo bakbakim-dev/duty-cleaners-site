@@ -152,7 +152,7 @@ export default function QuoteOverlay() {
           <button
             type="button"
             onClick={closeQuote}
-            className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-bold text-foreground transition-colors hover:bg-secondary md:inline-flex"
+            className="hidden min-h-[44px] items-center gap-2 rounded-full px-3 py-2 text-base font-bold text-foreground transition-colors hover:bg-secondary md:inline-flex"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             Back to {pageLabel(pathname)}
@@ -173,7 +173,7 @@ export default function QuoteOverlay() {
         <div className="flex items-center gap-2">
           <a
             href={phoneLink}
-            className="hidden items-center gap-1.5 text-sm font-bold text-accent hover:underline lg:inline-flex"
+            className="hidden min-h-[44px] items-center gap-1.5 text-base font-bold text-accent hover:underline lg:inline-flex"
           >
             <span className="dc-icon dc-icon-phone h-4 w-4" aria-hidden="true" />
             Or book by phone: {phone}
@@ -181,9 +181,10 @@ export default function QuoteOverlay() {
           <a
             href={phoneLink}
             aria-label={`Call ${phone}`}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-accent hover:bg-secondary lg:hidden"
+            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-full px-3 text-base font-bold text-accent hover:bg-secondary lg:hidden"
           >
             <span className="dc-icon dc-icon-phone h-5 w-5" aria-hidden="true" />
+            Call
           </a>
           <button
             type="button"

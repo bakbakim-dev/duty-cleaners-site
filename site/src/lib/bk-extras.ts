@@ -346,10 +346,10 @@ export function groupForExtra(name: string): ExtraGroup {
 /** Plain-language benefit line under the name. Empty string = no second line. */
 const BENEFIT_COPY: [string, string][] = [
   ["inside oven", "Baked-on grease and grime removed"],
-  ["inside fridge", "Please empty it first; we clean inside and put it all back"],
-  ["inside cabinets", "Inside shelves, kitchen & bathroom"],
+  ["inside fridge", "Empty it before we arrive; we clean the inside, shelves and drawers"],
+  ["inside cabinets", "Kitchen and bathroom cabinets; please de-clutter them first"],
   ["inside windows", "Interior glass, sills & tracks"],
-  ["deep cleaning", "Our most thorough first-clean package"],
+  ["deep cleaning", "Baseboards, doors, light switches, outlets, vent covers and cobwebs, on top of the standard checklist"],
   ["wipe window blinds", "Dusted and wiped, per set"],
   ["spot cleaning", "Targeted marks & scuffs"],
   ["complete inside wall", "Every wall, top to bottom (not ceilings)"],

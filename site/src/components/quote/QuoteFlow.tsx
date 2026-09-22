@@ -57,7 +57,8 @@ import {
   type DcParking,
   type ResolvedExtra,
 } from "@/lib/booking-redirect";
-import { BOOKINGS_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating, ratingClaimFor } from "@/data/proof";
+import { BOOKINGS_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating, hoursLineFor, ratingClaimFor } from "@/data/proof";
+import { ARRIVAL_WINDOWS, POLICY } from "@/data/policy";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote, type QuotePayload } from "@/lib/quote-submit";
 import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { intentParams, intentQuery } from "@/lib/url-intent";
@@ -71,10 +72,10 @@ import { HISTORY_FLAG, HISTORY_STACK, funnelStackOf, useQuoteOverlay } from "@/h
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const STEP_LABELS = [
-  "About your home",
+  "Your home",
   "Your details",
-  "Your price",
-  "Choose your time",
+  "Your price and add-ons",
+  "Date, address and card",
 ];
 
 /** Step ids sent with quote_step; the details pane of step 3 is its own id. */
@@ -1208,8 +1209,8 @@ export default function QuoteFlow({
   const goToDetailsPane = () => {
     const missPlan = awaitingPlan;
     const missPets = Boolean(petsExtra) && hasPets === null;
-    if (missPlan) setFrequencyError("Choose how often, or One-Time, so your booking carries the right plan.");
-    if (missPets) setPetError("Choose Yes or No so your total includes the correct pet charge.");
+    if (missPlan) setFrequencyError("Please choose One-Time, or how often you\u2019d like us to come.");
+    if (missPets) setPetError("Please tell us whether you have pets; it changes the price.");
     if (missPlan || missPets) {
       setNudge((value) => value + 1);
       jumpToMissing(missPlan ? "frequency" : "pets");
@@ -1382,6 +1383,7 @@ export default function QuoteFlow({
           We&rsquo;ll text you within {RESPONSE_TIME_PROMISE} to set a date and time. Your{" "}
           {serviceName.toLowerCase()} in {proof.city} is quoted at {priceLabel}
           {ongoingTotal ? `, then ${formatPrice(ongoingTotal)} per visit` : ""}.
+          The {proof.city} office is open {hoursLineFor(proof.key)}.
         </p>
         <RiskReversalRow className="mt-6 justify-center" />
         <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -1418,7 +1420,9 @@ export default function QuoteFlow({
           <span className="font-semibold text-foreground">
             Step {step + 1} of {TOTAL_STEPS}
           </span>
-          <span className="text-muted-foreground">{STEP_LABELS[step]}</span>
+          <span className="text-muted-foreground">
+            {step === 2 && pricePane === "details" ? "Details for your cleaner" : STEP_LABELS[step]}
+          </span>
         </div>
         <ol className="sr-only">
           {STEP_LABELS.map((label, index) => (
@@ -1537,6 +1541,13 @@ export default function QuoteFlow({
                   </>
                 )}
 
+                {serviceExpanded && service === "standard" && (
+                  <p className="mt-3 text-sm text-fine-print">
+                    Not sure? Pick Standard. The Deep Cleaning package is offered again on the price
+                    screen, with its price for your home size.
+                  </p>
+                )}
+
                 {/* Owner, 2026-09-21: a move-out clean needs an empty home; a furnished
                     home is a Standard Cleaning. Said where the choice is made. */}
                 {service === "move-in-out" && (
@@ -1548,7 +1559,7 @@ export default function QuoteFlow({
                         If the home is furnished,{" "}
                         {serviceExpanded
                           ? "choose Standard Cleaning above instead of Move In / Move Out."
-                          : "please hit “Change” on the right and choose Standard Cleaning instead of Move In / Move Out."}
+                          : "tap “Change” and choose Standard Cleaning instead of Move In / Move Out."}
                       </p>
                     </div>
                   </div>
@@ -1562,18 +1573,27 @@ export default function QuoteFlow({
                       <Label htmlFor="homeType" className="text-lg font-bold">
                         What type of home?
                       </Label>
-                      <select
-                        id="homeType"
-                        value={homeType ?? ""}
-                        onChange={(event) => setHomeType(Number(event.target.value))}
-                        className="funnel-field mt-2"
-                      >
-                        {homeTypes.map((option) => (
-                          <option key={option.id} value={option.id}>
-                            {option.label}
-                          </option>
-                        ))}
-                      </select>
+                      <div id="homeType" role="radiogroup" aria-label="What type of home?" className="mt-2 grid gap-2 sm:grid-cols-2">
+                        {homeTypes.map((option) => {
+                          const active = option.id === homeType;
+                          return (
+                            <button
+                              key={option.id}
+                              type="button"
+                              role="radio"
+                              aria-checked={active}
+                              onClick={() => setHomeType(option.id)}
+                              className={`min-h-[48px] rounded-md border px-4 py-2 text-left text-base transition-colors ${
+                                active
+                                  ? "border-brand-navy bg-brand-navy font-bold text-brand-navy-foreground"
+                                  : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
+                              }`}
+                            >
+                              {option.label}
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
 
@@ -1675,18 +1695,19 @@ export default function QuoteFlow({
                 ref={step === 1 ? stepHeadingRef : null}
                 number="02"
                 eyebrow="Where to send it"
-                title="Last step before your price"
+                title="Where should we send your price?"
               >
                 <p className="mt-3 text-muted-foreground">
-                  Your price is on the next screen. We keep a copy so you can come back to it, and
-                  nothing is booked.
+                  The next screen shows the exact price for your {serviceName.toLowerCase()}
+                  {selected.asksHomeSize ? ` (${bedrooms} bed, ${bathrooms} bath)` : ""} in {proof.city}.
+                  Nothing is booked yet. All four fields are needed to show it.
                 </p>
               </StepHeader>
 
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <Label htmlFor="first-name" className="text-base font-semibold">
-                    First name <span className="text-brand-navy" aria-hidden="true">*</span>
+                    First name 
                   </Label>
                   <Input
                     id="first-name"
@@ -1695,7 +1716,7 @@ export default function QuoteFlow({
                     autoComplete="given-name"
                     aria-invalid={Boolean(errors.firstName)}
                     aria-describedby={errors.firstName ? "first-name-error" : undefined}
-                    className="mt-2 h-12 text-base"
+                    className="mt-2 h-12 text-base aria-[invalid=true]:border-2 aria-[invalid=true]:border-destructive"
                     value={contact.firstName}
                     onChange={(event) => setContact({ ...contact, firstName: event.target.value })}
                   />
@@ -1707,7 +1728,7 @@ export default function QuoteFlow({
                 </div>
                 <div>
                   <Label htmlFor="last-name" className="text-base font-semibold">
-                    Last name <span className="text-brand-navy" aria-hidden="true">*</span>
+                    Last name 
                   </Label>
                   <Input
                     id="last-name"
@@ -1716,7 +1737,7 @@ export default function QuoteFlow({
                     autoComplete="family-name"
                     aria-invalid={Boolean(errors.lastName)}
                     aria-describedby={errors.lastName ? "last-name-error" : undefined}
-                    className="mt-2 h-12 text-base"
+                    className="mt-2 h-12 text-base aria-[invalid=true]:border-2 aria-[invalid=true]:border-destructive"
                     value={contact.lastName}
                     onChange={(event) => setContact({ ...contact, lastName: event.target.value })}
                   />
@@ -1728,7 +1749,7 @@ export default function QuoteFlow({
                 </div>
                 <div>
                   <Label htmlFor="email" className="text-base font-semibold">
-                    Email <span className="text-brand-navy" aria-hidden="true">*</span>
+                    Email 
                   </Label>
                   <Input
                     id="email"
@@ -1738,7 +1759,7 @@ export default function QuoteFlow({
                     autoComplete="email"
                     aria-invalid={Boolean(errors.email)}
                     aria-describedby={errors.email ? "email-error" : undefined}
-                    className="mt-2 h-12 text-base"
+                    className="mt-2 h-12 text-base aria-[invalid=true]:border-2 aria-[invalid=true]:border-destructive"
                     value={contact.email}
                     onChange={(event) => setContact({ ...contact, email: event.target.value })}
                   />
@@ -1750,7 +1771,7 @@ export default function QuoteFlow({
                 </div>
                 <div>
                   <Label htmlFor="phone" className="text-base font-semibold">
-                    Phone <span className="text-brand-navy" aria-hidden="true">*</span>
+                    Phone 
                   </Label>
                   <Input
                     id="phone"
@@ -1760,12 +1781,13 @@ export default function QuoteFlow({
                     autoComplete="tel"
                     aria-invalid={Boolean(errors.phone)}
                     aria-describedby={errors.phone ? "phone-help phone-error" : "phone-help"}
-                    className="mt-2 h-12 text-base"
+                    className="mt-2 h-12 text-base aria-[invalid=true]:border-2 aria-[invalid=true]:border-destructive"
                     value={contact.phone}
                     onChange={(event) => setContact({ ...contact, phone: event.target.value })}
                   />
                   <p id="phone-help" className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    We use your number only to follow up about this quote, your booking or schedule changes.
+                    We text you about your quote at this number within {RESPONSE_TIME_PROMISE}, and only
+                    phone if you ask for a call back.
                   </p>
                   {errors.phone && (
                     <p id="phone-error" role="alert" className="mt-2 text-base font-semibold text-destructive-ink">
@@ -1793,7 +1815,7 @@ export default function QuoteFlow({
               <StepFooter
                 above={
                   /* Reassurance sits ABOVE the button, where it is still read. */
-                  <div className="space-y-1 text-sm text-muted-foreground">
+                  <div className="space-y-1 text-sm text-fine-print">
                     <p>
                       You won&rsquo;t be charged today, and there is no obligation. By continuing you
                       agree we may email or text you about this quote; standard message rates may
@@ -1867,7 +1889,7 @@ export default function QuoteFlow({
                 }
               >
                 {/* Proof at the moment of doubt: the price is the hesitation point. */}
-                <p className="mt-3 hidden flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground sm:flex">
+                <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-fine-print">
                   {BOOKINGS_CLAIM}
                   <span aria-hidden="true">·</span>
                   Pay after your clean
@@ -1923,9 +1945,9 @@ export default function QuoteFlow({
                     regular customer actually pays, so it must not read as small print
                     under a big first-clean number. */}
                 <div className={`mt-3 grid gap-3 ${quote.ongoing !== null || planPreview.length > 0 ? "sm:grid-cols-2" : ""}`}>
-                  <div className="funnel-price-tile">
+                  <div className={`funnel-price-tile${quote.ongoing === null ? " funnel-price-tile--ongoing" : ""}`}>
                     <p className="funnel-price-label">
-                      {quote.quoteOnly || (quote.ongoing === null && planPreview.length === 0) ? "Your price" : "First clean"}
+                      {quote.ongoing === null ? "Your price" : "First clean"}
                     </p>
                     <p className="funnel-price-figure">
                       {showDeepBreakdown && deepFirstClean !== null
@@ -1945,14 +1967,11 @@ export default function QuoteFlow({
                       <p className="funnel-price-tax">
                         + 5% GST · {formatPrice(withGst(ongoingTotal ?? 0))} with GST
                       </p>
-                      <p className="funnel-price-save">
-                        You save {formatPrice(ongoingSavings)} a visit
-                      </p>
                     </div>
                   )}
                   {planPreview.length > 0 && (
-                    <div className="funnel-price-tile funnel-price-tile--ongoing">
-                      <p className="funnel-price-label">Every visit after, on a plan</p>
+                    <div className="funnel-price-tile">
+                      <p className="funnel-price-label">Or on a plan, every visit after the first</p>
                       <ul className="mt-1 space-y-1">
                         {planPreview.map((plan) => (
                           <li key={plan.id} className="flex items-baseline justify-between gap-3">
@@ -1976,7 +1995,8 @@ export default function QuoteFlow({
                 )}
                 {quote.ongoing !== null && basketRows.some((row) => row.extra.firstVisitOnly) && (
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    Add-ons marked first clean only are not in the per-visit price.
+                    Add-ons are charged on the first clean only, so your per-visit price stays{" "}
+                    {formatPrice(ongoingTotal ?? 0)}.
                   </p>
                 )}
                 {showDeepBreakdown && quote.ongoing !== null && (
@@ -1995,18 +2015,36 @@ export default function QuoteFlow({
                   </p>
                 )}
 
-                <p className="mt-3 text-muted-foreground">
+                <p className="mt-3 text-fine-print">
                   {selected.asksHomeSize
-                    ? `${bedrooms} bed · ${bathrooms} bath${halfBaths > 0 ? ` · ${halfBaths} half bath` : ""} · flat rate, we stay until the checklist is done`
-                    : "Flat rate — we stay until the checklist is done"}
+                    ? `${bedrooms} bed · ${bathrooms} bath${halfBaths > 0 ? ` · ${halfBaths} half bath` : ""}`
+                    : serviceName}
+                  {quote.isEstimate
+                    ? " · a range until the size is confirmed"
+                    : " · flat rate, we stay until the checklist is done"}
                 </p>
+                {!quote.isEstimate && !quote.quoteOnly && (
+                  <ul className="mt-3 space-y-1 text-sm text-fine-print">
+                    {service === "standard" && POLICY.typicalVisitLength && (
+                      <li>
+                        A 2-bedroom, 1-bathroom apartment usually takes {POLICY.typicalVisitLength.standard}
+                        {deepCleanIntent ? ` (${POLICY.typicalVisitLength.deep} with the Deep Cleaning package)` : ""}.
+                        The price is flat whatever the time.
+                      </li>
+                    )}
+                    <li>
+                      If the home needs substantially more work than described, the team explains what
+                      they found and your options before continuing.
+                    </li>
+                  </ul>
+                )}
                 {quote.rateNote && (
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {quote.rateNote}
                   </p>
                 )}
 
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-3 text-sm leading-relaxed text-fine-print">
                   Missed something? Tell us within 24 hours of the clean and we come back and
                   re-clean it at no charge.
                 </p>
@@ -2068,8 +2106,17 @@ export default function QuoteFlow({
                 >
                   {petError && <span key={`flag-pets-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="text-lg font-bold text-foreground">
-                    Do you have pets? (+{formatPrice(petsExtra.price)}{petsExtra.firstVisitOnly ? "" : " per visit"})
+                    Do you have pets? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
+                  <p className="mt-1 text-sm text-fine-print">
+                    +{formatPrice(petsExtra.price)}
+                    {quote.ongoing !== null && !petsExtra.exemptFromFrequencyDiscount
+                      ? ` on the first clean, ${formatPrice(Math.round(petsExtra.price * (1 - quote.discountPct / 100) * 100) / 100)} per visit on your plan`
+                      : petsExtra.firstVisitOnly
+                        ? ""
+                        : " per visit"}
+                    . Paw prints, nose marks on glass and shed hair add real time in every room.
+                  </p>
                   <div className="mt-3 flex flex-wrap gap-3">
                     {[
                       { label: "Yes", value: true },
@@ -2115,7 +2162,7 @@ export default function QuoteFlow({
                     {(() => {
                       const renderGroup = ({ group, items }: (typeof shelfGroups)[number]) => (
                       <div key={group}>
-                        <h4 className="mb-2 text-[13px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+                        <h4 className="mb-2 text-sm font-bold uppercase tracking-[0.08em] text-fine-print">
                           {group}
                         </h4>
                         <ul className="grid gap-3 md:grid-cols-2">
@@ -2160,7 +2207,7 @@ export default function QuoteFlow({
                                       </span>
                                       {benefit && (
                                         <p
-                                          className={`text-[13px] leading-snug ${
+                                          className={`text-sm leading-snug ${
                                             added
                                               ? "text-brand-navy-foreground/80"
                                               : "text-muted-foreground"
@@ -2233,6 +2280,11 @@ export default function QuoteFlow({
                                             <span className="font-bold">
                                               +{formatPrice(extra.price)}
                                             </span>
+                                            {quote.ongoing !== null && extra.firstVisitOnly && (
+                                              <span className={`ml-2 rounded-sm px-1.5 py-0.5 text-xs font-semibold ${added ? "bg-brand-navy-foreground/15" : "bg-secondary text-secondary-foreground"}`}>
+                                                first clean only
+                                              </span>
+                                            )}
                                           </span>
                                         </span>
                                         <span
@@ -2248,7 +2300,7 @@ export default function QuoteFlow({
                                       </span>
                                       {benefit && (
                                         <span
-                                          className={`text-[13px] leading-snug ${
+                                          className={`text-sm leading-snug ${
                                             added
                                               ? "text-brand-navy-foreground/80"
                                               : "text-muted-foreground"
@@ -2310,7 +2362,7 @@ export default function QuoteFlow({
                     onClick={goToDetailsPane}
                     className="min-h-[56px] w-full rounded-full bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto"
                   >
-                    Next: details for your cleaner
+                    Almost there: a few details, then pick your date
                     <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                   </Button>
                 </div>
@@ -2333,6 +2385,10 @@ export default function QuoteFlow({
                   <legend className="text-lg font-bold text-foreground">
                     How do we enter the home? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
+                  <p className="mt-1 text-sm text-fine-print">
+                    You need not be home. If we cannot get in, the lockout charge is {POLICY.lockoutFee},
+                    so lockbox and code details matter.
+                  </p>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_ENTRY_OPTIONS.map((option) => (
                       <button
@@ -2365,6 +2421,10 @@ export default function QuoteFlow({
                   <legend className="text-lg font-bold text-foreground">
                     On a scale of 1-5, how clean is your house? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
+                  <p className="mt-1 text-sm text-fine-print">
+                    For your cleaner&rsquo;s preparation. It does not change your price unless you choose
+                    to add the package below.
+                  </p>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_CLEANLINESS_OPTIONS.map((option) => (
                       <button
@@ -2401,9 +2461,10 @@ export default function QuoteFlow({
                         className="mt-3 rounded-md border border-brand-navy/25 bg-brand-navy/5 p-4"
                       >
                         <p className="text-sm leading-relaxed text-foreground">
-                          Homes at 4 or 5 usually need our Deep Cleaning package: baseboards, doors,
-                          light switches, wall outlets, vent covers and cobwebs. Adding it now keeps
-                          your price accurate.
+                          For a home at 4 or 5 we recommend the Deep Cleaning package: baseboards,
+                          doors, light switches, wall outlets, vent covers and cobwebs. Adding it now
+                          keeps the price you see accurate; if the home needs more than described, the
+                          team explains your options before continuing.
                         </p>
                         <div className="mt-3 flex flex-wrap gap-3">
                           <button
@@ -2460,14 +2521,32 @@ export default function QuoteFlow({
                 <div id="dc-flexibility-group" className={`mt-8 scroll-mt-24 border-t border-border pt-6${detailErrors.flexibility ? " funnel-missing" : ""}`}>
                   {detailErrors.flexibility && <span key={`flag-flexibility-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <Label htmlFor="dc-flexibility" className="text-lg font-bold">Is your date/time flexible? <span className="text-brand-navy" aria-hidden="true">*</span></Label>
-                  <select id="dc-flexibility" value={details.flexibility ?? ""}
-                    aria-invalid={Boolean(detailErrors.flexibility)} aria-describedby="dc-flexibility-help"
-                    onChange={event => setDetails(current => ({ ...current, flexibility: event.target.value as CleanerDetails["flexibility"] }))}
-                    className="mt-2 min-h-[48px] w-full rounded-md border border-input bg-card p-3 text-base">
-                    <option value="">Choose one</option>
-                    {FLEXIBILITY_OPTIONS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
-                  </select>
-                  <p id="dc-flexibility-help" className="mt-2 text-sm text-muted-foreground">You&rsquo;ll choose from our live dates and arrival times next.</p>
+                  <div id="dc-flexibility" role="radiogroup" aria-label="Is your date/time flexible?" aria-describedby="dc-flexibility-help" className="mt-2 grid gap-2">
+                    {FLEXIBILITY_OPTIONS.map((option) => {
+                      const active = details.flexibility === option.value;
+                      return (
+                        <button
+                          key={option.value}
+                          type="button"
+                          role="radio"
+                          aria-checked={active}
+                          onClick={() => setDetails((current) => ({ ...current, flexibility: option.value as CleanerDetails["flexibility"] }))}
+                          className={`min-h-[48px] rounded-md border px-4 py-2 text-left text-base transition-colors ${
+                            active
+                              ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
+                              : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
+                          }`}
+                        >
+                          {option.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <p id="dc-flexibility-help" className="mt-2 text-sm text-fine-print">
+                    The &ldquo;comment section&rdquo; those options mention is the notes box below. Arrival
+                    windows are {ARRIVAL_WINDOWS[0]}, {ARRIVAL_WINDOWS[1]} and {ARRIVAL_WINDOWS[2]}; you
+                    pick the date and window next.
+                  </p>
                   {detailErrors.flexibility && <p className="funnel-missing-text">{detailErrors.flexibility}</p>}
                 </div>
                 <div id="dc-notes-group" className={`mt-8 scroll-mt-24 border-t border-border pt-6${detailErrors.notes ? " funnel-missing" : ""}`}>
@@ -2487,11 +2566,12 @@ export default function QuoteFlow({
                         notes: event.target.value.slice(0, cleanerNotesLimit(current)),
                       }))
                     }
-                    className="mt-2 w-full rounded-md border border-input bg-card p-3 text-base text-foreground"
+                    className="mt-2 w-full rounded-md border border-input bg-card p-3 text-base text-foreground placeholder:text-muted-foreground"
                     placeholder="If you won't be home, how do we get in? Garage, side door, backyard, key left out, lockbox or door code. Is parking hard to find? Anything else we should know."
                   />
                   <p id="dc-notes-help" className="mt-1 text-sm text-fine-print">
-                    {(details.notes ?? "").length}/{cleanerNotesLimit(details)} characters. Anything your cleaner should know.
+                    {(details.notes ?? "").length}/{cleanerNotesLimit(details)} characters. Flexible dates or times go
+                    here too. Codes and instructions travel encrypted to your cleaner with the booking.
                   </p>
                   {detailErrors.notes && <p className="funnel-missing-text">{detailErrors.notes}</p>}
                 </div>
@@ -2503,6 +2583,25 @@ export default function QuoteFlow({
                 above={
                   <>
                     {missingSummary(missingKeys.filter((key) => key !== "frequency" && key !== "pets"))}
+                    {bookingUrl && (
+                      <div className="mb-4 space-y-2 text-[0.9375rem] leading-relaxed text-fine-print">
+                        <p className="font-semibold text-foreground">What happens next</p>
+                        <p>
+                          Our booking page opens with your answers filled in (it runs on
+                          dutycleaners.bookingkoala.com). You pick a date and an arrival window,
+                          enter your address and add a card. Nothing is charged today: a temporary
+                          hold goes on the card the day before the clean, which can look like a
+                          charge in your banking app but moves no money, and you are charged after
+                          the clean is done. An address outside city limits shows its travel fee
+                          there before you confirm.
+                          {deepCleanIntent ? " Your Deep Cleaning package is already added." : ""}
+                        </p>
+                        <p>
+                          Reschedule or cancel free with {POLICY.cancellationNoticeHours} hours&rsquo;
+                          notice; inside that, the fee is {POLICY.cancellationFee}.
+                        </p>
+                      </div>
+                    )}
                     <RiskReversalRow />
                   </>
                 }
@@ -2517,8 +2616,9 @@ export default function QuoteFlow({
                   </button>
                 }
               >
-                <div ref={ctaRef}>
+                <div ref={ctaRef} className="flex flex-col gap-3 sm:flex-row sm:items-center">
                   {bookingUrl ? (
+                    <>
                     <Button
                       size="lg"
                       onClick={goToBooking}
@@ -2527,6 +2627,18 @@ export default function QuoteFlow({
                       Choose my time
                       <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                     </Button>
+                    <Button
+                      type="button"
+                      size="lg"
+                      variant="outline"
+                      onClick={requestCallback}
+                      disabled={submitting}
+                      className="min-h-[56px] w-full rounded-full border-2 border-brand-navy px-6 text-base font-bold text-brand-navy hover:bg-secondary sm:w-auto"
+                    >
+                      {submitting && <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />}
+                      {submitting ? "Sending…" : "Ask us to call me instead"}
+                    </Button>
+                    </>
                   ) : (
                     <Button
                       size="lg"
@@ -2545,28 +2657,10 @@ export default function QuoteFlow({
               </StepFooter>
 
               {bookingUrl && (
-                <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground">
-                    Choose a live date and arrival time, then enter your address on the booking page.
-                    Review the final total, including any travel fee for an address outside city limits,
-                    before adding your card. A temporary hold goes on your card the day before the
-                    clean, and the charge comes after it is done.
-                    {deepCleanIntent
-                      ? " Your Deep Cleaning package is already added."
-                      : ""}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={requestCallback}
-                    disabled={submitting}
-                    className="inline-flex min-h-[44px] items-center gap-2 text-base font-semibold text-foreground underline underline-offset-4"
-                  >
-                    {submitting && (
-                      <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                    )}
-                    Prefer to arrange it with us? Request a call back
-                  </button>
-                </div>
+                <p className="text-sm text-fine-print">
+                  A call back needs no card: we get in touch within {RESPONSE_TIME_PROMISE} to set the
+                  date and time. Booked with us before? The booking page may ask you to sign in.
+                </p>
               )}
 
                 </>
@@ -2629,14 +2723,14 @@ export default function QuoteFlow({
               <div className="grid min-w-0 grid-cols-[auto_auto] gap-x-3 sm:gap-x-4">
                 <div className="min-w-0">
                   <p className="text-xs font-semibold text-muted-foreground">
-                    <span className="sm:hidden">First</span>
-                    <span className="hidden sm:inline">First clean</span>
+                    <span className="sm:hidden">{ongoingTotal !== null ? "First clean" : "Your price"}</span>
+                    <span className="hidden sm:inline">{ongoingTotal !== null ? "First clean" : "Your price"}</span>
                   </p>
                   <p className="text-base font-bold leading-tight text-foreground sm:text-lg">{priceLabel}</p>
                 </div>
                 <div className="min-w-0 border-l border-border pl-3 sm:pl-4">
                   <p className="text-xs font-semibold text-muted-foreground">
-                    <span className="sm:hidden">{ongoingTotal !== null ? "Then" : "Plans"}</span>
+                    <span className="sm:hidden">{ongoingTotal !== null ? "Per visit" : "Plans from"}</span>
                     <span className="hidden sm:inline">{ongoingTotal !== null ? "Then per visit" : "Plans from"}</span>
                   </p>
                   <p className="text-base font-bold leading-tight text-foreground sm:text-lg">
@@ -2667,7 +2761,7 @@ export default function QuoteFlow({
               }
               className="min-h-[52px] shrink-0 rounded-full bg-accent px-4 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:px-5"
             >
-              {pricePane === "price" ? "Next" : bookingUrl ? "Choose my time" : "Request booking"}
+              {pricePane === "price" ? "Almost there" : bookingUrl ? "Choose my time" : "Request booking"}
               <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
             </Button>
           </div>

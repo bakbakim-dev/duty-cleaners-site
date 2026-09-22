@@ -598,7 +598,7 @@ All colors MUST be HSL.
 .funnel-progress-track {
   height: 4px;
   width: 100%;
-  background-color: hsl(var(--quote-shelf-surface));
+  background-color: hsl(var(--border));
   border-radius: 999px;
   overflow: hidden;
 }
@@ -775,7 +775,7 @@ All colors MUST be HSL.
   background-color: hsl(var(--destructive-ink));
   color: #fff;
   padding: 0.2rem 0.75rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
