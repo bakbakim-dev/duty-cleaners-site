@@ -1874,8 +1874,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/extra-work-terms.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
-    find: "agree any extra charge with you first",
-    replace: "we stay until the checklist is done",
+    find: "Much more work than this is agreed with you before it is done.",
+    replace: "We stay until the checklist is done.",
     failing: "the funnel and the published terms state the extra-work rule before the customer books",
     why: "The price card would again promise unlimited time instead of the agree-first rule.",
   },

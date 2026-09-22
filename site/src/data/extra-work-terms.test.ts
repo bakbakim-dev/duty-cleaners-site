@@ -69,8 +69,10 @@ describe("no page promises unlimited time for a set price", () => {
 
   it("the funnel and the published terms state the extra-work rule before the customer books", () => {
     const flow = codeOf(join(ROOT, "src/components/quote/QuoteFlow.tsx"));
-    expect(flow).toContain("agree any extra charge with you first");
-    expect(flow).toMatch(/Priced for a\{service === "move-in-out" \? "n empty" : ""\} home in the condition you describe\./);
+    // The price card lines were removed as clutter (owner, 2026-09-22); the rule
+    // stays where the customer states the condition, on the cleanliness question.
+    expect(flow).toContain("your price is for the condition you describe here");
+    expect(flow).toContain("Much more work than this is agreed with you before it is done.");
     const policy = codeOf(join(ROOT, "src/data/policy.ts"));
     expect(policy).toContain("any extra charge is agreed with you before that work is done");
     expect(policy).toContain("A clean is booked as one visit.");

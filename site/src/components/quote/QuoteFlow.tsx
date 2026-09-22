@@ -2178,26 +2178,12 @@ export default function QuoteFlow({
                     </div>
                   )}
                 </div>
-                {area && (travelFeeExtra || offlineTravelFee !== null) && (
+                {/* The online price already includes the fee (the "No, a nearby town
+                    (+$29.99)" answer says so). A service with no online price still
+                    needs the fee in words: it is its only disclosure. */}
+                {area && offlineTravelFee !== null && (
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {travelFeeExtra
-                      ? `Includes the ${formatPrice(travelFeeExtra.price)} travel fee for a home outside ${limitsCity(area, "and")} city limits${quote.ongoing !== null ? ", charged on every visit" : ""}.`
-                      : `A ${formatPrice(offlineTravelFee ?? 0)} travel fee applies outside ${limitsCity(area, "and")} city limits.`}
-                  </p>
-                )}
-                {quote.ongoing !== null && basketRows.some((row) => !row.extra.firstVisitOnly) && recurringAddOnTotal > 0 && (
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    Your add-ons repeat on every visit
-                    {basketRows.some((row) => !row.extra.firstVisitOnly && row.extra.exemptFromFrequencyDiscount)
-                      ? "; some are charged at full price, without the plan discount"
-                      : ""}
-                    .
-                  </p>
-                )}
-                {quote.ongoing !== null && basketRows.some((row) => row.extra.firstVisitOnly) && (
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    Add-ons are charged on the first clean only, so your per-visit price stays{" "}
-                    {formatPrice(ongoingTotal ?? 0)}.
+                    A {formatPrice(offlineTravelFee)} travel fee applies outside {limitsCity(area, "and")} city limits.
                   </p>
                 )}
                 {showDeepBreakdown && quote.ongoing !== null && (
@@ -2216,43 +2202,12 @@ export default function QuoteFlow({
                   </p>
                 )}
 
-                <p className="mt-3 text-fine-print">
-                  {selected.asksHomeSize
-                    ? `${bedrooms} bed · ${bathrooms} bath${halfBaths > 0 ? ` · ${halfBaths} half bath` : ""}`
-                    : serviceName}
-                  {quote.isEstimate ? " · a range until the size is confirmed" : " · set price for your home size"}
-                </p>
-                {/* Owner, 2026-09-22: the price is for the condition described, a clean
-                    is one booked visit, and extra work is agreed before it is done.
-                    Stated before the customer commits, so a later extra charge follows
-                    a rule they already accepted; never "we stay until it's done". */}
-                {!quote.isEstimate && !quote.quoteOnly && (
-                  <ul className="mt-3 space-y-1.5 text-sm text-fine-print">
-                    <li>
-                      Priced for a{service === "move-in-out" ? "n empty" : ""} home in the condition you describe.
-                      {service === "standard" && POLICY.typicalVisitLength
-                        ? ` A 2-bedroom, 1-bathroom apartment usually takes ${
-                            deepCleanIntent ? POLICY.typicalVisitLength.deep : POLICY.typicalVisitLength.standard
-                          }, booked as one visit.`
-                        : " Booked as one visit."}
-                    </li>
-                    <li>
-                      Much more work than described, like heavy build-up or clutter? We show you what we
-                      found and agree any extra charge with you first. Work beyond the booked visit is
-                      scheduled separately.
-                    </li>
-                  </ul>
-                )}
                 {quote.rateNote && (
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {quote.rateNote}
                   </p>
                 )}
 
-                <p className="mt-3 text-sm leading-relaxed text-fine-print">
-                  Missed something? Tell us within 24 hours of the clean and we come back and
-                  re-clean it at no charge.
-                </p>
 
               </div>
 
