@@ -1771,6 +1771,48 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "the Call button and phone line follow the answer, not the page",
     why: "A Red Deer visitor on the homepage would be shown Edmonton's phone number in the header.",
   },
+  // ---- 2026-09-22: a prerendered page must be its route's own render ------
+  {
+    guard: "src/data/prerender-own-render.test.ts",
+    target: "scripts/own-render.mjs",
+    find: "if (canonicals.length === 0) return \"no rel=canonical (the route's head never rendered)\";",
+    replace: "if (canonicals.length === 0) return null;",
+    failing: "rejects the shell head with a body <h1> (the 2026-09-22 pages)",
+    why: "Accepts a snapshot with the SPA shell's head, the pages that shipped with no canonical and still counted as ok.",
+  },
+  {
+    guard: "src/data/prerender-own-render.test.ts",
+    target: "scripts/own-render.mjs",
+    find: "if (href !== want) return",
+    replace: "if (false) return",
+    failing: "rejects another route's canonical, two canonicals, or a missing trailing slash",
+    why: "Accepts a snapshot whose canonical names another page.",
+  },
+  {
+    guard: "src/data/prerender-own-render.test.ts",
+    target: "scripts/own-render.mjs",
+    find: "if (/data-load-error=\"true\"/.test(html)) return",
+    replace: "if (false) return",
+    failing: "rejects the load-error boundary",
+    why: "Accepts the \"We couldn't load this page\" boundary as the page.",
+  },
+  {
+    guard: "src/data/prerender-own-render.test.ts",
+    target: "scripts/prerender.mjs",
+    find: "const problem = ownRenderProblem(html, route, SHELL_TITLE);",
+    replace: "const problem = null;",
+    failing: "prerender.mjs rejects a snapshot that is not the route's own render",
+    why: "Stops prerender.mjs checking its captures, so a shell snapshot is written and counted as ok again.",
+  },
+  {
+    guard: "src/data/prerender-own-render.test.ts",
+    target: "dist/edmonton/regular-cleaning/index.html",
+    find: '<link rel="canonical" href="https://dutycleaners.ca/edmonton/regular-cleaning/" data-rh="true">',
+    replace: "",
+    failing: "every prerendered sitemap page carries its own canonical, title and <h1>",
+    why: "Ships /edmonton/regular-cleaning/ with no canonical, as the 2026-09-22 run did.",
+    dist: true,
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",

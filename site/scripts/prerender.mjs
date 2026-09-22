@@ -17,6 +17,7 @@ import { promisify } from "node:util";
 import { join, dirname, extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { settleEmbeds } from "./settle-embeds.mjs";
+import { ownRenderProblem, shellTitleOf } from "./own-render.mjs";
 
 const execFileP = promisify(execFile);
 const DIST = resolve(dirname(fileURLToPath(import.meta.url)), "..", "dist");
@@ -67,6 +68,8 @@ const noindexShell = (html) => {
 const shell = readFileSync(join(DIST, "spa-shell.html"), "utf-8");
 const baseMatch = shell.match(/src="([^"]*?)assets\//);
 const BASE = baseMatch ? baseMatch[1] : "/";
+// No real page uses the shell's title, so a snapshot still carrying it never rendered its own head.
+const SHELL_TITLE = shellTitleOf(shell);
 
 // Route list from the generated sitemaps (single source of truth).
 const sitemapFiles = ALL
@@ -136,19 +139,36 @@ const REVEAL_HIDDEN = "opacity-0 translate-y-8";
 const REVEAL_SHOWN = "opacity-100 translate-y-0";
 
 /**
- * Headless Chrome occasionally returns a shell with no <h1> under concurrency —
- * a different route each run, passing on the next attempt. The <h1> guard turns
- * that into a hard build failure, so without a retry an entirely healthy build
- * fails at random. Two attempts, with a short backoff, and every retry is
- * reported so a route that is genuinely broken still stands out rather than
- * being quietly papered over.
+ * Headless Chrome occasionally fails to fetch one module of the route's lazy
+ * chunk graph — a different route each run, passing on the next attempt. Traced
+ * 2026-09-22: "TypeError: Failed to fetch dynamically imported module" about
+ * 2 s into the load (not the --timeout), for a dependency that never reached
+ * this server while its siblings were served 200. React.lazy rejects,
+ * LoadErrorBoundary renders "We couldn't load this page", and Helmet never
+ * writes the route's head. That boundary has an <h1>, so the old <h1>-only
+ * check accepted it: twice that day a run wrote pages with the shell's head
+ * (shell title, no description, no canonical) and still reported "210 ok,
+ * 0 failed". About one capture in 300 in stress runs. So a snapshot must
+ * be the route's OWN render:
+ * one canonical pointing at the route, an <h1>, not the load-error boundary,
+ * not the shell's title (own-render.mjs). A snapshot that fails is retried with
+ * a growing backoff; a route that never passes counts as failed and the run
+ * exits non-zero. Every retry is reported with its reason and the <h1> that was
+ * captured, so a route that is genuinely broken still stands out.
  */
-async function renderOnce(url) {
+const ATTEMPTS = 3;
+async function renderOnce(url, route) {
+  const started = Date.now();
   const { stdout: html } = await execFileP(CHROME, [...CHROME_ARGS, url], {
     maxBuffer: 64 * 1024 * 1024,
     timeout: 45_000,
   });
-  if (!/<h1/i.test(html)) throw new Error("no <h1> in rendered output");
+  const problem = ownRenderProblem(html, route, SHELL_TITLE);
+  if (problem) {
+    const h1 = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i);
+    const seen = h1 ? ` (captured h1: "${h1[1].replace(/<[^>]*>/g, "").trim().slice(0, 50)}")` : "";
+    throw new Error(`${problem}${seen} after ${((Date.now() - started) / 1000).toFixed(1)} s`);
+  }
   return html;
 }
 
@@ -156,13 +176,16 @@ async function renderRoute(route) {
   const url = `http://127.0.0.1:${port}${BASE.replace(/\/$/, "")}${route === "/" ? "/" : route}`;
   try {
     let html;
-    try {
-      html = await renderOnce(url);
-    } catch (first) {
-      retried++;
-      console.warn(`  retrying ${route}: ${String(first.message).slice(0, 80)}`);
-      await new Promise((r) => setTimeout(r, 1000));
-      html = await renderOnce(url);
+    for (let attempt = 1; ; attempt++) {
+      try {
+        html = await renderOnce(url, route);
+        break;
+      } catch (err) {
+        if (attempt >= ATTEMPTS) throw new Error(`not its own render after ${ATTEMPTS} attempts: ${err.message}`);
+        retried++;
+        console.warn(`  retrying ${route} (attempt ${attempt + 1}/${ATTEMPTS}): ${String(err.message).slice(0, 160)}`);
+        await new Promise((r) => setTimeout(r, 1000 * attempt));
+      }
     }
     // The headless run executes the inline script that stamps data-motion="on",
     // and --dump-dom bakes the result into the snapshot. Left in, the static
@@ -279,7 +302,7 @@ async function renderRoute(route) {
     if (done % 10 === 0) console.log(`  ${done}/${routes.length}`);
   } catch (err) {
     failed++;
-    console.warn(`  FAILED ${route}: ${String(err.message).slice(0, 120)}`);
+    console.warn(`  FAILED ${route}: ${String(err.message).slice(0, 240)}`);
   }
 }
 
