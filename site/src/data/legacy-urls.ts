@@ -264,6 +264,9 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/regular-house-cleaning-2", target: "/edmonton/regular-cleaning", mode: "redirect", impressions: 0 },
   // Sibling of /booking-page, which already lands on /pricing.
   { legacy: "/homepage/booking", target: "/pricing", mode: "redirect", impressions: 0 },
+  // Third sibling, found in the GoHighLevel "Long Term Nurture Campaign" (2024 copy):
+  // seven live emails and texts link here, and it 404'd after the switch (2026-09-22).
+  { legacy: "/services/booking", target: "/pricing", mode: "redirect", impressions: 0 },
   // Old WordPress uploads that 404 since the switch (AuditSpur scan 1260,
   // 2026-09-21). Each goes to the page that showed it on the old site, so a
   // stray backlink or image-search click still lands on something relevant:
