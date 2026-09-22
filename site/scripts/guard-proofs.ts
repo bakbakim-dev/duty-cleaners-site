@@ -1252,6 +1252,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Closing the form leaves the funnel's steps in history, so Back reopens a closed form.",
   },
   {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "public/api/ghl-quote.php",
+    find: "= 'callback-requested';",
+    replace: "= 'quote-confirmed';",
+    failing: "the funnel's source mark is the one the relay tags",
+    why: "Stops tagging call-back requests, so GoHighLevel cannot alert the office to call.",
+  },
+  {
     guard: "src/lib/quote-return.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
     find: "saveQuoteReturn({",

@@ -462,3 +462,20 @@ describe("the browser Back button steps through the funnel", () => {
     );
   });
 });
+
+/**
+ * Owner, 2026-09-21: a call-back request reached GoHighLevel looking exactly
+ * like a visitor who went on to book. The funnel marks the source, the relay
+ * turns that mark into the `callback-requested` tag, and a GHL workflow on that
+ * tag alerts the office. The two strings must stay identical.
+ */
+describe("a call-back request is flagged for the office", () => {
+  it("the funnel's source mark is the one the relay tags", () => {
+    const flow = codeOf("src/components/quote/QuoteFlow.tsx");
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(flow).toMatch(/\(call-back requested\)`/);
+    expect(relay, "the relay no longer tags call-back requests").toMatch(
+      /str_contains\(\$payload\['source'\], '\(call-back requested\)'\)\) \$tags\[\] = 'callback-requested';/,
+    );
+  });
+});

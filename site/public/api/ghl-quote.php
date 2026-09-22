@@ -430,6 +430,9 @@ function dc_ghl_deliver(array $config, array $payload): array
             : ['quote-started'];
         if ($payload['city'] !== '') $tags[] = strtolower($payload['city']);
         if ($payload['intent'] === 'deep') $tags[] = 'deep-intent';
+        // A call-back request travels the confirmed-quote path like a booking;
+        // this tag is what lets GoHighLevel alert the office to call.
+        if (str_contains($payload['source'], '(call-back requested)')) $tags[] = 'callback-requested';
     }
     $request = [
         'locationId' => DC_GHL_LOCATION_ID,
