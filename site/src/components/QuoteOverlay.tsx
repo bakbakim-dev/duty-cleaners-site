@@ -3,6 +3,7 @@ import Stars from "@/components/Stars";
 import { createPortal } from "react-dom";
 import { ArrowLeft, X } from "lucide-react";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
+import { useQuoteProgress } from "@/lib/quote-progress";
 import { useLocation } from "react-router-dom";
 import { branchFromPath, isCalgaryPath } from "@/lib/city-from-path";
 import { cityProofFor, hasGoogleRating, ratingClaimFor } from "@/data/proof";
@@ -52,6 +53,10 @@ export default function QuoteOverlay() {
   const scrollYRef = useRef(0);
   // The branch's own number, from data/proof.ts: never typed here.
   const { phone, phoneLink, key } = cityProofFor(pathname);
+  // The home and contact steps are one column; the price step adds a rail.
+  // Sizing the card to the step stops the short steps floating in a wide box.
+  const { step: quoteStep } = useQuoteProgress();
+  const cardWidth = quoteStep >= 2 ? "max-w-7xl" : "max-w-3xl";
 
   // Lock the page behind the takeover, trap focus, and support Escape.
   useEffect(() => {
@@ -194,7 +199,7 @@ export default function QuoteOverlay() {
       {/* Warm canvas behind, white reading surface on top — the funnel itself
           stays motif-free. */}
       <div className="funnel-canvas flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-7xl px-2 py-4 sm:px-4 md:px-6 md:py-8">
+        <div className={`mx-auto w-full ${cardWidth} px-2 py-4 sm:px-4 md:px-6 md:py-8`}>
           <div className="rounded-lg border border-border bg-card p-4 sm:p-5 shadow-[0_18px_40px_-32px_hsl(var(--brand-navy)/0.5)] md:p-8">
             <LoadErrorBoundary area="quote form" onDismiss={closeQuote}>
               <Suspense

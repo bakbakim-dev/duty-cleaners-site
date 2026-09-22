@@ -17,8 +17,9 @@ export default function RiskReversalRow({
   if (lines.length === 0) return null;
 
   const text = tone === "dark" ? "text-fine-print-on-dark" : "text-fine-print";
-  // Gold is for navy only: on a light card it measures 2.36:1.
-  const mark = tone === "dark" ? "text-brand-gold" : "text-accent";
+  // Gold is for navy only: on a light card it measures 2.36:1. On a light
+  // surface the ticks are navy, so orange stays the button's colour alone.
+  const mark = tone === "dark" ? "text-brand-gold" : "text-brand-navy";
 
   return (
     <ul className={`flex flex-wrap gap-x-5 gap-y-1.5 text-base ${text} ${className}`}>

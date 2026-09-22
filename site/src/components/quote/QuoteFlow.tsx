@@ -124,7 +124,7 @@ const DC_PARKING_LABELS: Record<DcParking, string> = Object.fromEntries(
 
 /** The corner "Add" control on every add-on card, tick-box or quantity alike. */
 const ADD_PILL =
-  "inline-flex min-h-[44px] min-w-[4.5rem] shrink-0 items-center justify-center rounded-sm border px-3 text-sm font-bold";
+  "inline-flex min-h-[44px] min-w-[4.5rem] shrink-0 items-center justify-center rounded-md border px-3 text-sm font-bold";
 
 /** Step 4 happens on the BookingKoala page, but it is part of the same funnel. */
 const TOTAL_STEPS = STEP_LABELS.length;
@@ -229,7 +229,7 @@ function NumberChips({
               onKeyDown={onKeyDown}
               tabIndex={index === focusIndex ? 0 : -1}
               aria-label={option.label}
-              className={`min-h-[48px] min-w-[56px] rounded-sm border px-3 py-1.5 text-lg font-bold transition-colors ${
+              className={`min-h-[48px] min-w-[56px] rounded-md border px-3 py-1.5 text-lg font-bold transition-colors ${
                 active
                   ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
                   : "border-input bg-card text-foreground hover:border-brand-navy/50 hover:bg-muted"
@@ -1316,10 +1316,7 @@ export default function QuoteFlow({
   };
 
   const failureNotice = failed && (
-    <div
-      role="alert"
-      className="border border-destructive/40 bg-destructive/5 p-4 text-sm text-foreground"
-    >
+    <div role="alert" className="funnel-notice funnel-notice--error text-sm text-foreground">
       <p className="flex items-start gap-2 font-semibold">
         <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" aria-hidden="true" />
         That didn&rsquo;t go through.
@@ -1407,20 +1404,11 @@ export default function QuoteFlow({
       {/* Progress — one indicator for the whole funnel, so nothing on the page
           can disagree about how many steps there are. */}
       <div className="mb-5 sm:mb-8">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            Instant price / {String(step + 1).padStart(2, "0")}
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
+          <span className="font-semibold text-foreground">
+            Step {step + 1} of {TOTAL_STEPS}
           </span>
-          <span className="text-sm font-semibold text-foreground">
-            <span
-              aria-hidden="true"
-              className="mr-2 inline-block h-2 w-2 rounded-full bg-accent align-middle"
-            />
-            {STEP_LABELS[step]}
-          </span>
-          <span className="hidden text-sm font-semibold text-muted-foreground sm:inline">
-            {Math.round(((step + 1) / TOTAL_STEPS) * 100)}% complete
-          </span>
+          <span className="text-muted-foreground">{STEP_LABELS[step]}</span>
         </div>
         <ol className="sr-only">
           {STEP_LABELS.map((label, index) => (
@@ -1453,14 +1441,14 @@ export default function QuoteFlow({
                 ref={step === 0 ? stepHeadingRef : null}
                 number="01"
                 eyebrow="Your home"
-                title="About your home"
+                title="Tell us about your home"
               />
               <fieldset>
                 <legend className="mb-3 text-lg font-bold text-foreground">
                   {serviceExpanded ? "What type of clean do you need?" : "Your clean"}
                 </legend>
                 {!serviceExpanded ? (
-                  <div className="flex flex-wrap items-center justify-between gap-3 rounded-sm border border-brand-navy/30 bg-secondary/50 p-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-brand-navy/30 bg-secondary/50 p-4">
                     <span className="flex items-center gap-2 text-base font-bold text-foreground">
                       <span className="dc-icon dc-icon-check h-5 w-5 text-brand-navy" aria-hidden="true" />
                       {serviceName}
@@ -1500,7 +1488,7 @@ export default function QuoteFlow({
                             pickService(option.id);
                             setDeepCleanIntent(option.deep);
                           }}
-                          className={`min-h-[48px] rounded-sm border p-4 text-left transition-colors ${
+                          className={`min-h-[48px] rounded-md border p-4 text-left transition-colors ${
                             selected
                               ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
                               : "border-input bg-card text-foreground hover:border-brand-navy/40"
@@ -1662,7 +1650,7 @@ export default function QuoteFlow({
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <Label htmlFor="first-name" className="text-base font-semibold">
-                    First name <span className="text-accent" aria-hidden="true">*</span>
+                    First name <span className="text-brand-navy" aria-hidden="true">*</span>
                   </Label>
                   <Input
                     id="first-name"
@@ -1683,7 +1671,7 @@ export default function QuoteFlow({
                 </div>
                 <div>
                   <Label htmlFor="last-name" className="text-base font-semibold">
-                    Last name <span className="text-accent" aria-hidden="true">*</span>
+                    Last name <span className="text-brand-navy" aria-hidden="true">*</span>
                   </Label>
                   <Input
                     id="last-name"
@@ -1704,7 +1692,7 @@ export default function QuoteFlow({
                 </div>
                 <div>
                   <Label htmlFor="email" className="text-base font-semibold">
-                    Email <span className="text-accent" aria-hidden="true">*</span>
+                    Email <span className="text-brand-navy" aria-hidden="true">*</span>
                   </Label>
                   <Input
                     id="email"
@@ -1726,7 +1714,7 @@ export default function QuoteFlow({
                 </div>
                 <div>
                   <Label htmlFor="phone" className="text-base font-semibold">
-                    Phone <span className="text-accent" aria-hidden="true">*</span>
+                    Phone <span className="text-brand-navy" aria-hidden="true">*</span>
                   </Label>
                   <Input
                     id="phone"
@@ -1769,22 +1757,28 @@ export default function QuoteFlow({
               <StepFooter
                 above={
                   /* Reassurance sits ABOVE the button, where it is still read. */
-                  <p className="text-sm text-muted-foreground">
-                    You won&rsquo;t be charged today · No obligation · By continuing, you agree we may
-                    email or text about this quote. Standard message rates may apply. Read our{" "}
-                    <a
-                      href="/privacy-policy/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-semibold text-foreground underline"
-                    >
-                      privacy policy
-                    </a>
-                    . Prefer to talk?{" "}
-                    <a href={proof.phoneLink} className="inline-flex min-h-[44px] items-center font-semibold text-foreground underline">
-                      {proof.phone}
-                    </a>
-                  </p>
+                  <div className="space-y-1 text-sm text-muted-foreground">
+                    <p>
+                      You won&rsquo;t be charged today, and there is no obligation. By continuing you
+                      agree we may email or text you about this quote; standard message rates may
+                      apply. Read our{" "}
+                      <a
+                        href="/privacy-policy/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-foreground underline underline-offset-4"
+                      >
+                        privacy policy
+                      </a>
+                      .
+                    </p>
+                    <p>
+                      Prefer to talk?{" "}
+                      <a href={proof.phoneLink} className="py-2.5 font-semibold text-foreground underline underline-offset-4">
+                        {proof.phone}
+                      </a>
+                    </p>
+                  </div>
                 }
                 back={
                   <button
@@ -1802,10 +1796,11 @@ export default function QuoteFlow({
                   type="submit"
                   size="lg"
                   disabled={submitting}
+                  aria-busy={submitting || undefined}
                   className="min-h-[56px] w-full rounded-full bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto"
                 >
                   {submitting && <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />}
-                  Show My Price
+                  {submitting ? "Getting your price…" : "Show My Price"}
                   <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                 </Button>
               </StepFooter>
@@ -1844,7 +1839,7 @@ export default function QuoteFlow({
               </StepHeader>
 
               {leadCaptureFailed && (
-                <div role="alert" className="mb-5 border border-amber-600/40 bg-amber-50 p-4 text-sm text-foreground">
+                <div role="alert" className="funnel-notice funnel-notice--warning text-sm text-foreground">
                   <p className="font-semibold">Your price is ready below.</p>
                   <p className="mt-2 leading-relaxed text-muted-foreground">
                     We had trouble connecting, so we may not have received your contact details. Nothing has been booked or charged. You can try again or continue reviewing your price; we&rsquo;ll try once more before opening the schedule.
@@ -1859,7 +1854,7 @@ export default function QuoteFlow({
               {pricePane === "price" && (
                 <>
               <div className="rounded-lg border border-quote-price-border bg-quote-price p-6">
-                <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                <p className="text-sm font-semibold text-muted-foreground">
                   {serviceName} in {proof.city}
                 </p>
                 {showDeepBreakdown && deepFirstClean !== null ? (
@@ -1991,7 +1986,7 @@ export default function QuoteFlow({
                 >
                   {frequencyError && <span key={`flag-frequency-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <p className="mb-1 text-lg font-bold text-foreground">
-                    How often? <span className="text-accent" aria-hidden="true">*</span>
+                    How often? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </p>
                   <p className="mb-3 text-[0.9375rem] text-muted-foreground">
                     Your first clean is at the one-time price. The plan discount starts on visit
@@ -2011,9 +2006,9 @@ export default function QuoteFlow({
                   {quote.ongoing !== null && quote.savings > 0 && (
                     <p
                       key={effectiveFrequency}
-                      className="savings-appear mt-4 flex items-start gap-2 rounded-sm border border-border bg-secondary/60 p-4 text-base leading-relaxed text-foreground"
+                      className="savings-appear mt-4 flex items-start gap-2 rounded-md border border-border bg-secondary/60 p-4 text-base leading-relaxed text-foreground"
                     >
-                      <span className="dc-icon dc-icon-check mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                      <span className="dc-icon dc-icon-check mt-1 h-4 w-4 shrink-0 text-brand-navy" aria-hidden="true" />
                       <span>
                         {getFrequency(effectiveFrequency).label} saves you{" "}
                         <span className="font-bold">{formatPrice(ongoingSavings)}</span> on every visit
@@ -2037,7 +2032,7 @@ export default function QuoteFlow({
                 >
                   {petError && <span key={`flag-pets-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="px-1 text-lg font-bold text-foreground">
-                    Do you have pets? (+{formatPrice(petsExtra.price)})
+                    Do you have pets? (+{formatPrice(petsExtra.price)}{petsExtra.firstVisitOnly ? "" : " per visit"})
                   </legend>
                   <div className="mt-3 flex flex-wrap gap-3">
                     {[
@@ -2053,7 +2048,7 @@ export default function QuoteFlow({
                           setPetError(null);
                           peek(shelfRef);
                         }}
-                        className={`min-h-[48px] min-w-[96px] rounded-sm border px-4 py-2 text-base font-semibold transition-colors ${
+                        className={`min-h-[48px] min-w-[96px] rounded-md border px-4 py-2 text-base font-semibold transition-colors ${
                           hasPets === option.value
                             ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
                             : "border-input bg-card text-foreground hover:bg-secondary"
@@ -2100,7 +2095,7 @@ export default function QuoteFlow({
                             return (
                               <li key={extra.name} className="h-full">
                                 <div
-                                  className={`flex h-full min-h-[44px] flex-col gap-1.5 rounded-lg border-[1.5px] px-4 py-3 transition-colors ${
+                                  className={`flex h-full min-h-[44px] flex-col gap-1.5 rounded-md border-[1.5px] px-4 py-3 transition-colors ${
                                     added
                                       ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
                                       : "border-input bg-card text-foreground hover:border-brand-navy"
@@ -2145,7 +2140,7 @@ export default function QuoteFlow({
                                               type="button"
                                               onClick={() => setQuantity(extra, quantity - 1)}
                                               aria-label={`Remove one ${extra.name}`}
-                                              className={`h-12 w-12 border text-lg font-bold ${
+                                              className={`h-12 w-12 rounded-md border text-lg font-bold transition-colors hover:bg-secondary ${
                                                 added
                                                   ? "border-brand-navy-foreground/40"
                                                   : "border-border"
@@ -2164,7 +2159,7 @@ export default function QuoteFlow({
                                               onClick={() => setQuantity(extra, quantity + 1)}
                                               disabled={quantity >= max}
                                               aria-label={`Add one ${extra.name}`}
-                                              className={`h-12 w-12 border text-lg font-bold disabled:opacity-40 ${
+                                              className={`h-12 w-12 rounded-md border text-lg font-bold transition-colors hover:bg-secondary disabled:opacity-40 ${
                                                 added
                                                   ? "border-brand-navy-foreground/40"
                                                   : "border-border"
@@ -2180,7 +2175,7 @@ export default function QuoteFlow({
                                   ) : (
                                     <label
                                       htmlFor={inputId}
-                                      className={`flex h-full cursor-pointer flex-col gap-2 focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-ring ${
+                                      className={`flex h-full cursor-pointer flex-col gap-2 focus-within:outline focus-within:outline-[3px] focus-within:outline-offset-4 focus-within:outline-brand-navy ${
                                         locked ? "cursor-default" : ""
                                       }`}
                                     >
@@ -2256,7 +2251,12 @@ export default function QuoteFlow({
               )}
 
               <StepFooter
-                above={missingSummary(missingKeys.filter((key) => key === "frequency" || key === "pets"))}
+                above={
+                  <>
+                    {missingSummary(missingKeys.filter((key) => key === "frequency" || key === "pets"))}
+                    <RiskReversalRow />
+                  </>
+                }
                 back={
                   <button
                     type="button"
@@ -2298,7 +2298,7 @@ export default function QuoteFlow({
                 <fieldset id="dc-entry-group" aria-invalid={detailErrors.entry ? true : undefined} className={`mt-5 scroll-mt-24${detailErrors.entry ? " funnel-missing" : ""}`}>
                   {detailErrors.entry && <span key={`flag-entry-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="text-base font-bold text-foreground">
-                    How do we enter the home? <span className="text-accent" aria-hidden="true">*</span>
+                    How do we enter the home? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_ENTRY_OPTIONS.map((option) => (
@@ -2312,7 +2312,7 @@ export default function QuoteFlow({
                             entry: option.value,
                           }))
                         }
-                        className={`min-h-[48px] rounded-sm border px-4 text-base font-semibold transition-colors ${
+                        className={`min-h-[48px] rounded-md border px-4 text-base font-semibold transition-colors ${
                           details.entry === option.value
                             ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
                             : "border-input bg-card text-foreground hover:border-brand-navy"
@@ -2330,7 +2330,7 @@ export default function QuoteFlow({
                 <fieldset id="dc-clean-group" aria-invalid={detailErrors.cleanliness ? true : undefined} className={`mt-5 scroll-mt-24${detailErrors.cleanliness ? " funnel-missing" : ""}`}>
                   {detailErrors.cleanliness && <span key={`flag-cleanliness-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="text-base font-bold text-foreground">
-                    On a scale of 1-5, how clean is your house? <span className="text-accent" aria-hidden="true">*</span>
+                    On a scale of 1-5, how clean is your house? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_CLEANLINESS_OPTIONS.map((option) => (
@@ -2344,7 +2344,7 @@ export default function QuoteFlow({
                             cleanliness: option.value,
                           }))
                         }
-                        className={`min-h-[48px] rounded-sm border px-4 text-base font-semibold transition-colors ${
+                        className={`min-h-[48px] rounded-md border px-4 text-base font-semibold transition-colors ${
                           details.cleanliness === option.value
                             ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
                             : "border-input bg-card text-foreground hover:border-brand-navy"
@@ -2365,7 +2365,7 @@ export default function QuoteFlow({
                     !addOns[deepShelfRow.name] && (
                       <div
                         role="status"
-                        className="mt-3 rounded-lg border border-brand-navy/25 bg-brand-navy/5 p-4"
+                        className="mt-3 rounded-md border border-brand-navy/25 bg-brand-navy/5 p-4"
                       >
                         <p className="text-sm leading-relaxed text-foreground">
                           Homes at 4 or 5 usually need our Deep Cleaning package: baseboards, doors,
@@ -2383,7 +2383,7 @@ export default function QuoteFlow({
                           <button
                             type="button"
                             onClick={() => setDeepNudgeDismissed(true)}
-                            className="min-h-[48px] rounded-sm px-4 text-base font-semibold text-muted-foreground underline underline-offset-4 hover:text-foreground"
+                            className="min-h-[48px] rounded-md px-4 text-base font-semibold text-muted-foreground underline underline-offset-4 hover:text-foreground"
                           >
                             No thanks
                           </button>
@@ -2395,7 +2395,7 @@ export default function QuoteFlow({
                 <fieldset id="dc-park-group" aria-invalid={detailErrors.parking ? true : undefined} className={`mt-5 scroll-mt-24${detailErrors.parking ? " funnel-missing" : ""}`}>
                   {detailErrors.parking && <span key={`flag-parking-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="text-base font-bold text-foreground">
-                    Where should we park? <span className="text-accent" aria-hidden="true">*</span>
+                    Where should we park? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_PARKING_OPTIONS.map((option) => (
@@ -2409,7 +2409,7 @@ export default function QuoteFlow({
                             parking: option.value,
                           }))
                         }
-                        className={`min-h-[48px] rounded-sm border px-4 text-base font-semibold transition-colors ${
+                        className={`min-h-[48px] rounded-md border px-4 text-base font-semibold transition-colors ${
                           details.parking === option.value
                             ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
                             : "border-input bg-card text-foreground hover:border-brand-navy"
@@ -2426,12 +2426,12 @@ export default function QuoteFlow({
 
                 <div id="dc-flexibility-group" className={`mt-5 scroll-mt-24${detailErrors.flexibility ? " funnel-missing" : ""}`}>
                   {detailErrors.flexibility && <span key={`flag-flexibility-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
-                  <Label htmlFor="dc-flexibility" className="text-base font-bold">Is your date/time flexible? *</Label>
+                  <Label htmlFor="dc-flexibility" className="text-base font-bold">Is your date/time flexible? <span className="text-brand-navy" aria-hidden="true">*</span></Label>
                   <select id="dc-flexibility" value={details.flexibility ?? ""}
                     aria-invalid={Boolean(detailErrors.flexibility)} aria-describedby="dc-flexibility-help"
                     onChange={event => setDetails(current => ({ ...current, flexibility: event.target.value as CleanerDetails["flexibility"] }))}
-                    className="mt-2 min-h-[48px] w-full rounded-sm border border-input bg-card p-3 text-base">
-                    <option value="">Select Option</option>
+                    className="mt-2 min-h-[48px] w-full rounded-md border border-input bg-card p-3 text-base">
+                    <option value="">Choose one</option>
                     {FLEXIBILITY_OPTIONS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
                   </select>
                   <p id="dc-flexibility-help" className="mt-2 text-sm text-muted-foreground">You&rsquo;ll choose from our live dates and arrival times next.</p>
@@ -2439,7 +2439,7 @@ export default function QuoteFlow({
                 </div>
                 <div id="dc-notes-group" className={`mt-5 scroll-mt-24${detailErrors.notes ? " funnel-missing" : ""}`}>
                   <Label htmlFor="dc-notes" className="text-base font-bold text-foreground">
-                    Special Notes &amp; Instructions <span className="font-normal text-muted-foreground">(optional)</span>
+                    Notes for your cleaner <span className="font-normal text-muted-foreground">(optional)</span>
                   </Label>
                   <textarea
                     id="dc-notes"
@@ -2454,7 +2454,7 @@ export default function QuoteFlow({
                         notes: event.target.value.slice(0, cleanerNotesLimit(current)),
                       }))
                     }
-                    className="mt-2 w-full rounded-sm border border-input bg-card p-3 text-base text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                    className="mt-2 w-full rounded-md border border-input bg-card p-3 text-base text-foreground"
                     placeholder="Fragile items, alarm timing, where supplies are kept…"
                   />
                   <p id="dc-notes-help" className="mt-1 text-sm text-fine-print">
@@ -2467,7 +2467,12 @@ export default function QuoteFlow({
               {failureNotice}
 
               <StepFooter
-                above={missingSummary(missingKeys.filter((key) => key !== "frequency" && key !== "pets"))}
+                above={
+                  <>
+                    {missingSummary(missingKeys.filter((key) => key !== "frequency" && key !== "pets"))}
+                    <RiskReversalRow />
+                  </>
+                }
                 back={
                   <button
                     type="button"
@@ -2499,7 +2504,7 @@ export default function QuoteFlow({
                       {submitting && (
                         <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />
                       )}
-                      Request my booking
+                      {submitting ? "Sending…" : "Request my booking"}
                       <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                     </Button>
                   )}
@@ -2534,8 +2539,6 @@ export default function QuoteFlow({
                 </>
               )}
 
-              <RiskReversalRow />
-
             </div>
           )}
         </div>
@@ -2569,7 +2572,7 @@ export default function QuoteFlow({
               />
               <a
                 href={proof.phoneLink}
-                className="mt-4 flex min-h-[48px] items-center justify-center gap-2 rounded-sm border border-border bg-card font-semibold text-foreground hover:bg-secondary"
+                className="mt-4 flex min-h-[48px] items-center justify-center gap-2 rounded-md border border-border bg-card font-semibold text-foreground hover:bg-secondary"
               >
                 <span className="dc-icon dc-icon-phone h-4 w-4 text-accent" aria-hidden="true" />
                 Prefer to talk? {proof.phone}
@@ -2590,16 +2593,20 @@ export default function QuoteFlow({
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
             {ongoingTotal !== null || plansFrom !== null ? (
-              <div className="grid min-w-0 grid-cols-2 gap-x-4">
+              <div className="grid min-w-0 grid-cols-[auto_auto] gap-x-3 sm:gap-x-4">
                 <div className="min-w-0">
-                  <p className="truncate text-xs font-semibold text-muted-foreground">First clean</p>
-                  <p className="text-lg font-bold leading-tight text-foreground">{priceLabel}</p>
-                </div>
-                <div className="min-w-0 border-l border-border pl-4">
-                  <p className="truncate text-xs font-semibold text-muted-foreground">
-                    {ongoingTotal !== null ? "Then per visit" : "Plans from"}
+                  <p className="text-xs font-semibold text-muted-foreground">
+                    <span className="sm:hidden">First</span>
+                    <span className="hidden sm:inline">First clean</span>
                   </p>
-                  <p className="text-lg font-bold leading-tight text-foreground">
+                  <p className="text-base font-bold leading-tight text-foreground sm:text-lg">{priceLabel}</p>
+                </div>
+                <div className="min-w-0 border-l border-border pl-3 sm:pl-4">
+                  <p className="text-xs font-semibold text-muted-foreground">
+                    <span className="sm:hidden">{ongoingTotal !== null ? "Then" : "Plans"}</span>
+                    <span className="hidden sm:inline">{ongoingTotal !== null ? "Then per visit" : "Plans from"}</span>
+                  </p>
+                  <p className="text-base font-bold leading-tight text-foreground sm:text-lg">
                     {formatPrice(ongoingTotal ?? plansFrom ?? 0)}
                   </p>
                 </div>
@@ -2625,7 +2632,7 @@ export default function QuoteFlow({
                     ? goToBooking
                     : requestCallback
               }
-              className="min-h-[52px] shrink-0 rounded-full bg-accent px-5 text-base font-bold text-accent-foreground hover:bg-accent/90"
+              className="min-h-[52px] shrink-0 rounded-full bg-accent px-4 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:px-5"
             >
               {pricePane === "price" ? "Next" : bookingUrl ? "Choose my time" : "Request booking"}
               <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
