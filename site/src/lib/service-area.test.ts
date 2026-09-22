@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { areaPhrase, areaPresetFor, asksBranch, initialAreaFor, BRANCH_OPTIONS } from "@/lib/service-area";
+import { areaPhrase, areaPresetFor, initialAreaFor, limitsCity } from "@/lib/service-area";
 import { edmontonSurrounding, calgarySurrounding } from "@/data/city-locations";
 
 describe("where is the home: page presets", () => {
@@ -29,12 +29,19 @@ describe("where is the home: page presets", () => {
     expect(initialAreaFor("/move-out-cleaning-calgary/")).toEqual({ branch: "calgary", outside: null });
   });
 
-  it("only pages that name no branch ask for one on step 1", () => {
-    for (const path of ["/", "/faqs/", "/contact-us/", "/blog/some-post/"]) expect(asksBranch(path), path).toBe(true);
-    for (const path of ["/cleaning-services-calgary/", "/pricing/", "/cleaning-services-leduc/", "/cleaning-services-red-deer/"]) {
-      expect(asksBranch(path), path).toBe(false);
+  it("the homepage and branch-less pages are general: no city named, Edmonton or Calgary asked", () => {
+    for (const path of ["/", "/faqs/", "/contact-us/", "/blog/some-post/"]) {
+      const area = initialAreaFor(path);
+      expect(area.general, path).toBe(true);
+      expect(area.outside, path).toBeNull();
+      // Owner, 2026-09-22: Red Deer is left out of the general question for now.
+      expect(limitsCity(area, "or"), path).toBe("Edmonton or Calgary");
+      expect(limitsCity(area, "and"), path).toBe("Edmonton and Calgary");
     }
-    expect(BRANCH_OPTIONS.map((option) => option.label)).toEqual(["Edmonton area", "Calgary area", "Red Deer area"]);
+    for (const path of ["/cleaning-services-calgary/", "/pricing/", "/cleaning-services-leduc/", "/cleaning-services-red-deer/"]) {
+      expect(initialAreaFor(path).general, path).toBeUndefined();
+    }
+    expect(limitsCity(initialAreaFor("/cleaning-services-red-deer/"), "or")).toBe("Red Deer");
   });
 });
 
@@ -44,5 +51,7 @@ describe("where is the home: the wording", () => {
     expect(areaPhrase({ branch: "calgary", outside: true })).toBe("near Calgary");
     expect(areaPhrase({ branch: "reddeer", outside: false })).toBe("in Red Deer");
     expect(areaPhrase({ branch: "calgary", outside: null })).toBe("in the Calgary area");
+    expect(areaPhrase({ branch: "edmonton", outside: null, general: true })).toBe("");
+    expect(areaPhrase({ branch: "edmonton", outside: true, general: true })).toBe("outside city limits");
   });
 });

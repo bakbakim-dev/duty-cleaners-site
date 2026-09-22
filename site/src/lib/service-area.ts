@@ -9,10 +9,11 @@
  * tagged their lead `edmonton` in GoHighLevel and showed Edmonton's hours to
  * Calgary and Red Deer customers alike.
  *
- * TWO QUESTIONS, ASKED WHERE THEY COST LEAST (owner, 2026-09-22, "lighter version")
- * - The branch. Most pages already name it (a city hub, a service page, a town
- *   or neighbourhood page), so step 1 asks only on pages that belong to no
- *   branch: the homepage, the FAQ, the blog and the other company pages.
+ * ONE QUESTION, ON THE PRICE STEP (owner, 2026-09-22)
+ * - The branch comes from the page. Step 1 asked it on the homepage and the
+ *   branch-less pages until the owner dropped that question: its answer only
+ *   became a GoHighLevel tag no workflow reads. Those pages are "general": the
+ *   funnel names no city and the office shown is the page's default.
  * - Inside or outside city limits, a required yes/no on the price step beside
  *   the pets question, because it changes the price. A satellite-town page
  *   (Leduc, Airdrie...) answers "outside" and a neighbourhood page "inside" in
@@ -32,7 +33,7 @@ import {
   edmontonSurrounding,
   type CityLocation,
 } from "@/data/city-locations";
-import { explicitBranchFromPath, type Branch } from "@/lib/city-from-path";
+import { branchFromPath, explicitBranchFromPath, type Branch } from "@/lib/city-from-path";
 
 export interface ServiceArea {
   branch: Branch;
@@ -40,6 +41,12 @@ export interface ServiceArea {
   outside: boolean | null;
   /** The town or neighbourhood, when the page named it. */
   place?: string;
+  /**
+   * A page that names no branch (the homepage, FAQ, blog...): the city-limits
+   * question asks about Edmonton or Calgary (Red Deer left out for now, owner
+   * 2026-09-22) and no branch is claimed for the lead.
+   */
+  general?: boolean;
 }
 
 export const BRANCH_CITY: Record<Branch, string> = {
@@ -80,30 +87,30 @@ export function areaPresetFor(pathname: string): ServiceArea | null {
 /**
  * What the funnel starts from on this page: a location page's full answer,
  * else the page's own branch with the city-limits question still open, else
- * nothing (a page that belongs to no branch asks for it on step 1).
+ * (the homepage and branch-less pages) a general answer that names no city.
  */
-export function initialAreaFor(pathname: string): ServiceArea | null {
+export function initialAreaFor(pathname: string): ServiceArea {
   const preset = areaPresetFor(pathname);
   if (preset) return preset;
-  // The homepage is Edmonton's page by title, but it is the front door for all
-  // three branches (brand searches land there), so the funnel asks.
-  if ((pathname || "/").replace(/\/+$/, "") === "") return null;
-  const branch = explicitBranchFromPath(pathname);
-  return branch ? { branch, outside: null } : null;
+  // The homepage is Edmonton's page by title, but it is the front door for
+  // every branch (brand searches land there), so it names no city.
+  const isHome = (pathname || "/").replace(/\/+$/, "") === "";
+  const branch = isHome ? null : explicitBranchFromPath(pathname);
+  return branch ? { branch, outside: null } : { branch: branchFromPath(pathname), outside: null, general: true };
 }
 
-/** Step 1 asks for the branch only where the page names none. */
-export const asksBranch = (pathname: string) => initialAreaFor(pathname) === null;
+/** The city (or cities) the city-limits question and the fee note name. */
+export function limitsCity(area: ServiceArea, joiner: "or" | "and"): string {
+  return area.general ? `Edmonton ${joiner} Calgary` : BRANCH_CITY[area.branch];
+}
 
-/** The branch answers, for pages that name none. */
-export const BRANCH_OPTIONS: { branch: Branch; label: string }[] = [
-  { branch: "edmonton", label: "Edmonton area" },
-  { branch: "calgary", label: "Calgary area" },
-  { branch: "reddeer", label: "Red Deer area" },
-];
-
-/** "in Leduc", "near Edmonton", "in Calgary", or "in the Calgary area" until answered. */
+/**
+ * "in Leduc", "near Edmonton", "in Calgary", "in the Calgary area" until
+ * answered; on a general page "inside city limits" / "outside city limits",
+ * or nothing until answered.
+ */
 export function areaPhrase(area: ServiceArea): string {
+  if (area.general) return area.outside === null ? "" : area.outside ? "outside city limits" : "inside city limits";
   if (area.place && area.outside !== null) return `in ${area.place}`;
   if (area.outside === null) return `in the ${BRANCH_CITY[area.branch]} area`;
   return `${area.outside ? "near" : "in"} ${BRANCH_CITY[area.branch]}`;

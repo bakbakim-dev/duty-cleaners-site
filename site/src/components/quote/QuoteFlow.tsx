@@ -62,8 +62,7 @@ import {
 import { BOOKINGS_CLAIM, CITY_PROOF, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating, hoursLineFor, ratingClaimFor } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
-import { BRANCH_CITY, BRANCH_OPTIONS, areaPhrase, areaPresetFor, asksBranch, initialAreaFor, type ServiceArea } from "@/lib/service-area";
-import type { Branch } from "@/lib/city-from-path";
+import { areaPhrase, areaPresetFor, initialAreaFor, limitsCity, type ServiceArea } from "@/lib/service-area";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote, type QuotePayload } from "@/lib/quote-submit";
 import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { intentParams, intentQuery } from "@/lib/url-intent";
@@ -304,36 +303,33 @@ export default function QuoteFlow({
   }, [restored]);
 
   /**
-   * Where the home is (lib/service-area.ts): the branch, and whether the
-   * travel fee applies. A location page presets it; elsewhere step 1 asks.
-   * Every office detail after that follows the answer, not the page.
+   * Where the home is (lib/service-area.ts): the branch the page names, and
+   * whether the travel fee applies, asked on the price step. A location page
+   * presets both; a page with no branch is "general" and names no city.
    */
   const [area, setArea] = useState<ServiceArea | null>(() => restored?.area ?? initialAreaFor(pathname));
-  /** Step 1's branch question, on pages that name no branch. */
-  const [areaError, setAreaError] = useState<string | null>(null);
   /** The price step's "inside city limits?" question. */
   const [limitsError, setLimitsError] = useState<string | null>(null);
-  const chooseBranch = (branch: Branch) => {
-    setArea((current) => (current?.branch === branch ? current : { branch, outside: null }));
-    setAreaError(null);
-  };
   /** What the visitor just changed, named on the price-change note (see priceChange). */
   const changeLabelRef = useRef<{ text: string; name?: string } | null>(null);
   const chooseOutside = (outside: boolean) => {
     changeLabelRef.current = { text: outside ? "travel fee" : "no travel fee" };
     // A page's town name only stands while the answer is the page's own.
     setArea((current) =>
-      current ? { branch: current.branch, outside, place: current.outside === outside ? current.place : undefined } : current
+      current
+        ? { ...current, outside, place: current.outside === outside ? current.place : undefined }
+        : current
     );
     setLimitsError(null);
   };
-  const proof = area ? CITY_PROOF[area.branch] : pageProof;
+  const proof = area && !area.general ? CITY_PROOF[area.branch] : pageProof;
   // The overlay header (QuoteOverlay) shows the same office as the funnel.
   useEffect(() => {
-    setQuoteBranch(area?.branch ?? null);
-  }, [area?.branch]);
-  /** "in Leduc", "near Calgary"; the page's city until the question is answered. */
-  const wherePhrase = area ? areaPhrase(area) : `in ${proof.city}`;
+    setQuoteBranch(area && !area.general ? area.branch : null);
+  }, [area?.branch, area?.general]); // eslint-disable-line react-hooks/exhaustive-deps -- keyed on the two fields read
+  /** " in Leduc", " near Calgary", " outside city limits"; empty on a general page until answered. */
+  const whereText = area ? areaPhrase(area) : `in ${proof.city}`;
+  const whereSuffix = whereText ? ` ${whereText}` : "";
 
   const [step, setStep] = useState(restored ? 2 : 0);
   const [service, setService] = useState<ServiceId>(restored?.service ?? initialService);
@@ -524,18 +520,17 @@ export default function QuoteFlow({
     });
     const pageApplied =
       !preset && pageService !== null && next === pageService && choicePathRef.current !== pathname + search;
-    // A location page settles where the home is. A different answer from the
-    // one this quote was priced on makes it a new quote.
     // A page that names a branch (or, for a location page, the whole answer)
     // sets it. A different answer from the one this quote was priced on makes
-    // it a new quote. A page that names none keeps the visitor's own answer.
+    // it a new quote. A general page (no branch) keeps the quote as it is.
     const pageArea = initialAreaFor(pathname);
     const areaChanged =
-      pageArea !== null &&
+      !pageArea.general &&
       (area === null ||
+        area.general === true ||
         pageArea.branch !== area.branch ||
         (areaPresetFor(pathname) !== null && pageArea.outside !== area.outside));
-    if (pageArea && areaChanged) setArea(pageArea);
+    if (areaChanged || area === null) setArea(pageArea);
     // A lead sent for another service or area is not this quote: start again
     // at step 1 (the contact details stay filled in).
     const restart = step > 0 && (next !== service || areaChanged);
@@ -740,12 +735,6 @@ export default function QuoteFlow({
   });
 
   const goToContact = () => {
-    if (!area) {
-      setAreaError("Please tell us where the home is, so the right office prices it.");
-      setNudge((value) => value + 1);
-      jumpToMissing("area");
-      return;
-    }
     track("property_details_completed", funnelProps());
     // Contact details already given for this quote: back to the price. Going
     // through step 2 again sent a second lead and re-fired the office email
@@ -1112,7 +1101,8 @@ export default function QuoteFlow({
     source: "dutycleaners.ca instant quote",
     // The branch key: "edmonton", "calgary" or "reddeer", the same values the
     // contact form sends, so the GoHighLevel city tag is one spelling per branch.
-    city: proof.key,
+    // A general page (homepage, FAQ...) claims no branch: no tag.
+    city: area?.general ? "" : proof.key,
     service: GHL_SERVICE_LABELS[service] ?? selected.label,
     home_type:
       (homeType !== null ? GHL_HOME_TYPE_LABELS[homeType] : undefined) ??
@@ -1239,7 +1229,7 @@ export default function QuoteFlow({
     addons: [
       ...(showDeepBreakdown ? ["Deep Cleaning (package)"] : []),
       ...basketLabels,
-      ...(area ? [`Home ${areaPhrase(area)}${area.outside === true ? " (outside city limits)" : ""}`] : []),
+      ...(area && areaPhrase(area) ? [`Home ${areaPhrase(area)}${area.outside === true && !area.general ? " (outside city limits)" : ""}`] : []),
 
       ...(details.entry ? [`Entry: ${DC_ENTRY_LABELS[details.entry]}`] : []),
       ...(details.cleanliness
@@ -1346,7 +1336,6 @@ export default function QuoteFlow({
     parking: { id: "dc-park-group", label: "Where should we park?" },
     flexibility: { id: "dc-flexibility-group", label: "Is your date/time flexible?" },
     notes: { id: "dc-notes-group", label: "Special notes (too long)" },
-    area: { id: "dc-area-group", label: "Where is the home?" },
     limits: { id: "dc-limits-group", label: "Inside city limits?" },
   };
   /** Bumped on every blocked attempt so the nudge animation replays each time. */
@@ -1573,7 +1562,7 @@ export default function QuoteFlow({
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
           We&rsquo;ll text you within {RESPONSE_TIME_PROMISE} to set a date and time. Your{" "}
-          {serviceName.toLowerCase()} {wherePhrase} is quoted at {priceLabel}
+          {serviceName.toLowerCase()}{whereSuffix} is quoted at {priceLabel}
           {ongoingTotal ? `, then ${formatPrice(ongoingTotal)} per visit` : ""}.
           The {proof.city} office is open {hoursLineFor(proof.key)}.
         </p>
@@ -1839,42 +1828,6 @@ export default function QuoteFlow({
                 </div>
               )}
 
-              {/* Which branch, asked only where the page names none (lib/service-area.ts).
-                  Inside or outside city limits is asked on the price step. */}
-              {asksBranch(pathname) && (
-                <div
-                  id="dc-area-group"
-                  className={`mt-8 scroll-mt-24 border-t border-border pt-8${areaError ? " funnel-missing" : ""}`}
-                >
-                  {areaError && <span key={`flag-area-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
-                  <p id="dc-area-label" className="text-lg font-bold text-foreground">
-                    Where is the home? <span className="text-brand-navy" aria-hidden="true">*</span>
-                  </p>
-                  <div role="radiogroup" aria-labelledby="dc-area-label" className="mt-2 grid gap-2 sm:grid-cols-3">
-                    {BRANCH_OPTIONS.map((option) => {
-                      const active = area?.branch === option.branch;
-                      return (
-                        <button
-                          key={option.branch}
-                          type="button"
-                          role="radio"
-                          aria-checked={active}
-                          onClick={() => chooseBranch(option.branch)}
-                          className={`min-h-[48px] rounded-md border px-3 py-2 text-left text-base transition-colors ${
-                            active
-                              ? "border-brand-navy bg-brand-navy font-bold text-brand-navy-foreground"
-                              : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
-                          }`}
-                        >
-                          {option.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {areaError && <p className="funnel-missing-text">{areaError}</p>}
-                </div>
-              )}
-
               <StepFooter above={<RiskReversalRow />}>
                 <Button
                   size="lg"
@@ -1927,7 +1880,7 @@ export default function QuoteFlow({
               >
                 <p className="mt-3 text-muted-foreground">
                   The next screen shows the exact price for your {serviceName.toLowerCase()}
-                  {selected.asksHomeSize ? ` (${bedrooms} bed, ${bathrooms} bath)` : ""} {wherePhrase}.
+                  {selected.asksHomeSize ? ` (${bedrooms} bed, ${bathrooms} bath)` : ""}{whereSuffix}.
                   Nothing is booked yet. All four fields are needed to show it.
                 </p>
               </StepHeader>
@@ -2141,7 +2094,7 @@ export default function QuoteFlow({
                 <>
               <div className="rounded-lg border border-quote-price-border bg-quote-price p-6">
                 <p className="text-sm font-semibold text-muted-foreground">
-                  {serviceName} {wherePhrase}
+                  {serviceName}{whereSuffix}
                 </p>
                 {showDeepBreakdown && deepFirstClean !== null ? (
                   <>
@@ -2228,8 +2181,8 @@ export default function QuoteFlow({
                 {area && (travelFeeExtra || offlineTravelFee !== null) && (
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {travelFeeExtra
-                      ? `Includes the ${formatPrice(travelFeeExtra.price)} travel fee for a home outside ${BRANCH_CITY[area.branch]} city limits${quote.ongoing !== null ? ", charged on every visit" : ""}.`
-                      : `A ${formatPrice(offlineTravelFee ?? 0)} travel fee applies outside ${BRANCH_CITY[area.branch]} city limits.`}
+                      ? `Includes the ${formatPrice(travelFeeExtra.price)} travel fee for a home outside ${limitsCity(area, "and")} city limits${quote.ongoing !== null ? ", charged on every visit" : ""}.`
+                      : `A ${formatPrice(offlineTravelFee ?? 0)} travel fee applies outside ${limitsCity(area, "and")} city limits.`}
                   </p>
                 )}
                 {quote.ongoing !== null && basketRows.some((row) => !row.extra.firstVisitOnly) && recurringAddOnTotal > 0 && (
@@ -2445,7 +2398,7 @@ export default function QuoteFlow({
                 >
                   {limitsError && <span key={`flag-limits-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="text-lg font-bold text-foreground">
-                    Is the home inside {BRANCH_CITY[area.branch]} city limits?{" "}
+                    Is the home inside {limitsCity(area, "or")} city limits?{" "}
                     <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
                   <div className="mt-3 flex flex-wrap gap-3">

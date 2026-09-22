@@ -1694,10 +1694,10 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0922.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
-    find: 'jumpToMissing("area");',
-    replace: "/* area not required */",
-    failing: "the funnel cannot continue until the visitor says where the home is",
-    why: "Lets a quote through with no office and no travel-fee answer.",
+    find: 'city: area?.general ? "" : proof.key,',
+    replace: "city: proof.key,",
+    failing: "step 1 asks no location question, and a general page claims no branch for the lead",
+    why: "Tags every homepage lead Edmonton, a branch the visitor never chose.",
   },
   {
     guard: "src/data/quote-funnel-0922.test.ts",
@@ -1878,6 +1878,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: "we stay until the checklist is done",
     failing: "the funnel and the published terms state the extra-work rule before the customer books",
     why: "The price card would again promise unlimited time instead of the agree-first rule.",
+  },
+  {
+    guard: "src/lib/service-area.test.ts",
+    target: "src/lib/service-area.ts",
+    find: "return area.general ? `Edmonton ${joiner} Calgary` : BRANCH_CITY[area.branch];",
+    replace: "return area.general ? `Edmonton, Calgary ${joiner} Red Deer` : BRANCH_CITY[area.branch];",
+    failing: "the homepage and branch-less pages are general: no city named, Edmonton or Calgary asked",
+    why: "Brings Red Deer back into the general question before the owner asks for it.",
   },
   // ---- and this registry itself ------------------------------------------
   {

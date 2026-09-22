@@ -37,10 +37,13 @@ describe("the travel fee is in the funnel's price", () => {
     expect(src).toMatch(/recurringExtraTotals\(chargeRows, quote\.discountPct\)/);
   });
 
-  it("the funnel cannot continue until the visitor says where the home is", () => {
+  it("step 1 asks no location question, and a general page claims no branch for the lead", () => {
+    // Owner, 2026-09-22: the step-1 "Where is the home?" answer only became a
+    // GoHighLevel tag no workflow reads, so it was dropped.
     const src = codeOf(FLOW);
-    expect(src).toMatch(/if \(!area\) \{[\s\S]{0,300}jumpToMissing\("area"\);\s*return;/);
-    expect(src).toContain("Where is the home?");
+    expect(src).not.toContain("Where is the home?");
+    expect(src).toMatch(/city: area\?\.general \? "" : proof\.key,/);
+    expect(src).toMatch(/Is the home inside \{limitsCity\(area, "or"\)\} city limits\?/);
   });
 
   it("the price step requires an answer to 'inside city limits?', beside pets, not an opt-in add-on", () => {
@@ -55,7 +58,7 @@ describe("the overlay header shows the office the visitor chose", () => {
   it("the Call button and phone line follow the answer, not the page", () => {
     const flow = codeOf(FLOW);
     const overlay = codeOf("src/components/QuoteOverlay.tsx");
-    expect(flow).toMatch(/setQuoteBranch\(area\?\.branch \?\? null\)/);
+    expect(flow).toMatch(/setQuoteBranch\(area && !area\.general \? area\.branch : null\)/);
     expect(overlay).toMatch(/chosenBranch \? CITY_PROOF\[chosenBranch\] : cityProofFor\(pathname\)/);
   });
 });

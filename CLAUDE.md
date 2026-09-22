@@ -193,16 +193,17 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   rule (finished basements are separate add-ons). Raise it again when the funnel copy is next touched.
 
 ## Owner decisions (2026-09-22) — do not contradict or re-ask
-- Where the home is, in two questions (owner chose the "lighter version", 2026-09-22;
-  `src/lib/service-area.ts`). Step 1 asks "Where is the home?" (Edmonton / Calgary / Red Deer
-  area) only on pages that name no branch: the homepage and the branch-less pages. The price
-  step asks "Is the home inside <city> city limits?" (Yes / No, a nearby town +$29.99), required,
-  beside pets. Town pages answer "no" and neighbourhood pages "yes" in advance. "No" puts
-  BookingKoala's travel-fee row in the funnel price (every visit, full price) and the handoff
-  ticks the same box. Never make the fee an opt-in add-on or leave it to the booking page: a
-  mandatory fee must be in the price shown (Competition Act drip pricing; Cineplex was fined
-  $38.9M in 2024 for a fee shown at checkout). The branch (office, hours, GHL `city` tag,
-  wording, and the overlay header's phone and rating) follows the answer, not the page.
+- Where the home is (owner, 2026-09-22; `src/lib/service-area.ts`). Step 1 asks no location
+  question: its answer only became a GoHighLevel tag no workflow read, so the owner dropped it. The
+  branch comes from the page. The price step asks "Is the home inside <city> city limits?" (Yes / No,
+  a nearby town +$29.99), required, beside pets. On the homepage and branch-less pages the question
+  reads "Edmonton or Calgary" (Red Deer left out for now, owner) and the lead carries no city tag;
+  the Red Deer page keeps "Red Deer". Town pages answer "no" and neighbourhood pages "yes" in advance.
+  "No" puts BookingKoala's travel-fee row in the funnel price (every visit, full price) and the
+  handoff ticks the same box. Never make the fee an opt-in add-on or leave it to the booking page:
+  a mandatory fee must be in the price shown (Competition Act drip pricing; Cineplex was fined
+  $38.9M in 2024 for a fee shown at checkout). A location guess from the visitor's IP was
+  considered and rejected: mobile carrier IPs are unreliable at city level.
 - The booking page ticks or unticks the travel fee from the postal code the customer types
   (`bk-travel-fee.js`, the third block of the BookingKoala header code, published 2026-09-22).
   Its FSA rules must match `postalCodeCityStatus`; `bk-travel-fee.test.ts` checks every FSA.
