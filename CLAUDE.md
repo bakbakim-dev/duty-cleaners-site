@@ -185,11 +185,27 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 ## Owner decisions (2026-09-21) — do not contradict or re-ask
 - E-transfer is arranged by phone, never online; with no card to hold, an e-transfer booking is
   paid in full the day before the clean (`PAYMENT_TERMS`, FAQ, funnel call-back line).
-- The funnel does not ask for a postal code; the travel fee is shown on the booking page.
+- The funnel does not ask for a postal code or address (still true after 2026-09-22 below).
 - The cleanliness question stays on the cleaner-details pane. Cobwebs stay out of the
   BookingKoala deep-clean descriptions. We may phone quote leads; never promise "only on request".
 - Open question, owner undecided: whether basement bedrooms count under the bedroom counting
   rule (finished basements are separate add-ons). Raise it again when the funnel copy is next touched.
+
+## Owner decisions (2026-09-22) — do not contradict or re-ask
+- Step 1 asks "Where is the home?": Edmonton / Calgary / Red Deer, or "Near" each
+  (`src/lib/service-area.ts`). Town pages preset "near", neighbourhood pages preset the city;
+  hubs, service pages and the homepage ask. "Near" puts BookingKoala's travel-fee row in the
+  funnel price (every visit, full price) and the handoff ticks the same box, so the funnel and
+  the booking page show one total. The branch (office, hours, GHL `city` tag, wording) follows
+  the answer, not the page.
+- The booking page ticks or unticks the travel fee from the postal code the customer types
+  (`bk-travel-fee.js`, the third block of the BookingKoala header code, published 2026-09-22).
+  Its FSA rules must match `postalCodeCityStatus`; `bk-travel-fee.test.ts` checks every FSA.
+- The last funnel screen: one main button ("Choose my time"); the call-back is a smaller
+  "Prefer a call?" control under it, never an equal button. No "What happens next" paragraph,
+  no arrival-window or "comment section" explainer (the booking page shows the windows).
+- Card holds: never "no money moves" or "it is not a charge" alone. A hold is for the price; on
+  a debit card the amount is set aside until the charge (`PAYMENT_TERMS`). Guarded.
 
 ## Rules
 - Never log into the Google Business Profile. Don't change GoHighLevel or BookingKoala settings
