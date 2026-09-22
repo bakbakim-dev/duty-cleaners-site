@@ -562,7 +562,7 @@ export default function CalgaryMoveInOut() {
             <TermCard icon={<span className="dc-icon dc-icon-clock w-6 h-6" aria-hidden="true" />} title="Pay after the clean">
               Nothing is charged when you book. A temporary hold checks the card the day before,
               and the charge goes through once the clean is complete. Visa, Mastercard, American
-              Express, debit and e-transfer.
+              Express and debit; e-transfer can be arranged by phone.
             </TermCard>
           </div>
         </div>

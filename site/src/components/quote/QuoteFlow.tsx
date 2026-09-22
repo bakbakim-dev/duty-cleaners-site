@@ -1786,8 +1786,8 @@ export default function QuoteFlow({
                     onChange={(event) => setContact({ ...contact, phone: event.target.value })}
                   />
                   <p id="phone-help" className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    We text you about your quote at this number within {RESPONSE_TIME_PROMISE}, and only
-                    phone if you ask for a call back.
+                    We text you about your quote at this number within {RESPONSE_TIME_PROMISE}, and may
+                    call about your booking.
                   </p>
                   {errors.phone && (
                     <p id="phone-error" role="alert" className="mt-2 text-base font-semibold text-destructive-ink">
@@ -2587,18 +2587,14 @@ export default function QuoteFlow({
                       <div className="mb-4 space-y-2 text-[0.9375rem] leading-relaxed text-fine-print">
                         <p className="font-semibold text-foreground">What happens next</p>
                         <p>
-                          Our booking page opens with your answers filled in (it runs on
-                          dutycleaners.bookingkoala.com). You pick a date and an arrival window,
+                          Our booking page opens with your answers filled in. You pick a date and an
+                          arrival window,
                           enter your address and add a card. Nothing is charged today: a temporary
                           hold goes on the card the day before the clean, which can look like a
                           charge in your banking app but moves no money, and you are charged after
                           the clean is done. An address outside city limits shows its travel fee
                           there before you confirm.
                           {deepCleanIntent ? " Your Deep Cleaning package is already added." : ""}
-                        </p>
-                        <p>
-                          Reschedule or cancel free with {POLICY.cancellationNoticeHours} hours&rsquo;
-                          notice; inside that, the fee is {POLICY.cancellationFee}.
                         </p>
                       </div>
                     )}
@@ -2659,7 +2655,9 @@ export default function QuoteFlow({
               {bookingUrl && (
                 <p className="text-sm text-fine-print">
                   A call back needs no card: we get in touch within {RESPONSE_TIME_PROMISE} to set the
-                  date and time. Booked with us before? The booking page may ask you to sign in.
+                  date and time. Prefer to pay by e-transfer? Ask when we call; without a card to hold,
+                  e-transfer bookings are paid in full the day before the clean. Booked with us before?
+                  The booking page may ask you to sign in.
                 </p>
               )}
 

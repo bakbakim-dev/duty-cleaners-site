@@ -629,8 +629,8 @@ const AirbnbCleaningCalgary = () => {
                   <h3 className="font-bold text-foreground mb-2">When you pay</h3>
                   <p className="text-muted-foreground text-sm">
                     Booking costs nothing. A temporary hold checks the card the day before, and the
-                    charge goes through after the turnover. Visa, Mastercard, American Express, debit
-                    or e-transfer, and every rate quoted is before {GST_PCT} GST.
+                    charge goes through after the turnover. Visa, Mastercard, American Express or
+                    debit (e-transfer by phone), and every rate quoted is before {GST_PCT} GST.
                   </p>
                 </div>
                 <div className="bg-muted/30 rounded-xl p-6 text-left">

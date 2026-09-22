@@ -250,7 +250,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What payment methods do you accept?",
-        answer: "We accept Visa, Mastercard, American Express, debit and e-transfer. Card details are taken at booking because a temporary hold goes on the card the day before the clean, and payment is taken once the clean is complete.",
+        answer: "We accept Visa, Mastercard, American Express and debit. Card details are taken at booking because a temporary hold goes on the card the day before the clean, and payment is taken once the clean is complete. E-transfer can be arranged by phone; with no card to hold, an e-transfer booking is paid in full the day before the clean.",
       },
       {
         question: "Do you offer discounts for recurring services?",

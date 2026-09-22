@@ -244,7 +244,9 @@ export const PAYMENT_TERMS = [
   "Nothing is charged when you book.",
   "The day before your appointment a temporary hold is placed on your card to confirm it is valid. It can look like a charge in your banking app, but no money moves.",
   "Your card is charged once the clean is complete.",
-  "We accept Visa, Mastercard and American Express, debit, and e-transfer.",
+  // Owner, 2026-09-21: e-transfer is arranged by phone, not online, and with no
+  // card to hold it is paid in full the day before the clean.
+  "We accept Visa, Mastercard and American Express, and debit. E-transfer can be arranged by phone; with no card to hold, an e-transfer booking is paid in full the day before the clean.",
   "Every quoted figure is before tax. GST of 5% is added on top.",
 ] as const;
 

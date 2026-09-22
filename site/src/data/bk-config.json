@@ -1620,8 +1620,8 @@
           ],
           "quantity_based": 1,
           "enable_quantity_based": "no",
-          "exempt_extra_from_freq_disc": false,
-          "apply_to_bookings": "all",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
           "status": 1
         },
         {

@@ -369,8 +369,10 @@ describe("config-driven extra resolver", () => {
       name: "Deep Cleaning",
       price: 199.99,
       maxQuantity: 1,
-      exemptFromFrequencyDiscount: false,
-      firstVisitOnly: false,
+      // BookingKoala row 152 was "apply to all bookings" until 2026-09-21; the
+      // owner set it to first-appointment-only and exempt, like rows 146-151.
+      exemptFromFrequencyDiscount: true,
+      firstVisitOnly: true,
     });
     expect(deepCleaningExtraFor(7)?.id).toBe(151);
   });

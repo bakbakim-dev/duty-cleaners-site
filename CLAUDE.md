@@ -182,6 +182,15 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - Cleaners change the bedding on request, using linens the customer leaves out. A family member can book
   and pay for someone else's recurring plan (the seniors sections on both recurring pages).
 
+## Owner decisions (2026-09-21) — do not contradict or re-ask
+- E-transfer is arranged by phone, never online; with no card to hold, an e-transfer booking is
+  paid in full the day before the clean (`PAYMENT_TERMS`, FAQ, funnel call-back line).
+- The funnel does not ask for a postal code; the travel fee is shown on the booking page.
+- The cleanliness question stays on the cleaner-details pane. Cobwebs stay out of the
+  BookingKoala deep-clean descriptions. We may phone quote leads; never promise "only on request".
+- Open question, owner undecided: whether basement bedrooms count under the bedroom counting
+  rule (finished basements are separate add-ons). Raise it again when the funnel copy is next touched.
+
 ## Rules
 - Never log into the Google Business Profile. Don't change GoHighLevel or BookingKoala settings
   without the owner's explicit go-ahead; reading them is fine.
