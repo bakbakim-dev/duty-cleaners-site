@@ -1537,6 +1537,22 @@ export default function QuoteFlow({
                   </>
                 )}
 
+                {/* Owner, 2026-09-21: a move-out clean needs an empty home; a furnished
+                    home is a Standard Cleaning. Said where the choice is made. */}
+                {service === "move-in-out" && (
+                  <div className="funnel-rule mt-4" role="note">
+                    <span className="dc-icon dc-icon-circle-help funnel-rule-icon" aria-hidden="true" />
+                    <div>
+                      <p className="funnel-rule-title">The home must be empty when our cleaners arrive</p>
+                      <p className="funnel-rule-body">
+                        If the home is furnished,{" "}
+                        {serviceExpanded
+                          ? "choose Standard Cleaning above instead of Move In / Move Out."
+                          : "please hit “Change” on the right and choose Standard Cleaning instead of Move In / Move Out."}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </fieldset>
 
               {selected.asksHomeSize && (
