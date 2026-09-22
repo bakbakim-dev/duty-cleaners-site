@@ -341,7 +341,7 @@ export default function Beaumont() {
                   The size of the house sets the price, and the hours do not. A clean that runs longer than expected costs the same. If a house turns out to need substantially more work than described, such as heavy build-up or far more glass or cabinetry than the booking said, the team explains what it found and the options before carrying on. Add-ons such as the inside of the oven, the inside of the fridge and interior windows carry their own prices, shown on the quote.
                 </p>
                 <p>
-                  Payment comes last. Nothing is charged at booking; the day before, a temporary hold confirms the card is valid, and it can look like a charge in a banking app although no money moves. The card is charged once the clean is complete, by Visa, Mastercard, American Express, debit or e-transfer. You can{" "}
+                  Payment comes last. Nothing is charged at booking; the day before, a temporary hold for the price goes on the card (on a debit card the amount is set aside). The card is charged once the clean is complete, by Visa, Mastercard, American Express or debit; e-transfer is arranged by phone. You can{" "}
                   <Link to="/reviews/" className="text-primary underline underline-offset-2 font-medium">read Duty Cleaners reviews</Link>{" "}
                   or compare{" "}
                   <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">all Edmonton cleaning services and prices</Link>{" "}

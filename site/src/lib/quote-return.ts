@@ -15,6 +15,7 @@
  */
 import type { CleanerDetails } from "@/lib/booking-redirect";
 import type { ServiceId } from "@/data/pricing";
+import type { ServiceArea } from "@/lib/service-area";
 
 const KEY = "dc-quote-return";
 const MAX_AGE_MS = 2 * 60 * 60 * 1000;
@@ -34,6 +35,8 @@ export interface QuoteReturnState {
   frequency: string | null;
   addOns: Record<string, number>;
   hasPets: boolean | null;
+  /** Where the home is (lib/service-area.ts); absent in records saved before 2026-09-22. */
+  area?: ServiceArea | null;
   details: CleanerDetails;
   contact: { firstName: string; lastName: string; email: string; phone: string };
   deepNudgeDismissed: boolean;

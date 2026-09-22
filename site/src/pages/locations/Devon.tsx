@@ -343,7 +343,7 @@ export default function Devon() {
                   What else moves the figure is the home and the extras, not the clock. More bathrooms than the table assumes raise it, and so do add-ons: on a standard clean, inside the oven is from {OVEN_FROM} and inside the fridge from {FRIDGE_FROM}, both before GST. How long the clean takes does not change it. If a home needs substantially more work than described, such as heavy build-up, the team explains what it found and the options before continuing.
                 </p>
                 <p>
-                  Every line shows on the instant price before you book, and nothing is charged at booking. The day before the clean, a temporary hold confirms the card is valid; it can look like a charge in a banking app, but no money moves. The card is charged once the clean is complete.
+                  Every line shows on the instant price before you book, and nothing is charged at booking. The day before the clean, a temporary hold for the price goes on the card; on a debit card the amount is set aside until the card is charged once the clean is complete.
                 </p>
               </div>
             </div>

@@ -508,8 +508,8 @@ export default function RedDeer() {
                     anything sooner, call the Red Deer office and ask what is open.
                   </p>
                   <p>
-                    Nothing is charged at booking. The day before the clean, a temporary hold is placed on the card to confirm it is
-                    valid; it can look like a charge in a banking app, but no money moves until the clean is complete. If something
+                    Nothing is charged at booking. The day before the clean, a temporary hold for the price goes on the card; on a
+                    debit card the amount is set aside until the card is charged after the clean. If something
                     was missed, tell us within {POLICY.guaranteeWindowHours} hours of the clean and the team comes back to re-clean it
                     at no charge. The full terms are on{" "}
                     <Link to="/satisfaction-guarantee/" className="text-primary underline underline-offset-2">

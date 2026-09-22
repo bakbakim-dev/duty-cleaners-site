@@ -242,7 +242,7 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "When am I charged?",
-        answer: "Your card is charged after the clean, not before. Nothing is charged when you book. The day before your appointment a temporary hold goes on your card to confirm it is valid; it can look like a charge in your banking app, but no money moves. The card is charged only once the clean is complete.",
+        answer: "Your card is charged after the clean, not before. Nothing is charged when you book. The day before your appointment a temporary hold for the price goes on your card. It is not a charge, but on a debit card the amount is set aside until the card is charged, once the clean is complete.",
       },
       {
         question: "How does your pricing work?",

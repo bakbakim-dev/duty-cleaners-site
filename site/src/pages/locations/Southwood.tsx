@@ -196,7 +196,7 @@ export default function Southwood() {
                 <div>
                   <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">How Paying for a Southwood Clean Works</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Nothing is charged at booking. The day before, a temporary hold confirms the card is valid; it can look like a charge in a banking app, but no money moves. The card is charged once the clean is complete.
+                    Nothing is charged at booking. The day before, a temporary hold for the price goes on the card; on a debit card the amount is set aside until the card is charged once the clean is complete.
                   </p>
                   <ul className="space-y-3">
                     {["Reference-checked cleaners, rated after every visit","All supplies and equipment brought","A free re-clean if you report a miss within 24 hours"].map((t,i)=>(

@@ -250,7 +250,7 @@ export default function Airdrie() {
                     Four things move an Airdrie quote: the number of bedrooms and bathrooms, the type of home, pets, and add-ons such as the inside of the oven, the inside of the fridge or interior windows. How long the clean takes does not. If a home needs substantially more work than described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.
                   </p>
                   <p>
-                    Nothing is charged at booking. The day before the clean, a temporary hold is placed on the card to confirm it is valid; it can look like a charge in a banking app, but no money moves until the clean is complete. Before you book, compare{" "}
+                    Nothing is charged at booking. The day before the clean, a temporary hold for the price goes on the card; on a debit card the amount is set aside until the card is charged after the clean. Before you book, compare{" "}
                     <Link to="/calgary/services/" className="text-primary underline underline-offset-2">every Calgary cleaning service, with starting prices</Link>, or{" "}
                     <Link to="/reviews/" className="text-primary underline underline-offset-2">read the Duty Cleaners reviews</Link>.
                   </p>

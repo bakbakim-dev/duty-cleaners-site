@@ -242,7 +242,9 @@ const recurringDiscounts = () => {
 /** When payment is taken. Consistent across the FAQ, pricing pages and funnel. */
 export const PAYMENT_TERMS = [
   "Nothing is charged when you book.",
-  "The day before your appointment a temporary hold is placed on your card to confirm it is valid. It can look like a charge in your banking app, but no money moves.",
+  // 2026-09-22: a hold sets the price aside. On a debit card that money cannot be
+  // spent until the charge, so "no money moves" misled debit customers.
+  "The day before your appointment a temporary hold for the price is placed on your card. It is not a charge, but on a debit card the amount is set aside until the clean is charged.",
   "Your card is charged once the clean is complete.",
   // Owner, 2026-09-21: e-transfer is arranged by phone, not online, and with no
   // card to hold it is paid in full the day before the clean.

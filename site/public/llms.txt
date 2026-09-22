@@ -23,7 +23,7 @@ Duty Cleaners provides professional residential and commercial cleaning across E
 - Online bookings need at least 24 hours' notice; same-day or next-day slots are by phone only, when the schedule has availability — Edmonton (780) 913-6565, Calgary (403) 768-1341, Red Deer (587) 570-6979
 - After a quote request we text you within 24 hours to confirm the time
 - No contracts — book one clean or many
-- Payment: nothing is charged when you book. The day before your appointment a temporary hold is placed on your card to confirm it is valid. It can look like a charge in your banking app, but no money moves. Your card is charged once the clean is complete.
+- Payment: nothing is charged when you book. The day before your appointment a temporary hold for the price is placed on your card. It is not a charge, but on a debit card the amount is set aside until your card is charged once the clean is complete.
 - Airbnb / short-term rental turnovers are priced per hour on a callback: request one through the contact form's "Airbnb Cleaning" option (https://dutycleaners.ca/contact-us/) or phone the city office
 - Commercial: office cleaning is the only commercial work quoted online, through the contact form's "Office Cleaning" option (https://dutycleaners.ca/contact-us/), and the paths /contact-us/#topic=office&city=edmonton and /contact-us/#topic=office&city=calgary open it with Office Cleaning and the city chosen. The work is scoped at a walkthrough, priced per square foot and confirmed in a written quote that states the areas and the visit frequency
 - 24-hour re-clean satisfaction guarantee; photos help but are not required

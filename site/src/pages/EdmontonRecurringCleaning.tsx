@@ -199,9 +199,8 @@ export default function EdmontonRecurringCleaning() {
           body: (
             <>
               <p>
-                Nothing is charged when you book: the card gets a temporary hold the day before each visit, which can
-                look like a charge in a banking app although no money moves, and it is charged once the clean is
-                complete.
+                Nothing is charged when you book: the card gets a temporary hold for the price the day before each
+                visit (on a debit card the amount is set aside), and it is charged once the clean is complete.
               </p>
               <p>
                 Our Edmonton team is rated {EDMONTON_RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}

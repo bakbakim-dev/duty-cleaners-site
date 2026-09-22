@@ -222,8 +222,8 @@ export default function EdmontonRegularCleaning() {
           body: (
             <>
               <p>
-                Nothing is charged when you book. A temporary hold goes on the card the day before to confirm it is
-                valid; it can look like a charge in a banking app, but no money moves until the clean is complete.
+                Nothing is charged when you book. A temporary hold for the price goes on the card the day before. It
+                is not a charge, but on a debit card the amount is set aside until the card is charged after the clean.
               </p>
               <p>
                 Our Edmonton team is rated {EDMONTON_RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}

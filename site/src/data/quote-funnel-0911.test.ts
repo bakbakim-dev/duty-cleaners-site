@@ -341,12 +341,17 @@ describe("the quote overlay reads its facts from proof.ts", () => {
  * booking and a "call Edmonton or Calgary" note). A Red Deer code is now an
  * in-city code in booking-redirect.ts, so QuoteFlow needs no Red Deer branch at
  * all: this guard pins that it has none, so the phone-only path cannot return.
+ *
+ * Changed 2026-09-22 (owner): the funnel now prices the travel fee from the
+ * "Where is the home?" answer (lib/service-area.ts), so the price matches the
+ * booking page. It still never asks for an address or postal code: those stay
+ * on the booking page, which re-checks the fee from the postal code.
  */
 describe("Red Deer postal codes book online like any in-city code", () => {
-  it("QuoteFlow leaves address validation and travel pricing to BookingKoala", () => {
+  it("QuoteFlow leaves address validation to BookingKoala", () => {
     const src = codeOf("src/components/quote/QuoteFlow.tsx");
-    expect(src).toMatch(/enter your address and add a card/);
-    expect(src).not.toMatch(/dc-address|dc-zip|details\.postalCode|travelFeeExtraForSelection/);
+    expect(src).toMatch(/add your address and card/);
+    expect(src).not.toMatch(/dc-address|dc-zip|details\.postalCode/);
     expect(src, "a Red Deer code lost its online booking again").toMatch(
       /const bookingUrl = bookingQuery === null \? null : publicBookingUrl\(bookingQuery\);/,
     );
