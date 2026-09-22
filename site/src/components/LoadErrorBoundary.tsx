@@ -29,7 +29,7 @@ export default class LoadErrorBoundary extends Component<Props, State> {
     if (!this.state.failed) return this.props.children;
     const area = this.props.area ?? "page";
     return (
-      <main className="flex min-h-[60vh] items-center justify-center bg-background px-6 py-16">
+      <main data-load-error="true" className="flex min-h-[60vh] items-center justify-center bg-background px-6 py-16">
         <div role="alert" className="max-w-xl rounded-xl border border-border bg-card p-8 text-center shadow-sm">
           <h1 className="text-2xl font-bold text-foreground">We couldn&rsquo;t load this {area}</h1>
           <p className="mt-3 leading-relaxed text-muted-foreground">
