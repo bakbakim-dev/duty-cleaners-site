@@ -743,6 +743,105 @@ All colors MUST be HSL.
   font-weight: 700;
 }
 
+/* Price-step rewards (owner, 2026-09-22): every answer gets immediate, honest
+   feedback. A check pops in, the total rolls to its new figure, a short note
+   names what changed, the progress bar fills, and the main button glows once
+   when the last answer lands. Nothing random, no timers, no sound. Motion runs
+   only when the visitor has not asked for less (WCAG 2.3.3). */
+.funnel-answers {
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--card));
+  padding: 0.75rem 0.875rem;
+}
+.funnel-answer-seg {
+  position: relative;
+  display: block;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background-color: hsl(var(--muted));
+}
+.funnel-answer-seg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: hsl(var(--brand-navy));
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.funnel-answer-seg.is-done::after {
+  transform: scaleX(1);
+}
+.funnel-float {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  opacity: 0;
+}
+.funnel-float--tile {
+  right: 0.75rem;
+  top: -0.75rem;
+  background-color: hsl(var(--brand-navy));
+  color: hsl(var(--brand-navy-foreground));
+}
+.funnel-float--bar {
+  left: 1rem;
+  top: -2.25rem;
+  box-shadow: 0 6px 16px -8px hsl(var(--brand-navy) / 0.5);
+}
+.funnel-float--bar.is-up {
+  background-color: hsl(var(--brand-navy));
+  color: hsl(var(--brand-navy-foreground));
+}
+.funnel-float--bar.is-down {
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--card));
+  color: hsl(var(--foreground));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .funnel-pop {
+    animation: funnel-pop 320ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .funnel-float {
+    animation: funnel-float 1700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .funnel-answer-seg::after {
+    transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .funnel-ready {
+    animation: funnel-ready 800ms ease-out 2;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Still shown, just not moving; the funnel removes it after a moment. */
+  .funnel-float {
+    opacity: 1;
+  }
+}
+@keyframes funnel-pop {
+  from { opacity: 0; transform: scale(0.4); }
+  70% { opacity: 1; transform: scale(1.12); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes funnel-float {
+  0% { opacity: 0; transform: translateY(6px); }
+  15% { opacity: 1; transform: translateY(0); }
+  75% { opacity: 1; transform: translateY(-6px); }
+  100% { opacity: 0; transform: translateY(-14px); }
+}
+@keyframes funnel-ready {
+  0% { box-shadow: 0 0 0 0 hsl(var(--accent) / 0.45); }
+  100% { box-shadow: 0 0 0 12px hsl(var(--accent) / 0); }
+}
+
 /* A required question left unanswered: red frame, badge and message, a short
    shake on every blocked attempt (still for reduced-motion visitors), and a
    summary above the button with a jump link per question. */

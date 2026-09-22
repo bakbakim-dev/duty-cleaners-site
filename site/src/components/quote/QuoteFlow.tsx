@@ -1,9 +1,10 @@
 import { type KeyboardEvent as ReactKeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
-import { AlertTriangle, ArrowLeft, Loader2, Mail, ArrowRight, Phone } from "lucide-react";
+import { AlertTriangle, AppWindow, ArrowLeft, CookingPot, Layers, Loader2, Mail, ArrowRight, Phone, PiggyBank, Sparkles, Trees } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import FrequencyChips from "@/components/quote/FrequencyChips";
+import FrequencyChips, { type PlanPricing } from "@/components/quote/FrequencyChips";
+import RollingPrice from "@/components/quote/RollingPrice";
 import PricePanel from "@/components/quote/PricePanel";
 import RiskReversalRow from "@/components/quote/RiskReversalRow";
 import StepHeader, { Callout, StepFooter } from "@/components/quote/StepHeader";
@@ -128,6 +129,15 @@ const DC_PARKING_LABELS: Record<DcParking, string> = Object.fromEntries(
 ) as Record<DcParking, string>;
 
 /** The corner "Add" control on every add-on card, tick-box or quantity alike. */
+/** One small icon per extras group, so the shelf scans by picture as well as word. */
+const GROUP_ICONS: Record<string, typeof Sparkles> = {
+  KITCHEN: CookingPot,
+  "DEEP CLEAN": Sparkles,
+  WINDOWS: AppWindow,
+  BASEMENT: Layers,
+  "OUTDOOR & OTHER": Trees,
+};
+
 const ADD_PILL =
   "inline-flex min-h-[44px] min-w-[4.5rem] shrink-0 items-center justify-center rounded-md border px-3 text-sm font-bold";
 
@@ -307,7 +317,10 @@ export default function QuoteFlow({
     setArea((current) => (current?.branch === branch ? current : { branch, outside: null }));
     setAreaError(null);
   };
+  /** What the visitor just changed, named on the price-change note (see priceChange). */
+  const changeLabelRef = useRef<{ text: string; name?: string } | null>(null);
   const chooseOutside = (outside: boolean) => {
+    changeLabelRef.current = { text: outside ? "travel fee" : "no travel fee" };
     // A page's town name only stands while the answer is the page's own.
     setArea((current) =>
       current ? { branch: current.branch, outside, place: current.outside === outside ? current.place : undefined } : current
@@ -854,14 +867,16 @@ export default function QuoteFlow({
     });
   }, [visibleShelf]);
 
-  const setQuantity = (extra: ResolvedExtra, quantity: number) =>
-    setAddOns((current) => {
+  const setQuantity = (extra: ResolvedExtra, quantity: number) => {
+    changeLabelRef.current = { text: extraDisplayName(extra.name), name: extra.name };
+    return setAddOns((current) => {
       const next = { ...current };
       const clamped = Math.max(0, Math.min(quantity, Math.min(20, extra.maxQuantity)));
       if (clamped === 0) delete next[extra.name];
       else next[extra.name] = clamped;
       return next;
     });
+  };
 
   const toggleAddOn = (extra: ResolvedExtra) =>
     setQuantity(extra, addOns[extra.name] ? 0 : 1);
@@ -960,6 +975,29 @@ export default function QuoteFlow({
   }, [awaitingPlan, service, homeType, bedrooms, bathrooms, halfBaths, chargeRows]);
   const plansFrom = planPreview.length > 0 ? planPreview[planPreview.length - 1].price : null;
 
+  /**
+   * Every plan card's own figures (FrequencyChips): what a visit costs on it
+   * and the dollars it saves against the one-time price, add-ons and travel
+   * fee included, from the same maths as the price card.
+   */
+  const planPricing = useMemo(() => {
+    const out: Partial<Record<FrequencyId, PlanPricing>> = {};
+    if (!selected.supportsRecurring || quote.quoteOnly || quote.isEstimate) return out;
+    for (const option of FREQUENCIES) {
+      const planQuote = calculateQuote({ service, homeType, bedrooms, bathrooms, halfBaths, addOns: [], frequency: option.id });
+      if (option.discount === 0 || planQuote.ongoing === null) {
+        out[option.id] = { perVisit: firstCleanTotalFor(planQuote.firstClean), savePerVisit: 0 };
+        continue;
+      }
+      const extras = recurringExtraTotals(chargeRows, planQuote.discountPct);
+      out[option.id] = {
+        perVisit: round2(planQuote.ongoing + extras.total),
+        savePerVisit: round2(planQuote.savings + extras.savings),
+      };
+    }
+    return out;
+  }, [selected.supportsRecurring, quote.quoteOnly, quote.isEstimate, service, homeType, bedrooms, bathrooms, halfBaths, chargeRows]); // eslint-disable-line react-hooks/exhaustive-deps -- firstCleanTotalFor reads the same inputs
+
   /** Name → quantity, exactly the shape the booking URL and the CRM want. */
   const extrasBasket = useMemo(() => {
     const basket: Record<string, number> = {};
@@ -982,6 +1020,73 @@ export default function QuoteFlow({
 
   /** The figure shown to the customer: base (+ deep package) (+ add-ons) (+ travel fee). */
   const firstCleanTotal = (deepFirstCleanBase ?? quote.firstClean) + addOnTotal + travelFeeAmount;
+  /** The same total on another base price: the One-Time card, where every clean is a first clean. */
+  function firstCleanTotalFor(base: number) {
+    return round2(base + (deepFirstCleanBase === null ? 0 : deepFirstCleanBase - quote.firstClean) + addOnTotal + travelFeeAmount);
+  }
+
+  /**
+   * A year on the chosen plan, in dollars: the per-visit saving on every visit
+   * after the first (the first is at the one-time price). Shown as "about",
+   * and only beside "no contract", because it assumes the plan is kept.
+   */
+  const VISITS_PER_YEAR: Record<number, number> = { 2: 52, 4: 26, 3: 13 };
+  const yearSavings =
+    quote.ongoing === null ? 0 : Math.round(ongoingSavings * ((VISITS_PER_YEAR[getFrequency(effectiveFrequency).bkId] ?? 1) - 1));
+
+  /**
+   * The price step's required answers, with the two steps already done
+   * counted in (endowed progress, Nunes & Drèze 2006): the bar starts part
+   * full and each answer fills a segment (goal gradient, Kivetz et al. 2006).
+   */
+  const requiredAnswers = [
+    { key: "home", label: "Home", done: true },
+    { key: "details", label: "Details", done: true },
+    ...(selected.supportsRecurring ? [{ key: "frequency", label: "Plan", done: !awaitingPlan }] : []),
+    ...(petsExtra ? [{ key: "pets", label: "Pets", done: hasPets !== null }] : []),
+    ...(area && travelFeeOffered !== null ? [{ key: "limits", label: "Location", done: area.outside !== null }] : []),
+  ];
+  const answersDone = requiredAnswers.filter((answer) => answer.done).length;
+  const allAnswered = answersDone === requiredAnswers.length;
+  /** The main button glows once, the moment the last answer lands. */
+  const [readyPulse, setReadyPulse] = useState(false);
+  const wasAllAnsweredRef = useRef(allAnswered);
+  useEffect(() => {
+    const was = wasAllAnsweredRef.current;
+    wasAllAnsweredRef.current = allAnswered;
+    if (!allAnswered || was || step !== 2) return;
+    setReadyPulse(true);
+    const timer = window.setTimeout(() => setReadyPulse(false), 1800);
+    return () => window.clearTimeout(timer);
+  }, [allAnswered, step]);
+
+  /**
+   * "+$59.99 inside oven": a short note of what the last answer did to the
+   * first-clean total, beside the total and on the tile that changed it. It
+   * names the real change and fades; nothing random, nothing hidden.
+   */
+  const [priceChange, setPriceChange] = useState<{ id: number; text: string; up: boolean; name?: string } | null>(null);
+  const lastTotalRef = useRef(firstCleanTotal);
+  useEffect(() => {
+    const previous = lastTotalRef.current;
+    lastTotalRef.current = firstCleanTotal;
+    const label = changeLabelRef.current;
+    changeLabelRef.current = null;
+    if (!label || step !== 2 || quote.quoteOnly || quote.isEstimate) return;
+    const delta = round2(firstCleanTotal - previous);
+    if (delta === 0) return;
+    setPriceChange({
+      id: Date.now(),
+      text: `${delta > 0 ? "+" : "\u2212"}${formatPrice(Math.abs(delta))} ${label.text}`,
+      up: delta > 0,
+      name: label.name,
+    });
+  }, [firstCleanTotal]); // eslint-disable-line react-hooks/exhaustive-deps -- one note per change of the total
+  useEffect(() => {
+    if (!priceChange) return;
+    const timer = window.setTimeout(() => setPriceChange(null), 1800);
+    return () => window.clearTimeout(timer);
+  }, [priceChange]);
   const deepFirstClean = deepFirstCleanBase === null ? null : deepFirstCleanBase + addOnTotal + travelFeeAmount;
   /** Sticky panel: only override when the total differs from the base quote. */
   const panelFirstClean =
@@ -1523,7 +1628,7 @@ export default function QuoteFlow({
 
       <div
         className={
-          showPrice ? "grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]" : "mx-auto max-w-2xl"
+          showPrice ? "grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]" : "mx-auto max-w-2xl"
         }
       >
         <div>
@@ -2074,9 +2179,13 @@ export default function QuoteFlow({
                       {quote.ongoing === null ? "Your price" : "First clean"}
                     </p>
                     <p className="funnel-price-figure">
-                      {showDeepBreakdown && deepFirstClean !== null
-                        ? formatPrice(deepFirstClean)
-                        : priceLabel}
+                      {showDeepBreakdown && deepFirstClean !== null ? (
+                        <RollingPrice value={deepFirstClean} />
+                      ) : quote.quoteOnly || quote.isEstimate ? (
+                        priceLabel
+                      ) : (
+                        <RollingPrice value={firstCleanTotal} />
+                      )}
                     </p>
                     {!quote.isEstimate && !quote.quoteOnly && (
                       <p className="funnel-price-tax">
@@ -2087,7 +2196,7 @@ export default function QuoteFlow({
                   {quote.ongoing !== null && (
                     <div className="funnel-price-tile funnel-price-tile--ongoing">
                       <p className="funnel-price-label">Every visit after</p>
-                      <p className="funnel-price-figure">{formatPrice(ongoingTotal ?? 0)}</p>
+                      <p className="funnel-price-figure"><RollingPrice value={ongoingTotal ?? 0} /></p>
                       <p className="funnel-price-tax">
                         + 5% GST · {formatPrice(withGst(ongoingTotal ?? 0))} with GST
                       </p>
@@ -2100,7 +2209,7 @@ export default function QuoteFlow({
                         {planPreview.map((plan) => (
                           <li key={plan.id} className="flex items-baseline justify-between gap-3">
                             <span className="text-base font-semibold text-foreground">{plan.label}</span>
-                            <span className="text-2xl font-extrabold text-foreground">{formatPrice(plan.price)}</span>
+                            <RollingPrice value={plan.price} className="text-2xl font-extrabold text-foreground" />
                           </li>
                         ))}
                       </ul>
@@ -2182,6 +2291,28 @@ export default function QuoteFlow({
 
               </div>
 
+              {requiredAnswers.length > 2 && (
+                <div className="funnel-answers" aria-live="polite">
+                  <p className="flex items-center justify-between gap-3 text-sm font-bold text-foreground">
+                    <span>
+                      {allAnswered ? "All set: your price is complete" : `Your quote: ${answersDone} of ${requiredAnswers.length} done`}
+                    </span>
+                    {allAnswered && <span className="funnel-pop dc-icon dc-icon-circle-check h-5 w-5 text-savings-foreground" aria-hidden="true" />}
+                  </p>
+                  <ol className="mt-2 flex gap-1.5" aria-label="Quote progress">
+                    {requiredAnswers.map((answer) => (
+                      <li key={answer.key} className="flex-1">
+                        <span className={`funnel-answer-seg${answer.done ? " is-done" : ""}`} aria-hidden="true" />
+                        <span className={`mt-1 block truncate text-xs ${answer.done ? "font-semibold text-foreground" : "text-muted-foreground"}`}>
+                          {answer.label}
+                          <span className="sr-only">{answer.done ? ", done" : ", to answer"}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
               {selected.supportsRecurring && (
                 <div
                   id="dc-frequency-group"
@@ -2197,7 +2328,7 @@ export default function QuoteFlow({
                     Your first clean is at the one-time price. The plan discount starts on visit
                     two.
                   </p>
-                  <FrequencyChips value={frequency} onChange={setFrequency} />
+                  <FrequencyChips value={frequency} onChange={setFrequency} pricing={planPricing} />
                   {frequencyError && (
                     <p id="dc-frequency-error" className="funnel-missing-text">
                       {frequencyError}
@@ -2209,21 +2340,28 @@ export default function QuoteFlow({
                       carries only the difference; no struck-through figure, because
                       the first clean really is charged at the one-time rate. */}
                   {quote.ongoing !== null && quote.savings > 0 && (
-                    <p
+                    <div
                       key={effectiveFrequency}
-                      className="savings-appear mt-4 flex items-start gap-2 rounded-md border border-border bg-secondary/60 p-4 text-base leading-relaxed text-foreground"
+                      className="savings-appear mt-4 flex items-start gap-3 rounded-lg border border-savings-border bg-savings p-4 text-savings-foreground"
                     >
-                      <span className="dc-icon dc-icon-check mt-1 h-4 w-4 shrink-0 text-brand-navy" aria-hidden="true" />
-                      <span>
-                        {getFrequency(effectiveFrequency).label} saves you{" "}
-                        <span className="font-bold">{formatPrice(ongoingSavings)}</span> on every visit
-                        after the first
-                        {basketRows.some((row) => row.extra.firstVisitOnly || row.extra.exemptFromFrequencyDiscount)
-                          ? ""
-                          : ` (${quote.discountPct}% off)`}
-                        .
-                      </span>
-                    </p>
+                      <PiggyBank className="funnel-pop mt-0.5 h-6 w-6 shrink-0" aria-hidden="true" />
+                      <div className="text-base leading-relaxed">
+                        <p className="font-bold">
+                          {getFrequency(effectiveFrequency).label} saves you <RollingPrice value={ongoingSavings} /> on
+                          every visit after the first
+                          {basketRows.some((row) => row.extra.firstVisitOnly || row.extra.exemptFromFrequencyDiscount)
+                            ? ""
+                            : ` (${quote.discountPct}% off)`}
+                          .
+                        </p>
+                        {yearSavings > 0 && (
+                          <p className="mt-1 text-[0.9375rem]">
+                            Keep it for a year and that is about <RollingPrice value={yearSavings} className="font-bold" /> off.
+                            No contract.
+                          </p>
+                        )}
+                      </div>
+                    </div>
                   )}
                 </div>
               )}
@@ -2258,6 +2396,7 @@ export default function QuoteFlow({
                         type="button"
                         aria-pressed={hasPets === option.value}
                         onClick={() => {
+                          changeLabelRef.current = { text: option.value ? "pets" : "no pets" };
                           setHasPets(option.value);
                           setPetError(null);
                           peek(shelfRef);
@@ -2268,6 +2407,9 @@ export default function QuoteFlow({
                             : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
                         }`}
                       >
+                        {hasPets === option.value && (
+                          <span className="funnel-pop dc-icon dc-icon-check mr-1.5 inline-block h-4 w-4 align-[-2px]" aria-hidden="true" />
+                        )}
                         {option.label}
                       </button>
                     ))}
@@ -2310,6 +2452,9 @@ export default function QuoteFlow({
                             : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
                         }`}
                       >
+                        {area.outside === option.value && (
+                          <span className="funnel-pop dc-icon dc-icon-check mr-1.5 inline-block h-4 w-4 align-[-2px]" aria-hidden="true" />
+                        )}
                         {option.label}
                       </button>
                     ))}
@@ -2324,8 +2469,9 @@ export default function QuoteFlow({
 
               {shelfGroups.length > 0 && (
                 <div ref={shelfRef} className="border-t border-border pt-6">
-                  <h3 className="text-lg font-bold text-foreground">
-                    Want to add anything? (optional)
+                  <h3 className="flex items-center gap-2 text-lg font-bold text-foreground">
+                    <Sparkles className="h-5 w-5 text-brand-navy" aria-hidden="true" />
+                    Add extras to your clean (optional)
                   </h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                     These aren&rsquo;t part of the standard checklist — add only what you need.
@@ -2335,7 +2481,11 @@ export default function QuoteFlow({
                     {(() => {
                       const renderGroup = ({ group, items }: (typeof shelfGroups)[number]) => (
                       <div key={group}>
-                        <h4 className="mb-2 text-sm font-bold uppercase tracking-[0.08em] text-fine-print">
+                        <h4 className="mb-2 flex items-center gap-1.5 text-sm font-bold uppercase tracking-[0.08em] text-fine-print">
+                          {(() => {
+                            const GroupIcon = GROUP_ICONS[group];
+                            return GroupIcon ? <GroupIcon className="h-4 w-4 text-brand-navy" aria-hidden="true" /> : null;
+                          })()}
                           {group}
                         </h4>
                         <ul className="grid gap-3 md:grid-cols-2">
@@ -2351,7 +2501,7 @@ export default function QuoteFlow({
                             return (
                               <li key={extra.name} className="h-full">
                                 <div
-                                  className={`flex h-full min-h-[44px] flex-col gap-1.5 rounded-md border-[1.5px] px-4 py-3 transition-colors ${
+                                  className={`relative flex h-full min-h-[44px] flex-col gap-1.5 rounded-md border-[1.5px] px-4 py-3 transition-colors ${
                                     added
                                       ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
                                       : "border-input bg-card text-foreground hover:border-brand-navy"
@@ -2446,7 +2596,7 @@ export default function QuoteFlow({
                                       <span className="flex items-start justify-between gap-3">
                                         <span className="flex items-start gap-2 text-base font-semibold">
                                           {added && (
-                                            <span className="dc-icon dc-icon-check mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+                                            <span className="funnel-pop dc-icon dc-icon-check mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
                                           )}
                                           <span>
                                             {extraDisplayName(extra.name)}{" "}
@@ -2454,7 +2604,7 @@ export default function QuoteFlow({
                                               +{formatPrice(extra.price)}
                                             </span>
                                             {quote.ongoing !== null && extra.firstVisitOnly && (
-                                              <span className={`ml-2 rounded-sm px-1.5 py-0.5 text-xs font-semibold ${added ? "bg-brand-navy-foreground/15" : "bg-secondary text-secondary-foreground"}`}>
+                                              <span className={`ml-2 inline-block whitespace-nowrap rounded-sm px-1.5 py-0.5 text-xs font-semibold ${added ? "bg-brand-navy-foreground/15" : "bg-secondary text-secondary-foreground"}`}>
                                                 first clean only
                                               </span>
                                             )}
@@ -2484,6 +2634,11 @@ export default function QuoteFlow({
                                       )}
                                     </label>
                                   )}
+                                  {priceChange?.name === extra.name && (
+                                    <span key={priceChange.id} className="funnel-float funnel-float--tile" aria-hidden="true">
+                                      {priceChange.text.split(" ")[0]}
+                                    </span>
+                                  )}
                                 </div>
                               </li>
                             );
@@ -2500,11 +2655,18 @@ export default function QuoteFlow({
                       aria-live="polite"
                       className="mt-5 border-t border-border pt-4 text-base font-semibold text-foreground"
                     >
-                      {addedCount === 0
-                        ? `No add-ons yet. First clean ${formatPrice(firstCleanTotal)} before GST.`
-                        : `${addedCount} add-on${addedCount === 1 ? "" : "s"} (+${formatPrice(
-                            addOnTotal
-                          )}). First clean now ${formatPrice(firstCleanTotal)} before GST.`}
+                      {/* What the visitor has built, in plain words (the pet and
+                          travel rows carry BookingKoala's internal names). */}
+                      Your clean: {serviceName}
+                      {basketRows
+                        .map((row) =>
+                          row.extra === petsExtra
+                            ? " + pets"
+                            : ` + ${extraDisplayName(row.extra.name)}${row.quantity > 1 ? ` \u00d7${row.quantity}` : ""}`
+                        )
+                        .join("")}
+                      {travelFeeExtra ? " + travel fee" : ""}.{" "}
+                      First clean <RollingPrice value={firstCleanTotal} className="text-brand-navy" /> before GST.
                     </p>
                   )}
 
@@ -2533,7 +2695,7 @@ export default function QuoteFlow({
                   <Button
                     size="lg"
                     onClick={goToDetailsPane}
-                    className="min-h-[56px] w-full rounded-full bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto"
+                    className={`h-auto min-h-[56px] w-full whitespace-normal rounded-full bg-accent px-8 py-3 text-center text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto${readyPulse ? " funnel-ready" : ""}`}
                   >
                     Almost there: a few details, then pick your date
                     <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
@@ -2876,6 +3038,15 @@ export default function QuoteFlow({
             ctaVisible ? "hidden" : ""
           }`}
         >
+          {priceChange && pricePane === "price" && (
+            <span
+              key={priceChange.id}
+              className={`funnel-float funnel-float--bar ${priceChange.up ? "is-up" : "is-down"}`}
+              aria-hidden="true"
+            >
+              {priceChange.text}
+            </span>
+          )}
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
             {ongoingTotal !== null || plansFrom !== null ? (
               <div className="grid min-w-0 grid-cols-[auto_auto] gap-x-3 sm:gap-x-4">
@@ -2884,7 +3055,9 @@ export default function QuoteFlow({
                     <span className="sm:hidden">{ongoingTotal !== null ? "First clean" : "Your price"}</span>
                     <span className="hidden sm:inline">{ongoingTotal !== null ? "First clean" : "Your price"}</span>
                   </p>
-                  <p className="text-base font-bold leading-tight text-foreground sm:text-lg">{priceLabel}</p>
+                  <p className="text-base font-bold leading-tight text-foreground sm:text-lg">
+                    {quote.quoteOnly || quote.isEstimate ? priceLabel : <RollingPrice value={firstCleanTotal} />}
+                  </p>
                 </div>
                 <div className="min-w-0 border-l border-border pl-3 sm:pl-4">
                   <p className="text-xs font-semibold text-muted-foreground">
@@ -2892,7 +3065,7 @@ export default function QuoteFlow({
                     <span className="hidden sm:inline">{ongoingTotal !== null ? "Then per visit" : "Plans from"}</span>
                   </p>
                   <p className="text-base font-bold leading-tight text-foreground sm:text-lg">
-                    {formatPrice(ongoingTotal ?? plansFrom ?? 0)}
+                    <RollingPrice value={ongoingTotal ?? plansFrom ?? 0} />
                   </p>
                 </div>
               </div>
@@ -2917,7 +3090,7 @@ export default function QuoteFlow({
                     ? goToBooking
                     : requestCallback
               }
-              className="min-h-[52px] shrink-0 rounded-full bg-accent px-4 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:px-5"
+              className={`min-h-[52px] shrink-0 rounded-full bg-accent px-4 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:px-5${readyPulse && pricePane === "price" ? " funnel-ready" : ""}`}
             >
               {pricePane === "price" ? "Almost there" : bookingUrl ? "Choose my time" : "Request booking"}
               <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />

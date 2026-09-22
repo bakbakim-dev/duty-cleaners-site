@@ -1,4 +1,5 @@
 import { formatPrice, withGst, type QuoteResult } from "@/data/pricing";
+import { useCountUp } from "@/lib/use-count-up";
 
 /**
  * The price, always visible. Sidebar on desktop, pinned bar on mobile.
@@ -42,9 +43,14 @@ export default function PricePanel({
   // The low end of an estimate is BookingKoala's own tier price, never the
   // spread below it: "$495" for a post-construction tier published at $550
   // quoted a figure BookingKoala does not charge.
-  const priceLabel = quote.isEstimate
+  // The visible figures roll to a new total (lib/use-count-up.ts); the live
+  // region below always speaks the final figures.
+  const shownFirst = Math.round(useCountUp(firstClean) * 100) / 100;
+  const shownOngoing = Math.round(useCountUp(ongoing ?? 0) * 100) / 100;
+  const finalLabel = quote.isEstimate
     ? `${formatPrice(quote.firstClean)}–${formatPrice(quote.rangeHigh)}`
     : formatPrice(firstClean);
+  const priceLabel = quote.isEstimate ? finalLabel : formatPrice(shownFirst);
 
   /**
    * One composed sentence for screen readers. It lives in a polite live
@@ -52,8 +58,8 @@ export default function PricePanel({
    * ("First clean $169, then $143.65 per visit") instead of stray fragments.
    */
   const spokenPrice = ongoing
-    ? `First clean ${priceLabel} before GST, then ${formatPrice(ongoing)} per visit.`
-    : `Your price, ${priceLabel} before GST.`;
+    ? `First clean ${finalLabel} before GST, then ${formatPrice(ongoing)} per visit.`
+    : `Your price, ${finalLabel} before GST.`;
 
   const liveRegion = (
     <p className="sr-only" aria-live="polite" aria-atomic="true">
@@ -117,7 +123,7 @@ export default function PricePanel({
           {ongoing !== null && (
             <div className="border-l border-brand-navy-foreground/25 pl-3">
               <p className="text-sm font-semibold text-fine-print-on-dark">Every visit after</p>
-              <p className="text-3xl font-bold leading-tight">{formatPrice(ongoing)}</p>
+              <p className="text-3xl font-bold leading-tight">{formatPrice(shownOngoing)}</p>
             </div>
           )}
           {ongoing === null && plansFrom !== null && (
@@ -170,7 +176,7 @@ export default function PricePanel({
               Then per visit
             </p>
             <p className="text-lg font-bold leading-tight text-foreground">
-              {formatPrice(ongoing)}
+              {formatPrice(shownOngoing)}
             </p>
             <p className="text-sm text-foreground/80">
               {formatPrice(withGst(ongoing))} with GST
@@ -215,7 +221,7 @@ export default function PricePanel({
         <div className="mt-5 border-t border-border pt-5">
           <p className="text-sm font-semibold text-muted-foreground">Then every visit</p>
           <p className="text-2xl font-bold leading-tight text-foreground">
-            {formatPrice(ongoing)}
+            {formatPrice(shownOngoing)}
             <span className="ml-2 align-middle text-sm font-medium text-fine-print">
               + 5% GST
             </span>
