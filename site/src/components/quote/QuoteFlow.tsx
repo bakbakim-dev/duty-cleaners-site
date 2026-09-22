@@ -998,6 +998,14 @@ export default function QuoteFlow({
     return out;
   }, [selected.supportsRecurring, quote.quoteOnly, quote.isEstimate, service, homeType, bedrooms, bathrooms, halfBaths, chargeRows]); // eslint-disable-line react-hooks/exhaustive-deps -- firstCleanTotalFor reads the same inputs
 
+  /** "10% to 20%": the plan discounts, read from BookingKoala's frequencies. */
+  const planDiscountRange = (() => {
+    const percents = FREQUENCIES.filter((option) => option.discount > 0).map((option) => Math.round(option.discount * 100));
+    const low = Math.min(...percents);
+    const high = Math.max(...percents);
+    return low === high ? `${low}%` : `${low}% to ${high}%`;
+  })();
+
   /** Name → quantity, exactly the shape the booking URL and the CRM want. */
   const extrasBasket = useMemo(() => {
     const basket: Record<string, number> = {};
@@ -2325,8 +2333,8 @@ export default function QuoteFlow({
                     How often? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </p>
                   <p className="mb-3 text-[0.9375rem] text-muted-foreground">
-                    Your first clean is at the one-time price. The plan discount starts on visit
-                    two.
+                    Your first clean is at the one-time price. A plan takes {planDiscountRange} off
+                    every visit after that.
                   </p>
                   <FrequencyChips value={frequency} onChange={setFrequency} pricing={planPricing} />
                   {frequencyError && (

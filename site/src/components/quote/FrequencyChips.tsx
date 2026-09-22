@@ -55,13 +55,8 @@ export default function FrequencyChips({
                 <span className="dc-icon dc-icon-check h-4 w-4" />
               </span>
             )}
-            <span className={`block pr-7 text-base ${selected ? "font-bold" : "font-semibold"}`}>
+            <span className={`block pr-7 text-base leading-snug ${selected ? "font-bold" : "font-semibold"}`}>
               {frequency.label}
-              {frequency.discount > 0 && (
-                <span className={`ml-1.5 text-xs font-semibold ${selected ? "text-brand-navy-foreground/80" : "text-muted-foreground"}`}>
-                  {percent}% off
-                </span>
-              )}
             </span>
             {figures && (
               <span className="mt-0.5 block text-lg font-extrabold leading-tight tabular-nums">
