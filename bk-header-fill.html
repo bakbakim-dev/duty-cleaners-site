@@ -158,6 +158,93 @@ footer .btn-link,
   display: inline-flex !important;
   align-items: center;
 }
+
+/* ---------------------------------------------------------------------------
+   Taste pass (2026-09-21): the funnel's rules carried onto the booking page.
+   One accent (orange) for the action button and the prices; navy for
+   everything chosen or active; readable controls; no BookingKoala orange
+   (#fc6011) or cyan (#00d0ff) left anywhere.
+   ------------------------------------------------------------------------ */
+
+/* Section headings: weight, not size, carries the hierarchy. */
+h4.bk-form-title {
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+}
+
+/* Controls: 16px text (smaller makes iOS zoom the page on focus), ink
+   colour, and an edge that meets 3:1 against white. */
+.form-control,
+.form-select,
+.bk-input,
+.bk-select {
+  font-size: 16px !important;
+  color: var(--dc-ink) !important;
+  border-color: #8595a4 !important;
+  border-radius: 6px !important;
+}
+.form-control::placeholder {
+  color: #6b7885 !important;
+  opacity: 1;
+}
+
+/* Unchosen frequency options: a white chip with an edge, not grey on grey. */
+label.btn-light.bk-form-check-btn,
+.bk-form-check-btn.btn-light {
+  background-color: #fff !important;
+  border: 1px solid #8595a4 !important;
+  color: var(--dc-ink) !important;
+  border-radius: 6px !important;
+}
+label.btn-light.bk-form-check-btn:hover {
+  border-color: var(--dc-navy) !important;
+}
+
+/* Tabs (service type, coupon / gift card): a navy underline. */
+.tjs-tab__link::after {
+  background-color: var(--dc-navy) !important;
+}
+
+/* Extras: the site's control edge, rounded like the rest, navy when chosen. */
+.bk-form-extra {
+  border-color: #8595a4 !important;
+  border-radius: 6px !important;
+  transition: border-color 150ms;
+}
+.bk-form-extra:hover {
+  border-color: var(--dc-navy) !important;
+}
+.bk-form-extra:has(.bk-form-extra-input:checked) {
+  border: 2px solid var(--dc-navy) !important;
+}
+
+/* Summary: labels in navy, figures in the accent; the recurring line no
+   longer shouts at 22px in BookingKoala's orange. */
+.bk-form-sum-total-label,
+.bk-form-sum-fst-apt-label {
+  color: var(--dc-navy) !important;
+}
+.bk-form-sum-fst-apt-label {
+  font-size: 18px !important;
+}
+.bk-form-sum-fst-apt-value,
+.bk-form-sum-fst-apt-value bk-amount-display {
+  color: var(--dc-accent) !important;
+}
+
+/* The one action button: same height and weight as the funnel's, and it
+   gives a little when pressed. */
+.btn-primary.btn-lg {
+  font-size: 20px !important;
+  border-radius: 999px !important;
+  min-height: 56px;
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary:active { transform: none; }
+}
 </style>
 <!-- Duty Cleaners brand styles: END -->
 <!-- Duty Cleaners booking handoff v2: BEGIN -->
