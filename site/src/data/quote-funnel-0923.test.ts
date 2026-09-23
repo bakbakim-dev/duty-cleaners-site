@@ -66,7 +66,9 @@ describe("the bedroom picker", () => {
 describe("round two: the same honest rewards on every step", () => {
   it("the details pane counts its four answers and moves to the next open one", () => {
     const src = codeOf(FLOW);
-    expect(src).toMatch(/if \(first\) guideDetails\("cleanliness"\)/);
+    // Since 2026-09-23 a 4 or 5 stays with the Deep Cleaning suggestion.
+    expect(src).toMatch(/if \(first && option\.value < 4\) guideDetails\("cleanliness"\)/);
+    expect(src).toMatch(/if \(first\) guideDetails\("parking"\)/);
     expect(src).toMatch(/of \$\{detailAnswers\.length\} answered/);
   });
   it("the price card ticks in only the visitor's real answers, beside the price", () => {
@@ -101,5 +103,26 @@ describe("round three: guided on every step, the bar never skips", () => {
     const src = codeOf(FLOW);
     expect(src).toMatch(/enterKeyHint="next"[\s\S]{0,300}document\.getElementById\("email"\)\?\.focus\(\)/);
     expect(src).toMatch(/Add where the lockbox is and its code in the notes at the bottom\./);
+  });
+});
+
+describe("round three follow-ups", () => {
+  it("the flexibility choices take the arrow keys, with one tab stop", () => {
+    const src = codeOf(FLOW);
+    expect(src).toMatch(/const next = \(index \+ step \+ FLEXIBILITY_OPTIONS\.length\) % FLEXIBILITY_OPTIONS\.length;/);
+    expect(src).toMatch(/tabIndex=\{index === focusIndex \? 0 : -1\}\s*onKeyDown=\{\(event\) => \{\s*const step =/);
+  });
+  it("the Deep Cleaning suggestion is announced and the page stays with it", () => {
+    const src = codeOf(FLOW);
+    expect(src).toMatch(/<p className="sr-only" aria-live="polite">\s*\{showDeepNudge/);
+    expect(src).toMatch(/if \(first && option\.value < 4\) guideDetails\("cleanliness"\)/);
+  });
+  it("the extras count as seen when reached or when one is added, even on a tall shelf", () => {
+    const src = codeOf(FLOW);
+    expect(src).toMatch(/\{ threshold: 0, rootMargin: "0px 0px -33% 0px" \}/);
+    expect(src).toMatch(/const setQuantity = \(extra: ResolvedExtra, quantity: number\) => \{[\s\S]{0,160}setExtrasSeen\(true\);/);
+  });
+  it("the price-change note sits inside the sticky bar", () => {
+    expect(codeOf("src/index.css")).toMatch(/\.funnel-float--bar \{\s*left: 1rem;\s*top: 0\.375rem;/);
   });
 });

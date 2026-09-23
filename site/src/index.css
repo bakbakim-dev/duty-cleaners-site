@@ -792,9 +792,11 @@ All colors MUST be HSL.
   background-color: hsl(var(--brand-navy));
   color: hsl(var(--brand-navy-foreground));
 }
+/* Inside the bar, over its small "Your price" label, so it never covers
+   the page above (owner, 2026-09-23). */
 .funnel-float--bar {
   left: 1rem;
-  top: -2.25rem;
+  top: 0.375rem;
   box-shadow: 0 6px 16px -8px hsl(var(--brand-navy) / 0.5);
 }
 .funnel-float--bar.is-up {

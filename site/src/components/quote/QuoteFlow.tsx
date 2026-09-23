@@ -896,6 +896,8 @@ export default function QuoteFlow({
   }, [visibleShelf]);
 
   const setQuantity = (extra: ResolvedExtra, quantity: number) => {
+    // Adding an extra means the visitor has seen them: the bar may say Continue.
+    setExtrasSeen(true);
     changeLabelRef.current = { text: extraDisplayName(extra.name), name: extra.name };
     return setAddOns((current) => {
       const next = { ...current };
@@ -1350,14 +1352,18 @@ export default function QuoteFlow({
     return () => observer.disconnect();
   }, [step, pricePane]);
 
-  /** The extras count as seen once a fifth of the shelf has been on screen. */
+  /**
+   * The extras count as seen once the shelf reaches the upper two thirds of
+   * the screen. A share of its height would not do: the shelf is taller than
+   * a phone, so 20% of it may never be on screen at once.
+   */
   useEffect(() => {
     if (step !== 2 || pricePane !== "price" || extrasSeen) return;
     const node = shelfRef.current;
     if (!node) return;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) setExtrasSeen(true);
-    }, { threshold: 0.2 });
+    }, { threshold: 0, rootMargin: "0px 0px -33% 0px" });
     observer.observe(node);
     return () => observer.disconnect();
   }, [step, pricePane, extrasSeen]);
@@ -1460,6 +1466,13 @@ export default function QuoteFlow({
   };
   /** Bumped on every blocked attempt so the nudge animation replays each time. */
   const [nudge, setNudge] = useState(0);
+  /** The Deep Cleaning suggestion for a home rated 4 or 5. */
+  const showDeepNudge =
+    (details.cleanliness ?? 0) >= 4 &&
+    !deepCleanIntent &&
+    !deepNudgeDismissed &&
+    Boolean(deepShelfRow) &&
+    !(deepShelfRow && addOns[deepShelfRow.name]);
   /**
    * The sticky bar's button (owner, 2026-09-23). It used to advance from
    * anywhere, so one tap skipped the extras, and on the details pane the notes
@@ -2996,7 +3009,8 @@ export default function QuoteFlow({
                             ...current,
                             cleanliness: option.value,
                           }));
-                          if (first) guideDetails("cleanliness");
+                          // 4 or 5 opens the Deep Cleaning suggestion right here; stay with it.
+                          if (first && option.value < 4) guideDetails("cleanliness");
                         }}
                         className={`min-h-[48px] rounded-md border px-4 text-base transition-colors ${
                           details.cleanliness === option.value
@@ -3012,13 +3026,15 @@ export default function QuoteFlow({
                     <p className="funnel-missing-text">{detailErrors.cleanliness}</p>
                   )}
 
-                  {(details.cleanliness ?? 0) >= 4 &&
-                    !deepCleanIntent &&
-                    !deepNudgeDismissed &&
-                    deepShelfRow &&
-                    !addOns[deepShelfRow.name] && (
+                  {/* A live region must exist before its text arrives or screen
+                      readers skip it, so this one is always mounted. */}
+                  <p className="sr-only" aria-live="polite">
+                    {showDeepNudge
+                      ? `We recommend the Deep Cleaning package for a home at ${details.cleanliness}. Add it below, or choose No thanks.`
+                      : ""}
+                  </p>
+                  {showDeepNudge && deepShelfRow && (
                       <div
-                        role="status"
                         className="mt-3 rounded-md border border-brand-navy/25 bg-brand-navy/5 p-4"
                       >
                         <p className="text-sm leading-relaxed text-foreground">
@@ -3088,17 +3104,34 @@ export default function QuoteFlow({
                     You pick your date and time on the next page. This just tells the office what it can offer if that slot is taken.
                   </p>
                   <div id="dc-flexibility" role="radiogroup" aria-label="If your slot fills up, how much can we move it?" aria-describedby="dc-flexibility-hint" className="mt-3 grid gap-2">
-                    {FLEXIBILITY_OPTIONS.map((option) => {
+                    {FLEXIBILITY_OPTIONS.map((option, index) => {
                       const active = details.flexibility === option.value;
+                      // One tab stop; the arrows move the choice, as a radiogroup promises.
+                      const chosenIndex = FLEXIBILITY_OPTIONS.findIndex((candidate) => candidate.value === details.flexibility);
+                      const focusIndex = chosenIndex === -1 ? 0 : chosenIndex;
+                      const choose = (value: string) =>
+                        setDetails((current) => ({ ...current, flexibility: value as CleanerDetails["flexibility"] }));
                       return (
                         <button
                           key={option.value}
                           type="button"
                           role="radio"
                           aria-checked={active}
+                          tabIndex={index === focusIndex ? 0 : -1}
+                          onKeyDown={(event) => {
+                            const step =
+                              event.key === "ArrowDown" || event.key === "ArrowRight" ? 1
+                              : event.key === "ArrowUp" || event.key === "ArrowLeft" ? -1
+                              : 0;
+                            if (!step) return;
+                            event.preventDefault();
+                            const next = (index + step + FLEXIBILITY_OPTIONS.length) % FLEXIBILITY_OPTIONS.length;
+                            choose(FLEXIBILITY_OPTIONS[next].value);
+                            (event.currentTarget.parentElement?.children[next] as HTMLElement | undefined)?.focus();
+                          }}
                           onClick={() => {
                             const first = !details.flexibility;
-                            setDetails((current) => ({ ...current, flexibility: option.value as CleanerDetails["flexibility"] }));
+                            choose(option.value);
                             if (first) guideDetails("flexibility");
                           }}
                           className={`min-h-[48px] rounded-md border px-4 py-2 text-left text-base transition-colors ${
