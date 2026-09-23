@@ -430,6 +430,33 @@ export default function QuoteFlow({
   const [serviceExpanded, setServiceExpanded] = useState(!servicePreset);
   /** Section "peek": the next question is scrolled just into view. */
   const homeSizeRef = useRef<HTMLDivElement>(null);
+  /**
+   * One gentle move to the next thing to answer (owner, 2026-09-23: guided on
+   * every step). A short pause lets the check mark land first; reduced motion
+   * jumps instead of gliding. Callers only guide on a FIRST answer, so going
+   * back to change something never moves the page.
+   */
+  const guideTo = (target: Element | null | undefined, block: ScrollLogicalPosition = "center") => {
+    if (!target) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    window.setTimeout(() => {
+      target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block });
+    }, 300);
+  };
+  /** Step 1 questions already answered once, so a change does not scroll. */
+  const step1TouchedRef = useRef(new Set<string>());
+  const guideStep1 = (key: string, target: () => Element | null | undefined) => {
+    if (step1TouchedRef.current.has(key)) return;
+    step1TouchedRef.current.add(key);
+    guideTo(target());
+  };
+  /** Where "Continue" sits on step 1, the last stop of its guided path. */
+  const step1ContinueRef = useRef<HTMLDivElement>(null);
+  const [homeTypeError, setHomeTypeError] = useState<string | null>(null);
+  /** The extras shelf has been on screen: the bar may now say Continue. */
+  const [extrasSeen, setExtrasSeen] = useState(false);
+  /** A text field has focus: the sticky bar steps aside for the keyboard. */
+  const [typing, setTyping] = useState(false);
   const shelfRef = useRef<HTMLDivElement>(null);
   /** The step-3 primary CTA — the sticky bar hides while it is on screen. */
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -692,8 +719,10 @@ export default function QuoteFlow({
   }, [selected.supportsRecurring]);
 
   useEffect(() => {
+    // No silent default (owner, 2026-09-23): the type of home changes the
+    // price, so the visitor picks it; a type the new service lacks is cleared.
     setHomeType((current) =>
-      homeTypes.some((option) => option.id === current) ? current : homeTypes[0]?.id ?? null
+      homeTypes.some((option) => option.id === current) ? current : null
     );
   }, [homeTypes]);
 
@@ -738,6 +767,13 @@ export default function QuoteFlow({
   });
 
   const goToContact = () => {
+    if (selected.asksHomeSize && homeTypes.length > 0 && homeType === null) {
+      setHomeTypeError("Please choose the type of home; it changes the price.");
+      const group = document.getElementById("homeType");
+      group?.scrollIntoView({ behavior: "smooth", block: "center" });
+      (group?.querySelector("button") as HTMLElement | null)?.focus({ preventScroll: true });
+      return;
+    }
     track("property_details_completed", funnelProps());
     // Contact details already given for this quote: back to the price. Going
     // through step 2 again sent a second lead and re-fired the office email
@@ -1314,6 +1350,33 @@ export default function QuoteFlow({
     return () => observer.disconnect();
   }, [step, pricePane]);
 
+  /** The extras count as seen once a fifth of the shelf has been on screen. */
+  useEffect(() => {
+    if (step !== 2 || pricePane !== "price" || extrasSeen) return;
+    const node = shelfRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setExtrasSeen(true);
+    }, { threshold: 0.2 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [step, pricePane, extrasSeen]);
+
+  /** The phone keyboard and the bar never share the screen. */
+  useEffect(() => {
+    const isField = (el: EventTarget | null) =>
+      el instanceof HTMLTextAreaElement ||
+      (el instanceof HTMLInputElement && !["button", "checkbox", "radio", "submit"].includes(el.type));
+    const onIn = (event: FocusEvent) => setTyping(isField(event.target));
+    const onOut = () => setTyping(false);
+    document.addEventListener("focusin", onIn);
+    document.addEventListener("focusout", onOut);
+    return () => {
+      document.removeEventListener("focusin", onIn);
+      document.removeEventListener("focusout", onOut);
+    };
+  }, []);
+
   /** Primary CTA — hand the visitor to BookingKoala without waiting on GHL. */
   /**
    * Guards the handoff. Returns true when everything BookingKoala needs is
@@ -1360,7 +1423,7 @@ export default function QuoteFlow({
     };
     const at = order.indexOf(answered);
     const next = [...order.slice(at + 1), ...order.slice(0, at)].find((key) => open[key]);
-    const target = next ? document.getElementById(MISSING_TARGETS[next].id) : answered === "pets" ? shelfRef.current : null;
+    const target = next ? document.getElementById(MISSING_TARGETS[next].id) : shelfRef.current;
     if (!target) return;
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     window.setTimeout(() => {
@@ -1383,8 +1446,13 @@ export default function QuoteFlow({
     const next = [...detailAnswers.slice(at + 1), ...detailAnswers.slice(0, at)].find(
       (answer) => !answer.done && answer.key !== answered,
     );
-    const target = next ? document.getElementById(MISSING_TARGETS[next.key].id) : null;
+    // Nothing left to answer: bring the final button into view, notes just above it.
+    const target = next ? document.getElementById(MISSING_TARGETS[next.key].id) : ctaRef.current;
     if (!target) return;
+    if (!next) {
+      setReadyPulse(true);
+      window.setTimeout(() => setReadyPulse(false), 1800);
+    }
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     window.setTimeout(() => {
       target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
@@ -1392,6 +1460,43 @@ export default function QuoteFlow({
   };
   /** Bumped on every blocked attempt so the nudge animation replays each time. */
   const [nudge, setNudge] = useState(0);
+  /**
+   * The sticky bar's button (owner, 2026-09-23). It used to advance from
+   * anywhere, so one tap skipped the extras, and on the details pane the notes
+   * and the final button. Now it says what is left and takes the visitor
+   * there; it never skips. It is never disabled: a greyed button explains
+   * nothing (NN/g). Only the pane's own button hands off to the booking page.
+   */
+  const soft = (id: string) => {
+    const target = document.getElementById(id);
+    target?.scrollIntoView({ behavior: "smooth", block: "center" });
+    const focusTarget = target?.querySelector("button,input,select,textarea") as HTMLElement | null;
+    focusTarget?.focus({ preventScroll: true });
+  };
+  const priceOpen = requiredAnswers.filter((answer) => !answer.done);
+  const detailsOpen = detailAnswers.filter((answer) => !answer.done);
+  const answerLabel = (n: number) => `Answer ${n} question${n === 1 ? "" : "s"}`;
+  const barAction: { stage: "answer" | "look" | "go"; label: string; onClick: () => void } =
+    pricePane === "price"
+      ? priceOpen.length > 0
+        ? { stage: "answer", label: answerLabel(priceOpen.length), onClick: () => soft(MISSING_TARGETS[priceOpen[0].key].id) }
+        : shelfGroups.length > 0 && !extrasSeen
+          ? {
+              stage: "look",
+              label: "See extras",
+              onClick: () => {
+                setExtrasSeen(true);
+                shelfRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+              },
+            }
+          : { stage: "go", label: "Continue", onClick: () => goToDetailsPane() }
+      : detailsOpen.length > 0
+        ? { stage: "answer", label: answerLabel(detailsOpen.length), onClick: () => soft(MISSING_TARGETS[detailsOpen[0].key].id) }
+        : {
+            stage: "look",
+            label: bookingUrl ? "Pick my time" : "Request booking",
+            onClick: () => ctaRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }),
+          };
   const jumpToMissing = (key: string) => {
     const target = document.getElementById(MISSING_TARGETS[key]?.id ?? "");
     target?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -1743,6 +1848,7 @@ export default function QuoteFlow({
                           onClick={() => {
                             pickService(option.id);
                             setDeepCleanIntent(option.deep);
+                            guideStep1("service", () => homeSizeRef.current);
                           }}
                           className={`min-h-[48px] rounded-md border p-4 text-left transition-colors ${
                             selected
@@ -1817,7 +1923,13 @@ export default function QuoteFlow({
                               type="button"
                               role="radio"
                               aria-checked={active}
-                              onClick={() => setHomeType(option.id)}
+                              onClick={() => {
+                                setHomeType(option.id);
+                                setHomeTypeError(null);
+                                guideStep1("homeType", () =>
+                                  document.querySelector('[role="radiogroup"][aria-label="Bedrooms"]')?.closest("fieldset"),
+                                );
+                              }}
                               className={`min-h-[48px] rounded-md border px-4 py-2 text-left text-base transition-colors ${
                                 active
                                   ? "border-brand-navy bg-brand-navy font-bold text-brand-navy-foreground"
@@ -1832,6 +1944,11 @@ export default function QuoteFlow({
                           );
                         })}
                       </div>
+                      {homeTypeError && (
+                        <p role="alert" className="funnel-missing-text">
+                          {homeTypeError}
+                        </p>
+                      )}
                     </div>
                   )}
 
@@ -1840,7 +1957,12 @@ export default function QuoteFlow({
                       legend="Bedrooms"
                       options={beds}
                       value={bedrooms}
-                      onChange={setBedrooms}
+                      onChange={(next) => {
+                        setBedrooms(next);
+                        guideStep1("bedrooms", () =>
+                          document.querySelector('[role="radiogroup"][aria-label="Full bathrooms"]')?.closest("fieldset"),
+                        );
+                      }}
                       name="bedrooms"
                       caption
                       before={
@@ -1866,7 +1988,10 @@ export default function QuoteFlow({
                           legend="Full bathrooms"
                           options={baths}
                           value={bathrooms}
-                          onChange={setBathrooms}
+                          onChange={(next) => {
+                            setBathrooms(next);
+                            guideStep1("bathrooms", () => step1ContinueRef.current);
+                          }}
                           name="bathrooms"
                         />
                       )}
@@ -1886,6 +2011,7 @@ export default function QuoteFlow({
               )}
 
               <StepFooter above={<RiskReversalRow />}>
+                <div ref={step1ContinueRef} className="scroll-mt-24">
                 <Button
                   size="lg"
                   className="min-h-[56px] w-full rounded-full bg-accent text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto sm:px-10"
@@ -1894,6 +2020,7 @@ export default function QuoteFlow({
                   {contactDoneRef.current ? "See my updated price" : "Continue"}
                   <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                 </Button>
+                </div>
               </StepFooter>
 
               {/* Hourly and per-site work never enters the self-serve funnel. Short-term
@@ -1949,6 +2076,13 @@ export default function QuoteFlow({
                   </Label>
                   <Input
                     id="first-name"
+                    enterKeyHint="next"
+                    onKeyDown={(event) => {
+                      // Enter moves on instead of submitting half a form.
+                      if (event.key !== "Enter") return;
+                      event.preventDefault();
+                      document.getElementById("last-name")?.focus();
+                    }}
                     ref={firstNameRef}
                     required
                     autoComplete="given-name"
@@ -1970,6 +2104,13 @@ export default function QuoteFlow({
                   </Label>
                   <Input
                     id="last-name"
+                    enterKeyHint="next"
+                    onKeyDown={(event) => {
+                      // Enter moves on instead of submitting half a form.
+                      if (event.key !== "Enter") return;
+                      event.preventDefault();
+                      document.getElementById("email")?.focus();
+                    }}
                     ref={lastNameRef}
                     required
                     autoComplete="family-name"
@@ -1991,6 +2132,13 @@ export default function QuoteFlow({
                   </Label>
                   <Input
                     id="email"
+                    enterKeyHint="next"
+                    onKeyDown={(event) => {
+                      // Enter moves on instead of submitting half a form.
+                      if (event.key !== "Enter") return;
+                      event.preventDefault();
+                      document.getElementById("phone")?.focus();
+                    }}
                     ref={emailRef}
                     type="email"
                     required
@@ -2013,6 +2161,7 @@ export default function QuoteFlow({
                   </Label>
                   <Input
                     id="phone"
+                    enterKeyHint="go"
                     ref={phoneRef}
                     type="tel"
                     required
@@ -2302,7 +2451,11 @@ export default function QuoteFlow({
                 <div className="funnel-answers" aria-live="polite">
                   <p className="flex items-center justify-between gap-3 text-sm font-bold text-foreground">
                     <span>
-                      {allAnswered ? "All set: your price is complete" : `Your quote: ${answersDone} of ${requiredAnswers.length} done`}
+                      {/* This screen's questions only: "2 of 5 done" before a single
+                          answer here read as progress not yet made. */}
+                      {allAnswered
+                        ? "All set: your price is complete"
+                        : `${answersDone - 2} of ${requiredAnswers.length - 2} questions answered`}
                     </span>
                     {allAnswered && <span className="funnel-pop dc-icon dc-icon-circle-check h-5 w-5 text-savings-foreground" aria-hidden="true" />}
                   </p>
@@ -2414,7 +2567,7 @@ export default function QuoteFlow({
                           changeLabelRef.current = { text: option.value ? "pets" : "no pets" };
                           setHasPets(option.value);
                           setPetError(null);
-                          guideToNext("pets");
+                          if (hasPets === null) guideToNext("pets");
                         }}
                         className={`min-h-[48px] min-w-[96px] rounded-md border px-4 py-2 text-base transition-colors ${
                           hasPets === option.value
@@ -2781,7 +2934,8 @@ export default function QuoteFlow({
                             ...current,
                             entry: option.value,
                           }));
-                          if (first && (option.value === "home" || option.value === "mailbox")) guideDetails("entry");
+                          if (!first) return;
+                          if (option.value === "home" || option.value === "mailbox") guideDetails("entry");
                         }}
                         className={`min-h-[48px] rounded-md border px-4 text-base transition-colors ${
                           details.entry === option.value
@@ -2798,6 +2952,29 @@ export default function QuoteFlow({
                   )}
                 </fieldset>
 
+                {(details.entry === "lockbox" || details.entry === "code" || details.entry === "other") && (
+                  <p className="funnel-size-note mt-3" role="note">
+                    <span className="dc-icon dc-icon-circle-help h-4 w-4 shrink-0 text-brand-navy" aria-hidden="true" />
+                    <span>
+                      {details.entry === "lockbox"
+                        ? "Add where the lockbox is and its code in the notes at the bottom."
+                        : details.entry === "code"
+                          ? "Add the door or gate code in the notes at the bottom."
+                          : "Tell us how we get in, in the notes at the bottom."}{" "}
+                      <button
+                        type="button"
+                        className="font-semibold text-brand-navy underline underline-offset-4"
+                        onClick={() => {
+                          const notes = document.getElementById("dc-notes");
+                          notes?.scrollIntoView({ behavior: "smooth", block: "center" });
+                          (notes as HTMLTextAreaElement | null)?.focus({ preventScroll: true });
+                        }}
+                      >
+                        Add it now
+                      </button>
+                    </span>
+                  </p>
+                )}
                 <fieldset id="dc-clean-group" aria-invalid={detailErrors.cleanliness ? true : undefined} className={`mt-8 scroll-mt-24 border-t border-border pt-6${detailErrors.cleanliness ? " funnel-missing" : ""}`}>
                   {detailErrors.cleanliness && <span key={`flag-cleanliness-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="text-lg font-bold text-foreground">
@@ -2971,13 +3148,6 @@ export default function QuoteFlow({
                 above={
                   <>
                     {missingSummary(missingKeys.filter((key) => key !== "frequency" && key !== "pets" && key !== "limits"))}
-                    {bookingUrl && (
-                      <p className="mb-4 text-[0.9375rem] leading-relaxed text-fine-print">
-                        <span className="font-semibold text-foreground">Next:</span> pick your date and
-                        arrival window, then add your address and card. We charge after the clean.
-                        {deepCleanIntent ? " Your Deep Cleaning package is already added." : ""}
-                      </p>
-                    )}
                     <RiskReversalRow />
                   </>
                 }
@@ -2998,14 +3168,25 @@ export default function QuoteFlow({
                 <div ref={ctaRef} className="flex flex-col gap-2">
                   {bookingUrl ? (
                     <>
+                    {/* The last button, and the only filled one (owner, 2026-09-23):
+                        bigger than every earlier step's, saying what it opens. */}
                     <Button
                       size="lg"
                       onClick={goToBooking}
-                      className="min-h-[56px] w-full rounded-full bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90"
+                      className={`funnel-final-cta h-auto min-h-[64px] w-full whitespace-normal rounded-full bg-accent px-8 py-3 text-lg font-extrabold text-accent-foreground hover:bg-accent/90${readyPulse && pricePane === "details" ? " funnel-ready" : ""}`}
                     >
-                      Choose my time
+                      Pick my date &amp; arrival time
                       <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                     </Button>
+                    {/* The reassurance list above already says "You won't be
+                        charged today"; this line says what the page switch is. */}
+                    <p className="text-center text-sm text-fine-print">
+                      <span className="font-semibold text-foreground">Opens our secure booking page.</span>{" "}
+                      There you add your address and card. We charge after the clean.
+                    </p>
+                    {deepCleanIntent && (
+                      <p className="text-center text-sm text-fine-print">Your Deep Cleaning package is already added.</p>
+                    )}
                     <button
                       type="button"
                       onClick={requestCallback}
@@ -3093,7 +3274,7 @@ export default function QuoteFlow({
       {showPrice && (
         <div
           className={`fixed inset-x-0 bottom-0 z-20 border-t border-border bg-card px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-4px_16px_hsl(var(--brand-navy)/0.12)] lg:hidden ${
-            ctaVisible ? "hidden" : ""
+            ctaVisible || typing ? "hidden" : ""
           }`}
         >
           {priceChange && pricePane === "price" && (
@@ -3141,17 +3322,11 @@ export default function QuoteFlow({
             <Button
               size="lg"
               disabled={submitting}
-              onClick={
-                pricePane === "price"
-                  ? goToDetailsPane
-                  : bookingUrl
-                    ? goToBooking
-                    : requestCallback
-              }
-              className={`min-h-[52px] shrink-0 rounded-full bg-accent px-4 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:px-5${readyPulse && pricePane === "price" ? " funnel-ready" : ""}`}
+              onClick={barAction.onClick}
+              className={`min-h-[52px] shrink-0 rounded-full bg-accent px-4 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:px-5${readyPulse && barAction.stage === "go" ? " funnel-ready" : ""}`}
             >
-              {pricePane === "price" ? "Almost there" : bookingUrl ? "Choose my time" : "Request booking"}
-              <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
+              {barAction.label}
+              <span className={`dc-icon ${barAction.stage === "go" ? "dc-icon-arrow-right" : "dc-icon-chevron-down"} ml-2 h-5 w-5`} aria-hidden="true" />
             </Button>
           </div>
         </div>

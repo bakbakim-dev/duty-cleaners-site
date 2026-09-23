@@ -78,3 +78,28 @@ describe("round two: the same honest rewards on every step", () => {
     expect(codeOf("src/index.css")).toMatch(/@media \(prefers-reduced-motion: no-preference\) \{\s*\.funnel-tally li/);
   });
 });
+
+describe("round three: guided on every step, the bar never skips", () => {
+  it("the sticky bar says what is left and never hands off to booking itself", () => {
+    const src = codeOf(FLOW);
+    const bar = src.match(/const barAction[\s\S]*?\n  };?\n/)?.[0] ?? src.match(/const barAction[\s\S]*?scrollIntoView\(\{ behavior: "smooth", block: "center" \}\),\s*\};/)?.[0] ?? "";
+    expect(bar).toMatch(/answerLabel\(priceOpen\.length\)/);
+    expect(bar).toMatch(/label: "See extras"/);
+    expect(bar).not.toMatch(/goToBooking/);
+  });
+  it("home type has no silent default and is required before the price", () => {
+    const src = codeOf(FLOW);
+    expect(src).toMatch(/homeTypes\.some\(\(option\) => option\.id === current\) \? current : null/);
+    expect(src).toMatch(/Please choose the type of home; it changes the price\./);
+  });
+  it("the last button says what it opens, with the page switch explained", () => {
+    const src = codeOf(FLOW);
+    expect(src).toMatch(/Pick my date &amp; arrival time/);
+    expect(src).toMatch(/Opens our secure booking page\.<\/span>\{" "\}\s*There you add your address and card\./);
+  });
+  it("Enter on a contact field moves to the next field, and lockbox or code points to the notes", () => {
+    const src = codeOf(FLOW);
+    expect(src).toMatch(/enterKeyHint="next"[\s\S]{0,300}document\.getElementById\("email"\)\?\.focus\(\)/);
+    expect(src).toMatch(/Add where the lockbox is and its code in the notes at the bottom\./);
+  });
+});
