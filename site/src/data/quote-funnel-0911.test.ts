@@ -481,7 +481,22 @@ describe("a call-back request is flagged for the office", () => {
     const relay = codeOf("public/api/ghl-quote.php");
     expect(flow).toMatch(/\(call-back requested\)`/);
     expect(relay, "the relay no longer tags call-back requests").toMatch(
-      /str_contains\(\$payload\['source'\], '\(call-back requested\)'\)\) \$tags\[\] = 'callback-requested';/,
+      /str_contains\(\$payload\['source'\], '\(call-back requested\)'\)\) \{[\s\S]{0,120}\$tags\[\] = 'callback-requested';/,
+    );
+  });
+  // Owner, 2026-09-23: instant-quote starts the "continue on the booking page"
+  // text; someone who asked for a call gets the call-back reply instead.
+  it("a call-back request never carries the instant-quote tag", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toMatch(
+      /\(call-back requested\)'\)\) \{\s*\$tags = array_values\(array_diff\(\$tags, \['instant-quote'\]\)\);/,
+    );
+  });
+
+  it("a confirmed quote removes the quote-started tag", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toMatch(
+      /\$payload\['stage'\] === 'confirm'\) \{\s*dc_ghl_http\([\s\S]{0,120}'DELETE',\s*\$headers,\s*json_encode\(\['tags' => \['quote-started'\]\]/,
     );
   });
 });

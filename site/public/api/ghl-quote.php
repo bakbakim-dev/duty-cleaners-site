@@ -436,8 +436,14 @@ function dc_ghl_deliver(array $config, array $payload): array
         if ($payload['city'] !== '') $tags[] = strtolower($payload['city']);
         if ($payload['intent'] === 'deep') $tags[] = 'deep-intent';
         // A call-back request travels the confirmed-quote path like a booking;
-        // this tag is what lets GoHighLevel alert the office to call.
-        if (str_contains($payload['source'], '(call-back requested)')) $tags[] = 'callback-requested';
+        // this tag is what lets GoHighLevel alert the office to call. It must
+        // NOT carry instant-quote (owner, 2026-09-23): that tag starts the
+        // "continue on the booking page" text, wrong for someone who asked us
+        // to call. The call-back workflow sends its own office-hours reply.
+        if (str_contains($payload['source'], '(call-back requested)')) {
+            $tags = array_values(array_diff($tags, ['instant-quote']));
+            $tags[] = 'callback-requested';
+        }
     }
     $request = [
         'locationId' => DC_GHL_LOCATION_ID,
@@ -481,6 +487,18 @@ function dc_ghl_deliver(array $config, array $payload): array
             'status' => $tagStatus,
             'error' => $tagError !== '' ? $tagError : 'GHL tag response ' . $tagStatus,
         ];
+    }
+    // A confirmed quote (booking or call-back) ends the price-check stage
+    // (owner, 2026-09-23): dropping quote-started makes the "Price-check lead"
+    // workflow skip its text, and a later price check adds the tag again, so
+    // that workflow starts afresh. Best effort: a stale tag costs one text.
+    if (!$isCareers && !$isContact && $payload['stage'] === 'confirm') {
+        dc_ghl_http(
+            DC_GHL_API . '/contacts/' . rawurlencode($contactId) . '/tags',
+            'DELETE',
+            $headers,
+            json_encode(['tags' => ['quote-started']], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR)
+        );
     }
     if (trim($payload['notes']) !== '') {
         [$noteStatus, $_noteBody, $noteError] = dc_ghl_http(

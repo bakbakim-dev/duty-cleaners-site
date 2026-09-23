@@ -1262,6 +1262,22 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0911.test.ts",
     target: "public/api/ghl-quote.php",
+    find: "$tags = array_values(array_diff($tags, ['instant-quote']));",
+    replace: "",
+    failing: "a call-back request never carries the instant-quote tag",
+    why: "Call-back requests get the 'continue on the booking page' text again.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "public/api/ghl-quote.php",
+    find: "json_encode(['tags' => ['quote-started']]",
+    replace: "json_encode(['tags' => []]",
+    failing: "a confirmed quote removes the quote-started tag",
+    why: "People who confirmed still get the price-check follow-up text, and a repeat price check never restarts it.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "public/api/ghl-quote.php",
     find: "= 'office-enquiry';",
     replace: "= 'website-contact';",
     failing: "the contact form's office value is the one the relay tags",
