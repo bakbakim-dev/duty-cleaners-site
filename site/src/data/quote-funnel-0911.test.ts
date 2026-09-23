@@ -493,6 +493,12 @@ describe("a call-back request is flagged for the office", () => {
     );
   });
 
+  it("the retry job delivers queued leads oldest first", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toMatch(/usort\(\$due, [^\n]*created_at/);
+    expect(relay).toMatch(/foreach \(\$due as \[\$path, \$record\]\)/);
+  });
+
   it("a confirmed quote removes the quote-started tag", () => {
     const relay = codeOf("public/api/ghl-quote.php");
     expect(relay).toMatch(

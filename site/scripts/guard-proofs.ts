@@ -1278,6 +1278,14 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0911.test.ts",
     target: "public/api/ghl-quote.php",
+    find: "    usort($due, ",
+    replace: "    unsorted(",
+    failing: "the retry job delivers queued leads oldest first",
+    why: "A confirmation can overtake its own price-check lead, which then re-adds quote-started and sends the wrong text.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "public/api/ghl-quote.php",
     find: "= 'office-enquiry';",
     replace: "= 'website-contact';",
     failing: "the contact form's office value is the one the relay tags",

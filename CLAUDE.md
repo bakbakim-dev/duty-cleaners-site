@@ -238,6 +238,17 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   "other" entry reveal an optional box right under the answer ("Where is the lockbox, and what's the
   code?"); never a jump to the notes. Its text rides in the notes (entryNoteLine, booking-redirect.ts). The flexibility question asks how far the slot
   may move, with plain buttons; BookingKoala still receives its own option labels.
+- Answering the last required detail scrolls to the top of "Notes for your cleaner", never past it to
+  the final button (owner: the box was being skipped on phones); the button glows once it is seen.
+- Lead follow-up in GoHighLevel (owner, 2026-09-23): a price-check lead (tag `quote-started`) gets a
+  Sales "New lead" card and an office email at once, then one text 30 min later in texting hours if
+  still unconfirmed, then the Quote follow-up sequence (email day 1, text day 2, email day 4, text
+  day 6 "keep or close?", then stop). Booking-page leads (`instant-quote`) join the same sequence.
+  Texts/emails Mon–Sat 8:00–19:30 only (Red Deer the same). Stops on reply, STOP, card moved to
+  Talking/Quote sent/Booked, marked Lost, or a booked tag; a repeat quote restarts, never stacks.
+  No discounts or fake urgency. Call-backs carry no `instant-quote` (the relay strips it) and get an
+  office-hours text instead (Red Deer Mon–Sat 7–21, others Mon–Sat 8–20, Sun 9–15). A confirmed
+  quote removes `quote-started` (relay). Workflow IDs in memory `lead-follow-up-workflows`.
 
 ## Rules
 - Never log into the Google Business Profile. Don't change GoHighLevel or BookingKoala settings

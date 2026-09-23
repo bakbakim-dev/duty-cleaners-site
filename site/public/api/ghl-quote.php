@@ -595,10 +595,18 @@ function dc_ghl_retry_pending(array $config): array
     $checked = 0;
     $delivered = 0;
     $pending = 0;
+    $due = [];
     foreach (glob(dc_ghl_queue_dir($config) . DIRECTORY_SEPARATOR . '*.json') ?: [] as $path) {
         if (in_array(basename($path), ['field-cache.json', 'rate-limit.json'], true)) continue;
         $record = json_decode((string) @file_get_contents($path), true);
         if (!is_array($record) || ($record['state'] ?? '') !== 'pending' || (int) ($record['next_retry_at'] ?? PHP_INT_MAX) > time()) continue;
+        $due[] = [$path, $record];
+    }
+    // Oldest first (2026-09-23): file names are hashes, so glob order is random,
+    // and a confirmation delivered before its own price-check lead let that lead
+    // re-add quote-started and trigger the "you checked your price" text.
+    usort($due, static fn (array $a, array $b) => strcmp((string) ($a[1]['created_at'] ?? ''), (string) ($b[1]['created_at'] ?? '')));
+    foreach ($due as [$path, $record]) {
         $checked++;
         $record = dc_ghl_attempt($config, $record, $path);
         if (($record['state'] ?? '') === 'delivered') $delivered++; else $pending++;
