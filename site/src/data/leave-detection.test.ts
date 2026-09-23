@@ -45,6 +45,21 @@ describe("the relay", () => {
     expect(relay).toContain("const DC_GHL_OFFICE_ALERT_TO = ['support@dutycleaners.ca'];");
   });
 
+  it("a confirmed quote or call-back emails the office once, from this server", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toMatch(
+      /if \(!\(\$record\['office_alerted'\] \?\? false\) && \(\$payload\['stage'\] \?\? ''\) === 'confirm'\) \{\s*\$record\['office_alerted'\] = true;\s*dc_ghl_confirm_alert\(\$config, \$payload, /,
+    );
+    expect(relay).toMatch(/function dc_ghl_confirm_alert\([\s\S]{0,400}return dc_ghl_office_send\(\$config, dc_ghl_confirm_alert_message\(/);
+  });
+
+  it("office emails never carry the customer's notes (they can hold entry codes)", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    const composer = relay.split("function dc_ghl_confirm_alert_message")[1]?.split("function dc_ghl_confirm_alert(")[0] ?? "";
+    expect(composer.length).toBeGreaterThan(500);
+    expect(composer).not.toMatch(/'notes'/);
+  });
+
   it("answers the deliver and ping operations and sweeps from the cron job", () => {
     const relay = codeOf("public/api/ghl-quote.php");
     expect(relay).toMatch(/\['operation'\] \?\? null\) === 'deliver'/);

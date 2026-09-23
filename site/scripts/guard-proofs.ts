@@ -1317,6 +1317,22 @@ export const GUARD_PROOFS: GuardProof[] = [
   },
   {
     guard: "src/data/leave-detection.test.ts",
+    target: "public/api/ghl-quote.php",
+    find: "            $record['office_alerted'] = true;",
+    replace: "",
+    failing: "a confirmed quote or call-back emails the office once, from this server",
+    why: "Every retry of a quote GoHighLevel refused would email the office again.",
+  },
+  {
+    guard: "src/data/leave-detection.test.ts",
+    target: "public/api/ghl-quote.php",
+    find: "        'How often' => ",
+    replace: "        'notes' => 'x', 'How often' => ",
+    failing: "office emails never carry the customer's notes (they can hold entry codes)",
+    why: "Lockbox and door codes would travel in plain email to a shared inbox.",
+  },
+  {
+    guard: "src/data/leave-detection.test.ts",
     target: "src/lib/quote-submit.ts",
     find: "if (result?.delivery === \"pending\") requestDelivery(requestId);",
     replace: "",

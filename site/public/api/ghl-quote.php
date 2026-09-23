@@ -607,13 +607,76 @@ function dc_ghl_office_alert_message(array $config, array $lead, string $contact
 
 function dc_ghl_office_alert(array $config, array $lead, string $contactId, array $session): bool
 {
+    return dc_ghl_office_send($config, dc_ghl_office_alert_message($config, $lead, $contactId, $session));
+}
+
+/**
+ * The office alert for a confirmed quote: a call-back request (call them) or
+ * a visitor handed to the booking page (watch for the booking). Replaces the
+ * GoHighLevel emails of "Call-back Request Alert" and "Instant Quote
+ * Automation" for the same spam reason. The customer's notes for the cleaner
+ * can hold entry codes, so they stay on the GoHighLevel contact, not in email.
+ */
+function dc_ghl_confirm_alert_message(array $payload, ?string $contactId): array
+{
+    $line = static fn (mixed $value): string => trim((string) preg_replace('/[\r\n\t]+/', ' ', is_scalar($value) ? (string) $value : ''));
+    $money = static fn (mixed $value): string => is_int($value) || is_float($value) ? '$' . number_format((float) $value, 2) : '';
+    $name = $line($payload['full_name'] ?? '') ?: 'A website visitor';
+    $callBack = str_contains((string) ($payload['source'] ?? ''), '(call-back requested)');
+    $price = $money($payload['first_clean_price'] ?? null);
+    $lines = [
+        $callBack
+            ? $name . ' asked us to call them about their quote. Please call them now. GoHighLevel has texted them that we will call (after opening time if the office is closed).'
+            : $name . ' confirmed their quote on the website and went to the booking page to pick a date. If no booking comes through in BookingKoala, give them a call.',
+        '',
+        'Phone: ' . $line($payload['phone'] ?? ''),
+        'Email: ' . $line($payload['email'] ?? ''),
+    ];
+    $recurring = $money($payload['recurring_price'] ?? null);
+    $details = [
+        'Branch' => ['edmonton' => 'Edmonton', 'calgary' => 'Calgary', 'reddeer' => 'Red Deer'][$line($payload['city'] ?? '')] ?? ucfirst($line($payload['city'] ?? '')),
+        'Service' => $line($payload['service'] ?? ''),
+        'Home type' => $line($payload['home_type'] ?? ''),
+        'Bedrooms' => $line($payload['bedrooms'] ?? ''),
+        'Bathrooms' => $line($payload['full_bathrooms'] ?? ''),
+        'Half baths' => $line($payload['half_baths'] ?? ''),
+        'How often' => $line($payload['frequency'] ?? ''),
+        'First clean' => $price === '' ? '' : $price . ' before GST',
+        'Each visit after' => $recurring === '' ? '' : $recurring . ' before GST',
+        'Extras' => implode(', ', array_map($line, is_array($payload['addons'] ?? null) ? $payload['addons'] : [])),
+        'Page' => $line($payload['page_url'] ?? ''),
+    ];
+    foreach ($details as $label => $value) {
+        if ($value !== '') $lines[] = $label . ': ' . $value;
+    }
+    $lines[] = '';
+    $lines[] = is_string($contactId) && $contactId !== ''
+        ? 'Contact in GoHighLevel (notes for the cleaner are there): https://crm.bookin60.com/v2/location/' . DC_GHL_LOCATION_ID . '/contacts/detail/' . rawurlencode($contactId)
+        : 'GoHighLevel has not accepted this contact yet; the website keeps retrying. Search GoHighLevel for the phone number later.';
+    return [
+        'subject' => $callBack
+            ? 'Call-back requested - ' . $name . ' (call now)'
+            : 'Quote confirmed - ' . $name . ($price === '' ? '' : ' (' . $price . ')') . ' - went to booking page',
+        'body' => implode("\n", $lines),
+    ];
+}
+
+/** Email the office once per confirmed quote, whether or not GoHighLevel took it. */
+function dc_ghl_confirm_alert(array $config, array $payload, ?string $contactId): bool
+{
+    $source = (string) ($payload['source'] ?? '');
+    if (($payload['stage'] ?? '') !== 'confirm' || str_starts_with($source, 'contact-form') || str_starts_with($source, 'careers-application')) return false;
+    return dc_ghl_office_send($config, dc_ghl_confirm_alert_message($payload, $contactId));
+}
+
+function dc_ghl_office_send(array $config, ?array $message): bool
+{
     $to = $config['office_alert_to'] ?? DC_GHL_OFFICE_ALERT_TO;
     $from = $config['office_alert_from'] ?? DC_GHL_OFFICE_ALERT_FROM;
     if (!is_array($to) || $to === [] || !is_string($from) || filter_var($from, FILTER_VALIDATE_EMAIL) === false) return false;
     foreach ($to as $address) {
         if (!is_string($address) || filter_var($address, FILTER_VALIDATE_EMAIL) === false) return false;
     }
-    $message = dc_ghl_office_alert_message($config, $lead, $contactId, $session);
     if ($message === null) return false;
     $headers = [
         'From: Duty Cleaners Website <' . $from . '>',
@@ -848,6 +911,12 @@ function dc_ghl_attempt(array $config, array $record, string $path): array
             $delay = DC_GHL_RETRY_MINUTES[min($attempt - 1, count(DC_GHL_RETRY_MINUTES) - 1)];
             $record['next_retry_at'] = $terminal ? null : time() + ($delay * 60);
             dc_ghl_health($config, 'failed', ((int) $record['last_status']) === 401 ? 'configuration' : 'delivery', $record['last_status'], (string) $payload['source']);
+        }
+        // Once per confirmed quote, after the first attempt either way: the
+        // office hears even when GoHighLevel is down (link only when it is not).
+        if (!($record['office_alerted'] ?? false) && ($payload['stage'] ?? '') === 'confirm') {
+            $record['office_alerted'] = true;
+            dc_ghl_confirm_alert($config, $payload, ($record['state'] ?? '') === 'delivered' ? (string) $record['contact_id'] : null);
         }
         dc_ghl_write_record($path, $record);
         return $record;
