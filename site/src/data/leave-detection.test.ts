@@ -33,6 +33,18 @@ describe("the relay", () => {
     expect(relay).toMatch(/contact\.funnel_last_step[\s\S]{0,600}json_encode\(\['tags' => \['quote-left'\]\]/);
   });
 
+  it("a left visit emails the office from this server before tagging", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toMatch(/dc_ghl_office_alert\(\$config, \$lead, \$contactId, \$session\);[\s\S]{0,1200}json_encode\(\['tags' => \['quote-left'\]\]/);
+    expect(relay).toMatch(/return @mail\(implode\(',', \$to\), \$subject, \$message\['body'\]/);
+  });
+
+  it("the office alert is sent as dutycleaners.ca, never the GHL Gmail sender", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toContain("const DC_GHL_OFFICE_ALERT_FROM = 'website-alerts@dutycleaners.ca';");
+    expect(relay).toContain("const DC_GHL_OFFICE_ALERT_TO = ['support@dutycleaners.ca'];");
+  });
+
   it("answers the deliver and ping operations and sweeps from the cron job", () => {
     const relay = codeOf("public/api/ghl-quote.php");
     expect(relay).toMatch(/\['operation'\] \?\? null\) === 'deliver'/);

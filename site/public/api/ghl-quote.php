@@ -449,9 +449,10 @@ function dc_ghl_remove_tags(array $headers, string $contactId, array $tags): voi
  * Leave detection (owner, 2026-09-23). The funnel reports "still here" about
  * once a minute while someone is actively using it (quote-presence.ts). When
  * those reports stop for DC_GHL_QUIET_SECONDS and the visit never reached the
- * booking page or a call-back, the visitor has left: the contact gets the
- * funnel_last_step field and the quote-left tag, which starts the
- * "Price-check left" workflow (office alert, then Text 1 in texting hours).
+ * booking page or a call-back, the visitor has left: this server emails the
+ * office (dc_ghl_office_alert), then the contact gets the funnel_last_step
+ * field and the quote-left tag, which starts the "Price-check left" workflow
+ * (Text 1 in texting hours, then the quote follow-up).
  * Session files hold no personal data: state, step, times and the lead's
  * queue file name.
  */
@@ -548,6 +549,81 @@ function dc_ghl_optional_field_id(array $config, string $fieldKey): ?string
     return $id;
 }
 
+/*
+ * The office alert for a visitor who left (owner, 2026-09-23). This server
+ * sends it, not GoHighLevel: GHL's shared mail server sends as the profile's
+ * Gmail address and Google filed the alert as spam. Mail from this server
+ * passes SPF, DKIM and DMARC for dutycleaners.ca (proved by the form-health
+ * alerts). The private config may override office_alert_to / office_alert_from.
+ */
+const DC_GHL_OFFICE_ALERT_TO = ['support@dutycleaners.ca'];
+const DC_GHL_OFFICE_ALERT_FROM = 'website-alerts@dutycleaners.ca';
+
+/** Compose the alert; null when the lead cannot be read. Kept apart from mail() for the tests. */
+function dc_ghl_office_alert_message(array $config, array $lead, string $contactId, array $session): ?array
+{
+    try {
+        $payload = dc_ghl_decrypt((array) ($lead['payload'] ?? []), $config['encryption_key']);
+    } catch (Throwable) {
+        return null;
+    }
+    $line = static fn (mixed $value): string => trim((string) preg_replace('/[\r\n\t]+/', ' ', is_scalar($value) ? (string) $value : ''));
+    $name = $line($payload['full_name'] ?? '') ?: 'A website visitor';
+    $step = DC_GHL_STEPS[$session['step'] ?? 'price'] ?? DC_GHL_STEPS['price'];
+    $lastActive = (new DateTimeImmutable('@' . (int) ($session['last_seen'] ?? time())))
+        ->setTimezone(new DateTimeZone('America/Edmonton'))
+        ->format('D M j, g:i A');
+    $lines = [
+        $name . ' saw their price on the website and left ' . $step . ' without booking or asking for a call. Please call them now.',
+        '',
+        'Phone: ' . $line($payload['phone'] ?? ''),
+        'Email: ' . $line($payload['email'] ?? ''),
+    ];
+    $details = [
+        'Branch' => ['edmonton' => 'Edmonton', 'calgary' => 'Calgary', 'reddeer' => 'Red Deer'][$line($payload['city'] ?? '')] ?? ucfirst($line($payload['city'] ?? '')),
+        'Service' => $line($payload['service'] ?? ''),
+        'Home type' => $line($payload['home_type'] ?? ''),
+        'Bedrooms' => $line($payload['bedrooms'] ?? ''),
+        'Bathrooms' => $line($payload['full_bathrooms'] ?? ''),
+        'Half baths' => $line($payload['half_baths'] ?? ''),
+        'Page' => $line($payload['page_url'] ?? ''),
+    ];
+    foreach ($details as $label => $value) {
+        if ($value !== '') $lines[] = $label . ': ' . $value;
+    }
+    array_push(
+        $lines,
+        'Last active: ' . $lastActive . ' (Edmonton time)',
+        '',
+        'Contact in GoHighLevel: https://crm.bookin60.com/v2/location/' . DC_GHL_LOCATION_ID . '/contacts/detail/' . rawurlencode($contactId),
+        '',
+        'Unless they book first, they get one text in texting hours (Mon-Sat 8:00-19:30), then the quote follow-up emails and texts. Move their card in the Sales Pipeline once you have spoken to them; that stops the automatic follow-up.',
+    );
+    return [
+        'subject' => 'Left without booking - ' . $name . ' (call now)',
+        'body' => implode("\n", $lines),
+    ];
+}
+
+function dc_ghl_office_alert(array $config, array $lead, string $contactId, array $session): bool
+{
+    $to = $config['office_alert_to'] ?? DC_GHL_OFFICE_ALERT_TO;
+    $from = $config['office_alert_from'] ?? DC_GHL_OFFICE_ALERT_FROM;
+    if (!is_array($to) || $to === [] || !is_string($from) || filter_var($from, FILTER_VALIDATE_EMAIL) === false) return false;
+    foreach ($to as $address) {
+        if (!is_string($address) || filter_var($address, FILTER_VALIDATE_EMAIL) === false) return false;
+    }
+    $message = dc_ghl_office_alert_message($config, $lead, $contactId, $session);
+    if ($message === null) return false;
+    $headers = [
+        'From: Duty Cleaners Website <' . $from . '>',
+        'Content-Type: text/plain; charset=UTF-8',
+        'X-Auto-Response-Suppress: All',
+    ];
+    $subject = '=?UTF-8?B?' . base64_encode($message['subject']) . '?=';
+    return @mail(implode(',', $to), $subject, $message['body'], implode("\r\n", $headers));
+}
+
 /**
  * Mark visitors who went quiet as left. Runs from the cron job and after
  * funnel pings, so a busy site notices within a minute and a quiet one
@@ -581,6 +657,8 @@ function dc_ghl_sweep_sessions(array $config, int $limit = 10): int
         });
         if (!$won || !is_array($claimed)) continue;
         $session = $claimed;
+        // The office hears first, and even if GoHighLevel is down.
+        dc_ghl_office_alert($config, $lead, $contactId, $session);
         $headers = dc_ghl_headers($config);
         // The field first: the workflow started by the tag reads it.
         $fieldId = dc_ghl_optional_field_id($config, 'contact.funnel_last_step');

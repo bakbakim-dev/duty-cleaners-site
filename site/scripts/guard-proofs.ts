@@ -1301,6 +1301,22 @@ export const GUARD_PROOFS: GuardProof[] = [
   },
   {
     guard: "src/data/leave-detection.test.ts",
+    target: "public/api/ghl-quote.php",
+    find: "dc_ghl_office_alert($config, $lead, $contactId, $session);",
+    replace: "null;",
+    failing: "a left visit emails the office from this server before tagging",
+    why: "Nobody at the office hears that a price-checker left, so the call-now window is missed.",
+  },
+  {
+    guard: "src/data/leave-detection.test.ts",
+    target: "public/api/ghl-quote.php",
+    find: "const DC_GHL_OFFICE_ALERT_FROM = 'website-alerts@dutycleaners.ca';",
+    replace: "const DC_GHL_OFFICE_ALERT_FROM = 'dutycleanersedmonton@gmail.com';",
+    failing: "the office alert is sent as dutycleaners.ca, never the GHL Gmail sender",
+    why: "Mail claiming a Gmail sender from this server fails Gmail's checks and lands in spam, as GHL's alert did.",
+  },
+  {
+    guard: "src/data/leave-detection.test.ts",
     target: "src/lib/quote-submit.ts",
     find: "if (result?.delivery === \"pending\") requestDelivery(requestId);",
     replace: "",
