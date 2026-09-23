@@ -1100,6 +1100,28 @@ export default function QuoteFlow({
     const timer = window.setTimeout(() => setReadyPulse(false), 1800);
     return () => window.clearTimeout(timer);
   }, [allAnswered, step]);
+  /**
+   * The final button glows when the visitor reaches it, not when the last
+   * detail is answered: that moment now scrolls to the notes above it.
+   */
+  const pulseFinalWhenSeen = useRef(false);
+  const pulseFinal = () => {
+    pulseFinalWhenSeen.current = false;
+    setReadyPulse(true);
+    window.setTimeout(() => setReadyPulse(false), 1800);
+  };
+  useEffect(() => {
+    const el = ctaRef.current;
+    if (pricePane !== "details" || !el || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (pulseFinalWhenSeen.current && entries.some((entry) => entry.isIntersecting)) pulseFinal();
+      },
+      { threshold: 0.6 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [pricePane]);
 
   /**
    * "+$59.99 inside oven": a short note of what the last answer did to the
@@ -1454,16 +1476,21 @@ export default function QuoteFlow({
     const next = [...detailAnswers.slice(at + 1), ...detailAnswers.slice(0, at)].find(
       (answer) => !answer.done && answer.key !== answered,
     );
-    // Nothing left to answer: bring the final button into view, notes just above it.
-    const target = next ? document.getElementById(MISSING_TARGETS[next.key].id) : ctaRef.current;
+    // Nothing left to answer: bring the optional notes into view, top first,
+    // never the final button (owner, 2026-09-23: centring the button scrolled
+    // the notes box off a phone screen). The button glows once it is seen.
+    const target = document.getElementById(next ? MISSING_TARGETS[next.key].id : MISSING_TARGETS.notes.id);
     if (!target) return;
-    if (!next) {
-      setReadyPulse(true);
-      window.setTimeout(() => setReadyPulse(false), 1800);
-    }
+    if (!next) pulseFinalWhenSeen.current = true;
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     window.setTimeout(() => {
-      target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+      target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: next ? "center" : "start" });
+      if (next) return;
+      // Already on screen (a tall window): the observer will not fire again.
+      window.setTimeout(() => {
+        const box = ctaRef.current?.getBoundingClientRect();
+        if (pulseFinalWhenSeen.current && box && box.top >= 0 && box.bottom <= window.innerHeight) pulseFinal();
+      }, reduced ? 50 : 700);
     }, 300);
   };
   /** Bumped on every blocked attempt so the nudge animation replays each time. */

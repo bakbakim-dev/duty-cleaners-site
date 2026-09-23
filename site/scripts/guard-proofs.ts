@@ -1836,6 +1836,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Guided scrolls can land a question behind the sticky bar again (WCAG 2.4.11).",
   },
   {
+    guard: "src/data/quote-funnel-0923.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
+    find: "next ? MISSING_TARGETS[next.key].id : MISSING_TARGETS.notes.id",
+    replace: "next ? MISSING_TARGETS[next.key].id : \"dc-final-cta\"",
+    failing: "scrolls to the notes for the cleaner, never past them to the final button",
+    why: "The last answer scrolls past the notes box again and visitors never see it.",
+  },
+  {
     guard: "src/data/quote-funnel-0922.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
     find: "for (const row of chargeRows) basket[row.extra.name] = row.quantity;",

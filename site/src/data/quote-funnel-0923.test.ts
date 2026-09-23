@@ -146,3 +146,13 @@ describe("guided scrolls stop clear of the sticky bar", () => {
     expect(codeOf("src/index.css")).toMatch(/\.funnel-canvas \{[^}]*scroll-padding-bottom: 7rem;/);
   });
 });
+
+describe("the last detail answered", () => {
+  // Owner, 2026-09-23: centring the final button scrolled the optional notes
+  // box off a phone screen, so visitors never saw it.
+  it("scrolls to the notes for the cleaner, never past them to the final button", () => {
+    const src = codeOf(FLOW);
+    expect(src).toMatch(/next \? MISSING_TARGETS\[next\.key\]\.id : MISSING_TARGETS\.notes\.id/);
+    expect(src).not.toMatch(/: ctaRef\.current;/);
+  });
+});
