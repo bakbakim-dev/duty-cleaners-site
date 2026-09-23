@@ -62,3 +62,19 @@ describe("the bedroom picker", () => {
     expect(src).toMatch(/option\.label\.match\(\/\^\(\\d\+\)\[\^\(\]\*/);
   });
 });
+
+describe("round two: the same honest rewards on every step", () => {
+  it("the details pane counts its four answers and moves to the next open one", () => {
+    const src = codeOf(FLOW);
+    expect(src).toMatch(/if \(first\) guideDetails\("cleanliness"\)/);
+    expect(src).toMatch(/of \$\{detailAnswers\.length\} answered/);
+  });
+  it("the price card ticks in only the visitor's real answers, beside the price", () => {
+    const src = codeOf(FLOW);
+    const tally = src.match(/<ul className="funnel-tally[\s\S]*?<\/ul>/)?.[0] ?? "";
+    expect(tally).toMatch(/\$\{bedrooms\} bedroom/);
+    // No invented work: no timers, no random items, nothing hides the figure.
+    expect(tally).not.toMatch(/setTimeout|Math\.random/);
+    expect(codeOf("src/index.css")).toMatch(/@media \(prefers-reduced-motion: no-preference\) \{\s*\.funnel-tally li/);
+  });
+});

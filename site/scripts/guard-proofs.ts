@@ -1724,6 +1724,22 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "The bedroom sqft cap drops back to a small caption nobody notices.",
   },
   {
+    guard: "src/data/quote-funnel-0923.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
+    find: "if (first) guideDetails(\"cleanliness\");",
+    replace: "",
+    failing: "the details pane counts its four answers and moves to the next open one",
+    why: "Answering the home's condition no longer moves the visitor on to parking.",
+  },
+  {
+    guard: "src/data/quote-funnel-0923.test.ts",
+    target: "src/index.css",
+    find: "@media (prefers-reduced-motion: no-preference) {\n  .funnel-tally li {",
+    replace: "@media all {\n  .funnel-tally li {",
+    failing: "the price card ticks in only the visitor's real answers, beside the price",
+    why: "The tally animates even for visitors who asked for reduced motion.",
+  },
+  {
     guard: "src/data/quote-funnel-0922.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
     find: "for (const row of chargeRows) basket[row.extra.name] = row.quantity;",

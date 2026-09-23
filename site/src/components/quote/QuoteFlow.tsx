@@ -251,7 +251,7 @@ function NumberChips({
               aria-label={option.label}
               className={`min-h-[48px] ${sub ? "min-w-[108px]" : "min-w-[56px]"} rounded-md border px-3 py-1.5 text-lg transition-colors ${
                 active
-                  ? "border-brand-navy bg-brand-navy font-bold text-brand-navy-foreground"
+                  ? "funnel-pick border-brand-navy bg-brand-navy font-bold text-brand-navy-foreground"
                   : "border-input bg-card font-medium text-foreground hover:border-brand-navy/50 hover:bg-muted"
               }`}
             >
@@ -910,6 +910,8 @@ export default function QuoteFlow({
     return rows;
   }, [visibleShelf, addOns, hasPets, petsExtra]);
 
+  /** Extras the visitor picked (pets is its own answer, counted apart). */
+  const addOnCount = basketRows.filter((row) => row.extra !== petsExtra).length;
   const addOnTotal = basketRows.reduce(
     (sum, row) => sum + row.extra.price * row.quantity,
     0
@@ -1365,6 +1367,29 @@ export default function QuoteFlow({
       target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: next ? "center" : "nearest" });
     }, 300);
   };
+  /**
+   * The same guidance on the details pane: entry, condition, parking, then how
+   * far the slot may move. Entry answers that open a follow-up field (lockbox,
+   * code, other) stay put so the visitor can type it.
+   */
+  const detailAnswers = [
+    { key: "entry", label: "Entry", done: Boolean(details.entry) },
+    { key: "cleanliness", label: "Condition", done: details.cleanliness !== undefined },
+    { key: "parking", label: "Parking", done: Boolean(details.parking) },
+    { key: "flexibility", label: "Timing", done: Boolean(details.flexibility) },
+  ] as const;
+  const guideDetails = (answered: (typeof detailAnswers)[number]["key"]) => {
+    const at = detailAnswers.findIndex((answer) => answer.key === answered);
+    const next = [...detailAnswers.slice(at + 1), ...detailAnswers.slice(0, at)].find(
+      (answer) => !answer.done && answer.key !== answered,
+    );
+    const target = next ? document.getElementById(MISSING_TARGETS[next.key].id) : null;
+    if (!target) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    window.setTimeout(() => {
+      target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+    }, 300);
+  };
   /** Bumped on every blocked attempt so the nudge animation replays each time. */
   const [nudge, setNudge] = useState(0);
   const jumpToMissing = (key: string) => {
@@ -1799,6 +1824,9 @@ export default function QuoteFlow({
                                   : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
                               }`}
                             >
+                              {active && (
+                                <span className="funnel-pop dc-icon dc-icon-check mr-1.5 inline-block h-4 w-4 align-[-2px]" aria-hidden="true" />
+                              )}
                               {option.label}
                             </button>
                           );
@@ -2135,6 +2163,26 @@ export default function QuoteFlow({
                 <p className="text-sm font-semibold text-muted-foreground">
                   {serviceName}{whereSuffix}
                 </p>
+                {/* What the price was worked out from, ticked in one by one as the
+                    figure rolls up (labour illusion, Buell & Norton 2011). Only
+                    real inputs, shown alongside the price, never instead of it. */}
+                {selected.asksHomeSize && (
+                  <ul className="funnel-tally mt-2" aria-label="Your price is worked out from">
+                    {[
+                      `${bedrooms} bedroom${bedrooms === 1 ? "" : "s"}`,
+                      `${bathrooms} bathroom${bathrooms === 1 ? "" : "s"}`,
+                      ...(halfBaths > 0 ? [`${halfBaths} half bath${halfBaths === 1 ? "" : "s"}`] : []),
+                      ...(hasPets === null || !petsExtra ? [] : [hasPets ? "pets" : "no pets"]),
+                      ...(area?.outside === true ? ["travel fee"] : []),
+                      ...(addOnCount > 0 ? [`${addOnCount} extra${addOnCount === 1 ? "" : "s"}`] : []),
+                    ].map((item, index) => (
+                      <li key={item} style={{ animationDelay: `${index * 90}ms` }}>
+                        <span className="dc-icon dc-icon-check h-3.5 w-3.5" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 {showDeepBreakdown && deepFirstClean !== null ? (
                   <>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -2688,6 +2736,30 @@ export default function QuoteFlow({
                   Tell us how we get in, how the home looks today and where to park, so your
                   cleaner arrives prepared.
                 </p>
+                {/* Four taps to the schedule, counted as they land (goal gradient). */}
+                <div className="funnel-answers mt-4" aria-live="polite">
+                  <p className="flex items-center justify-between gap-3 text-sm font-bold text-foreground">
+                    <span>
+                      {detailAnswers.every((answer) => answer.done)
+                        ? "All set: choose your time next"
+                        : `${detailAnswers.filter((answer) => answer.done).length} of ${detailAnswers.length} answered`}
+                    </span>
+                    {detailAnswers.every((answer) => answer.done) && (
+                      <span className="funnel-pop dc-icon dc-icon-circle-check h-5 w-5 text-savings-foreground" aria-hidden="true" />
+                    )}
+                  </p>
+                  <ol className="mt-2 flex gap-1.5" aria-label="Details progress">
+                    {detailAnswers.map((answer) => (
+                      <li key={answer.key} className="flex-1">
+                        <span className={`funnel-answer-seg${answer.done ? " is-done" : ""}`} aria-hidden="true" />
+                        <span className={`mt-1 block truncate text-xs ${answer.done ? "font-semibold text-foreground" : "text-muted-foreground"}`}>
+                          {answer.label}
+                          <span className="sr-only">{answer.done ? ", done" : ", to answer"}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
                 <fieldset id="dc-entry-group" aria-invalid={detailErrors.entry ? true : undefined} className={`mt-6 scroll-mt-24${detailErrors.entry ? " funnel-missing" : ""}`}>
                   {detailErrors.entry && <span key={`flag-entry-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="text-lg font-bold text-foreground">
@@ -2703,12 +2775,14 @@ export default function QuoteFlow({
                         key={option.value}
                         type="button"
                         aria-pressed={details.entry === option.value}
-                        onClick={() =>
+                        onClick={() => {
+                          const first = details.entry === undefined;
                           setDetails((current) => ({
                             ...current,
                             entry: option.value,
-                          }))
-                        }
+                          }));
+                          if (first && (option.value === "home" || option.value === "mailbox")) guideDetails("entry");
+                        }}
                         className={`min-h-[48px] rounded-md border px-4 text-base transition-colors ${
                           details.entry === option.value
                             ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
@@ -2739,12 +2813,14 @@ export default function QuoteFlow({
                         key={option.value}
                         type="button"
                         aria-pressed={details.cleanliness === option.value}
-                        onClick={() =>
+                        onClick={() => {
+                          const first = details.cleanliness === undefined;
                           setDetails((current) => ({
                             ...current,
                             cleanliness: option.value,
-                          }))
-                        }
+                          }));
+                          if (first) guideDetails("cleanliness");
+                        }}
                         className={`min-h-[48px] rounded-md border px-4 text-base transition-colors ${
                           details.cleanliness === option.value
                             ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
@@ -2805,12 +2881,14 @@ export default function QuoteFlow({
                         key={option.value}
                         type="button"
                         aria-pressed={details.parking === option.value}
-                        onClick={() =>
+                        onClick={() => {
+                          const first = details.parking === undefined;
                           setDetails((current) => ({
                             ...current,
                             parking: option.value,
-                          }))
-                        }
+                          }));
+                          if (first) guideDetails("parking");
+                        }}
                         className={`min-h-[48px] rounded-md border px-4 text-base transition-colors ${
                           details.parking === option.value
                             ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
@@ -2841,7 +2919,11 @@ export default function QuoteFlow({
                           type="button"
                           role="radio"
                           aria-checked={active}
-                          onClick={() => setDetails((current) => ({ ...current, flexibility: option.value as CleanerDetails["flexibility"] }))}
+                          onClick={() => {
+                            const first = !details.flexibility;
+                            setDetails((current) => ({ ...current, flexibility: option.value as CleanerDetails["flexibility"] }));
+                            if (first) guideDetails("flexibility");
+                          }}
                           className={`min-h-[48px] rounded-md border px-4 py-2 text-left text-base transition-colors ${
                             active
                               ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
