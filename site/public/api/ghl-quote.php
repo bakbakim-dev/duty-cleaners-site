@@ -421,6 +421,11 @@ function dc_ghl_deliver(array $config, array $payload): array
         $tags = ['careers-applicant'];
     } elseif ($isContact) {
         $tags = ['website-contact'];
+        // The form's "Office Cleaning" choice sends the service "commercial".
+        // This tag starts the GoHighLevel workflow that opens a card in the
+        // Office Cleaning pipeline; website-contact alone cannot, because a
+        // returning contact already carries it and GHL fires only on a new tag.
+        if ($payload['service'] === 'commercial') $tags[] = 'office-enquiry';
     } else {
         // The first funnel submission captures an unfinished quote. Only the
         // confirmation submission has a price, so only that submission may

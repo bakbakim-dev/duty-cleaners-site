@@ -1260,6 +1260,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Stops tagging call-back requests, so GoHighLevel cannot alert the office to call.",
   },
   {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "public/api/ghl-quote.php",
+    find: "= 'office-enquiry';",
+    replace: "= 'website-contact';",
+    failing: "the contact form's office value is the one the relay tags",
+    why: "Stops tagging office enquiries, so GoHighLevel never opens their Office Cleaning card.",
+  },
+  {
     guard: "src/lib/quote-return.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
     find: "saveQuoteReturn({",

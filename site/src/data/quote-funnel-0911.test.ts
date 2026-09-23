@@ -484,3 +484,21 @@ describe("a call-back request is flagged for the office", () => {
     );
   });
 });
+
+/**
+ * Owner, 2026-09-22: office enquiries get their own GoHighLevel pipeline. The
+ * contact form's "Office Cleaning" choice sends the service value
+ * `commercial`; the relay turns it into the `office-enquiry` tag, and a GHL
+ * workflow on that tag opens the Office Cleaning card. The two strings must
+ * stay identical.
+ */
+describe("an office enquiry is tagged for the Office Cleaning pipeline", () => {
+  it("the contact form's office value is the one the relay tags", () => {
+    const form = codeOf("src/pages/Contact.tsx");
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(form).toMatch(/<SelectItem value="commercial">Office Cleaning<\/SelectItem>/);
+    expect(relay, "the relay no longer tags office enquiries").toMatch(
+      /if \(\$payload\['service'\] === 'commercial'\) \$tags\[\] = 'office-enquiry';/,
+    );
+  });
+});
