@@ -67,7 +67,7 @@ describe("the price step rewards honestly", () => {
   it("shows plan savings in dollars from the funnel's own quote", () => {
     const flow = codeOf("src/components/quote/QuoteFlow.tsx");
     const chips = codeOf("src/components/quote/FrequencyChips.tsx");
-    expect(flow).toMatch(/<FrequencyChips value=\{frequency\} onChange=\{setFrequency\} pricing=\{planPricing\} \/>/);
+    expect(flow).toMatch(/<FrequencyChips\s+value=\{frequency\}[\s\S]{0,400}?pricing=\{planPricing\}\s*\/>/);
     expect(chips).toMatch(/Save \$\{formatPrice\(figures\.savePerVisit\)\}/);
   });
 

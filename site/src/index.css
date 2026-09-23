@@ -1145,3 +1145,18 @@ html:not([data-motion="on"]) .opacity-0.translate-y-8 {
   .dc-icon-calculator { --dc-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='16' height='20' x='4' y='2' rx='2'/%3E%3Cline x1='8' x2='16' y1='6' y2='6'/%3E%3Cline x1='16' x2='16' y1='14' y2='18'/%3E%3Cpath d='M16 10h.01'/%3E%3Cpath d='M12 10h.01'/%3E%3Cpath d='M8 10h.01'/%3E%3Cpath d='M12 14h.01'/%3E%3Cpath d='M8 14h.01'/%3E%3Cpath d='M12 18h.01'/%3E%3Cpath d='M8 18h.01'/%3E%3C/svg%3E"); }
   .dc-icon-circle-x { --dc-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m15 9-6 6'/%3E%3Cpath d='m9 9 6 6'/%3E%3C/svg%3E"); }
 }
+
+/* Bedroom size cap, made hard to miss (owner, 2026-09-23). */
+.funnel-size-note {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  border-radius: 0.5rem;
+  border: 1px solid hsl(var(--brand-navy) / 0.25);
+  background-color: hsl(var(--secondary) / 0.6);
+  padding: 0.625rem 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: hsl(var(--foreground));
+}
+.funnel-size-note .dc-icon { margin-top: 0.15rem; }

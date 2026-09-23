@@ -11,9 +11,11 @@ import { useEffect, useRef, useState } from "react";
  * live regions, never the in-between values. With reduced motion requested
  * (WCAG 2.3.3) the number simply changes.
  */
-export function useCountUp(target: number, durationMs = 450): number {
-  const [shown, setShown] = useState(target);
-  const shownRef = useRef(target);
+export function useCountUp(target: number, durationMs = 450, initial?: number): number {
+  // `initial` lets the first reveal roll up from zero (the price step's high
+  // point, owner 2026-09-23); later changes roll from the previous figure.
+  const [shown, setShown] = useState(initial ?? target);
+  const shownRef = useRef(initial ?? target);
 
   useEffect(() => {
     const from = shownRef.current;

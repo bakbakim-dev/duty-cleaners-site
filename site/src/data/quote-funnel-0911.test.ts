@@ -397,9 +397,10 @@ describe("the funnel records only what the visitor chose, once", () => {
 
 describe("the move-out card claims only what the checklist covers", () => {
   it("names the move-out items instead of claiming deep cleaning", () => {
-    const src = codeOf("src/components/quote/QuoteFlow.tsx");
+    // Since 2026-09-23 the items live in the card's one line, in pricing.ts.
+    const src = codeOf("src/components/quote/QuoteFlow.tsx") + codeOf("src/data/pricing.ts");
     expect(src, "the card claims a service it is not").not.toMatch(/Already includes deep cleaning/i);
-    expect(src).toMatch(/plus inside the oven, fridge, cabinets and closets/);
+    expect(src).toMatch(/outlets and vent covers, inside the oven, fridge, cabinets, drawers and closets/);
   });
 });
 

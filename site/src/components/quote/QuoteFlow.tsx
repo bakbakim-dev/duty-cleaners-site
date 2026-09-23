@@ -229,9 +229,15 @@ function NumberChips({
           };
           /* "3 Bedrooms (Under 1700sqft)" → big "3"; the sqft cap moves to the
              caption under the row when one is requested. */
-          const match = option.label.match(/^(\d+)\D*(?:\((.+)\))?/);
+          // [^(]* not \D*: \D* also ate "(Under", so the sqft cap never matched.
+          const match = option.label.match(/^(\d+)[^(]*(?:\((.+)\))?/);
           const head = match ? match[1] : option.label;
-          const sub = caption ? undefined : match?.[2];
+          /* Owner, 2026-09-23: the size cap was too small to notice. Every chip
+             now carries it ("under 1,700 sq ft") at a readable size. */
+          const sub = (/sq\s*ft/i.test(match?.[2] ?? "") ? match?.[2] : undefined)
+            ?.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+            .replace(/\s*sq\s*ft/i, " sq ft")
+            .replace(/^Under/, "under");
           return (
             <button
               key={option.id}
@@ -243,7 +249,7 @@ function NumberChips({
               onKeyDown={onKeyDown}
               tabIndex={index === focusIndex ? 0 : -1}
               aria-label={option.label}
-              className={`min-h-[48px] min-w-[56px] rounded-md border px-3 py-1.5 text-lg transition-colors ${
+              className={`min-h-[48px] ${sub ? "min-w-[108px]" : "min-w-[56px]"} rounded-md border px-3 py-1.5 text-lg transition-colors ${
                 active
                   ? "border-brand-navy bg-brand-navy font-bold text-brand-navy-foreground"
                   : "border-input bg-card font-medium text-foreground hover:border-brand-navy/50 hover:bg-muted"
@@ -251,7 +257,7 @@ function NumberChips({
             >
               <span className="block leading-tight">{head}</span>
               {sub && (
-                <span className={`block text-[11px] font-medium leading-tight ${active ? "text-brand-navy-foreground/75" : "text-muted-foreground"}`}>
+                <span className={`mt-0.5 block whitespace-nowrap text-[0.8125rem] font-semibold leading-tight ${active ? "text-brand-navy-foreground/85" : "text-foreground/70"}`}>
                   {sub}
                 </span>
               )}
@@ -260,8 +266,12 @@ function NumberChips({
         })}
       </div>
       {caption && captionText && (
-        <p aria-live="polite" className="mt-2 text-sm font-semibold text-foreground">
-          {captionText}
+        <p aria-live="polite" className="funnel-size-note mt-3">
+          <span className="dc-icon dc-icon-check h-4 w-4 shrink-0 text-brand-navy" aria-hidden="true" />
+          <span>
+            <strong>{captionText}</strong>
+            <span className="block text-muted-foreground">Home bigger than that? Choose the size its square footage fits.</span>
+          </span>
         </p>
       )}
     </fieldset>
@@ -450,13 +460,6 @@ export default function QuoteFlow({
    */
   const [pricePane, setPricePane] = useState<"price" | "details">(restored ? "details" : "price");
   const [ctaVisible, setCtaVisible] = useState(true);
-
-  /** Bring the next question just into view without yanking the page. */
-  const peek = (ref: React.RefObject<HTMLElement>) => {
-    window.requestAnimationFrame(() => {
-      ref.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    });
-  };
 
   /*
     The overlay stays mounted from page to page, so this flow's state outlives
@@ -1334,9 +1337,33 @@ export default function QuoteFlow({
     entry: { id: "dc-entry-group", label: "How do we enter the home?" },
     cleanliness: { id: "dc-clean-group", label: "How clean is your house?" },
     parking: { id: "dc-park-group", label: "Where should we park?" },
-    flexibility: { id: "dc-flexibility-group", label: "Is your date/time flexible?" },
+    flexibility: { id: "dc-flexibility-group", label: "How much we can move your slot" },
     notes: { id: "dc-notes-group", label: "Special notes (too long)" },
     limits: { id: "dc-limits-group", label: "Inside city limits?" },
+  };
+  /**
+   * After a one-tap answer on the price step, bring the next UNANSWERED
+   * question into view (owner, 2026-09-23: on a phone, answering pets used to
+   * scroll straight to the add-ons, past "inside city limits"). Questions after
+   * the one just answered come first, then any skipped above it; only when none
+   * is left does it move on to the extras. The short pause lets the check mark
+   * register before the page moves. Reduced motion: the page jumps, no glide.
+   */
+  const guideToNext = (answered: "frequency" | "pets" | "limits") => {
+    const order = ["frequency", "pets", "limits"] as const;
+    const open: Record<(typeof order)[number], boolean> = {
+      frequency: awaitingPlan,
+      pets: Boolean(petsExtra) && hasPets === null,
+      limits: Boolean(area) && travelFeeOffered !== null && area?.outside === null,
+    };
+    const at = order.indexOf(answered);
+    const next = [...order.slice(at + 1), ...order.slice(0, at)].find((key) => open[key]);
+    const target = next ? document.getElementById(MISSING_TARGETS[next].id) : answered === "pets" ? shelfRef.current : null;
+    if (!target) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    window.setTimeout(() => {
+      target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: next ? "center" : "nearest" });
+    }, 300);
   };
   /** Bumped on every blocked attempt so the nudge animation replays each time. */
   const [nudge, setNudge] = useState(0);
@@ -1603,6 +1630,15 @@ export default function QuoteFlow({
           </span>
           <span className="text-muted-foreground">
             {step === 2 && pricePane === "details" ? "Details for your cleaner" : STEP_LABELS[step]}
+            {/* Steps left in words, not a percentage: the finish line reads as
+                close (goal gradient, Kivetz et al. 2006). The booking page is
+                the last step and is counted honestly. */}
+            <span className="font-semibold text-foreground">
+              {" · "}
+              {step === 2 && pricePane === "details"
+                ? "then pick your time"
+                : `${TOTAL_STEPS - step - 1} quick step${TOTAL_STEPS - step - 1 === 1 ? "" : "s"} left`}
+            </span>
           </span>
         </div>
         <ol className="sr-only">
@@ -1618,7 +1654,7 @@ export default function QuoteFlow({
         <div className="funnel-progress-track mt-3">
           <div
             className="funnel-progress-fill"
-            style={{ width: `${((step + 1) / TOTAL_STEPS) * 100}%` }}
+            style={{ width: `${((step + 1 + (step === 2 && pricePane === "details" ? 0.5 : 0)) / TOTAL_STEPS) * 100}%` }}
           />
         </div>
       </div>
@@ -1668,7 +1704,7 @@ export default function QuoteFlow({
                       {
                         id: "standard" as const,
                         label: "Deep Cleaning",
-                        blurb: "Standard plus baseboards, doors, light switches, wall outlets, vent covers and cobwebs.",
+                        blurb: "Everything in a standard clean, plus baseboards, doors, light switches, wall outlets and vent covers.",
                         deep: true,
                       },
                       ...SELECTABLE_SERVICES.slice(1).map((option) => ({ ...option, deep: false })),
@@ -1704,16 +1740,9 @@ export default function QuoteFlow({
                               selected ? "text-brand-navy-foreground/75" : "text-muted-foreground"
                             }`}
                           >
+                            {/* Move-out's blurb names what its checklist covers on both
+                                city pages, in one line (owner, 2026-09-23). */}
                             {option.blurb}
-                            {/* What the move-out checklist on both city pages actually
-                                covers. "Already includes deep cleaning" named a different
-                                service; this names the items. */}
-                            {option.id === "move-in-out" && (
-                              <span className="mt-1 block font-semibold">
-                                Covers baseboards, doors, switches, outlets and vent covers,
-                                plus inside the oven, fridge, cabinets and closets.
-                              </span>
-                            )}
                           </span>
                         </button>
                       );
@@ -2066,7 +2095,14 @@ export default function QuoteFlow({
                 title={
                   pricePane === "price"
                     ? "Here’s your price"
-                    : "A few details for your cleaner"
+                    : "Last step: a few details for your cleaner"
+                }
+                /* Their own answers, said back (owner, 2026-09-23): the price
+                   reads as worked out for this home, not pulled from a table. */
+                companion={
+                  pricePane === "price" && selected.asksHomeSize
+                    ? `${serviceName} for your ${bedrooms}-bedroom, ${bathrooms}-bathroom home${whereSuffix}.`
+                    : undefined
                 }
               >
                 {/* Owner, 2026-09-22: not under the price heading (wasted space);
@@ -2144,11 +2180,11 @@ export default function QuoteFlow({
                     </p>
                     <p className="funnel-price-figure">
                       {showDeepBreakdown && deepFirstClean !== null ? (
-                        <RollingPrice value={deepFirstClean} />
+                        <RollingPrice value={deepFirstClean} reveal />
                       ) : quote.quoteOnly || quote.isEstimate ? (
                         priceLabel
                       ) : (
-                        <RollingPrice value={firstCleanTotal} />
+                        <RollingPrice value={firstCleanTotal} reveal />
                       )}
                     </p>
                     {!quote.isEstimate && !quote.quoteOnly && (
@@ -2251,7 +2287,15 @@ export default function QuoteFlow({
                     Your first clean is at the one-time price. A plan takes {planDiscountRange} off
                     every visit after that.
                   </p>
-                  <FrequencyChips value={frequency} onChange={setFrequency} pricing={planPricing} />
+                  <FrequencyChips
+                    value={frequency}
+                    onChange={(next) => {
+                      const first = frequency === null;
+                      setFrequency(next);
+                      if (first) guideToNext("frequency");
+                    }}
+                    pricing={planPricing}
+                  />
                   {frequencyError && (
                     <p id="dc-frequency-error" className="funnel-missing-text">
                       {frequencyError}
@@ -2322,7 +2366,7 @@ export default function QuoteFlow({
                           changeLabelRef.current = { text: option.value ? "pets" : "no pets" };
                           setHasPets(option.value);
                           setPetError(null);
-                          peek(shelfRef);
+                          guideToNext("pets");
                         }}
                         className={`min-h-[48px] min-w-[96px] rounded-md border px-4 py-2 text-base transition-colors ${
                           hasPets === option.value
@@ -2368,7 +2412,11 @@ export default function QuoteFlow({
                         key={option.label}
                         type="button"
                         aria-pressed={area.outside === option.value}
-                        onClick={() => chooseOutside(option.value)}
+                        onClick={() => {
+                          const first = area.outside === null;
+                          chooseOutside(option.value);
+                          if (first) guideToNext("limits");
+                        }}
                         className={`min-h-[48px] min-w-[96px] rounded-md border px-4 py-2 text-base transition-colors ${
                           area.outside === option.value
                             ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
@@ -2780,8 +2828,11 @@ export default function QuoteFlow({
 
                 <div id="dc-flexibility-group" className={`mt-8 scroll-mt-24 border-t border-border pt-6${detailErrors.flexibility ? " funnel-missing" : ""}`}>
                   {detailErrors.flexibility && <span key={`flag-flexibility-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
-                  <Label htmlFor="dc-flexibility" className="text-lg font-bold">Is your date/time flexible? <span className="text-brand-navy" aria-hidden="true">*</span></Label>
-                  <div id="dc-flexibility" role="radiogroup" aria-label="Is your date/time flexible?" className="mt-2 grid gap-2">
+                  <Label htmlFor="dc-flexibility" className="text-lg font-bold">If your slot fills up, how much can we move it? <span className="text-brand-navy" aria-hidden="true">*</span></Label>
+                  <p id="dc-flexibility-hint" className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    You pick your date and time on the next page. This just tells the office what it can offer if that slot is taken.
+                  </p>
+                  <div id="dc-flexibility" role="radiogroup" aria-label="If your slot fills up, how much can we move it?" aria-describedby="dc-flexibility-hint" className="mt-3 grid gap-2">
                     {FLEXIBILITY_OPTIONS.map((option) => {
                       const active = details.flexibility === option.value;
                       return (
@@ -2797,7 +2848,7 @@ export default function QuoteFlow({
                               : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
                           }`}
                         >
-                          {option.label}
+                          {option.display}
                         </button>
                       );
                     })}

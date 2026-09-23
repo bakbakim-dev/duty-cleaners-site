@@ -155,7 +155,7 @@ export const SERVICES: ServicePricing[] = [
   {
     id: "standard",
     label: "Standard Cleaning",
-    blurb: "Regular upkeep for a home that is already in good shape.",
+    blurb: "The everyday clean: kitchen, bathrooms, dusting and floors. Book it once, or every week or two.",
     inclusions: [
       "Kitchen surfaces, exterior of appliances, sink",
       "Bathrooms: toilet, tub/shower, mirrors, floors",
@@ -182,7 +182,7 @@ export const SERVICES: ServicePricing[] = [
   {
     id: "move-in-out",
     label: "Move In / Move Out",
-    blurb: "Handover-day clean for damage deposits, listings and new keys.",
+    blurb: "Our deepest clean: everything in a standard clean, plus baseboards, doors, switches, outlets and vent covers, inside the oven, fridge, cabinets, drawers and closets, and window sills and tracks.",
     inclusions: [
       "Inside all cabinets, drawers and closets",
       "Inside oven and fridge",
