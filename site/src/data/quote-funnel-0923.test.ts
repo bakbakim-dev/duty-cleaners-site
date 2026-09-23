@@ -82,12 +82,13 @@ describe("round two: the same honest rewards on every step", () => {
 });
 
 describe("round three: guided on every step, the bar never skips", () => {
-  it("the sticky bar says what is left and never hands off to booking itself", () => {
+  it("the sticky bar says what is left and has no button of its own", () => {
     const src = codeOf(FLOW);
-    const bar = src.match(/const barAction[\s\S]*?\n  };?\n/)?.[0] ?? src.match(/const barAction[\s\S]*?scrollIntoView\(\{ behavior: "smooth", block: "center" \}\),\s*\};/)?.[0] ?? "";
-    expect(bar).toMatch(/answerLabel\(priceOpen\.length\)/);
-    expect(bar).toMatch(/label: "See extras"/);
-    expect(bar).not.toMatch(/goToBooking/);
+    // Since 2026-09-23 (owner): the bar holds the price and a status line only.
+    expect(src).toMatch(/const barStatus =[\s\S]{0,300}left\(priceOpen\.length\)[\s\S]{0,200}"Extras below \(optional\)"/);
+    const bar = src.match(/\{showPrice && \(\s*<div\s+className=\{`fixed inset-x-0 bottom-0[\s\S]*?\n      \)\}/)?.[0] ?? "";
+    expect(bar).toMatch(/\{barStatus\}/);
+    expect(bar).not.toMatch(/<Button|goToBooking|goToDetailsPane|onClick/);
   });
   it("home type has no silent default and is required before the price", () => {
     const src = codeOf(FLOW);
@@ -102,7 +103,9 @@ describe("round three: guided on every step, the bar never skips", () => {
   it("Enter on a contact field moves to the next field, and lockbox or code points to the notes", () => {
     const src = codeOf(FLOW);
     expect(src).toMatch(/enterKeyHint="next"[\s\S]{0,300}document\.getElementById\("email"\)\?\.focus\(\)/);
-    expect(src).toMatch(/Add where the lockbox is and its code in the notes at the bottom\./);
+    // Asked right under the answer (2026-09-23), never by a jump to the notes.
+    expect(src).toMatch(/Where is the lockbox, and what's the code\?/);
+    expect(src).not.toMatch(/Add it now/);
   });
 });
 
@@ -124,5 +127,22 @@ describe("round three follow-ups", () => {
   });
   it("the price-change note sits inside the sticky bar", () => {
     expect(codeOf("src/index.css")).toMatch(/\.funnel-float--bar \{\s*left: 1rem;\s*top: 0\.375rem;/);
+  });
+});
+
+describe("the entry follow-up", () => {
+  it("travels with the notes only while lockbox, code or other stands, within the limit", async () => {
+    const { entryNoteLine, DC_NOTES_MAX } = await import("@/lib/booking-redirect");
+    const { cleanerNotesLimit } = await import("@/lib/booking-details");
+    expect(entryNoteLine({ entry: "lockbox", entryNote: " side gate, 4321 " })).toBe("Entry details: side gate, 4321");
+    expect(entryNoteLine({ entry: "home", entryNote: "side gate, 4321" })).toBe("");
+    const details = { entry: "code" as const, entryNote: "1234#" };
+    expect(cleanerNotesLimit(details)).toBe(DC_NOTES_MAX - "Entry details: 1234#".length - 1);
+  });
+});
+
+describe("guided scrolls stop clear of the sticky bar", () => {
+  it("the funnel's scroll area pads its top and bottom", () => {
+    expect(codeOf("src/index.css")).toMatch(/\.funnel-canvas \{[^}]*scroll-padding-bottom: 7rem;/);
   });
 });

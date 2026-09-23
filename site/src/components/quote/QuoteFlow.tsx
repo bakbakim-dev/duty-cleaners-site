@@ -69,6 +69,7 @@ import { intentParams, intentQuery } from "@/lib/url-intent";
 import { setQuoteBranch, setQuoteStep } from "@/lib/quote-progress";
 import { track } from "@/lib/analytics";
 import { CLEANLINESS_OPTIONS, FLEXIBILITY_OPTIONS, cleanerNotesLimit, validateCleanerDetails } from "@/lib/booking-details";
+import { ENTRY_NOTE_MAX, entryNoteLine } from "@/lib/booking-redirect";
 import { clearQuoteReturn, readQuoteReturn, saveQuoteReturn } from "@/lib/quote-return";
 import { prepareBookingHandoff, publicBookingUrl } from "@/lib/booking-handoff";
 import { HISTORY_FLAG, HISTORY_STACK, funnelStackOf, useQuoteOverlay } from "@/hooks/use-quote-overlay";
@@ -1281,7 +1282,7 @@ export default function QuoteFlow({
       ...(details.parking ? [`Parking: ${DC_PARKING_LABELS[details.parking]}`] : []),
       ...(details.flexibility ? [`Date/time flexibility: ${FLEXIBILITY_OPTIONS.find(option => option.value === details.flexibility)?.label}`] : []),
     ],
-    notes: details.notes?.trim() || undefined,
+    notes: [entryNoteLine(details), details.notes?.trim() ?? ""].filter(Boolean).join("\n") || undefined,
   }) as Partial<QuotePayload>;
 
   const bookingQuery = useMemo(
@@ -1301,6 +1302,7 @@ export default function QuoteFlow({
           parking: details.parking,
           flexibility: details.flexibility,
           notes: details.notes,
+          entryNote: details.entryNote,
         },
         coupon: promoCode,
         contact: { firstName: contact.firstName, lastName: contact.lastName, email: contact.email, phone: contact.phone },
@@ -1474,42 +1476,23 @@ export default function QuoteFlow({
     Boolean(deepShelfRow) &&
     !(deepShelfRow && addOns[deepShelfRow.name]);
   /**
-   * The sticky bar's button (owner, 2026-09-23). It used to advance from
-   * anywhere, so one tap skipped the extras, and on the details pane the notes
-   * and the final button. Now it says what is left and takes the visitor
-   * there; it never skips. It is never disabled: a greyed button explains
-   * nothing (NN/g). Only the pane's own button hands off to the booking page.
+   * The sticky bar's status line (owner, 2026-09-23). It has no button: an
+   * always-there button let one tap skip the extras, the notes and the final
+   * button. It says what is left; the page's own button does the moving on.
    */
-  const soft = (id: string) => {
-    const target = document.getElementById(id);
-    target?.scrollIntoView({ behavior: "smooth", block: "center" });
-    const focusTarget = target?.querySelector("button,input,select,textarea") as HTMLElement | null;
-    focusTarget?.focus({ preventScroll: true });
-  };
   const priceOpen = requiredAnswers.filter((answer) => !answer.done);
   const detailsOpen = detailAnswers.filter((answer) => !answer.done);
-  const answerLabel = (n: number) => `Answer ${n} question${n === 1 ? "" : "s"}`;
-  const barAction: { stage: "answer" | "look" | "go"; label: string; onClick: () => void } =
+  const left = (n: number) => `${n} question${n === 1 ? "" : "s"} left`;
+  const barStatus =
     pricePane === "price"
       ? priceOpen.length > 0
-        ? { stage: "answer", label: answerLabel(priceOpen.length), onClick: () => soft(MISSING_TARGETS[priceOpen[0].key].id) }
+        ? left(priceOpen.length)
         : shelfGroups.length > 0 && !extrasSeen
-          ? {
-              stage: "look",
-              label: "See extras",
-              onClick: () => {
-                setExtrasSeen(true);
-                shelfRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-              },
-            }
-          : { stage: "go", label: "Continue", onClick: () => goToDetailsPane() }
+          ? "Extras below (optional)"
+          : "All set"
       : detailsOpen.length > 0
-        ? { stage: "answer", label: answerLabel(detailsOpen.length), onClick: () => soft(MISSING_TARGETS[detailsOpen[0].key].id) }
-        : {
-            stage: "look",
-            label: bookingUrl ? "Pick my time" : "Request booking",
-            onClick: () => ctaRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }),
-          };
+        ? left(detailsOpen.length)
+        : "All set";
   const jumpToMissing = (key: string) => {
     const target = document.getElementById(MISSING_TARGETS[key]?.id ?? "");
     target?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -2949,6 +2932,15 @@ export default function QuoteFlow({
                           }));
                           if (!first) return;
                           if (option.value === "home" || option.value === "mailbox") guideDetails("entry");
+                          // The follow-up box opens under the answer: bring it into view,
+                          // without focusing it (no keyboard popping up uninvited).
+                          else
+                            window.setTimeout(() => {
+                              const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+                              document
+                                .getElementById("dc-entry-note")
+                                ?.parentElement?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+                            }, 300);
                         }}
                         className={`min-h-[48px] rounded-md border px-4 text-base transition-colors ${
                           details.entry === option.value
@@ -2965,28 +2957,39 @@ export default function QuoteFlow({
                   )}
                 </fieldset>
 
+                {/* Asked right under the answer that needs it (GOV.UK conditional
+                    reveal; owner, 2026-09-23), never by sending the visitor to the
+                    notes at the bottom past the other questions. Optional. */}
                 {(details.entry === "lockbox" || details.entry === "code" || details.entry === "other") && (
-                  <p className="funnel-size-note mt-3" role="note">
-                    <span className="dc-icon dc-icon-circle-help h-4 w-4 shrink-0 text-brand-navy" aria-hidden="true" />
-                    <span>
+                  <div className="mt-3 border-l-4 border-brand-navy/30 pl-4">
+                    <Label htmlFor="dc-entry-note" className="text-base font-semibold text-foreground">
                       {details.entry === "lockbox"
-                        ? "Add where the lockbox is and its code in the notes at the bottom."
+                        ? "Where is the lockbox, and what's the code?"
                         : details.entry === "code"
-                          ? "Add the door or gate code in the notes at the bottom."
-                          : "Tell us how we get in, in the notes at the bottom."}{" "}
-                      <button
-                        type="button"
-                        className="font-semibold text-brand-navy underline underline-offset-4"
-                        onClick={() => {
-                          const notes = document.getElementById("dc-notes");
-                          notes?.scrollIntoView({ behavior: "smooth", block: "center" });
-                          (notes as HTMLTextAreaElement | null)?.focus({ preventScroll: true });
-                        }}
-                      >
-                        Add it now
-                      </button>
-                    </span>
-                  </p>
+                          ? "What's the door or gate code?"
+                          : "How do we get in?"}{" "}
+                      <span className="font-normal text-muted-foreground">(optional)</span>
+                    </Label>
+                    <Input
+                      id="dc-entry-note"
+                      autoComplete="off"
+                      enterKeyHint="done"
+                      maxLength={ENTRY_NOTE_MAX}
+                      aria-describedby="dc-entry-note-hint"
+                      className="mt-2 h-12 text-base"
+                      value={details.entryNote ?? ""}
+                      onChange={(event) => setDetails((current) => ({ ...current, entryNote: event.target.value }))}
+                      onKeyDown={(event) => {
+                        if (event.key !== "Enter") return;
+                        event.preventDefault();
+                        event.currentTarget.blur();
+                        guideDetails("entry");
+                      }}
+                    />
+                    <p id="dc-entry-note-hint" className="mt-1 text-sm text-fine-print">
+                      Sent encrypted with your booking. Or tell the office before your clean.
+                    </p>
+                  </div>
                 )}
                 <fieldset id="dc-clean-group" aria-invalid={detailErrors.cleanliness ? true : undefined} className={`mt-8 scroll-mt-24 border-t border-border pt-6${detailErrors.cleanliness ? " funnel-missing" : ""}`}>
                   {detailErrors.cleanliness && <span key={`flag-cleanliness-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
@@ -3165,7 +3168,7 @@ export default function QuoteFlow({
                       }))
                     }
                     className="mt-2 w-full rounded-md border border-input bg-card p-3 text-base text-foreground placeholder:text-muted-foreground"
-                    placeholder="If you won't be home, how do we get in? Garage, side door, backyard, key left out, lockbox or door code. Is parking hard to find? Anything else we should know."
+                    placeholder="Is parking hard to find? Pets we should know about? Anything else your cleaner should know."
                   />
                   <p id="dc-notes-help" className="mt-1 text-sm text-fine-print">
                     {(details.notes ?? "").length}/{cleanerNotesLimit(details)} characters. Flexible dates or times go
@@ -3352,15 +3355,15 @@ export default function QuoteFlow({
                 <p className="text-lg font-bold leading-tight text-foreground">{priceLabel}</p>
               </div>
             )}
-            <Button
-              size="lg"
-              disabled={submitting}
-              onClick={barAction.onClick}
-              className={`min-h-[52px] shrink-0 rounded-full bg-accent px-4 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:px-5${readyPulse && barAction.stage === "go" ? " funnel-ready" : ""}`}
-            >
-              {barAction.label}
-              <span className={`dc-icon ${barAction.stage === "go" ? "dc-icon-arrow-right" : "dc-icon-chevron-down"} ml-2 h-5 w-5`} aria-hidden="true" />
-            </Button>
+            {/* No button here (owner, 2026-09-23): the only orange button is the
+                page's own, at the bottom. The bar keeps the price in view and
+                says what is left; it hides once that button is on screen. */}
+            <p className="shrink-0 text-right text-sm font-semibold text-foreground" aria-live="polite">
+              {barStatus}
+              {barStatus !== "All set" && (
+                <span className="dc-icon dc-icon-chevron-down ml-1 inline-block h-4 w-4 align-[-3px] text-brand-navy" aria-hidden="true" />
+              )}
+            </p>
           </div>
         </div>
       )}

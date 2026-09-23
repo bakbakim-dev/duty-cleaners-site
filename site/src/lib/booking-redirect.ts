@@ -172,6 +172,18 @@ const PARAMS_BY_SERVICE: Record<string, ParamGroup> = {
 /** Hard cap on the free-text note, matched by the funnel's textarea. */
 export const DC_NOTES_MAX = 500;
 
+/**
+ * The follow-up typed under "Key in a lockbox", "Access code" or "Other"
+ * (owner, 2026-09-23: asked right under the answer, not at the bottom). It
+ * rides in the notes, so it is only sent while one of those answers stands.
+ */
+export const ENTRY_NOTE_MAX = 120;
+export function entryNoteLine(details: { entry?: string | null; entryNote?: string | null }): string {
+  if (details.entry !== "lockbox" && details.entry !== "code" && details.entry !== "other") return "";
+  const note = (details.entryNote ?? "").trim().slice(0, ENTRY_NOTE_MAX);
+  return note ? `Entry details: ${note}` : "";
+}
+
 export type DcEntry = "home" | "mailbox" | "lockbox" | "code" | "other";
 export type DcParking = "street" | "visitor" | "driveway" | "paid";
 
@@ -297,6 +309,8 @@ export interface CleanerDetails {
   cleanliness?: number | null;
   parking?: DcParking | null;
   notes?: string | null;
+  /** Lockbox place and code, door code, or how to get in (entry lockbox, code, other). */
+  entryNote?: string | null;
   /** Canadian postal code; also decides the travel fee. */
   postalCode?: string | null;
   address?: string | null;
@@ -437,7 +451,11 @@ export function buildBookingQuery(input: BookingUrlInput): string | null {
   if (details.cleanliness) params.set("dc_clean", String(details.cleanliness));
   if (details.parking) params.set("dc_park", details.parking);
   if (details.flexibility) params.set("dc_flex", details.flexibility);
-  const notes = [details.entry === "lockbox" ? "Entry: Key in a lockbox." : "", (details.notes ?? "").trim()]
+  const notes = [
+    details.entry === "lockbox" ? "Entry: Key in a lockbox." : "",
+    entryNoteLine(details),
+    (details.notes ?? "").trim(),
+  ]
     .filter(Boolean).join("\n").slice(0, DC_NOTES_MAX);
   if (notes) params.set("dc_notes", notes);
   const postalCode = normalizePostalCode(details.postalCode);

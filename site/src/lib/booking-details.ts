@@ -1,4 +1,4 @@
-import { DC_NOTES_MAX, type CleanerDetails } from "./booking-redirect";
+import { DC_NOTES_MAX, entryNoteLine, type CleanerDetails } from "./booking-redirect";
 
 // Equivalent to the live BookingKoala questions, verified 2026-09-12.
 export const CLEANLINESS_OPTIONS = [
@@ -19,7 +19,12 @@ export const FLEXIBILITY_OPTIONS = [
 ] as const;
 
 export function cleanerNotesLimit(details: CleanerDetails): number {
-  return DC_NOTES_MAX - (details.entry === "lockbox" ? "Entry: Key in a lockbox.\n".length : 0);
+  const entryLine = entryNoteLine(details);
+  return (
+    DC_NOTES_MAX -
+    (details.entry === "lockbox" ? "Entry: Key in a lockbox.\n".length : 0) -
+    (entryLine ? entryLine.length + 1 : 0)
+  );
 }
 
 export function validateCleanerDetails(details: CleanerDetails): Record<string, string> {

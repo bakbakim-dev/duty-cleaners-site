@@ -228,12 +228,15 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   Every bedroom chip shows its sqft cap. Home type has no default and is required.
 - Guided funnel: each first answer moves to the next unanswered question (steps 1, 3 and details);
   Enter on a contact field moves to the next field. Changing an answer never moves the page.
-- The mobile sticky bar never skips anything and never hands off: "Answer N questions" (jumps to the
-  first open one) → "See extras" (price pane) → "Continue"; on the details pane it brings the final
-  button into view. It is never disabled and hides while a text field has focus.
+- The mobile sticky bar has NO button (owner, later 2026-09-23): only the price and a status line
+  ("N questions left" → "Extras below (optional)" → "All set"). The only orange button is the page's
+  own, at the bottom; the bar hides once it is on screen and while a text field has focus. Main
+  buttons are never disabled: with answers missing they mark them, list them above the button and
+  focus the first. Guided scrolls stop clear of the bar (scroll-padding on .funnel-canvas).
 - The final button reads "Pick my date & arrival time" (supersedes "Choose my time" of 2026-09-22),
   bigger than every earlier button, with "Opens our secure booking page." under it. Lockbox, code or
-  "other" entry point to the notes box ("Add it now"). The flexibility question asks how far the slot
+  "other" entry reveal an optional box right under the answer ("Where is the lockbox, and what's the
+  code?"); never a jump to the notes. Its text rides in the notes (entryNoteLine, booking-redirect.ts). The flexibility question asks how far the slot
   may move, with plain buttons; BookingKoala still receives its own option labels.
 
 ## Rules

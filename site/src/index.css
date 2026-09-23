@@ -587,6 +587,10 @@ All colors MUST be HSL.
 /* Warm canvas behind the funnel card, white content on top of it. */
 .funnel-canvas {
   background-color: hsl(var(--cream-50));
+  /* Every guided scroll and error jump stops clear of the sticky bar at the
+     bottom and the header at the top (WCAG 2.2 SC 2.4.11, owner 2026-09-23). */
+  scroll-padding-top: 1.5rem;
+  scroll-padding-bottom: 7rem;
 }
 
 /* Two-tier progress header. */

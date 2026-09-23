@@ -1742,10 +1742,10 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0923.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
-    find: 'label: "See extras",',
-    replace: 'label: "Continue",',
-    failing: "the sticky bar says what is left and never hands off to booking itself",
-    why: "The bar skips the extras again: one tap from the price leaves without seeing them.",
+    find: "              {barStatus}\n",
+    replace: "              {barStatus}\n              <Button onClick={goToDetailsPane}>Continue</Button>\n",
+    failing: "the sticky bar says what is left and has no button of its own",
+    why: "An orange button returns to the sticky bar, and one tap skips the extras again.",
   },
   {
     guard: "src/data/quote-funnel-0923.test.ts",
@@ -1802,6 +1802,22 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: "{ threshold: 0.2 }",
     failing: "the extras count as seen when reached or when one is added, even on a tall shelf",
     why: "On a phone the bar can say See extras forever: a tall shelf never shows 20% of itself at once.",
+  },
+  {
+    guard: "src/data/quote-funnel-0923.test.ts",
+    target: "src/lib/booking-redirect.ts",
+    find: 'if (details.entry !== "lockbox" && details.entry !== "code" && details.entry !== "other") return "";',
+    replace: "",
+    failing: "travels with the notes only while lockbox, code or other stands, within the limit",
+    why: "A door code typed for an earlier answer would still be sent after the visitor switched to someone home.",
+  },
+  {
+    guard: "src/data/quote-funnel-0923.test.ts",
+    target: "src/index.css",
+    find: "  scroll-padding-bottom: 7rem;",
+    replace: "",
+    failing: "the funnel's scroll area pads its top and bottom",
+    why: "Guided scrolls can land a question behind the sticky bar again (WCAG 2.4.11).",
   },
   {
     guard: "src/data/quote-funnel-0922.test.ts",
