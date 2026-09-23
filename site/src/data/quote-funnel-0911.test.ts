@@ -502,7 +502,7 @@ describe("a call-back request is flagged for the office", () => {
   it("a confirmed quote removes the quote-started tag", () => {
     const relay = codeOf("public/api/ghl-quote.php");
     expect(relay).toMatch(
-      /\$payload\['stage'\] === 'confirm'\) \{\s*dc_ghl_http\([\s\S]{0,120}'DELETE',\s*\$headers,\s*json_encode\(\['tags' => \['quote-started'\]\]/,
+      /\$payload\['stage'\] === 'confirm'\) \{\s*dc_ghl_remove_tags\(\$headers, \$contactId, \['quote-started', 'quote-left'\]\);/,
     );
   });
 });

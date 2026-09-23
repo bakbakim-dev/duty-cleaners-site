@@ -79,6 +79,27 @@ export interface SubmitQuoteOptions {
   timeoutMs?: number;
   /** Keeps the final-details request alive while the browser leaves for BookingKoala. */
   keepalive?: boolean;
+  /** The funnel visit this submission belongs to (leave detection, quote-presence.ts). */
+  sessionId?: string;
+}
+
+/**
+ * Ask the relay to hand a stored submission to GoHighLevel now. SiteGround
+ * cannot keep working after it answers, so without this a lead waited for the
+ * five-minute cron job. Fire and forget: the receipt already exists, and the
+ * cron job still delivers anything this misses.
+ */
+export function requestDelivery(requestId: string): void {
+  try {
+    void fetch(RELAY_URL, {
+      method: "POST",
+      keepalive: true,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ operation: "deliver", request_id: requestId }),
+    }).catch(() => undefined);
+  } catch {
+    // Delivery still happens through the cron job.
+  }
 }
 
 export function createQuoteRequestId(): string {
@@ -108,6 +129,7 @@ export async function submitQuote(
   const controller = new AbortController();
   const timeoutMs = options.timeoutMs ?? 12_000;
   const timer = globalThis.setTimeout(() => controller.abort(), timeoutMs);
+  const requestId = options.requestId ?? payload.request_id ?? createQuoteRequestId();
   try {
     const response = await fetch(RELAY_URL, {
       method: "POST",
@@ -118,7 +140,8 @@ export async function submitQuote(
       },
       body: JSON.stringify({
         ...payload,
-        request_id: options.requestId ?? payload.request_id ?? createQuoteRequestId(),
+        request_id: requestId,
+        ...(options.sessionId ? { session_id: options.sessionId } : {}),
         stage: stageFor(payload),
         tracking: getStoredTracking(),
         // Anti-abuse. The honeypot stays empty for anyone using a browser; the
@@ -158,6 +181,7 @@ export async function submitQuote(
       reportFormFailure({ form, stage, category: "invalid-response", status: result?.status ?? response.status });
     } else {
       reportFormRecovery({ form, stage, category: "invalid-response", status: result?.status ?? response.status });
+      if (result?.delivery === "pending") requestDelivery(requestId);
     }
     return {
       ok: hasDurableReceipt,

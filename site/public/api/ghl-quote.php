@@ -52,8 +52,9 @@ function dc_ghl_json(int $status, array $body): never
  * upsert, then tag add). Waiting for both calls can exceed the browser's
  * bounded request time even though the encrypted queue write succeeded. On
  * PHP-FPM, finish the customer response first and continue delivery after the
- * connection closes. Other SAPIs leave the pending record for the five-minute
- * retry cron instead of making the customer wait on an upstream service.
+ * connection closes. Other SAPIs (SiteGround's among them) leave the record
+ * pending: the browser's follow-up "deliver" request delivers it within
+ * seconds, and the five-minute retry cron catches anything that misses.
  */
 function dc_ghl_accept_then_deliver(array $config, array $record, string $path): never
 {
@@ -126,13 +127,19 @@ function dc_ghl_number(mixed $value): int|float|null
     return $value;
 }
 
-function dc_ghl_payload(mixed $input): array
+function dc_ghl_payload_request_id(mixed $value): string
 {
-    if (!is_array($input) || array_is_list($input)) throw new InvalidArgumentException('invalid');
-    $requestId = dc_ghl_text($input['request_id'] ?? '', 100, true);
+    $requestId = dc_ghl_text($value, 100, true);
     if (!preg_match('/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|dc-[A-Za-z0-9-]{12,80})$/i', $requestId)) {
         throw new InvalidArgumentException('invalid');
     }
+    return $requestId;
+}
+
+function dc_ghl_payload(mixed $input): array
+{
+    if (!is_array($input) || array_is_list($input)) throw new InvalidArgumentException('invalid');
+    $requestId = dc_ghl_payload_request_id($input['request_id'] ?? '');
     $email = dc_ghl_text($input['email'] ?? '', 200, true);
     if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) throw new InvalidArgumentException('invalid');
     $phone = dc_ghl_text($input['phone'] ?? '', 40, true);
@@ -159,6 +166,8 @@ function dc_ghl_payload(mixed $input): array
         }
         $cleanTracking[$key] = $value;
     }
+
+    $sessionId = dc_ghl_session_id($input['session_id'] ?? '');
 
     $openedAt = $input['formOpenedAt'] ?? null;
     if ($openedAt !== null && !is_int($openedAt) && !is_float($openedAt)) {
@@ -191,7 +200,16 @@ function dc_ghl_payload(mixed $input): array
         'notes' => dc_ghl_text($input['notes'] ?? '', 2000),
         'intent' => $intent,
         'tracking' => $cleanTracking,
+        'session_id' => $sessionId,
     ];
+}
+
+/** The funnel's per-visit id: random, no personal data. Empty when absent. */
+function dc_ghl_session_id(mixed $value): string
+{
+    if ($value === null || $value === '') return '';
+    if (!is_string($value) || !preg_match('/^[A-Za-z0-9-]{8,80}$/', $value)) throw new InvalidArgumentException('invalid');
+    return $value;
 }
 
 function dc_ghl_e164(string $phone): string
@@ -406,6 +424,177 @@ function dc_ghl_custom_value(mixed $value): string
     return (string) $value;
 }
 
+function dc_ghl_headers(array $config): array
+{
+    return [
+        'Authorization: Bearer ' . $config['token'],
+        'Version: ' . DC_GHL_VERSION,
+        'Accept: application/json',
+        'Content-Type: application/json',
+    ];
+}
+
+/** Best effort: a tag that is already absent is not an error. */
+function dc_ghl_remove_tags(array $headers, string $contactId, array $tags): void
+{
+    dc_ghl_http(
+        DC_GHL_API . '/contacts/' . rawurlencode($contactId) . '/tags',
+        'DELETE',
+        $headers,
+        json_encode(['tags' => $tags], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR)
+    );
+}
+
+/*
+ * Leave detection (owner, 2026-09-23). The funnel reports "still here" about
+ * once a minute while someone is actively using it (quote-presence.ts). When
+ * those reports stop for DC_GHL_QUIET_SECONDS and the visit never reached the
+ * booking page or a call-back, the visitor has left: the contact gets the
+ * funnel_last_step field and the quote-left tag, which starts the
+ * "Price-check left" workflow (office alert, then Text 1 in texting hours).
+ * Session files hold no personal data: state, step, times and the lead's
+ * queue file name.
+ */
+const DC_GHL_QUIET_SECONDS = 300;
+const DC_GHL_SESSION_TTL_SECONDS = 172800;
+const DC_GHL_STEPS = ['price' => 'the price screen', 'details' => 'the last details screen'];
+
+function dc_ghl_session_path(array $config, string $sessionId): string
+{
+    $dir = dc_ghl_queue_dir($config) . DIRECTORY_SEPARATOR . 'sessions';
+    if (!is_dir($dir) && !@mkdir($dir, 0700, true) && !is_dir($dir)) throw new RuntimeException('storage');
+    return $dir . DIRECTORY_SEPARATOR . hash_hmac('sha256', 'session:' . $sessionId, $config['encryption_key']) . '.json';
+}
+
+/**
+ * Read-modify-write one session under a lock. $change receives the current
+ * session (null when none) and returns the new one, or null to leave it.
+ */
+function dc_ghl_session_update(string $path, callable $change): ?array
+{
+    $handle = @fopen($path, 'c+');
+    if ($handle === false || !flock($handle, LOCK_EX)) return null;
+    try {
+        $raw = stream_get_contents($handle);
+        $current = is_string($raw) && $raw !== '' ? json_decode($raw, true) : null;
+        $next = $change(is_array($current) ? $current : null);
+        if (!is_array($next)) return is_array($current) ? $current : null;
+        rewind($handle);
+        ftruncate($handle, 0);
+        fwrite($handle, json_encode($next, JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+        fflush($handle);
+        @chmod($path, 0600);
+        return $next;
+    } finally {
+        flock($handle, LOCK_UN);
+        fclose($handle);
+    }
+}
+
+/** A stored funnel submission opens (lead) or closes (confirm) its session. */
+function dc_ghl_session_record(array $config, array $payload, string $recordPath): void
+{
+    if (($payload['session_id'] ?? '') === '' || str_starts_with($payload['source'], 'contact-form')) return;
+    $now = time();
+    dc_ghl_session_update(dc_ghl_session_path($config, $payload['session_id']), static function (?array $session) use ($payload, $recordPath, $now) {
+        $session ??= ['created_at' => $now];
+        if ($payload['stage'] === 'confirm') {
+            $session['state'] = 'confirmed';
+        } else {
+            $session['state'] = 'open';
+            $session['step'] = 'price';
+            $session['lead'] = basename($recordPath);
+        }
+        $session['last_seen'] = $now;
+        return $session;
+    });
+}
+
+/** "Still here" from the funnel. Only an open session can be kept alive. */
+function dc_ghl_session_ping(array $config, string $sessionId, string $step): void
+{
+    if (!isset(DC_GHL_STEPS[$step])) throw new InvalidArgumentException('invalid');
+    $path = dc_ghl_session_path($config, $sessionId);
+    if (!is_file($path)) return;
+    dc_ghl_session_update($path, static function (?array $session) use ($step) {
+        if (($session['state'] ?? '') !== 'open') return null;
+        $session['last_seen'] = time();
+        $session['step'] = $step;
+        return $session;
+    });
+}
+
+/** A custom field that may not exist yet in GoHighLevel: null, never an error. */
+function dc_ghl_optional_field_id(array $config, string $fieldKey): ?string
+{
+    $cachePath = dc_ghl_queue_dir($config) . DIRECTORY_SEPARATOR . 'field-cache-optional.json';
+    $cached = is_file($cachePath) ? json_decode((string) file_get_contents($cachePath), true) : null;
+    if (is_array($cached) && (int) ($cached['at'] ?? 0) > time() - 21600 && array_key_exists($fieldKey, (array) ($cached['ids'] ?? []))) {
+        return $cached['ids'][$fieldKey];
+    }
+    [$status, $body] = dc_ghl_http(
+        DC_GHL_API . '/locations/' . DC_GHL_LOCATION_ID . '/customFields',
+        'GET',
+        ['Authorization: Bearer ' . $config['token'], 'Version: ' . DC_GHL_VERSION, 'Accept: application/json']
+    );
+    if ($status < 200 || $status >= 300) return null;
+    $id = null;
+    foreach ((json_decode($body, true)['customFields'] ?? []) as $field) {
+        if (is_array($field) && ($field['fieldKey'] ?? null) === $fieldKey && is_string($field['id'] ?? null)) $id = $field['id'];
+    }
+    $ids = is_array($cached['ids'] ?? null) ? $cached['ids'] : [];
+    $ids[$fieldKey] = $id;
+    @file_put_contents($cachePath, json_encode(['at' => time(), 'ids' => $ids], JSON_UNESCAPED_SLASHES), LOCK_EX);
+    return $id;
+}
+
+/**
+ * Mark visitors who went quiet as left. Runs from the cron job and after
+ * funnel pings, so a busy site notices within a minute and a quiet one
+ * within the cron interval. A lead not yet in GoHighLevel waits for delivery.
+ */
+function dc_ghl_sweep_sessions(array $config, int $limit = 10): int
+{
+    $dir = dc_ghl_queue_dir($config) . DIRECTORY_SEPARATOR . 'sessions';
+    $marked = 0;
+    $now = time();
+    foreach (glob($dir . DIRECTORY_SEPARATOR . '*.json') ?: [] as $path) {
+        $session = json_decode((string) @file_get_contents($path), true);
+        if (!is_array($session)) continue;
+        if ((int) ($session['created_at'] ?? 0) < $now - DC_GHL_SESSION_TTL_SECONDS) {
+            @unlink($path);
+            continue;
+        }
+        if (($session['state'] ?? '') !== 'open' || (int) ($session['last_seen'] ?? $now) > $now - DC_GHL_QUIET_SECONDS) continue;
+        if ($marked >= $limit) break;
+        $lead = json_decode((string) @file_get_contents(dc_ghl_queue_dir($config) . DIRECTORY_SEPARATOR . basename((string) ($session['lead'] ?? ''))), true);
+        $contactId = is_array($lead) && ($lead['state'] ?? '') === 'delivered' ? ($lead['contact_id'] ?? null) : null;
+        if (!is_string($contactId) || $contactId === '') continue;
+        // Claim the session first so two sweeps can never tag the same visit.
+        $won = false;
+        $claimed = dc_ghl_session_update($path, static function (?array $current) use ($now, &$won) {
+            if (($current['state'] ?? '') !== 'open' || (int) ($current['last_seen'] ?? $now) > $now - DC_GHL_QUIET_SECONDS) return null;
+            $current['state'] = 'left';
+            $current['left_at'] = $now;
+            $won = true;
+            return $current;
+        });
+        if (!$won || !is_array($claimed)) continue;
+        $session = $claimed;
+        $headers = dc_ghl_headers($config);
+        // The field first: the workflow started by the tag reads it.
+        $fieldId = dc_ghl_optional_field_id($config, 'contact.funnel_last_step');
+        if ($fieldId !== null) {
+            dc_ghl_http(DC_GHL_API . '/contacts/' . rawurlencode($contactId), 'PUT', $headers, json_encode([
+                'customFields' => [['id' => $fieldId, 'field_value' => DC_GHL_STEPS[$session['step'] ?? 'price'] ?? DC_GHL_STEPS['price']]],
+            ], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+        }
+        dc_ghl_http(DC_GHL_API . '/contacts/' . rawurlencode($contactId) . '/tags', 'POST', $headers, json_encode(['tags' => ['quote-left']], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+        $marked++;
+    }
+    return $marked;
+}
+
 function dc_ghl_deliver(array $config, array $payload): array
 {
     $fieldIds = dc_ghl_field_ids($config);
@@ -472,6 +661,11 @@ function dc_ghl_deliver(array $config, array $payload): array
     if ($status < 200 || $status >= 300 || !is_string($contactId) || $contactId === '') {
         return ['ok' => false, 'status' => $status, 'error' => $networkError !== '' ? $networkError : 'GHL response ' . $status];
     }
+    $isQuoteLead = !$isCareers && !$isContact && $payload['stage'] !== 'confirm';
+    // A new price check starts the price-check stage afresh (2026-09-23):
+    // GoHighLevel fires "tag added" only for a tag the contact lacks, so any
+    // leftover from an earlier visit would silently block the workflows.
+    if ($isQuoteLead) dc_ghl_remove_tags($headers, $contactId, ['quote-started', 'quote-left', 'text1-sent']);
     // HighLevel's upsert endpoint overwrites every existing contact tag when
     // `tags` is included. Add tags through the dedicated endpoint instead so
     // a returning customer keeps all prior CRM history and segmentation.
@@ -493,12 +687,7 @@ function dc_ghl_deliver(array $config, array $payload): array
     // workflow skip its text, and a later price check adds the tag again, so
     // that workflow starts afresh. Best effort: a stale tag costs one text.
     if (!$isCareers && !$isContact && $payload['stage'] === 'confirm') {
-        dc_ghl_http(
-            DC_GHL_API . '/contacts/' . rawurlencode($contactId) . '/tags',
-            'DELETE',
-            $headers,
-            json_encode(['tags' => ['quote-started']], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR)
-        );
+        dc_ghl_remove_tags($headers, $contactId, ['quote-started', 'quote-left']);
     }
     if (trim($payload['notes']) !== '') {
         [$noteStatus, $_noteBody, $noteError] = dc_ghl_http(
@@ -612,7 +801,8 @@ function dc_ghl_retry_pending(array $config): array
         if (($record['state'] ?? '') === 'delivered') $delivered++; else $pending++;
         if ($checked >= 20) break;
     }
-    return ['ok' => true, 'checked' => $checked, 'delivered' => $delivered, 'pending' => $pending];
+    $left = dc_ghl_sweep_sessions($config);
+    return ['ok' => true, 'checked' => $checked, 'delivered' => $delivered, 'pending' => $pending, 'left' => $left];
 }
 
 // The automated test suite can load the functions without running the HTTP or
@@ -669,6 +859,26 @@ try {
         }
         dc_ghl_json(200, dc_ghl_retry_pending($config));
     }
+    // Sent by the browser right after its receipt, without waiting for an
+    // answer (SiteGround has no fastcgi_finish_request, so the receipt request
+    // cannot deliver after replying). Delivering here makes a lead reach
+    // GoHighLevel in seconds; the cron job remains the safety net.
+    if (is_array($input) && ($input['operation'] ?? null) === 'deliver') {
+        $path = dc_ghl_record_path($config, dc_ghl_payload_request_id($input['request_id'] ?? ''));
+        $record = is_file($path) ? json_decode((string) @file_get_contents($path), true) : null;
+        if (is_array($record) && ($record['state'] ?? '') === 'pending') {
+            ignore_user_abort(true);
+            dc_ghl_attempt($config, $record, $path);
+        }
+        dc_ghl_sweep_sessions($config, 3);
+        dc_ghl_json(200, ['ok' => true]);
+    }
+    if (is_array($input) && ($input['operation'] ?? null) === 'ping') {
+        dc_ghl_session_ping($config, dc_ghl_session_id($input['session_id'] ?? ''), (string) ($input['step'] ?? ''));
+        ignore_user_abort(true);
+        dc_ghl_sweep_sessions($config, 3);
+        dc_ghl_json(200, ['ok' => true]);
+    }
     $payload = dc_ghl_payload($input);
     $fillElapsedMs = $payload['formOpenedAt'] === null
         ? null
@@ -680,6 +890,7 @@ try {
         dc_ghl_json(202, ['ok' => true, 'stored' => false, 'delivery' => 'pending', 'status' => 202]);
     }
     [$record, $path] = dc_ghl_store($config, $payload);
+    dc_ghl_session_record($config, $payload, $path);
     if (($record['state'] ?? '') !== 'delivered') {
         dc_ghl_accept_then_deliver($config, $record, $path);
     }

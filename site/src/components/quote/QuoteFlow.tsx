@@ -64,6 +64,7 @@ import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { areaPhrase, areaPresetFor, initialAreaFor, limitsCity, type ServiceArea } from "@/lib/service-area";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote, type QuotePayload } from "@/lib/quote-submit";
+import { createPresenceSessionId, startPresence } from "@/lib/quote-presence";
 import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { intentParams, intentQuery } from "@/lib/url-intent";
 import { setQuoteBranch, setQuoteStep } from "@/lib/quote-progress";
@@ -423,6 +424,12 @@ export default function QuoteFlow({
   const leadPayloadRef = useRef<Partial<QuotePayload> | null>(null);
   if (leadRequestIdRef.current === null) leadRequestIdRef.current = createQuoteRequestId();
   if (confirmRequestIdRef.current === null) confirmRequestIdRef.current = createQuoteRequestId();
+  /** This visit, for leave detection: the lead, the confirmation and the "still here" reports share it. */
+  const presenceSessionRef = useRef<string | null>(null);
+  if (presenceSessionRef.current === null) presenceSessionRef.current = createPresenceSessionId();
+  const presenceRef = useRef<ReturnType<typeof startPresence> | null>(null);
+  /** Handed off to BookingKoala: the visit is done, so the reports stop. */
+  const [presenceDone, setPresenceDone] = useState(false);
   const contactFormRef = useRef<HTMLFormElement>(null);
   /**
    * When the hero card already chose the service, step 1 opens with that shown
@@ -502,6 +509,24 @@ export default function QuoteFlow({
   useEffect(() => {
     if (!isOpen) setSubmitted(false);
   }, [isOpen]);
+  /*
+    Leave detection (owner, 2026-09-23): "still here" reports run from the
+    price screen onward while the quote is open, and stop at the booking page,
+    a call-back or a close. When they stop for five minutes without a
+    confirmation, the relay marks the visit left (quote-presence.ts).
+  */
+  useEffect(() => {
+    const watching = isOpen && step === 2 && contactDoneRef.current && !presenceDone && !submitted && !restored;
+    if (!watching) {
+      presenceRef.current?.stop();
+      presenceRef.current = null;
+      return;
+    }
+    const where = pricePane === "details" ? "details" : "price";
+    if (presenceRef.current) presenceRef.current.step(where);
+    else presenceRef.current = startPresence(presenceSessionRef.current ?? createPresenceSessionId(), where);
+  }, [isOpen, step, pricePane, presenceDone, submitted]); // eslint-disable-line react-hooks/exhaustive-deps -- refs and the one-time restore flag
+  useEffect(() => () => presenceRef.current?.stop(), []);
   /** The path the visitor last picked a service on inside the flow. */
   const choicePathRef = useRef<string | null>(restored?.choicePath ?? null);
   /** The first open after a restore keeps the restored quote as it is. */
@@ -1247,6 +1272,7 @@ export default function QuoteFlow({
     const result = await submitQuote(payload, {
       requestId: requestIdForPayload(payload, leadRequestIdRef, leadPayloadFingerprintRef),
       timeoutMs: 5_000,
+      sessionId: presenceSessionRef.current ?? undefined,
     });
     setSubmitting(false);
 
@@ -1275,6 +1301,7 @@ export default function QuoteFlow({
     const result = await submitQuote(payload, {
       requestId: requestIdForPayload(payload, leadRequestIdRef, leadPayloadFingerprintRef),
       timeoutMs: 5_000,
+      sessionId: presenceSessionRef.current ?? undefined,
     });
     setSubmitting(false);
     if (!result.ok) return;
@@ -1616,6 +1643,7 @@ export default function QuoteFlow({
     clearHandoffFlag();
     setHandingOff(true);
     markHandoffFired();
+    setPresenceDone(true);
 
     // Save the final extras and access details before leaving. This request is
     // bounded, idempotent and keepalive-enabled; a relay outage never prevents
@@ -1630,6 +1658,7 @@ export default function QuoteFlow({
         ),
         timeoutMs: 3_500,
         keepalive: true,
+        sessionId: presenceSessionRef.current ?? undefined,
       }),
       prepareBookingHandoff(bookingQuery),
     ]);
@@ -1678,6 +1707,7 @@ export default function QuoteFlow({
     } as Partial<QuotePayload>;
     const result = await submitQuote(payload, {
       requestId: requestIdForPayload(payload, confirmRequestIdRef, confirmPayloadFingerprintRef),
+      sessionId: presenceSessionRef.current ?? undefined,
     });
     setSubmitting(false);
     if (result.ok) {
