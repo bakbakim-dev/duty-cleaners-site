@@ -748,6 +748,19 @@ function dc_ghl_sweep_sessions(array $config, int $limit = 10): int
  * fields only when the visit carried them.
  */
 const DC_GHL_BRANCHES = ['edmonton' => 'Edmonton', 'calgary' => 'Calgary', 'reddeer' => 'Red Deer', 'red deer' => 'Red Deer'];
+/*
+ * The office line a follow-up message tells the customer to call (owner,
+ * 2026-09-23): the branch's own number, which rings the office's Dialpad,
+ * never the GoHighLevel texting number. Must match CITY_PROOF.<city>.phone in
+ * src/data/proof.ts (guarded). A lead with no branch (homepage quote) gets
+ * the two main offices.
+ */
+const DC_GHL_BRANCH_PHONES = [
+    'Edmonton' => '(780) 913-6565',
+    'Calgary' => '(403) 768-1341',
+    'Red Deer' => '(587) 570-6979',
+];
+const DC_GHL_NO_BRANCH_PHONE = 'Edmonton (780) 913-6565 or Calgary (403) 768-1341';
 
 /** @return array<string,string> GHL field key => value (empty values are skipped). */
 function dc_ghl_source_values(array $payload): array
@@ -760,8 +773,10 @@ function dc_ghl_source_values(array $payload): array
     $channel = $clickId !== ''
         ? 'Google Ads'
         : ($source !== '' ? $source . ($medium !== '' ? ' / ' . $medium : '') : 'Website (no ad or campaign tags)');
+    $branch = DC_GHL_BRANCHES[strtolower(trim((string) ($payload['city'] ?? '')))] ?? '';
     return [
-        'contact.branch' => DC_GHL_BRANCHES[strtolower(trim((string) ($payload['city'] ?? '')))] ?? '',
+        'contact.branch' => $branch,
+        'contact.branch_phone' => DC_GHL_BRANCH_PHONES[$branch] ?? DC_GHL_NO_BRANCH_PHONE,
         'contact.lead_channel' => $channel,
         'contact.utm_source' => $source,
         'contact.utm_medium' => $medium,

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { CITY_PROOF } from "@/data/proof";
 
 /**
  * Leave detection and instant delivery (owner, 2026-09-23).
@@ -66,6 +67,16 @@ describe("the relay", () => {
     for (const key of ["branch", "lead_channel", "utm_source", "utm_medium", "utm_campaign", "utm_term", "ad_click_id"]) {
       expect(relay).toContain(`'contact.${key}' => `);
     }
+  });
+
+  it("follow-up messages name the branch office line, from proof.ts, never the GHL texting number", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toContain(`'Edmonton' => '${CITY_PROOF.edmonton.phone}'`);
+    expect(relay).toContain(`'Calgary' => '${CITY_PROOF.calgary.phone}'`);
+    expect(relay).toContain(`'Red Deer' => '${CITY_PROOF.reddeer.phone}'`);
+    expect(relay).toContain(`const DC_GHL_NO_BRANCH_PHONE = 'Edmonton ${CITY_PROOF.edmonton.phone} or Calgary ${CITY_PROOF.calgary.phone}';`);
+    expect(relay).toMatch(/'contact\.branch_phone' => DC_GHL_BRANCH_PHONES\[\$branch\] \?\? DC_GHL_NO_BRANCH_PHONE/);
+    expect(relay).not.toMatch(/812-4907/);
   });
 
   it("a Google Ads click is labelled Google Ads", () => {

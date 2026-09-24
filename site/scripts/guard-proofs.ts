@@ -1342,6 +1342,14 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/leave-detection.test.ts",
     target: "public/api/ghl-quote.php",
+    find: "'Calgary' => '(403) 768-1341',",
+    replace: "'Calgary' => '(587) 812-4907',",
+    failing: "follow-up messages name the branch office line, from proof.ts, never the GHL texting number",
+    why: "Calgary customers would be told to call the GoHighLevel texting number, which nobody answers, instead of the office's Dialpad line.",
+  },
+  {
+    guard: "src/data/leave-detection.test.ts",
+    target: "public/api/ghl-quote.php",
     find: "? 'Google Ads'",
     replace: "? 'Website'",
     failing: "a Google Ads click is labelled Google Ads",
