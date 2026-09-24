@@ -260,6 +260,17 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   Handlebars: a Liquid `| default:` filter fails the send. "Reply here" in texts still returns to
   the GHL number, the only sending number. Red Deer is not a concern until it opens (next year).
 
+## GHL clean-up (owner "fix these", 2026-09-24) — memory `lead-follow-up-workflows` has details
+- Custom value Phone Tracking Number = "Edmonton (780) 913-6565 or Calgary (403) 768-1341" (old
+  snippets and templates use it). New workflows: "Website quote: pull out of old campaigns", "Texted
+  STOP: close card as Lost" (Contact DND trigger), "After-hours reply: any customer text" (replaces the
+  quote-only after-hours reply, now Draft). Instant Quote: retiring card step replaced by Find → Create
+  opportunity (no card value), STOP line added. "Qoute Sent" renamed "Quote sent: follow-up emails" and
+  now removes only the old drip campaigns. One-offs and "Text Invites to past clients" set to Draft.
+  SLA 10/15 min. Opportunities default view "Working board (open cards only)". GHL call recording off.
+- Website (e31a29c, not yet deployed): presence pings carry the shown quote; the "left" office email
+  and GHL contact get the price/service; shouting names are proper-cased by the relay.
+
 ## Rules
 - Never log into the Google Business Profile. Don't change GoHighLevel or BookingKoala settings
   without the owner's explicit go-ahead; reading them is fine.
