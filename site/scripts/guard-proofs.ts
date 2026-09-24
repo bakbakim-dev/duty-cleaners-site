@@ -2167,6 +2167,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "the homepage and branch-less pages are general: no city named, Edmonton or Calgary asked",
     why: "Brings Red Deer back into the general question before the owner asks for it.",
   },
+  {
+    guard: "src/data/price-step-rewards.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
+    find: 'quote.ongoing !== null && row.extra.firstVisitOnly ? " (first clean only)" : ""',
+    replace: '""',
+    failing: "marks every first-clean-only extra on its tile and in the summary line",
+    why: "The summary line would stop saying which extras are charged once.",
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",

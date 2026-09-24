@@ -71,6 +71,15 @@ describe("the price step rewards honestly", () => {
     expect(chips).toMatch(/Save \$\{formatPrice\(figures\.savePerVisit\)\}/);
   });
 
+  it("marks every first-clean-only extra on its tile and in the summary line", () => {
+    // Owner, 2026-09-24: a plan customer must never be able to say an extra
+    // looked like it repeated. Both tile layouts carry the tag.
+    const flow = codeOf("src/components/quote/QuoteFlow.tsx");
+    const tags = flow.match(/quote\.ongoing !== null && extra\.firstVisitOnly && \(/g) ?? [];
+    expect(tags.length).toBe(2);
+    expect(flow).toContain('quote.ongoing !== null && row.extra.firstVisitOnly ? " (first clean only)" : ""');
+  });
+
   it("keeps rolling digits away from screen readers, which hear the final figure", () => {
     const rolling = codeOf("src/components/quote/RollingPrice.tsx");
     expect(rolling).toMatch(/<span aria-hidden="true" className="tabular-nums">/);

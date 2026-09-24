@@ -2741,6 +2741,14 @@ export default function QuoteFlow({
                                             +{formatPrice(extra.price)}
                                             {unit}
                                           </span>
+                                          {/* Owner, 2026-09-24: every first-clean-only extra says so on its
+                                              own tile, quantity tiles included, so no customer on a plan can
+                                              say an extra looked like it repeated. */}
+                                          {quote.ongoing !== null && extra.firstVisitOnly && (
+                                            <span className={`ml-2 inline-block whitespace-nowrap rounded-sm px-1.5 py-0.5 text-xs font-semibold ${added ? "bg-brand-navy-foreground/15" : "bg-secondary text-secondary-foreground"}`}>
+                                              first clean only
+                                            </span>
+                                          )}
                                         </p>
                                         {quantity === 0 && (
                                           <button
@@ -2889,7 +2897,9 @@ export default function QuoteFlow({
                         .map((row) =>
                           row.extra === petsExtra
                             ? " + pets"
-                            : ` + ${extraDisplayName(row.extra.name)}${row.quantity > 1 ? ` \u00d7${row.quantity}` : ""}`
+                            : ` + ${extraDisplayName(row.extra.name)}${row.quantity > 1 ? ` \u00d7${row.quantity}` : ""}${
+                                quote.ongoing !== null && row.extra.firstVisitOnly ? " (first clean only)" : ""
+                              }`
                         )
                         .join("")}
                       {travelFeeExtra ? " + travel fee" : ""}.{" "}
