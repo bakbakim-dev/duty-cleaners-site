@@ -268,7 +268,7 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   opportunity (no card value), STOP line added. "Qoute Sent" renamed "Quote sent: follow-up emails" and
   now removes only the old drip campaigns. One-offs and "Text Invites to past clients" set to Draft.
   SLA 10/15 min. Opportunities default view "Working board (open cards only)". GHL call recording off.
-- Website (e31a29c, not yet deployed): presence pings carry the shown quote; the "left" office email
+- Website (e31a29c, deployed to SiteGround 2026-09-24, all 288 assets + 212 pages verified): presence pings carry the shown quote; the "left" office email
   and GHL contact get the price/service; shouting names are proper-cased by the relay.
 
 ## Rules
