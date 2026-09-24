@@ -253,6 +253,12 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   No discounts or fake urgency. Call-backs carry no `instant-quote` (the relay strips it) and get an
   office-hours text instead (Red Deer Mon–Sat 7–21, others Mon–Sat 8–20, Sun 9–15). A confirmed
   quote removes `quote-started` (relay). Workflow IDs in memory `lead-follow-up-workflows`.
+- Follow-up messages never give (587) 812-4907, the GHL texting number (owner, 2026-09-23): calls go
+  to the branch office lines on Dialpad. They use `{{contact.branch_phone}}` (set by the relay from
+  proof.ts), written as `{{#if contact.branch_phone}}…{{else}}Edmonton (780) 913-6565 or Calgary
+  (403) 768-1341{{/if}}` because older and BookingKoala contacts have no value. GHL templates are
+  Handlebars: a Liquid `| default:` filter fails the send. "Reply here" in texts still returns to
+  the GHL number, the only sending number. Red Deer is not a concern until it opens (next year).
 
 ## Rules
 - Never log into the Google Business Profile. Don't change GoHighLevel or BookingKoala settings
