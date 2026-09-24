@@ -1333,6 +1333,22 @@ export const GUARD_PROOFS: GuardProof[] = [
   },
   {
     guard: "src/data/leave-detection.test.ts",
+    target: "public/api/ghl-quote.php",
+    find: "dc_ghl_source_values($payload) as",
+    replace: "dc_ghl_no_values([]) as",
+    failing: "every lead carries its branch and lead source into GoHighLevel",
+    why: "Every website lead looks like direct traffic again, with no branch to route or report by.",
+  },
+  {
+    guard: "src/data/leave-detection.test.ts",
+    target: "public/api/ghl-quote.php",
+    find: "? 'Google Ads'",
+    replace: "? 'Website'",
+    failing: "a Google Ads click is labelled Google Ads",
+    why: "Paid leads would be counted as organic, hiding what the ad spend brings in.",
+  },
+  {
+    guard: "src/data/leave-detection.test.ts",
     target: "src/lib/quote-submit.ts",
     find: "if (result?.delivery === \"pending\") requestDelivery(requestId);",
     replace: "",

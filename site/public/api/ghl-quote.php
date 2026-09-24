@@ -539,11 +539,13 @@ function dc_ghl_optional_field_id(array $config, string $fieldKey): ?string
         ['Authorization: Bearer ' . $config['token'], 'Version: ' . DC_GHL_VERSION, 'Accept: application/json']
     );
     if ($status < 200 || $status >= 300) return null;
-    $id = null;
-    foreach ((json_decode($body, true)['customFields'] ?? []) as $field) {
-        if (is_array($field) && ($field['fieldKey'] ?? null) === $fieldKey && is_string($field['id'] ?? null)) $id = $field['id'];
-    }
+    // Remember every field this lookup saw, so a batch of optional fields
+    // costs one request per cache period instead of one each.
     $ids = is_array($cached['ids'] ?? null) ? $cached['ids'] : [];
+    foreach ((json_decode($body, true)['customFields'] ?? []) as $field) {
+        if (is_array($field) && is_string($field['fieldKey'] ?? null) && is_string($field['id'] ?? null)) $ids[$field['fieldKey']] = $field['id'];
+    }
+    $id = is_string($ids[$fieldKey] ?? null) ? $ids[$fieldKey] : null;
     $ids[$fieldKey] = $id;
     @file_put_contents($cachePath, json_encode(['at' => time(), 'ids' => $ids], JSON_UNESCAPED_SLASHES), LOCK_EX);
     return $id;
@@ -736,6 +738,39 @@ function dc_ghl_sweep_sessions(array $config, int $limit = 10): int
     return $marked;
 }
 
+/*
+ * Branch and lead source (owner, 2026-09-23). GoHighLevel had no way to tell
+ * which branch or which ad a website lead came from: every lead looked like
+ * "direct". These contact fields are optional (created in GHL on 2026-09-23);
+ * a missing one is skipped, never an error. The site keeps the first tagged
+ * landing of the visit (tracking.ts), so the values describe the visit that
+ * produced this lead. Lead Channel is always written; the UTM and click-ID
+ * fields only when the visit carried them.
+ */
+const DC_GHL_BRANCHES = ['edmonton' => 'Edmonton', 'calgary' => 'Calgary', 'reddeer' => 'Red Deer', 'red deer' => 'Red Deer'];
+
+/** @return array<string,string> GHL field key => value (empty values are skipped). */
+function dc_ghl_source_values(array $payload): array
+{
+    $tracking = is_array($payload['tracking'] ?? null) ? $payload['tracking'] : [];
+    $get = static fn (string $key): string => substr(trim((string) preg_replace('/[\r\n\t]+/', ' ', is_string($tracking[$key] ?? null) ? $tracking[$key] : '')), 0, 200);
+    $clickId = $get('gclid') ?: ($get('gbraid') ?: $get('wbraid'));
+    $source = $get('utm_source');
+    $medium = $get('utm_medium');
+    $channel = $clickId !== ''
+        ? 'Google Ads'
+        : ($source !== '' ? $source . ($medium !== '' ? ' / ' . $medium : '') : 'Website (no ad or campaign tags)');
+    return [
+        'contact.branch' => DC_GHL_BRANCHES[strtolower(trim((string) ($payload['city'] ?? '')))] ?? '',
+        'contact.lead_channel' => $channel,
+        'contact.utm_source' => $source,
+        'contact.utm_medium' => $medium,
+        'contact.utm_campaign' => $get('utm_campaign') ?: $get('utm_id'),
+        'contact.utm_term' => $get('utm_term'),
+        'contact.ad_click_id' => $clickId,
+    ];
+}
+
 function dc_ghl_deliver(array $config, array $payload): array
 {
     $fieldIds = dc_ghl_field_ids($config);
@@ -743,6 +778,11 @@ function dc_ghl_deliver(array $config, array $payload): array
     foreach (DC_GHL_FIELD_MAP as $fieldKey => $payloadKey) {
         $value = dc_ghl_custom_value($payload[$payloadKey] ?? null);
         if ($value !== '') $customFields[] = ['id' => $fieldIds[$fieldKey], 'field_value' => $value];
+    }
+    foreach (dc_ghl_source_values($payload) as $fieldKey => $value) {
+        if ($value === '') continue;
+        $fieldId = dc_ghl_optional_field_id($config, $fieldKey);
+        if ($fieldId !== null) $customFields[] = ['id' => $fieldId, 'field_value' => $value];
     }
     $parts = preg_split('/\s+/', trim($payload['full_name'])) ?: [];
     $isCareers = $payload['source'] === 'careers-application';

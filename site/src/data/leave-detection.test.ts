@@ -60,6 +60,18 @@ describe("the relay", () => {
     expect(composer).not.toMatch(/'notes'/);
   });
 
+  it("every lead carries its branch and lead source into GoHighLevel", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toMatch(/foreach \(dc_ghl_source_values\(\$payload\) as \$fieldKey => \$value\) \{[\s\S]{0,200}dc_ghl_optional_field_id\(\$config, \$fieldKey\)/);
+    for (const key of ["branch", "lead_channel", "utm_source", "utm_medium", "utm_campaign", "utm_term", "ad_click_id"]) {
+      expect(relay).toContain(`'contact.${key}' => `);
+    }
+  });
+
+  it("a Google Ads click is labelled Google Ads", () => {
+    expect(codeOf("public/api/ghl-quote.php")).toMatch(/\$clickId !== ''\s*\? 'Google Ads'/);
+  });
+
   it("answers the deliver and ping operations and sweeps from the cron job", () => {
     const relay = codeOf("public/api/ghl-quote.php");
     expect(relay).toMatch(/\['operation'\] \?\? null\) === 'deliver'/);
