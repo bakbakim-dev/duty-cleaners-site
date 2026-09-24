@@ -115,3 +115,90 @@ describe("the funnel", () => {
     expect(flow).toMatch(/const watching = isOpen && step === 2 && contactDoneRef\.current && !presenceDone && !submitted && !restored;/);
   });
 });
+
+/**
+ * The quote on screen (owner, 2026-09-24). A price check used to reach
+ * GoHighLevel with no price: the price only travelled with the confirmation.
+ * Now the "still here" reports carry the quote the visitor is looking at, so
+ * the "left without booking" email and the contact name the price and home
+ * they saw. It rides nested under `shown` on the reports, never as a
+ * submission price, so a price check stays a lead.
+ */
+const between = (text: string, start: string, end: string) => text.split(start)[1]?.split(end)[0] ?? "";
+
+describe("the quote on screen", () => {
+  it("the left-visit office email names the shown price", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    const composer = between(relay, "function dc_ghl_office_alert_message", "function dc_ghl_office_alert(");
+    expect(composer.length).toBeGreaterThan(500);
+    expect(composer).toContain("$shown = dc_ghl_session_shown($config, $session);");
+    expect(composer).toMatch(/'Price shown: ' \. \$priceShown,/);
+    expect(composer).toContain("'price on request (custom quote, no online price)'");
+    expect(composer).toMatch(/'Each visit after' => \$recurring === '' \? '' : \$recurring \. ' before GST'/);
+    expect(composer).not.toMatch(/'notes'|'entry/);
+  });
+
+  it("the shown quote is allow-listed: never notes, entry or contact details", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toContain(
+      "const DC_GHL_SHOWN_TEXT_KEYS = ['city', 'service', 'home_type', 'bedrooms', 'full_bathrooms', 'half_baths', 'frequency'];",
+    );
+    expect(relay).toContain("const DC_GHL_SHOWN_PRICE_KEYS = ['first_clean_price', 'first_clean_price_high', 'recurring_price'];");
+    const snapshot = between(codeOf("src/components/quote/QuoteFlow.tsx"), "const shownQuote: ShownQuote | null", "shownQuoteRef.current = shownQuote;");
+    expect(snapshot.length).toBeGreaterThan(300);
+    expect(snapshot).not.toMatch(/details\.|notes|entry|contact\./);
+  });
+
+  it("a left visit writes the shown quote to the contact in the step's PUT, before quote-left", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toMatch(
+      /dc_ghl_put_fields\(\$headers, \$contactId, \$stepField, dc_ghl_shown_fields\(\$config, \$session\)\);\s*dc_ghl_http\([^;]*\['tags' => \['quote-left'\]\]/,
+    );
+    expect(relay).toMatch(/\[\$status\] = \$put\(array_merge\(\$required, \$extra\)\);/);
+    const fields = between(relay, "function dc_ghl_shown_fields", "function dc_ghl_put_fields");
+    expect(fields).toMatch(/foreach \(DC_GHL_FIELD_MAP as \$fieldKey => \$payloadKey\)/);
+  });
+
+  it("a shown price never makes a lead a confirmation", () => {
+    expect(codeOf("src/lib/quote-presence.ts")).toContain(
+      'JSON.stringify({ operation: "ping", session_id: sessionId, step, ...(shown ? { shown } : {}) })',
+    );
+    expect(codeOf("src/lib/quote-submit.ts")).toMatch(
+      /"first_clean_price" in payload \|\| "recurring_price" in payload \? "confirm" : "lead"/,
+    );
+    const relay = codeOf("public/api/ghl-quote.php");
+    const ping = between(relay, "function dc_ghl_session_ping", "function dc_ghl_optional_field_id");
+    expect(ping.length).toBeGreaterThan(300);
+    expect(ping).not.toMatch(/\['state'\]\s*=|dc_ghl_store|'stage'/);
+    expect(between(relay, "function dc_ghl_payload(", "function dc_ghl_session_id")).not.toContain("shown");
+    const flow = codeOf("src/components/quote/QuoteFlow.tsx");
+    expect(between(flow, "const quoteDetailFields = () => ({", "});")).not.toMatch(/price/);
+    expect(flow).not.toMatch(/submitQuote\([^)]*shown/);
+  });
+
+  it("shouting names are proper-cased on the way into GoHighLevel", () => {
+    const relay = codeOf("public/api/ghl-quote.php");
+    expect(relay).toContain("$fullName = dc_ghl_name_case(trim($payload['full_name']));");
+    expect(relay).toContain("$parts = preg_split('/\\s+/', $fullName) ?: [];");
+    expect(relay).toContain("'name' => $fullName,");
+    // Mixed case ("McCaffrey", "DeSouza") stays as typed.
+    expect(relay).toContain("if ($lower === $upper || ($word !== $lower && $word !== $upper)) return $word;");
+  });
+
+  it("the price screen reports the quote on screen", () => {
+    const flow = codeOf("src/components/quote/QuoteFlow.tsx");
+    expect(flow).toContain("startPresence(presenceSessionRef.current ?? createPresenceSessionId(), where, shownQuoteRef.current)");
+    expect(flow).toContain("presenceRef.current?.shown(shownQuoteRef.current);");
+    expect(flow).toMatch(/first_clean_price: quote\.quoteOnly\s*\? null/);
+    expect(codeOf("public/api/ghl-quote.php")).toContain(
+      "dc_ghl_session_ping($config, dc_ghl_session_id($input['session_id'] ?? ''), (string) ($input['step'] ?? ''), dc_ghl_shown_quote($input['shown'] ?? null));",
+    );
+  });
+
+  it("a changed quote is reported within the relay's request budget, and before the page goes", () => {
+    const presence = codeOf("src/lib/quote-presence.ts");
+    expect(presence).toContain("export const PRESENCE_MIN_GAP_MS = 30_000;");
+    expect(presence).toContain("const wait = Math.max(SHOWN_SETTLE_MS, lastReportAt + PRESENCE_MIN_GAP_MS - Date.now());");
+    expect(presence).toMatch(/\} else if \(!stopped && shownKey !== sentShownKey\) \{[\s\S]{0,200}send\(\);/);
+  });
+});

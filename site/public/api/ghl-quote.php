@@ -453,12 +453,61 @@ function dc_ghl_remove_tags(array $headers, string $contactId, array $tags): voi
  * office (dc_ghl_office_alert), then the contact gets the funnel_last_step
  * field and the quote-left tag, which starts the "Price-check left" workflow
  * (Text 1 in texting hours, then the quote follow-up).
- * Session files hold no personal data: state, step, times and the lead's
- * queue file name.
+ * Session files hold no personal data: state, step, times, the lead's queue
+ * file name and, encrypted like the queue, the quote on the visitor's screen
+ * (owner, 2026-09-24): prices, service, home size, plan and extras, so the
+ * office email and the contact say what they saw. Never notes or entry
+ * details, and never a stage: a shown price does not make a lead a
+ * confirmation, only the funnel's confirm submission does.
  */
 const DC_GHL_QUIET_SECONDS = 300;
 const DC_GHL_SESSION_TTL_SECONDS = 172800;
 const DC_GHL_STEPS = ['price' => 'the price screen', 'details' => 'the last details screen'];
+/** Everything a "still here" report may say about the quote on screen (quote-presence.ts ShownQuote). */
+const DC_GHL_SHOWN_TEXT_KEYS = ['city', 'service', 'home_type', 'bedrooms', 'full_bathrooms', 'half_baths', 'frequency'];
+const DC_GHL_SHOWN_PRICE_KEYS = ['first_clean_price', 'first_clean_price_high', 'recurring_price'];
+
+/**
+ * The quote on screen from a "still here" report, allow-listed and bounded
+ * like a submission. Null when absent or malformed: a bad snapshot must never
+ * cost the report itself, or the visitor would look gone.
+ */
+function dc_ghl_shown_quote(mixed $value): ?array
+{
+    if (!is_array($value) || array_is_list($value)) return null;
+    try {
+        $shown = [];
+        foreach (DC_GHL_SHOWN_TEXT_KEYS as $key) {
+            $shown[$key] = dc_ghl_text($value[$key] ?? '', $key === 'city' ? 20 : 200);
+        }
+        foreach (DC_GHL_SHOWN_PRICE_KEYS as $key) {
+            $price = dc_ghl_number($value[$key] ?? null);
+            if ($price !== null && $price < 0) return null;
+            $shown[$key] = $price;
+        }
+        $quoteOnly = $value['quote_only'] ?? false;
+        if (!is_bool($quoteOnly)) return null;
+        $shown['quote_only'] = $quoteOnly;
+        if ($quoteOnly) $shown['first_clean_price'] = $shown['first_clean_price_high'] = $shown['recurring_price'] = null;
+        $addons = $value['addons'] ?? [];
+        if (!is_array($addons) || !array_is_list($addons) || count($addons) > 20) return null;
+        $shown['addons'] = array_map(static fn (mixed $addon): string => dc_ghl_text($addon, 200, true), $addons);
+        return $shown;
+    } catch (InvalidArgumentException) {
+        return null;
+    }
+}
+
+/** The quote the visitor last had on screen, or null when none was reported. */
+function dc_ghl_session_shown(array $config, array $session): ?array
+{
+    if (!is_array($session['shown'] ?? null)) return null;
+    try {
+        return dc_ghl_decrypt($session['shown'], $config['encryption_key']);
+    } catch (Throwable) {
+        return null;
+    }
+}
 
 function dc_ghl_session_path(array $config, string $sessionId): string
 {
@@ -511,16 +560,22 @@ function dc_ghl_session_record(array $config, array $payload, string $recordPath
     });
 }
 
-/** "Still here" from the funnel. Only an open session can be kept alive. */
-function dc_ghl_session_ping(array $config, string $sessionId, string $step): void
+/**
+ * "Still here" from the funnel, with the quote on screen when it sent one.
+ * Only an open session can be kept alive, and a report never changes its
+ * state: leaving or confirming is decided elsewhere.
+ */
+function dc_ghl_session_ping(array $config, string $sessionId, string $step, ?array $shown = null): void
 {
     if (!isset(DC_GHL_STEPS[$step])) throw new InvalidArgumentException('invalid');
     $path = dc_ghl_session_path($config, $sessionId);
     if (!is_file($path)) return;
-    dc_ghl_session_update($path, static function (?array $session) use ($step) {
+    $sealed = $shown === null ? null : dc_ghl_encrypt($shown, $config['encryption_key']);
+    dc_ghl_session_update($path, static function (?array $session) use ($step, $sealed) {
         if (($session['state'] ?? '') !== 'open') return null;
         $session['last_seen'] = time();
         $session['step'] = $step;
+        if ($sealed !== null) $session['shown'] = $sealed;
         return $session;
     });
 }
@@ -570,24 +625,44 @@ function dc_ghl_office_alert_message(array $config, array $lead, string $contact
         return null;
     }
     $line = static fn (mixed $value): string => trim((string) preg_replace('/[\r\n\t]+/', ' ', is_scalar($value) ? (string) $value : ''));
+    $money = static fn (mixed $value): string => is_int($value) || is_float($value) ? '$' . number_format((float) $value, 2) : '';
     $name = $line($payload['full_name'] ?? '') ?: 'A website visitor';
     $step = DC_GHL_STEPS[$session['step'] ?? 'price'] ?? DC_GHL_STEPS['price'];
     $lastActive = (new DateTimeImmutable('@' . (int) ($session['last_seen'] ?? time())))
         ->setTimezone(new DateTimeZone('America/Edmonton'))
         ->format('D M j, g:i A');
+    // The quote they last had on screen (owner, 2026-09-24); the lead's own
+    // details when the funnel reported none. Allow-listed: never their notes.
+    $shown = dc_ghl_session_shown($config, $session);
+    $quote = $shown ?? $payload;
+    $price = $money($shown['first_clean_price'] ?? null);
+    $high = $money($shown['first_clean_price_high'] ?? null);
+    $recurring = $money($shown['recurring_price'] ?? null);
+    $priceShown = match (true) {
+        $shown === null => 'not recorded',
+        ($shown['quote_only'] ?? false) === true => 'price on request (custom quote, no online price)',
+        $price === '' => 'not recorded',
+        $high !== '' => $price . ' to ' . $high . ' before GST (estimate), first clean',
+        default => $price . ' before GST, first clean',
+    };
     $lines = [
         $name . ' saw their price on the website and left ' . $step . ' without booking or asking for a call. Please call them now.',
         '',
         'Phone: ' . $line($payload['phone'] ?? ''),
         'Email: ' . $line($payload['email'] ?? ''),
+        'Price shown: ' . $priceShown,
     ];
+    $city = $line($quote['city'] ?? '') ?: $line($payload['city'] ?? '');
     $details = [
-        'Branch' => ['edmonton' => 'Edmonton', 'calgary' => 'Calgary', 'reddeer' => 'Red Deer'][$line($payload['city'] ?? '')] ?? ucfirst($line($payload['city'] ?? '')),
-        'Service' => $line($payload['service'] ?? ''),
-        'Home type' => $line($payload['home_type'] ?? ''),
-        'Bedrooms' => $line($payload['bedrooms'] ?? ''),
-        'Bathrooms' => $line($payload['full_bathrooms'] ?? ''),
-        'Half baths' => $line($payload['half_baths'] ?? ''),
+        'Each visit after' => $recurring === '' ? '' : $recurring . ' before GST',
+        'Branch' => ['edmonton' => 'Edmonton', 'calgary' => 'Calgary', 'reddeer' => 'Red Deer'][$city] ?? ucfirst($city),
+        'Service' => $line($quote['service'] ?? ''),
+        'Home type' => $line($quote['home_type'] ?? ''),
+        'Bedrooms' => $line($quote['bedrooms'] ?? ''),
+        'Bathrooms' => $line($quote['full_bathrooms'] ?? ''),
+        'Half baths' => $line($quote['half_baths'] ?? ''),
+        'How often' => $shown === null ? '' : $line($shown['frequency'] ?? ''),
+        'Extras' => $shown === null ? '' : implode(', ', array_map($line, is_array($shown['addons'] ?? null) ? $shown['addons'] : [])),
         'Page' => $line($payload['page_url'] ?? ''),
     ];
     foreach ($details as $label => $value) {
@@ -602,7 +677,7 @@ function dc_ghl_office_alert_message(array $config, array $lead, string $contact
         'Unless they book first, they get one text in texting hours (Mon-Sat 8:00-19:30), then the quote follow-up emails and texts. Move their card in the Sales Pipeline once you have spoken to them; that stops the automatic follow-up.',
     );
     return [
-        'subject' => 'Left without booking - ' . $name . ' (call now)',
+        'subject' => 'Left without booking - ' . $name . ($price === '' ? '' : ' - saw ' . $price . ($high === '' ? '' : '-' . $high)) . ' (call now)',
         'body' => implode("\n", $lines),
     ];
 }
@@ -690,6 +765,43 @@ function dc_ghl_office_send(array $config, ?array $message): bool
 }
 
 /**
+ * The shown quote as GoHighLevel contact fields (owner, 2026-09-24): the same
+ * fields a confirmed quote fills, so a VA opening the contact sees the price
+ * and home the visitor left on. An empty value is skipped, never blanked.
+ */
+function dc_ghl_shown_fields(array $config, array $session): array
+{
+    $shown = dc_ghl_session_shown($config, $session);
+    if ($shown === null) return [];
+    try {
+        $fieldIds = dc_ghl_field_ids($config);
+    } catch (Throwable) {
+        return [];
+    }
+    $fields = [];
+    foreach (DC_GHL_FIELD_MAP as $fieldKey => $payloadKey) {
+        if (!array_key_exists($payloadKey, $shown) || !isset($fieldIds[$fieldKey])) continue;
+        $value = dc_ghl_custom_value($shown[$payloadKey]);
+        if ($value !== '') $fields[] = ['id' => $fieldIds[$fieldKey], 'field_value' => $value];
+    }
+    return $fields;
+}
+
+/**
+ * One PUT for the step and the shown quote. If GoHighLevel refuses the
+ * quote fields, the step still goes on its own: the workflow needs it.
+ */
+function dc_ghl_put_fields(array $headers, string $contactId, array $required, array $extra): void
+{
+    $put = static fn (array $fields): array => dc_ghl_http(DC_GHL_API . '/contacts/' . rawurlencode($contactId), 'PUT', $headers, json_encode([
+        'customFields' => $fields,
+    ], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+    if ($required === [] && $extra === []) return;
+    [$status] = $put(array_merge($required, $extra));
+    if (($status < 200 || $status >= 300) && $required !== [] && $extra !== []) $put($required);
+}
+
+/**
  * Mark visitors who went quiet as left. Runs from the cron job and after
  * funnel pings, so a busy site notices within a minute and a quiet one
  * within the cron interval. A lead not yet in GoHighLevel waits for delivery.
@@ -725,13 +837,11 @@ function dc_ghl_sweep_sessions(array $config, int $limit = 10): int
         // The office hears first, and even if GoHighLevel is down.
         dc_ghl_office_alert($config, $lead, $contactId, $session);
         $headers = dc_ghl_headers($config);
-        // The field first: the workflow started by the tag reads it.
+        // The fields first, in one PUT: the workflow started by the tag reads
+        // the step, and whoever opens the contact sees the quote they saw.
         $fieldId = dc_ghl_optional_field_id($config, 'contact.funnel_last_step');
-        if ($fieldId !== null) {
-            dc_ghl_http(DC_GHL_API . '/contacts/' . rawurlencode($contactId), 'PUT', $headers, json_encode([
-                'customFields' => [['id' => $fieldId, 'field_value' => DC_GHL_STEPS[$session['step'] ?? 'price'] ?? DC_GHL_STEPS['price']]],
-            ], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
-        }
+        $stepField = $fieldId === null ? [] : [['id' => $fieldId, 'field_value' => DC_GHL_STEPS[$session['step'] ?? 'price'] ?? DC_GHL_STEPS['price']]];
+        dc_ghl_put_fields($headers, $contactId, $stepField, dc_ghl_shown_fields($config, $session));
         dc_ghl_http(DC_GHL_API . '/contacts/' . rawurlencode($contactId) . '/tags', 'POST', $headers, json_encode(['tags' => ['quote-left']], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
         $marked++;
     }
@@ -786,6 +896,31 @@ function dc_ghl_source_values(array $payload): array
     ];
 }
 
+/**
+ * A name typed all in capitals or all in lower case reaches GoHighLevel
+ * proper-cased (owner, 2026-09-24): "BROOKE HAYES" becomes "Brooke Hayes",
+ * "o'neil" "O'Neil", "mary-jane" "Mary-Jane". Each word is judged alone, and
+ * a word already in mixed case ("McCaffrey", "DeSouza") stays as typed. The
+ * stored submission keeps what the customer typed.
+ */
+function dc_ghl_name_case(string $name): string
+{
+    if (!function_exists('mb_strtolower')) return $name;
+    $cased = preg_replace_callback('/\S+/u', static function (array $match): string {
+        $word = $match[0];
+        $lower = mb_strtolower($word, 'UTF-8');
+        $upper = mb_strtoupper($word, 'UTF-8');
+        if ($lower === $upper || ($word !== $lower && $word !== $upper)) return $word;
+        $titled = preg_replace_callback(
+            "/(^|[-'\u{2019}])(\\p{L})/u",
+            static fn (array $part): string => $part[1] . mb_strtoupper($part[2], 'UTF-8'),
+            $lower
+        );
+        return is_string($titled) ? $titled : $word;
+    }, $name);
+    return is_string($cased) ? $cased : $name;
+}
+
 function dc_ghl_deliver(array $config, array $payload): array
 {
     $fieldIds = dc_ghl_field_ids($config);
@@ -799,7 +934,8 @@ function dc_ghl_deliver(array $config, array $payload): array
         $fieldId = dc_ghl_optional_field_id($config, $fieldKey);
         if ($fieldId !== null) $customFields[] = ['id' => $fieldId, 'field_value' => $value];
     }
-    $parts = preg_split('/\s+/', trim($payload['full_name'])) ?: [];
+    $fullName = dc_ghl_name_case(trim($payload['full_name']));
+    $parts = preg_split('/\s+/', $fullName) ?: [];
     $isCareers = $payload['source'] === 'careers-application';
     $isContact = str_starts_with($payload['source'], 'contact-form');
     if ($isCareers) {
@@ -832,7 +968,7 @@ function dc_ghl_deliver(array $config, array $payload): array
     }
     $request = [
         'locationId' => DC_GHL_LOCATION_ID,
-        'name' => $payload['full_name'],
+        'name' => $fullName,
         'firstName' => $parts[0] ?? '',
         'lastName' => implode(' ', array_slice($parts, 1)),
         'email' => $payload['email'],
@@ -1076,7 +1212,7 @@ try {
         dc_ghl_json(200, ['ok' => true]);
     }
     if (is_array($input) && ($input['operation'] ?? null) === 'ping') {
-        dc_ghl_session_ping($config, dc_ghl_session_id($input['session_id'] ?? ''), (string) ($input['step'] ?? ''));
+        dc_ghl_session_ping($config, dc_ghl_session_id($input['session_id'] ?? ''), (string) ($input['step'] ?? ''), dc_ghl_shown_quote($input['shown'] ?? null));
         ignore_user_abort(true);
         dc_ghl_sweep_sessions($config, 3);
         dc_ghl_json(200, ['ok' => true]);

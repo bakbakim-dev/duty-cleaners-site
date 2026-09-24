@@ -64,7 +64,7 @@ import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { areaPhrase, areaPresetFor, initialAreaFor, limitsCity, type ServiceArea } from "@/lib/service-area";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote, type QuotePayload } from "@/lib/quote-submit";
-import { createPresenceSessionId, startPresence } from "@/lib/quote-presence";
+import { createPresenceSessionId, startPresence, type ShownQuote } from "@/lib/quote-presence";
 import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { intentParams, intentQuery } from "@/lib/url-intent";
 import { setQuoteBranch, setQuoteStep } from "@/lib/quote-progress";
@@ -428,6 +428,8 @@ export default function QuoteFlow({
   const presenceSessionRef = useRef<string | null>(null);
   if (presenceSessionRef.current === null) presenceSessionRef.current = createPresenceSessionId();
   const presenceRef = useRef<ReturnType<typeof startPresence> | null>(null);
+  /** The quote on screen, for the "still here" reports (set further down, each render). */
+  const shownQuoteRef = useRef<ShownQuote | null>(null);
   /** Handed off to BookingKoala: the visit is done, so the reports stop. */
   const [presenceDone, setPresenceDone] = useState(false);
   const contactFormRef = useRef<HTMLFormElement>(null);
@@ -524,7 +526,7 @@ export default function QuoteFlow({
     }
     const where = pricePane === "details" ? "details" : "price";
     if (presenceRef.current) presenceRef.current.step(where);
-    else presenceRef.current = startPresence(presenceSessionRef.current ?? createPresenceSessionId(), where);
+    else presenceRef.current = startPresence(presenceSessionRef.current ?? createPresenceSessionId(), where, shownQuoteRef.current);
   }, [isOpen, step, pricePane, presenceDone, submitted]); // eslint-disable-line react-hooks/exhaustive-deps -- refs and the one-time restore flag
   useEffect(() => () => presenceRef.current?.stop(), []);
   /** The path the visitor last picked a service on inside the flow. */
@@ -1187,9 +1189,8 @@ export default function QuoteFlow({
         `${formatPrice(quote.firstClean + addOnTotal + travelFeeAmount)}–${formatPrice(quote.rangeHigh + addOnTotal + travelFeeAmount)}`
       : formatPrice(firstCleanTotal);
 
-  /** Home details in GoHighLevel's own option wording. */
-  const homeFields = () => ({
-    source: "dutycleaners.ca instant quote",
+  /** The quote's home details in GoHighLevel's own option wording. */
+  const quoteDetailFields = () => ({
     // The branch key: "edmonton", "calgary" or "reddeer", the same values the
     // contact form sends, so the GoHighLevel city tag is one spelling per branch.
     // A general page (homepage, FAQ...) claims no branch: no tag.
@@ -1206,6 +1207,12 @@ export default function QuoteFlow({
       ? ""
       : GHL_FREQUENCY_LABELS[getFrequency(effectiveFrequency).bkId] ??
         getFrequency(effectiveFrequency).label,
+  });
+
+  /** Home details in GoHighLevel's own option wording. */
+  const homeFields = () => ({
+    source: "dutycleaners.ca instant quote",
+    ...quoteDetailFields(),
     frequency_discount_pct: awaitingPlan ? null : quote.discountPct,
     currency: "CAD" as const,
     full_name: `${contact.firstName.trim()} ${contact.lastName.trim()}`,
@@ -1310,6 +1317,44 @@ export default function QuoteFlow({
     track("contact_submitted", funnelProps());
   };
 
+  /** What is in the price: the deep package, the extras and travel fee, and the area answer. */
+  const priceExtraLabels = () => [
+    ...(showDeepBreakdown ? ["Deep Cleaning (package)"] : []),
+    ...basketLabels,
+    ...(area && areaPhrase(area) ? [`Home ${areaPhrase(area)}${area.outside === true && !area.general ? " (outside city limits)" : ""}`] : []),
+  ];
+
+  /**
+   * The quote on screen, for leave detection (owner, 2026-09-24): if the
+   * visitor leaves, the office email and the GoHighLevel contact say which
+   * price and home they saw. The same figures as the price tiles above: the
+   * first clean (the range on an estimate, nothing on a custom quote) and,
+   * on a plan, every visit after. It rides the "still here" reports only,
+   * never a submission, so a price check stays a lead. No notes, no entry
+   * details, no contact details.
+   */
+  const shownQuote: ShownQuote | null = step === 2
+    ? {
+        ...quoteDetailFields(),
+        quote_only: quote.quoteOnly,
+        first_clean_price: quote.quoteOnly
+          ? null
+          : quote.isEstimate
+            ? round2(quote.firstClean + addOnTotal + travelFeeAmount)
+            : round2(firstCleanTotal),
+        first_clean_price_high: !quote.quoteOnly && quote.isEstimate
+          ? round2(quote.rangeHigh + addOnTotal + travelFeeAmount)
+          : null,
+        recurring_price: quote.quoteOnly || quote.ongoing === null ? null : ongoingTotal,
+        addons: priceExtraLabels(),
+      }
+    : null;
+  shownQuoteRef.current = shownQuote;
+  const shownQuoteKey = JSON.stringify(shownQuote);
+  useEffect(() => {
+    presenceRef.current?.shown(shownQuoteRef.current);
+  }, [shownQuoteKey]);
+
   /** The step-3 payload: same contact, now carrying the quoted prices. */
   const confirmFields = () => ({
     ...homeFields(),
@@ -1320,9 +1365,7 @@ export default function QuoteFlow({
     first_clean_price: quote.quoteOnly ? null : firstCleanTotal,
     recurring_price: ongoingTotal,
     addons: [
-      ...(showDeepBreakdown ? ["Deep Cleaning (package)"] : []),
-      ...basketLabels,
-      ...(area && areaPhrase(area) ? [`Home ${areaPhrase(area)}${area.outside === true && !area.general ? " (outside city limits)" : ""}`] : []),
+      ...priceExtraLabels(),
 
       ...(details.entry ? [`Entry: ${DC_ENTRY_LABELS[details.entry]}`] : []),
       ...(details.cleanliness
