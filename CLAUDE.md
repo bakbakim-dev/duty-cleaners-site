@@ -323,7 +323,7 @@ Owner reminder request (2026-09-13): when the owner announces launch, review and
    5 September build, noindexed).
 10. Completed/superseded 2026-09-20: the quote relay runs natively on SiteGround at
     `/api/ghl-quote.php`; Supabase is not part of the production lead path. The encrypted queue and
-    five-minute retry cron are live. The receiver acknowledges durable storage before GHL delivery.
+    retry cron are live (every minute since 2026-09-23, owner; it also marks visitors who left). The receiver acknowledges durable storage before GHL delivery.
     Its anti-spam elapsed-time check must keep the clock-skew guard added on 2026-09-20: a negative
     browser/server time difference is not an instant bot submission.
 11. Red Deer Google listing: its primary category shows "Janitorial service"; "House cleaning
