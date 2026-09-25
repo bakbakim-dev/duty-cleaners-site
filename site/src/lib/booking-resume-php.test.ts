@@ -94,10 +94,31 @@ describe.skipIf(!hasPhp)("booking link in the finish-booking text", () => {
     expect(saved).not.toMatch(/brooke|example\.com|555|service_id/i);
   });
 
-  it("never gives a call-back or an unconfirmed lead a link, and an older page the bare booking page", () => {
-    expect(link({ ...payload, stage: "lead" })).toBe("");
+  it("never gives a call-back a link, and resets a new price check or an older page to the bare booking page", () => {
     expect(link({ ...payload, source: "dutycleaners.ca instant quote (call-back requested)" })).toBe("");
+    // A new price check clears an earlier quote's link, so no follow-up sends it.
+    expect(link({ ...payload, stage: "lead" })).toBe(`${BOOKING_ORIGIN}/booknow`);
     expect(link({ ...payload, booking_query: "" })).toBe(`${BOOKING_ORIGIN}/booknow`);
+  });
+
+  it("gives a visitor who left the price screen a link to the quote they last saw", () => {
+    const shown = php(`echo json_encode(dc_ghl_shown_quote(["city" => "edmonton", "service" => "Standard", "home_type" => "House", "bedrooms" => "3", "full_bathrooms" => "2", "half_baths" => "0", "frequency" => "", "quote_only" => false, "first_clean_price" => 189.5, "first_clean_price_high" => null, "recurring_price" => null, "addons" => [], "booking_query" => ${JSON.stringify(`${PUBLIC}&email=x%40y.z&dc_notes=code`)}]));`);
+    expect(JSON.parse(shown).booking_query).toBe(php(`echo dc_ghl_booking_query(${JSON.stringify(PUBLIC)});`));
+    const left = php(`
+      $lead = ['payload' => dc_ghl_encrypt(${phpArray(payload)}, $config['encryption_key'])];
+      $session = ['shown' => dc_ghl_encrypt(['booking_query' => ${JSON.stringify(PUBLIC)}], $config['encryption_key'])];
+      $link = dc_ghl_session_link($config, $session, $lead, 'abc123');
+      $again = dc_ghl_session_link($config, $session, $lead, 'abc123');
+      $bare = dc_ghl_session_link($config, [], $lead, 'abc123');
+      echo json_encode(['link' => $link, 'same' => $link === $again, 'bare' => $bare, 'open' => dc_ghl_resume_open($config, substr($link, -10))]);`);
+    const result = JSON.parse(left);
+    expect(result.link).toMatch(/^https:\/\/dutycleaners\.ca\/r\/[A-Za-z0-9]{10}$/);
+    expect(result.same).toBe(true);
+    expect(result.bare).toBe(`${BOOKING_ORIGIN}/booknow`);
+    expect(result.open.fields).toEqual({ f_name: "Brooke", l_name: "Van Hayes", email: "brooke@example.com", phone: "7805550199" });
+    expect(new URLSearchParams(result.open.query).get("service_id")).toBe("6");
+    const relaySource = readFileSync(relay, "utf8");
+    expect(relaySource).toMatch(/\$link = dc_ghl_session_link\(\$config, \$session, \$lead, basename\(\$path, '\.json'\)\);[\s\S]{0,300}\$extra\[\] = \['id' => \$linkFieldId, 'field_value' => \$link\];\s*dc_ghl_put_fields\(\$headers, \$contactId, \$stepField, \$extra\);/);
   });
 
   it("writes the link on the contact of a confirmed quote", () => {
@@ -167,6 +188,8 @@ describe("booking link wiring", () => {
 
   it("sends the booking page's public selections with the confirmed quote, never the private fields", () => {
     const flow = readFileSync(resolve(__dirname, "..", "components", "quote", "QuoteFlow.tsx"), "utf8");
-    expect(flow).toMatch(/booking_query: splitBookingQuery\(bookingQuery\)\.publicQuery/);
+    expect(flow).toMatch(/booking_query: splitBookingQuery\(bookingQuery\)\.publicQuery,/);
+    // The "still here" reports carry the same public selections for a visitor who leaves.
+    expect(flow).toMatch(/booking_query: bookingQuery === null \? "" : splitBookingQuery\(bookingQuery\)\.publicQuery,/);
   });
 });

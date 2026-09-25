@@ -516,6 +516,8 @@ function dc_ghl_shown_quote(mixed $value): ?array
         $addons = $value['addons'] ?? [];
         if (!is_array($addons) || !array_is_list($addons) || count($addons) > 20) return null;
         $shown['addons'] = array_map(static fn (mixed $addon): string => dc_ghl_text($addon, 200, true), $addons);
+        // Public booking selections only, for the visitor's own booking link.
+        $shown['booking_query'] = dc_ghl_booking_query($value['booking_query'] ?? null);
         return $shown;
     } catch (InvalidArgumentException) {
         return null;
@@ -865,7 +867,17 @@ function dc_ghl_sweep_sessions(array $config, int $limit = 10): int
         // the step, and whoever opens the contact sees the quote they saw.
         $fieldId = dc_ghl_optional_field_id($config, 'contact.funnel_last_step');
         $stepField = $fieldId === null ? [] : [['id' => $fieldId, 'field_value' => DC_GHL_STEPS[$session['step'] ?? 'price'] ?? DC_GHL_STEPS['price']]];
-        dc_ghl_put_fields($headers, $contactId, $stepField, dc_ghl_shown_fields($config, $session));
+        $extra = dc_ghl_shown_fields($config, $session);
+        // The visitor's own booking link, for the follow-up texts and emails.
+        // A lost link file must never stop the tag, so a failure skips it.
+        try {
+            $link = dc_ghl_session_link($config, $session, $lead, basename($path, '.json'));
+        } catch (Throwable) {
+            $link = '';
+        }
+        $linkFieldId = $link === '' ? null : dc_ghl_optional_field_id($config, 'contact.site_booking_link');
+        if ($linkFieldId !== null) $extra[] = ['id' => $linkFieldId, 'field_value' => $link];
+        dc_ghl_put_fields($headers, $contactId, $stepField, $extra);
         dc_ghl_http(DC_GHL_API . '/contacts/' . rawurlencode($contactId) . '/tags', 'POST', $headers, json_encode(['tags' => ['quote-left']], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
         $marked++;
     }
@@ -948,33 +960,44 @@ function dc_ghl_resume_dir(array $config): string
     return $dir;
 }
 
-function dc_ghl_resume_code(array $config, string $requestId): string
+function dc_ghl_resume_code(array $config, string $key): string
 {
     $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    $bytes = hash_hmac('sha256', 'resume:' . $requestId, $config['encryption_key'], true);
+    $bytes = hash_hmac('sha256', 'resume:' . $key, $config['encryption_key'], true);
     $code = '';
     for ($i = 0; $i < 10; $i++) $code .= $alphabet[ord($bytes[$i]) % 62];
     return $code;
 }
 
-/** The link to write on the contact: '' when this submission should not change it. */
+/**
+ * The link to write on the contact: '' when this submission should not change
+ * it. A new price check puts the bare booking page there, so a follow-up never
+ * sends an earlier quote's link; the visit's own link follows when the visitor
+ * confirms (here) or leaves the price screen (dc_ghl_sweep_sessions).
+ */
 function dc_ghl_resume_link(array $config, array $payload): string
 {
-    if (($payload['stage'] ?? '') !== 'confirm' || str_contains((string) ($payload['source'] ?? ''), '(call-back requested)')) return '';
+    if (str_contains((string) ($payload['source'] ?? ''), '(call-back requested)')) return '';
     $query = (string) ($payload['booking_query'] ?? '');
     // An older page sends no selections: the bare booking page, never an
     // earlier quote's link left on the contact.
-    if ($query === '') return DC_GHL_BOOKING_ORIGIN . '/booknow';
-    $code = dc_ghl_resume_code($config, (string) $payload['request_id']);
+    if (($payload['stage'] ?? '') !== 'confirm' || $query === '') return DC_GHL_BOOKING_ORIGIN . '/booknow';
+    return dc_ghl_resume_save($config, 'request:' . (string) $payload['request_id'], $query, $payload);
+}
+
+/** Save one quote's link file (once per key) and return its short link. */
+function dc_ghl_resume_save(array $config, string $key, string $query, array $person): string
+{
+    $code = dc_ghl_resume_code($config, $key);
     $path = dc_ghl_resume_dir($config) . DIRECTORY_SEPARATOR . $code . '.json';
     if (!is_file($path)) {
-        $parts = preg_split('/\s+/', dc_ghl_name_case(trim((string) $payload['full_name']))) ?: [];
-        $digits = (string) preg_replace('/\D/', '', (string) $payload['phone']);
+        $parts = preg_split('/\s+/', dc_ghl_name_case(trim((string) ($person['full_name'] ?? '')))) ?: [];
+        $digits = (string) preg_replace('/\D/', '', (string) ($person['phone'] ?? ''));
         if (strlen($digits) === 11 && str_starts_with($digits, '1')) $digits = substr($digits, 1);
         $fields = array_filter([
             'f_name' => substr((string) ($parts[0] ?? ''), 0, 120),
             'l_name' => substr(implode(' ', array_slice($parts, 1)), 0, 120),
-            'email' => (string) $payload['email'],
+            'email' => (string) ($person['email'] ?? ''),
             'phone' => strlen($digits) === 10 ? $digits : '',
         ], static fn (string $value): bool => $value !== '');
         $now = time();
@@ -990,6 +1013,16 @@ function dc_ghl_resume_link(array $config, array $payload): string
     }
     $origin = is_string($config['public_origin'] ?? null) && $config['public_origin'] !== '' ? $config['public_origin'] : DC_GHL_PUBLIC_ORIGIN;
     return rtrim($origin, '/') . '/r/' . $code;
+}
+
+/** The link for a visitor who left the price screen: the quote they last saw, or the bare booking page. */
+function dc_ghl_session_link(array $config, array $session, array $lead, string $sessionKey): string
+{
+    $shown = dc_ghl_session_shown($config, $session);
+    $query = is_array($shown) ? (string) ($shown['booking_query'] ?? '') : '';
+    if ($query === '' || $sessionKey === '') return DC_GHL_BOOKING_ORIGIN . '/booknow';
+    $person = dc_ghl_decrypt((array) ($lead['payload'] ?? []), $config['encryption_key']);
+    return dc_ghl_resume_save($config, 'session:' . $sessionKey, $query, $person);
 }
 
 /** @return array{query:string,fields:array<string,string>}|null  Null when unknown or expired. */

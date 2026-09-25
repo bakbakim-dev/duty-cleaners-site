@@ -54,6 +54,8 @@ export interface ShownQuote {
   recurring_price: number | null;
   /** Extras in the price (deep package, add-ons, travel fee) and the area answer. */
   addons: string[];
+  /** The booking page's public selections (splitBookingQuery), for the visitor's own booking link. */
+  booking_query?: string;
 }
 
 export function createPresenceSessionId(): string {

@@ -1324,59 +1324,6 @@ export default function QuoteFlow({
     ...(area && areaPhrase(area) ? [`Home ${areaPhrase(area)}${area.outside === true && !area.general ? " (outside city limits)" : ""}`] : []),
   ];
 
-  /**
-   * The quote on screen, for leave detection (owner, 2026-09-24): if the
-   * visitor leaves, the office email and the GoHighLevel contact say which
-   * price and home they saw. The same figures as the price tiles above: the
-   * first clean (the range on an estimate, nothing on a custom quote) and,
-   * on a plan, every visit after. It rides the "still here" reports only,
-   * never a submission, so a price check stays a lead. No notes, no entry
-   * details, no contact details.
-   */
-  const shownQuote: ShownQuote | null = step === 2
-    ? {
-        ...quoteDetailFields(),
-        quote_only: quote.quoteOnly,
-        first_clean_price: quote.quoteOnly
-          ? null
-          : quote.isEstimate
-            ? round2(quote.firstClean + addOnTotal + travelFeeAmount)
-            : round2(firstCleanTotal),
-        first_clean_price_high: !quote.quoteOnly && quote.isEstimate
-          ? round2(quote.rangeHigh + addOnTotal + travelFeeAmount)
-          : null,
-        recurring_price: quote.quoteOnly || quote.ongoing === null ? null : ongoingTotal,
-        addons: priceExtraLabels(),
-      }
-    : null;
-  shownQuoteRef.current = shownQuote;
-  const shownQuoteKey = JSON.stringify(shownQuote);
-  useEffect(() => {
-    presenceRef.current?.shown(shownQuoteRef.current);
-  }, [shownQuoteKey]);
-
-  /** The step-3 payload: same contact, now carrying the quoted prices. */
-  const confirmFields = () => ({
-    ...homeFields(),
-    city: proof.key,
-    // With deep intent the quoted first clean is Standard + the package, and
-    // any add-on chip is included too, so the office's quote-vs-booking check
-    // compares like with like.
-    first_clean_price: quote.quoteOnly ? null : firstCleanTotal,
-    recurring_price: ongoingTotal,
-    addons: [
-      ...priceExtraLabels(),
-
-      ...(details.entry ? [`Entry: ${DC_ENTRY_LABELS[details.entry]}`] : []),
-      ...(details.cleanliness
-        ? [`Cleanliness: ${DC_CLEANLINESS_LABELS[details.cleanliness]}`]
-        : []),
-      ...(details.parking ? [`Parking: ${DC_PARKING_LABELS[details.parking]}`] : []),
-      ...(details.flexibility ? [`Date/time flexibility: ${FLEXIBILITY_OPTIONS.find(option => option.value === details.flexibility)?.label}`] : []),
-    ],
-    notes: [entryNoteLine(details), details.notes?.trim() ?? ""].filter(Boolean).join("\n") || undefined,
-  }) as Partial<QuotePayload>;
-
   const bookingQuery = useMemo(
     () =>
       buildBookingQuery({
@@ -1414,6 +1361,62 @@ export default function QuoteFlow({
       contact,
     ]
   );
+
+  /**
+   * The quote on screen, for leave detection (owner, 2026-09-24): if the
+   * visitor leaves, the office email and the GoHighLevel contact say which
+   * price and home they saw. The same figures as the price tiles above: the
+   * first clean (the range on an estimate, nothing on a custom quote) and,
+   * on a plan, every visit after. It rides the "still here" reports only,
+   * never a submission, so a price check stays a lead. No notes, no entry
+   * details, no contact details.
+   */
+  const shownQuote: ShownQuote | null = step === 2
+    ? {
+        ...quoteDetailFields(),
+        quote_only: quote.quoteOnly,
+        first_clean_price: quote.quoteOnly
+          ? null
+          : quote.isEstimate
+            ? round2(quote.firstClean + addOnTotal + travelFeeAmount)
+            : round2(firstCleanTotal),
+        first_clean_price_high: !quote.quoteOnly && quote.isEstimate
+          ? round2(quote.rangeHigh + addOnTotal + travelFeeAmount)
+          : null,
+        recurring_price: quote.quoteOnly || quote.ongoing === null ? null : ongoingTotal,
+        addons: priceExtraLabels(),
+        // The booking page's service selections (public keys only), so a
+        // visitor who leaves still gets a link back to this quote (2026-09-25).
+        booking_query: bookingQuery === null ? "" : splitBookingQuery(bookingQuery).publicQuery,
+      }
+    : null;
+  shownQuoteRef.current = shownQuote;
+  const shownQuoteKey = JSON.stringify(shownQuote);
+  useEffect(() => {
+    presenceRef.current?.shown(shownQuoteRef.current);
+  }, [shownQuoteKey]);
+
+  /** The step-3 payload: same contact, now carrying the quoted prices. */
+  const confirmFields = () => ({
+    ...homeFields(),
+    city: proof.key,
+    // With deep intent the quoted first clean is Standard + the package, and
+    // any add-on chip is included too, so the office's quote-vs-booking check
+    // compares like with like.
+    first_clean_price: quote.quoteOnly ? null : firstCleanTotal,
+    recurring_price: ongoingTotal,
+    addons: [
+      ...priceExtraLabels(),
+
+      ...(details.entry ? [`Entry: ${DC_ENTRY_LABELS[details.entry]}`] : []),
+      ...(details.cleanliness
+        ? [`Cleanliness: ${DC_CLEANLINESS_LABELS[details.cleanliness]}`]
+        : []),
+      ...(details.parking ? [`Parking: ${DC_PARKING_LABELS[details.parking]}`] : []),
+      ...(details.flexibility ? [`Date/time flexibility: ${FLEXIBILITY_OPTIONS.find(option => option.value === details.flexibility)?.label}`] : []),
+    ],
+    notes: [entryNoteLine(details), details.notes?.trim() ?? ""].filter(Boolean).join("\n") || undefined,
+  }) as Partial<QuotePayload>;
 
   const bookingUrl = bookingQuery === null ? null : publicBookingUrl(bookingQuery);
 

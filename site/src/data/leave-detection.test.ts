@@ -31,7 +31,7 @@ describe("the relay", () => {
 
   it("a left visit sets the step field, then adds quote-left", () => {
     const relay = codeOf("public/api/ghl-quote.php");
-    expect(relay).toMatch(/contact\.funnel_last_step[\s\S]{0,600}json_encode\(\['tags' => \['quote-left'\]\]/);
+    expect(relay).toMatch(/contact\.funnel_last_step[\s\S]{0,1400}json_encode\(\['tags' => \['quote-left'\]\]/);
   });
 
   it("a left visit emails the office from this server before tagging", () => {
@@ -152,7 +152,7 @@ describe("the quote on screen", () => {
   it("a left visit writes the shown quote to the contact in the step's PUT, before quote-left", () => {
     const relay = codeOf("public/api/ghl-quote.php");
     expect(relay).toMatch(
-      /dc_ghl_put_fields\(\$headers, \$contactId, \$stepField, dc_ghl_shown_fields\(\$config, \$session\)\);\s*dc_ghl_http\([^;]*\['tags' => \['quote-left'\]\]/,
+      /\$extra = dc_ghl_shown_fields\(\$config, \$session\);[\s\S]{0,800}dc_ghl_put_fields\(\$headers, \$contactId, \$stepField, \$extra\);\s*dc_ghl_http\([^;]*\['tags' => \['quote-left'\]\]/,
     );
     expect(relay).toMatch(/\[\$status\] = \$put\(array_merge\(\$required, \$extra\)\);/);
     const fields = between(relay, "function dc_ghl_shown_fields", "function dc_ghl_put_fields");
