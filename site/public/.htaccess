@@ -40,6 +40,11 @@ DirectoryIndex index.html
   RewriteRule ^locations/all/?$ /spa-shell.html [L]
   RewriteRule ^gift-cards/?$ /spa-shell.html [L]
 
+  # The booking link in the "finish booking" text (2026-09-25): /r/<code>
+  # reopens a confirmed quote on BookingKoala. resume.php answers every code
+  # with a redirect to the booking page, so a bad code never shows an error.
+  RewriteRule ^r/([A-Za-z0-9]{10})/?$ /api/resume.php?c=$1 [L]
+
   # 188 permanent redirects.
   RewriteRule ^8038/how-much-does-a-house-cleaning-cost/?$ /how-much-does-a-house-cleaning-cost/ [R=301,L]
   RewriteRule ^8081/the-top-5-must-have-cleaning-products-for-a-spotless-home/?$ /the-top-5-must-have-cleaning-products-for-a-spotless-home/ [R=301,L]

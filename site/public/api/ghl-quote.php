@@ -201,7 +201,31 @@ function dc_ghl_payload(mixed $input): array
         'intent' => $intent,
         'tracking' => $cleanTracking,
         'session_id' => $sessionId,
+        'booking_query' => dc_ghl_booking_query($input['booking_query'] ?? null),
     ];
+}
+
+/*
+ * The booking page's service selections, sent with a confirmed quote so a text
+ * message can reopen that exact quote (owner, 2026-09-25). Only the public keys
+ * the funnel itself puts in the booking URL (booking-handoff.ts) survive; a
+ * name, email, phone, address or note is dropped, never stored here. Anything
+ * odd is dropped rather than failing the lead.
+ */
+const DC_GHL_BOOKING_QUERY_KEY = '/^(industry_id|form_id|service_id|frequency_id|pricing_parameter\[\d{1,4}\]|extras\[\d{1,6}\]|coupon|gclid|gbraid|wbraid|utm_source|utm_medium|utm_campaign|utm_id|utm_term|utm_content)$/';
+
+function dc_ghl_booking_query(mixed $value): string
+{
+    if (!is_string($value) || $value === '' || strlen($value) > 4000) return '';
+    $pairs = [];
+    foreach (array_slice(explode('&', $value), 0, 80) as $pair) {
+        [$key, $item] = array_pad(explode('=', $pair, 2), 2, '');
+        $key = urldecode($key);
+        $item = urldecode($item);
+        if (!preg_match(DC_GHL_BOOKING_QUERY_KEY, $key) || $item === '' || strlen($item) > 300 || preg_match('/[\x00-\x1F\x7F]/', $item)) continue;
+        $pairs[$key] = rawurlencode($key) . '=' . rawurlencode($item);
+    }
+    return implode('&', $pairs);
 }
 
 /** The funnel's per-visit id: random, no personal data. Empty when absent. */
@@ -896,6 +920,109 @@ function dc_ghl_source_values(array $payload): array
     ];
 }
 
+/*
+ * The customer's own booking link (owner, 2026-09-25). The "finish booking"
+ * text used to send BookingKoala's bare booking page, so a customer had to
+ * start the quote again. A confirmed quote now gets a short link on our own
+ * domain, https://dutycleaners.ca/r/<code> (carriers filter public shorteners;
+ * a long BookingKoala URL reads as spam). resume.php turns it into the booking
+ * page with the quote's selections, and the name, email and phone sealed in a
+ * fresh 20-minute handoff, the same one the funnel uses. Entry codes, the
+ * address and notes are never kept: a forwarded text must not hand out a
+ * lockbox code. The code is an HMAC of the request id, so a retried delivery
+ * writes the same file and the same link, and nobody can guess another one.
+ * The file is encrypted, outside public_html, and removed by the cron job two
+ * days after the link expires.
+ */
+const DC_GHL_BOOKING_ORIGIN = 'https://dutycleaners.bookingkoala.com';
+const DC_GHL_PUBLIC_ORIGIN = 'https://dutycleaners.ca';
+const DC_GHL_RESUME_TTL_SECONDS = 1209600;
+const DC_GHL_RESUME_CODE = '/^[A-Za-z0-9]{10}$/';
+
+function dc_ghl_resume_dir(array $config): string
+{
+    $dir = is_string($config['resume_dir'] ?? null) && $config['resume_dir'] !== ''
+        ? rtrim($config['resume_dir'], DIRECTORY_SEPARATOR)
+        : dirname(dc_ghl_queue_dir($config)) . DIRECTORY_SEPARATOR . 'ghl-resume';
+    if (!is_dir($dir) && !@mkdir($dir, 0700, true) && !is_dir($dir)) throw new RuntimeException('storage');
+    return $dir;
+}
+
+function dc_ghl_resume_code(array $config, string $requestId): string
+{
+    $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    $bytes = hash_hmac('sha256', 'resume:' . $requestId, $config['encryption_key'], true);
+    $code = '';
+    for ($i = 0; $i < 10; $i++) $code .= $alphabet[ord($bytes[$i]) % 62];
+    return $code;
+}
+
+/** The link to write on the contact: '' when this submission should not change it. */
+function dc_ghl_resume_link(array $config, array $payload): string
+{
+    if (($payload['stage'] ?? '') !== 'confirm' || str_contains((string) ($payload['source'] ?? ''), '(call-back requested)')) return '';
+    $query = (string) ($payload['booking_query'] ?? '');
+    // An older page sends no selections: the bare booking page, never an
+    // earlier quote's link left on the contact.
+    if ($query === '') return DC_GHL_BOOKING_ORIGIN . '/booknow';
+    $code = dc_ghl_resume_code($config, (string) $payload['request_id']);
+    $path = dc_ghl_resume_dir($config) . DIRECTORY_SEPARATOR . $code . '.json';
+    if (!is_file($path)) {
+        $parts = preg_split('/\s+/', dc_ghl_name_case(trim((string) $payload['full_name']))) ?: [];
+        $digits = (string) preg_replace('/\D/', '', (string) $payload['phone']);
+        if (strlen($digits) === 11 && str_starts_with($digits, '1')) $digits = substr($digits, 1);
+        $fields = array_filter([
+            'f_name' => substr((string) ($parts[0] ?? ''), 0, 120),
+            'l_name' => substr(implode(' ', array_slice($parts, 1)), 0, 120),
+            'email' => (string) $payload['email'],
+            'phone' => strlen($digits) === 10 ? $digits : '',
+        ], static fn (string $value): bool => $value !== '');
+        $now = time();
+        $record = [
+            'created_at' => $now,
+            'expires_at' => $now + DC_GHL_RESUME_TTL_SECONDS,
+            'payload' => dc_ghl_encrypt(['query' => $query, 'fields' => $fields], $config['encryption_key']),
+        ];
+        if (@file_put_contents($path, json_encode($record, JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR), LOCK_EX) === false) {
+            throw new RuntimeException('storage');
+        }
+        @chmod($path, 0600);
+    }
+    $origin = is_string($config['public_origin'] ?? null) && $config['public_origin'] !== '' ? $config['public_origin'] : DC_GHL_PUBLIC_ORIGIN;
+    return rtrim($origin, '/') . '/r/' . $code;
+}
+
+/** @return array{query:string,fields:array<string,string>}|null  Null when unknown or expired. */
+function dc_ghl_resume_open(array $config, string $code): ?array
+{
+    if (!preg_match(DC_GHL_RESUME_CODE, $code)) return null;
+    $path = dc_ghl_resume_dir($config) . DIRECTORY_SEPARATOR . $code . '.json';
+    if (!is_file($path)) return null;
+    $record = json_decode((string) @file_get_contents($path), true);
+    if (!is_array($record) || (int) ($record['expires_at'] ?? 0) <= time()) return null;
+    try {
+        $saved = dc_ghl_decrypt((array) ($record['payload'] ?? []), $config['encryption_key']);
+    } catch (Throwable) {
+        return null;
+    }
+    $fields = array_filter((array) ($saved['fields'] ?? []), static fn ($value, $key): bool => in_array($key, ['f_name', 'l_name', 'email', 'phone'], true) && is_string($value) && $value !== '', ARRAY_FILTER_USE_BOTH);
+    return ['query' => dc_ghl_booking_query((string) ($saved['query'] ?? '')), 'fields' => $fields];
+}
+
+/** Delete link files two days past their expiry (the hosting plan counts files). */
+function dc_ghl_prune_resume(array $config, int $limit = 200): int
+{
+    $removed = 0;
+    $cutoff = time() - 172800;
+    foreach (glob(dc_ghl_resume_dir($config) . DIRECTORY_SEPARATOR . '*.json') ?: [] as $path) {
+        if ($removed >= $limit) break;
+        $record = json_decode((string) @file_get_contents($path), true);
+        $expires = is_array($record) ? (int) ($record['expires_at'] ?? 0) : 0;
+        if ($expires < $cutoff && (int) @filemtime($path) < $cutoff && @unlink($path)) $removed++;
+    }
+    return $removed;
+}
+
 /**
  * A name typed all in capitals or all in lower case reaches GoHighLevel
  * proper-cased (owner, 2026-09-24): "BROOKE HAYES" becomes "Brooke Hayes",
@@ -965,6 +1092,15 @@ function dc_ghl_deliver(array $config, array $payload): array
             $tags = array_values(array_diff($tags, ['instant-quote']));
             $tags[] = 'callback-requested';
         }
+        // The "finish booking" text reads this field. A lost link file must
+        // never cost the lead, so a storage failure only skips the field.
+        try {
+            $link = dc_ghl_resume_link($config, $payload);
+        } catch (Throwable) {
+            $link = '';
+        }
+        $linkFieldId = $link === '' ? null : dc_ghl_optional_field_id($config, 'contact.site_booking_link');
+        if ($linkFieldId !== null) $customFields[] = ['id' => $linkFieldId, 'field_value' => $link];
     }
     $request = [
         'locationId' => DC_GHL_LOCATION_ID,
@@ -1141,7 +1277,8 @@ function dc_ghl_retry_pending(array $config): array
     }
     $left = dc_ghl_sweep_sessions($config);
     $locks = dc_ghl_prune_locks($config);
-    return ['ok' => true, 'checked' => $checked, 'delivered' => $delivered, 'pending' => $pending, 'left' => $left, 'locks_removed' => $locks];
+    $links = dc_ghl_prune_resume($config);
+    return ['ok' => true, 'checked' => $checked, 'delivered' => $delivered, 'pending' => $pending, 'left' => $left, 'locks_removed' => $locks, 'links_removed' => $links];
 }
 
 /**
@@ -1176,7 +1313,8 @@ function dc_ghl_prune_locks(array $config, int $limit = 200): int
 
 // The automated test suite can load the functions without running the HTTP or
 // CLI entry point. Production never sets this process-only environment flag.
-if (getenv('DC_GHL_LIBRARY_ONLY') === '1') return;
+// resume.php defines DC_GHL_LIBRARY to use the link functions the same way.
+if (getenv('DC_GHL_LIBRARY_ONLY') === '1' || defined('DC_GHL_LIBRARY')) return;
 
 // SiteGround cron: php /home/customer/www/dutycleaners.ca/public_html/api/ghl-quote.php retry
 if (PHP_SAPI === 'cli') {

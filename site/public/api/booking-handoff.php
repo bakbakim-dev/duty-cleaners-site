@@ -120,7 +120,24 @@ function dc_unseal(string $token, string $secret, int $now): array
     return dc_validate_fields($payload['fields'] ?? null);
 }
 
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+// Preferred production setup: /home/customer/www/<host>/private, next to
+// public_html. The optional environment variable is useful for local testing.
+function dc_handoff_secret(): string
+{
+    $secret = getenv('DC_BOOKING_HANDOFF_SECRET') ?: '';
+    $privateFile = dirname((string) ($_SERVER['DOCUMENT_ROOT'] ?? __DIR__)) . '/private/booking-handoff-secret.php';
+    if ($secret === '' && is_file($privateFile)) {
+        $loaded = require $privateFile;
+        $secret = is_string($loaded) ? $loaded : '';
+    }
+    return $secret;
+}
+
+// resume.php loads the functions above to seal a fresh handoff when a customer
+// opens the booking link from a text message; it never runs this endpoint.
+if (defined('DC_HANDOFF_LIBRARY')) return;
+
+$origin =$_SERVER['HTTP_ORIGIN'] ?? '';
 $isWebsite = in_array($origin, $websiteOrigins, true);
 $isBooking = in_array($origin, $bookingOrigins, true);
 if (!$isWebsite && !$isBooking) {
@@ -143,17 +160,10 @@ if ($raw === false || strlen($raw) > 16384) {
     dc_json(413, ['error' => 'size']);
 }
 
-// Preferred production setup: /home/customer/www/<host>/private, next to
-// public_html. The optional environment variable is useful for local testing.
 if (!function_exists('openssl_encrypt') || !function_exists('openssl_decrypt')) {
     dc_json(503, ['error' => 'crypto_unavailable']);
 }
-$secret = getenv('DC_BOOKING_HANDOFF_SECRET') ?: '';
-$privateFile = dirname((string) ($_SERVER['DOCUMENT_ROOT'] ?? __DIR__)) . '/private/booking-handoff-secret.php';
-if ($secret === '' && is_file($privateFile)) {
-    $loaded = require $privateFile;
-    $secret = is_string($loaded) ? $loaded : '';
-}
+$secret = dc_handoff_secret();
 if (strlen($secret) < 32) {
     dc_json(503, ['error' => 'unavailable']);
 }

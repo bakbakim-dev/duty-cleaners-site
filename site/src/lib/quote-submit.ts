@@ -49,6 +49,11 @@ export interface QuotePayload {
   submitted_at: string;
   /** "deep" when the visitor came through a Deep Cleaning entry point. */
   intent: "deep" | null;
+  /**
+   * The booking page's service selections, public keys only (splitBookingQuery),
+   * so the "finish booking" text can reopen this quote (2026-09-25).
+   */
+  booking_query?: string;
 }
 
 export interface SubmitResult {

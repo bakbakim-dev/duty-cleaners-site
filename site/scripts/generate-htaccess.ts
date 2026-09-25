@@ -162,6 +162,13 @@ for (const r of rules.filter((x) => x.kind === "200")) {
 }
 out.push(
   "",
+  "  # The booking link in the \"finish booking\" text (2026-09-25): /r/<code>",
+  "  # reopens a confirmed quote on BookingKoala. resume.php answers every code",
+  "  # with a redirect to the booking page, so a bad code never shows an error.",
+  "  RewriteRule ^r/([A-Za-z0-9]{10})/?$ /api/resume.php?c=$1 [L]",
+);
+out.push(
+  "",
   `  # ${rules.filter((x) => x.kind === "301").length} permanent redirects.`,
 );
 for (const r of rules.filter((x) => x.kind === "301")) {

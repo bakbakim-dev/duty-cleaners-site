@@ -44,6 +44,9 @@ function apachePairs(): Set<string> {
   const out = new Set<string>();
   const text = readFileSync(join(PUBLIC, ".htaccess"), "utf-8");
   for (const m of text.matchAll(/RewriteRule \^([^ ]*?)\/\?\$ ([^ ]+) \[/g)) {
+    // A rewrite into a PHP endpoint (the /r/<code> booking link, 2026-09-25)
+    // exists only on SiteGround: Netlify runs no PHP, so it has no equivalent.
+    if (/^\/api\/[\w-]+\.php(\?|$)/.test(m[2])) continue;
     // The generator escapes regex metacharacters in the source path; strip the
     // backslashes to compare against the plain path.
     const from = ("/" + m[1].replace(/\\/g, "")).replace(/\/+$/, "") || "/";

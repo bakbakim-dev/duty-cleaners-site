@@ -72,7 +72,7 @@ import { track } from "@/lib/analytics";
 import { CLEANLINESS_OPTIONS, FLEXIBILITY_OPTIONS, cleanerNotesLimit, validateCleanerDetails } from "@/lib/booking-details";
 import { ENTRY_NOTE_MAX, entryNoteLine } from "@/lib/booking-redirect";
 import { clearQuoteReturn, readQuoteReturn, saveQuoteReturn } from "@/lib/quote-return";
-import { prepareBookingHandoff, publicBookingUrl } from "@/lib/booking-handoff";
+import { prepareBookingHandoff, publicBookingUrl, splitBookingQuery } from "@/lib/booking-handoff";
 import { HISTORY_FLAG, HISTORY_STACK, funnelStackOf, useQuoteOverlay } from "@/hooks/use-quote-overlay";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -1691,7 +1691,12 @@ export default function QuoteFlow({
     // Save the final extras and access details before leaving. This request is
     // bounded, idempotent and keepalive-enabled; a relay outage never prevents
     // the customer from reaching BookingKoala because the initial lead exists.
-    const confirmationPayload = confirmFields();
+    // The selections ride along (public keys only) so the "finish booking"
+    // text can link back to this exact quote; the relay keeps the rest.
+    const confirmationPayload = {
+      ...confirmFields(),
+      booking_query: splitBookingQuery(bookingQuery).publicQuery,
+    } as Partial<QuotePayload>;
     const [confirmation, secureUrl] = await Promise.all([
       submitQuote(confirmationPayload, {
         requestId: requestIdForPayload(
