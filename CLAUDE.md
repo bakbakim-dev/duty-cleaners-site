@@ -268,6 +268,15 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   opportunity (no card value), STOP line added. "Qoute Sent" renamed "Quote sent: follow-up emails" and
   now removes only the old drip campaigns. One-offs and "Text Invites to past clients" set to Draft.
   SLA 10/15 min. Opportunities default view "Working board (open cards only)". GHL call recording off.
+- Finish-booking text (owner, 2026-09-25): the immediate "Send Instant Quote SMS" step is gone; the
+  workflow "Quote reminder: finish booking (10 min, only if not booked)" texts 10 minutes later in
+  texting hours unless a booked tag landed. Its link is `{{contact.site_booking_link}}` (GHL field
+  created 2026-09-25): the relay saves each confirmed quote's public booking selections plus name,
+  email and phone (never entry codes, address or notes; owner said yes to contact prefill) and writes
+  `https://dutycleaners.ca/r/<code>`; `api/resume.php` redirects to BookingKoala with the quote
+  selected and the contact sealed in a fresh handoff. Links last 14 days; unknown/expired codes land
+  on the plain booking page. Commit 0bd2b62; tests in `booking-resume-php.test.ts` need PHP with
+  OpenSSL (locally: a php.ini enabling openssl/curl/mbstring via PHPRC, or they skip).
 - Website (e31a29c, deployed to SiteGround 2026-09-24, all 288 assets + 212 pages verified): presence pings carry the shown quote; the "left" office email
   and GHL contact get the price/service; shouting names are proper-cased by the relay.
 
