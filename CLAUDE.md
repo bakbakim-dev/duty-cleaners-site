@@ -275,7 +275,8 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   email and phone (never entry codes, address or notes; owner said yes to contact prefill) and writes
   `https://dutycleaners.ca/r/<code>`; `api/resume.php` redirects to BookingKoala with the quote
   selected and the contact sealed in a fresh handoff. Links last 14 days; unknown/expired codes land
-  on the plain booking page. Commit 0bd2b62; tests in `booking-resume-php.test.ts` need PHP with
+  on the plain booking page. Commit 0bd2b62, deployed to SiteGround 2026-09-25 (all 287 assets + 212 pages
+  verified) and the reminder SMS switched to the field the same day; tests in `booking-resume-php.test.ts` need PHP with
   OpenSSL (locally: a php.ini enabling openssl/curl/mbstring via PHPRC, or they skip).
 - Website (e31a29c, deployed to SiteGround 2026-09-24, all 288 assets + 212 pages verified): presence pings carry the shown quote; the "left" office email
   and GHL contact get the price/service; shouting names are proper-cased by the relay.
