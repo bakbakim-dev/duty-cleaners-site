@@ -1140,7 +1140,38 @@ function dc_ghl_retry_pending(array $config): array
         if ($checked >= 20) break;
     }
     $left = dc_ghl_sweep_sessions($config);
-    return ['ok' => true, 'checked' => $checked, 'delivered' => $delivered, 'pending' => $pending, 'left' => $left];
+    $locks = dc_ghl_prune_locks($config);
+    return ['ok' => true, 'checked' => $checked, 'delivered' => $delivered, 'pending' => $pending, 'left' => $left, 'locks_removed' => $locks];
+}
+
+/**
+ * Remove the delivery lock beside a lead record once nothing can attempt that
+ * record again (2026-09-25: every lead left one lock file behind for good, and
+ * the hosting plan counts files). A delivered record is never attempted again.
+ * A failed one can be, when the same request is posted again, so its lock
+ * waits a week. A lock whose record is gone is always an orphan. The hour of
+ * quiet keeps the cleanup clear of an attempt still finishing.
+ */
+function dc_ghl_prune_locks(array $config, int $limit = 200): int
+{
+    $removed = 0;
+    $now = time();
+    foreach (glob(dc_ghl_queue_dir($config) . DIRECTORY_SEPARATOR . '*.json.lock') ?: [] as $lockPath) {
+        if ($removed >= $limit) break;
+        $recordPath = substr($lockPath, 0, -strlen('.lock'));
+        if (!is_file($recordPath)) {
+            if ((int) @filemtime($lockPath) < $now - 3600 && @unlink($lockPath)) $removed++;
+            continue;
+        }
+        $record = json_decode((string) @file_get_contents($recordPath), true);
+        if (!is_array($record)) continue;
+        $updated = strtotime((string) ($record['updated_at'] ?? '')) ?: $now;
+        $state = (string) ($record['state'] ?? '');
+        $done = ($state === 'delivered' && $updated < $now - 3600)
+            || ($state === 'failed' && $updated < $now - 7 * 86400);
+        if ($done && @unlink($lockPath)) $removed++;
+    }
+    return $removed;
 }
 
 // The automated test suite can load the functions without running the HTTP or
