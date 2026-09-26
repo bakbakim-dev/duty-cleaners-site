@@ -251,7 +251,8 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   Texts/emails Mon–Sat 8:00–19:30 only (Red Deer the same). Stops on reply, STOP, card moved to
   Talking/Quote sent/Booked, marked Lost, or a booked tag; a repeat quote restarts, never stacks.
   No discounts or fake urgency. Call-backs carry no `instant-quote` (the relay strips it) and get an
-  office-hours text instead (Red Deer Mon–Sat 7–21, others Mon–Sat 8–20, Sun 9–15). A confirmed
+  office-hours text instead (Mon–Sat 8–20, Sun 9–15; Red Deer's own hours were taken out of GHL on
+  2026-09-25, owner: Red Deer opens next year, so its leads get these hours). A confirmed
   quote removes `quote-started` (relay). Workflow IDs in memory `lead-follow-up-workflows`.
 - Follow-up messages never give (587) 812-4907, the GHL texting number (owner, 2026-09-23): calls go
   to the branch office lines on Dialpad. They use `{{contact.branch_phone}}` (set by the relay from
