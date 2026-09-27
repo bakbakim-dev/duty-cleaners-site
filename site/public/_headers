@@ -2,20 +2,17 @@
 #
 # Two deliberate choices worth knowing before editing:
 #
-# 1. Content-Security-Policy ships in Report-Only mode. The site legitimately
-#    embeds four third-party origins (Google Maps on 94 location pages, the
-#    HighLevel quote form, BookingKoala, OpenStreetMap tiles) plus one inline
-#    script -- AND calls the Supabase edge function that every lead goes
-#    through. That last one was missing from connect-src while the policy still
-#    allowed api.bookin60.com, the HighLevel form endpoint that is dead for
-#    external posts (it enforces Turnstile). Enforcing the policy in that state
-#    would have blocked the quote submission on every page and lost every lead,
-#    silently, since Report-Only reports but does not block. The origin is
-#    already public -- it is baked into the client bundle.
-#    script. Enforcing a policy that misses one of those takes the page down,
-#    and a CSP is not something to guess at. Collect reports first, confirm the
-#    allowlist is complete against real traffic, then rename the header to
-#    Content-Security-Policy to enforce it.
+# 1. Content-Security-Policy is ENFORCED since 2026-09-27. It shipped Report-Only
+#    first, and nearly went live missing the relay every lead went through.
+#    Before enforcing, the live pages were read for every origin they load
+#    (self, googletagmanager, google-analytics, the BookingKoala gift-card
+#    frame) and the full quote funnel was walked locally under this exact
+#    policy with a report endpoint: zero violations, and an injected script
+#    was blocked. Origins nothing uses any more were dropped at the same time
+#    (api.bookin60.com, Google Maps JS, Supabase, the staging host, Google
+#    Fonts). Adding a third-party embed, script or fetch now means adding its
+#    origin here first, or it is blocked; headers.test.ts derives the bundle's
+#    connections and fails when one is missing.
 #
 # 2. HSTS is set (owner decision, 2026-09-17), raised from one day to two years
 #    (63072000) on 2026-09-27 after a clean week (owner), still without
@@ -26,7 +23,6 @@
   # Clickjacking. frame-ancestors is the modern control; X-Frame-Options is
   # kept for older browsers that ignore it.
   X-Frame-Options: SAMEORIGIN
-  Content-Security-Policy: frame-ancestors 'self'
 
   # Origin isolation. same-origin-allow-popups keeps our window isolated from
   # cross-origin openers while the windows we open ourselves (BookingKoala
@@ -49,13 +45,13 @@
   # cannot silently ask for them either.
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), interest-cohort=()
 
-  # Report-only. See note 1 above before enforcing.
+  # Enforced. See note 1 above before editing.
   # The sha256 covers the scroll-reveal bootstrap script inlined in index.html;
   # it changes if that script's text changes by even one character.
   # Google Analytics 4 (src/lib/analytics.ts, only when VITE_GA4_MEASUREMENT_ID is
   # set): gtag.js from www.googletagmanager.com, hits to *.google-analytics.com and
   # *.analytics.google.com, the origins Google's own CSP guide lists for GA4.
-  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'sha256-7DMw94E/HaivhL+vPa07tUSnUcoTg16X33czt0+MYCo=' https://api.bookin60.com https://www.googletagmanager.com https://maps.googleapis.com https://maps.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.tile.openstreetmap.org https://maps.googleapis.com https://maps.gstatic.com https://*.google.com https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.bookin60.com https://exodbynxmeezenqytkvh.supabase.co https://mikaily131.sg-host.com https://maps.googleapis.com https://maps.gstatic.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self' https://www.google.com https://api.bookin60.com https://dutycleaners.bookingkoala.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://dutycleaners.bookingkoala.com; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-7DMw94E/HaivhL+vPa07tUSnUcoTg16X33czt0+MYCo=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.tile.openstreetmap.org https://*.google.com https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self' https://dutycleaners.bookingkoala.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://dutycleaners.bookingkoala.com; object-src 'none'
 
 # Vite writes a content hash into every asset filename, so these are safe to
 # cache forever -- a changed file gets a different name.

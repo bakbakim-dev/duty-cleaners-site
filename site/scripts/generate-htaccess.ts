@@ -204,9 +204,9 @@ out.push(
   "  # includeSubDomains until mail., ftp. and autodiscover. are confirmed",
   "  # HTTPS, and no preload: leaving that list takes months.",
   '  Header always set Strict-Transport-Security "max-age=63072000" env=DUTY_PRODUCTION_HOST',
-  "  # Mirrors public/_headers. CSP ships Report-Only deliberately: the site",
-  "  # embeds four third-party origins plus one inline script, and enforcing a",
-  "  # policy that misses one takes the page down. HSTS is set above, scoped to",
+  "  # Mirrors public/_headers, whose note 1 explains the enforced CSP (since",
+  "  # 2026-09-27): a new third-party origin must be added there first or it is",
+  "  # blocked. HSTS is set above, scoped to",
   "  # the production host; see that comment.",
   "  Header always set X-Frame-Options \"SAMEORIGIN\"",
   "  # Origin isolation (PageSpeed best-practices, 2026-09-17). same-origin-allow-popups:",
@@ -215,12 +215,11 @@ out.push(
   "  Header always set Cross-Origin-Opener-Policy \"same-origin-allow-popups\"",
   "  Header always set X-Content-Type-Options \"nosniff\"",
   "  Header always set Referrer-Policy \"strict-origin-when-cross-origin\"",
-  "  Header always set Content-Security-Policy \"frame-ancestors 'self'\"",
 );
 const headersSrc = readFileSync(resolve("public/_headers"), "utf8");
 const line = (name: string) =>
   headersSrc.split(/\r?\n/).find((l) => l.trim().startsWith(`${name}:`))?.split(`${name}:`)[1]?.trim() ?? "";
-for (const name of ["Permissions-Policy", "Content-Security-Policy-Report-Only"]) {
+for (const name of ["Permissions-Policy", "Content-Security-Policy"]) {
   const value = line(name);
   if (value) out.push(`  Header always set ${name} "${value.replace(/"/g, '\\"')}"`);
 }

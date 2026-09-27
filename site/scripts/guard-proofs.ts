@@ -167,6 +167,7 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: 'Published <time datetime="2026-01-25">January 25, 2026</time>',
     failing: "each post shows the same dates its Article schema declares",
     why: "Puts back the hand-typed byline date that contradicted the schema.",
+    dist: true,
   },
   {
     guard: "src/data/city-twins.test.ts",
@@ -988,8 +989,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/headers.test.ts",
     target: "public/_headers",
-    find: " https://api.bookin60.com https://www.googletagmanager.com https://maps.googleapis.com",
-    replace: " https://api.bookin60.com https://maps.googleapis.com",
+    find: "MYCo=' https://www.googletagmanager.com; style-src",
+    replace: "MYCo='; style-src",
     failing: "allows the Google Analytics 4 loader's origins in the directives it uses",
     why: "Drops gtag.js's origin from script-src, which would block the GA4 loader once the CSP is enforced.",
   },

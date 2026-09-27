@@ -129,7 +129,7 @@ describe("the Apache and Netlify rule sets describe the same site", () => {
       "X-Content-Type-Options",
       "Referrer-Policy",
       "Permissions-Policy",
-      "Content-Security-Policy-Report-Only",
+      "Content-Security-Policy",
     ]) {
       expect(text, `.htaccess does not set ${header}, which public/_headers does`).toContain(header);
     }
@@ -143,11 +143,11 @@ describe("the Apache and Netlify rule sets describe the same site", () => {
     expect(hsts![2].trim(), "HSTS must be scoped to the production host").toBe("env=DUTY_PRODUCTION_HOST");
     expect(hsts![1], "HSTS must not carry includeSubDomains or preload yet").not.toMatch(/includeSubDomains|preload/i);
     expect(text).toContain('SetEnvIfNoCase Host "^(www\\.)?dutycleaners\\.ca$" DUTY_PRODUCTION_HOST=1');
-    // The enforced CSP must stay frame-ancestors only — the full policy ships
-    // Report-Only until its allowlist is confirmed against real traffic.
+    // The full CSP is enforced (2026-09-27), and there is no Report-Only twin.
     expect(
-      /Header always set Content-Security-Policy "frame-ancestors 'self'"/.test(text),
-      "the enforced CSP is no longer frame-ancestors-only",
+      /Header always set Content-Security-Policy "default-src 'self';/.test(text),
+      "the .htaccess does not enforce the full CSP from public/_headers",
     ).toBe(true);
+    expect(text).not.toContain("Content-Security-Policy-Report-Only");
   });
 });

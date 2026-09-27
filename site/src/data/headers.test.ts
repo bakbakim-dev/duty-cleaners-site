@@ -34,8 +34,6 @@ describe("_headers", () => {
     // Each of these is embedded somewhere in the site; omitting one from the
     // policy would break that embed the moment CSP is enforced.
     for (const origin of [
-      "https://api.bookin60.com", // HighLevel quote form
-      "https://www.google.com", // Maps embeds on the location pages
       "https://dutycleaners.bookingkoala.com", // booking handoff
       "openstreetmap.org", // Leaflet coverage-map tiles
     ]) {
@@ -50,14 +48,11 @@ describe("_headers", () => {
     const policy =
       headers
         .split(/\r?\n/)
-        .find((line) => /^\s*Content-Security-Policy-Report-Only:/.test(line)) ?? "";
+        .find((line) => /^\s*Content-Security-Policy:/.test(line)) ?? "";
     const directive = (name: string) => new RegExp(`${name}([^;]*)`).exec(policy)?.[1] ?? "";
     expect(directive("script-src")).toContain("https://www.googletagmanager.com");
     expect(directive("connect-src")).toContain("https://*.google-analytics.com");
     expect(directive("connect-src")).toContain("https://*.analytics.google.com");
-    expect(directive("script-src")).toContain("https://maps.googleapis.com");
-    expect(directive("script-src")).toContain("https://maps.gstatic.com");
-    expect(directive("connect-src")).toContain("https://maps.googleapis.com");
     expect(directive("img-src")).toContain("https://*.google-analytics.com");
   });
 
@@ -120,10 +115,16 @@ describe("_headers", () => {
     expect(bundle).not.toContain("exodbynxmeezenqytkvh.supabase.co");
   });
 
-  it("keeps CSP in report-only until the allowlist is confirmed", () => {
-    // Guards against enforcing by accident. Flipping this is a deliberate step:
-    // delete this assertion in the same change that renames the header.
-    expect(headers).toContain("Content-Security-Policy-Report-Only:");
+  /**
+   * Enforced since 2026-09-27 (note 1 in _headers). One enforced policy, no
+   * Report-Only twin: a second, looser header would hide what is really live.
+   */
+  it("enforces one full CSP that restricts scripts, not only framing", () => {
+    const lines = headers.split(/\r?\n/).filter((l) => /^\s*Content-Security-Policy(-Report-Only)?:/.test(l));
+    expect(lines).toHaveLength(1);
+    expect(lines[0]).toMatch(/^\s*Content-Security-Policy: default-src 'self';/);
+    for (const d of ["script-src", "connect-src", "frame-ancestors", "object-src 'none'", "base-uri"]) expect(lines[0]).toContain(d);
+    expect(lines[0]).not.toMatch(/unsafe-eval|script-src[^;]*unsafe-inline/);
   });
 
   it("does not cache HTML immutably", () => {

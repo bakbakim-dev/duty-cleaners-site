@@ -264,9 +264,9 @@ ErrorDocument 404 /404.html
   # includeSubDomains until mail., ftp. and autodiscover. are confirmed
   # HTTPS, and no preload: leaving that list takes months.
   Header always set Strict-Transport-Security "max-age=63072000" env=DUTY_PRODUCTION_HOST
-  # Mirrors public/_headers. CSP ships Report-Only deliberately: the site
-  # embeds four third-party origins plus one inline script, and enforcing a
-  # policy that misses one takes the page down. HSTS is set above, scoped to
+  # Mirrors public/_headers, whose note 1 explains the enforced CSP (since
+  # 2026-09-27): a new third-party origin must be added there first or it is
+  # blocked. HSTS is set above, scoped to
   # the production host; see that comment.
   Header always set X-Frame-Options "SAMEORIGIN"
   # Origin isolation (PageSpeed best-practices, 2026-09-17). same-origin-allow-popups:
@@ -275,9 +275,8 @@ ErrorDocument 404 /404.html
   Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Content-Security-Policy "frame-ancestors 'self'"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), interest-cohort=()"
-  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'sha256-7DMw94E/HaivhL+vPa07tUSnUcoTg16X33czt0+MYCo=' https://api.bookin60.com https://www.googletagmanager.com https://maps.googleapis.com https://maps.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.tile.openstreetmap.org https://maps.googleapis.com https://maps.gstatic.com https://*.google.com https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.bookin60.com https://exodbynxmeezenqytkvh.supabase.co https://mikaily131.sg-host.com https://maps.googleapis.com https://maps.gstatic.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self' https://www.google.com https://api.bookin60.com https://dutycleaners.bookingkoala.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://dutycleaners.bookingkoala.com; object-src 'none'"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-7DMw94E/HaivhL+vPa07tUSnUcoTg16X33czt0+MYCo=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.tile.openstreetmap.org https://*.google.com https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self' https://dutycleaners.bookingkoala.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://dutycleaners.bookingkoala.com; object-src 'none'"
 
   # Public filenames such as logo.png are mutable and revalidate hourly.
   # Vite's hashed /assets/ filenames never change under the same name, so
