@@ -241,6 +241,9 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - Job photos may be used on the website, social media and ads with identifying details kept out;
   opt-out any time. Office calls are recorded (Dialpad). Cleaners: reference-checked only.
 - Cleaners carry a two-step stool (the site said 3-step ladder until 2026-09-26).
+- Bed-making (owner, 2026-09-27): on request, no charge, with fresh sheets the customer leaves out.
+  Renovation dust, even a small job, is post-construction; the office may switch it to deep if photos
+  or the team on arrival show only a little dust (19fe3df).
 - The $15 option is "eco-friendly products" (owner, 2026-09-26; supersedes "optional alternative
   products" of 2026-09-11): the team buys or uses them on request. Say "eco-friendly" only; "green",
   "non-toxic", "pet-safe" and "safe" stay out (guarded). Review requests: the owner keeps sending the
