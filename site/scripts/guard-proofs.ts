@@ -162,9 +162,9 @@ export const GUARD_PROOFS: GuardProof[] = [
   },
   {
     guard: "src/data/blog-posts.test.ts",
-    target: "src/pages/BlogVinegarBakingSoda.tsx",
-    find: '<PostDateline path="/cleaning-with-vinegar-and-baking-soda" />',
-    replace: '<span className="flex items-center gap-1">January 25, 2026</span>',
+    target: "dist/cleaning-with-vinegar-and-baking-soda/index.html",
+    find: 'Published <time datetime="2025-02-07">February 7, 2025</time>',
+    replace: 'Published <time datetime="2026-01-25">January 25, 2026</time>',
     failing: "each post shows the same dates its Article schema declares",
     why: "Puts back the hand-typed byline date that contradicted the schema.",
   },
