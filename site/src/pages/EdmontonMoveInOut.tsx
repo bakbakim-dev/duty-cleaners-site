@@ -407,7 +407,7 @@ export default function EdmontonMoveInOut() {
                 </p>
               </div>
 
-              <div className="mx-auto mt-10 max-w-2xl overflow-hidden border border-border">
+              <div className="mx-auto mt-10 max-w-2xl overflow-x-auto border border-border">
                 <table className="w-full">
                   <thead className="bg-brand-navy text-brand-navy-foreground">
                     <tr>

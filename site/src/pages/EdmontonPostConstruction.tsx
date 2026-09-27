@@ -363,7 +363,7 @@ export default function EdmontonPostConstruction() {
                 is the rate, before 5% GST. It is for the condition you describe; if it needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.
               </p>
             </div>
-            <div className="mx-auto mt-10 max-w-2xl overflow-hidden border border-border rounded-xl">
+            <div className="mx-auto mt-10 max-w-2xl overflow-x-auto border border-border rounded-xl">
               <table className="w-full">
                 <thead className="bg-brand-navy text-brand-navy-foreground">
                   <tr>

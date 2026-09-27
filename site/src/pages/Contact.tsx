@@ -734,6 +734,7 @@ export default function Contact() {
                       <Label htmlFor="contact-name">Name<span className="text-accent" aria-hidden="true"> *</span></Label>
                       <Input
                         id="contact-name"
+                        aria-required="true"
                         autoComplete="name"
                         placeholder="Your full name"
                         value={formData.name}
@@ -748,6 +749,7 @@ export default function Contact() {
                       <Label htmlFor="contact-phone">Phone<span className="text-accent" aria-hidden="true"> *</span></Label>
                       <Input
                         id="contact-phone"
+                        aria-required="true"
                         type="tel"
                         inputMode="tel"
                         autoComplete="tel"
@@ -766,6 +768,7 @@ export default function Contact() {
                     <Label htmlFor="contact-email">Email<span className="text-accent" aria-hidden="true"> *</span></Label>
                     <Input
                       id="contact-email"
+                      aria-required="true"
                       type="email"
                       inputMode="email"
                       autoComplete="email"
@@ -783,7 +786,7 @@ export default function Contact() {
                     <div className="space-y-2">
                       <Label htmlFor="contact-city">City<span className="text-accent" aria-hidden="true"> *</span></Label>
                       <Select value={formData.city} onValueChange={(value) => setFormData({ ...formData, city: value })}>
-                        <SelectTrigger id="contact-city" aria-label="City" aria-invalid={Boolean(errors.city)} aria-describedby={errors.city ? "contact-city-error" : undefined} className={errors.city ? "border-destructive" : ""}>
+                        <SelectTrigger id="contact-city" aria-required="true" aria-label="City" aria-invalid={Boolean(errors.city)} aria-describedby={errors.city ? "contact-city-error" : undefined} className={errors.city ? "border-destructive" : ""}>
                           <SelectValue placeholder="Select your city" />
                         </SelectTrigger>
                         <SelectContent>
@@ -797,7 +800,7 @@ export default function Contact() {
                     <div className="space-y-2">
                       <Label htmlFor="contact-service">Service<span className="text-accent" aria-hidden="true"> *</span></Label>
                       <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
-                        <SelectTrigger id="contact-service" aria-label="Service" aria-invalid={Boolean(errors.service)} aria-describedby={errors.service ? "contact-service-error" : undefined} className={errors.service ? "border-destructive" : ""}>
+                        <SelectTrigger id="contact-service" aria-required="true" aria-label="Service" aria-invalid={Boolean(errors.service)} aria-describedby={errors.service ? "contact-service-error" : undefined} className={errors.service ? "border-destructive" : ""}>
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
@@ -820,6 +823,7 @@ export default function Contact() {
                     <Label htmlFor="contact-message">Message<span className="text-accent" aria-hidden="true"> *</span></Label>
                     <Textarea
                       id="contact-message"
+                      aria-required="true"
                       placeholder="How can we help?"
                       rows={5}
                       value={formData.message}

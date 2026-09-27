@@ -257,11 +257,11 @@ export default function CityConversionIntro({
 
         <div className="relative">
           <div className="container relative mx-auto flex px-4 py-12 md:py-14 lg:min-h-[620px] lg:items-center lg:py-14">
-          <div className="grid w-full items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,23rem)] lg:gap-14">
+          <div className="grid w-full grid-cols-[minmax(0,1fr)] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,23rem)] lg:gap-14">
 
-            <div className="max-w-2xl lg:max-w-none">
+            <div className="min-w-0 max-w-2xl lg:max-w-none">
               {/* City switch kept — this homepage serves two cities. */}
-              <div className="mb-6 inline-flex items-center gap-2 text-sm">
+              <div className="mb-6 inline-flex flex-wrap items-center gap-2 text-sm">
                 <span className="font-semibold text-white/70">Choose your city:</span>
                 <div className="inline-flex rounded-sm border border-white/25 bg-white/10 p-0.5 backdrop-blur-sm">
                   {(["Edmonton", "Calgary"] as const).map((option) => {

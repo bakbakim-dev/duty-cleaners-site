@@ -610,16 +610,18 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
           <Button
             asChild
             variant="outline"
-            className="min-h-[48px] shrink-0 border-brand-navy-foreground/40 bg-transparent px-4 text-base font-bold text-brand-navy-foreground hover:bg-brand-navy-foreground/10 hover:text-brand-navy-foreground"
+            className="min-h-[48px] shrink-0 border-brand-navy-foreground/40 bg-transparent px-3 min-[360px]:px-4 text-base font-bold text-brand-navy-foreground hover:bg-brand-navy-foreground/10 hover:text-brand-navy-foreground"
           >
             <a href={neutral ? OFFICES_ANCHOR : phoneLink} aria-label={neutral ? "Call an office" : `Call ${phone}`}>
               <span className="dc-icon dc-icon-phone mr-2 h-5 w-5" aria-hidden="true" />
               Call
             </a>
           </Button>
-          <Button asChild className="min-h-[48px] flex-1 bg-accent text-base font-bold text-accent-foreground hover:bg-accent/90">
+          {/* At 320px (WCAG 1.4.10 reflow) the label ran past the screen: below 360px
+              the icon goes, and a label that still does not fit wraps. */}
+          <Button asChild className="min-h-[48px] min-w-0 flex-1 whitespace-normal px-3 text-center leading-tight min-[360px]:px-4 bg-accent text-base font-bold text-accent-foreground hover:bg-accent/90">
             <Link to={quoteTarget} onClick={handleQuoteClick}>
-              <Calculator className="mr-2 h-5 w-5" aria-hidden="true" />
+              <Calculator className="mr-2 hidden h-5 w-5 shrink-0 min-[360px]:inline-block" aria-hidden="true" />
               {quoteLabel}
             </Link>
           </Button>

@@ -174,7 +174,7 @@ export default function BlogCleaningSchedule() {
             
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
-                <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                <span className="inline-flex items-center gap-1 bg-primary/10 text-brand-navy px-3 py-1 rounded-full font-medium">
                   Cleaning Tips
                 </span>
                 <PostDateline path="/blog/cleaning-schedule" />
@@ -244,7 +244,7 @@ export default function BlogCleaningSchedule() {
                       <span className="dc-icon dc-icon-circle-check h-6 w-6 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{task.title}</h3>
-                        <p className="text-muted-foreground text-sm">{task.description}</p>
+                        <p className="text-foreground/80 text-sm">{task.description}</p>
                       </div>
                     </div>
                   ))}
@@ -287,7 +287,7 @@ export default function BlogCleaningSchedule() {
                       <span className="dc-icon dc-icon-circle-check h-6 w-6 text-secondary-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{task.title}</h3>
-                        <p className="text-muted-foreground text-sm">{task.description}</p>
+                        <p className="text-foreground/80 text-sm">{task.description}</p>
                       </div>
                     </div>
                   ))}
@@ -326,7 +326,7 @@ export default function BlogCleaningSchedule() {
                       <span className="dc-icon dc-icon-circle-check h-6 w-6 text-accent-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{task.title}</h3>
-                        <p className="text-muted-foreground text-sm">{task.description}</p>
+                        <p className="text-foreground/80 text-sm">{task.description}</p>
                       </div>
                     </div>
                   ))}

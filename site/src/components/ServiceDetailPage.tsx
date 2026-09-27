@@ -828,8 +828,10 @@ const ServiceDetailPage = ({
 
       <Footer />
 
-      {/* Sticky Price Bar — desktop, appears after scrolling past hero */}
-      <div
+      {/* Sticky Price Bar — desktop, appears after scrolling past hero. An aside,
+          so its content sits in a landmark (axe "region", 2026-09-27). */}
+      <aside
+        aria-label="Price and booking shortcut"
         className={`hidden md:block fixed bottom-0 inset-x-0 z-40 transition-transform duration-300 ${
           showSticky ? "translate-y-0" : "translate-y-full"
         }`}
@@ -868,7 +870,7 @@ const ServiceDetailPage = ({
             </div>
           </div>
         </div>
-      </div>
+      </aside>
     </div>
   );
 };

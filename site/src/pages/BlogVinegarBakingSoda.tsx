@@ -134,7 +134,7 @@ export default function BlogVinegarBakingSoda() {
             
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
-                <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                <span className="inline-flex items-center gap-1 bg-primary/10 text-brand-navy px-3 py-1 rounded-full font-medium">
                   Green Cleaning
                 </span>
                 <PostDateline path="/cleaning-with-vinegar-and-baking-soda" />

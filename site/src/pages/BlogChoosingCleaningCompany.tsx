@@ -153,7 +153,7 @@ export default function BlogChoosingCleaningCompany() {
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Blog
               </Link>
-              <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block bg-primary/10 text-brand-navy px-3 py-1 rounded-full text-sm font-medium mb-4">
                 Hiring Guide
               </span>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">

@@ -147,7 +147,7 @@ export default function BlogSpotlessHomeTips() {
 
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
-                <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                <span className="inline-flex items-center gap-1 bg-primary/10 text-brand-navy px-3 py-1 rounded-full font-medium">
                   Cleaning Tips
                 </span>
                 <PostDateline path="/blog/spotless-home-tips" />
@@ -225,7 +225,7 @@ export default function BlogSpotlessHomeTips() {
                       <span className="dc-icon dc-icon-circle-check h-6 w-6 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{h.title}</h3>
-                        <p className="text-muted-foreground text-sm">{h.body}</p>
+                        <p className="text-foreground/80 text-sm">{h.body}</p>
                       </div>
                     </div>
                   ))}

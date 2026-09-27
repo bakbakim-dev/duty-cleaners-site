@@ -450,7 +450,7 @@ export default function CalgaryMoveInOut() {
             the exact price including cents.
           </p>
 
-          <div className="mx-auto mb-8 max-w-2xl overflow-hidden border border-border">
+          <div className="mx-auto mb-8 max-w-2xl overflow-x-auto border border-border">
             <table className="w-full">
               <thead className="bg-brand-navy text-brand-navy-foreground">
                 <tr>

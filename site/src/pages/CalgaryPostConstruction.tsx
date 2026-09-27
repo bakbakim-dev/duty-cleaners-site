@@ -397,7 +397,7 @@ export default function CalgaryPostConstruction() {
                 the number on the card should not be a surprise.
               </p>
             </div>
-            <div className="mx-auto mt-10 max-w-2xl overflow-hidden border border-border rounded-xl">
+            <div className="mx-auto mt-10 max-w-2xl overflow-x-auto border border-border rounded-xl">
               <table className="w-full">
                 <thead className="bg-brand-navy text-brand-navy-foreground">
                   <tr>

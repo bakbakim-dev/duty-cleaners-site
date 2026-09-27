@@ -295,7 +295,7 @@ function ServiceCard({ service }: { service: Service }) {
 
   return (
     <div
-      className="group relative h-full flex flex-col bg-white rounded-2xl shadow-lg p-8 transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-2xl border-t-4 border-primary"
+      className="group relative h-full flex flex-col bg-white rounded-2xl shadow-lg p-5 min-[360px]:p-8 transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-2xl border-t-4 border-primary"
     >
       {badge && (
         <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full shadow">
@@ -447,7 +447,7 @@ export default function CalgaryServices() {
             <p className="text-muted-foreground leading-relaxed mb-4">{GUIDE_OPENER}</p>
             <p className="text-muted-foreground leading-relaxed">The cards identify the scope and starting price of each service. Full home-size tiers and add-ons stay on the city price list. Pets, home type and an address outside city limits can add charges; the quote shows the applicable total before booking.</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
+          <div className="grid grid-cols-[minmax(0,1fr)] md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
             {services.map((service) => (
               <ServiceCard key={service.title} service={service} />
             ))}

@@ -392,7 +392,7 @@ export default function WallWashingEdmonton() {
                   bin. The full wash is every painted wall in the rooms you book.
                 </p>
               </div>
-              <div className="overflow-hidden border border-border rounded-xl">
+              <div className="overflow-x-auto border border-border rounded-xl">
                 <table className="w-full">
                   <thead className="bg-brand-navy text-brand-navy-foreground">
                     <tr>

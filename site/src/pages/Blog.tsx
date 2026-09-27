@@ -244,7 +244,7 @@ export default function Blog() {
             <div className="text-center mb-14">
               <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
                 <span className="dc-icon dc-icon-sparkles w-4 h-4 text-primary" aria-hidden="true" />
-                <span className="text-primary text-sm font-medium">Latest Articles</span>
+                <span className="text-brand-navy text-sm font-medium">Latest Articles</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Browse Our Blog</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
