@@ -117,7 +117,7 @@ export default function Grovenor() {
                   Professional House Cleaning in Grovenor
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Close to nine in ten Grovenor homes are single detached houses, most of them built before 1980, and at the south end the streets run down toward MacKinnon Ravine. Duty Cleaners sends Edmonton teams here at a price set by home size and shown before you book.
+                  About four in five Grovenor homes were single detached houses at the 2016 municipal census, most of them built before 1980, and at the south end the streets run down toward MacKinnon Ravine. Duty Cleaners sends Edmonton teams here at a price set by home size and shown before you book.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -267,7 +267,7 @@ export default function Grovenor() {
         heading="Stony Plain Road is a worksite"
         paragraphs={[
           "Stony Plain Road splits Grovenor in two, and it has been an active LRT worksite since construction started in 2022. The Valley Line West stop going in at 142 Street carries the neighbourhood's own name, and the line is expected to be finished in 2028. Blocks nearest the road get the consequences: cement dust on sills and window tracks, plus grit walked in off detoured sidewalks.",
-          "At the south end the streets run down toward MacKinnon Ravine, out of the corridor entirely and into old trees. Close to nine in ten homes here are single detached, most of them up before 1980, so the yards are mature and what comes through the door is organic: leaf litter in autumn, ravine mud through the spring melt, seed and pollen in early summer. That is a mudroom-and-entry problem, not a glass one.",
+          "At the south end the streets run down toward MacKinnon Ravine, out of the corridor entirely and into old trees. About four in five homes here were single detached at the 2016 municipal census, most of them up before 1980, so the yards are mature and what comes through the door is organic: leaf litter in autumn, ravine mud through the spring melt, seed and pollen in early summer. That is a mudroom-and-entry problem, not a glass one.",
         ]}
       />
 

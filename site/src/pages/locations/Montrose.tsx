@@ -77,24 +77,24 @@ export default function Montrose() {
     <>
       <Helmet>
         <title>House Cleaners in Montrose, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="In Montrose, Edmonton, two-thirds of the housing went up before 1961, so a stairwell or finished basement can take longer to clean than the kitchen." />
+        <meta name="description" content="In Montrose, Edmonton, close to six in ten homes went up in 1960 or earlier, so a stairwell or finished basement can take longer to clean than the kitchen." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Montrose, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/montrose",
   areaServed: "Montrose, Edmonton, AB",
-  description: "In Montrose, Edmonton, two-thirds of the housing went up before 1961, so a stairwell or finished basement can take longer to clean than the kitchen.",
+  description: "In Montrose, Edmonton, close to six in ten homes went up in 1960 or earlier, so a stairwell or finished basement can take longer to clean than the kitchen.",
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/montrose/" />
         <meta property="og:title" content="House Cleaners in Montrose, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="In Montrose, Edmonton, two-thirds of the housing went up before 1961, so a stairwell or finished basement can take longer to clean than the kitchen." />
+        <meta property="og:description" content="In Montrose, Edmonton, close to six in ten homes went up in 1960 or earlier, so a stairwell or finished basement can take longer to clean than the kitchen." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/montrose/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Montrose, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="In Montrose, Edmonton, two-thirds of the housing went up before 1961, so a stairwell or finished basement can take longer to clean than the kitchen." />
+        <meta name="twitter:description" content="In Montrose, Edmonton, close to six in ten homes went up in 1960 or earlier, so a stairwell or finished basement can take longer to clean than the kitchen." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -114,7 +114,7 @@ export default function Montrose() {
                 Professional House Cleaning in Montrose
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Montrose sits between Yellowhead Trail and 118 Avenue, and roughly two-thirds of its houses went up before 1961. Standard, deep and move-out cleans in Montrose are priced flat by home size, before 5% GST.
+                Montrose sits between Yellowhead Trail and 118 Avenue, and close to six in ten of its homes went up in 1960 or earlier (2016 census). Standard, deep and move-out cleans in Montrose are priced flat by home size, before 5% GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -255,7 +255,7 @@ export default function Montrose() {
         heading="Between the Yellowhead and 118 Avenue"
         paragraphs={[
           "Yellowhead Trail runs along the northern edge here, 118 Avenue along the southern one, and the CN right-of-way with the northeast LRT line down the west side. The Yellowhead is Highway 16 through the city, so it carries truck traffic in both directions year-round. Houses on the north blocks take more of that than the middle of the neighbourhood does, and it turns up first on the outer glass and the window screens. The outer glass is outdoor work and the screens stay in place, so the clean deals with the sills from inside.",
-          "Roughly two-thirds of the housing went up before 1961, a fifth of it before 1946. Main floors of that age are small by modern standards, and living space has spread downward over the decades. The work moves with it: a stairwell, a lower-level bathroom and a finished basement room can take longer than the kitchen does.",
+          "Close to six in ten homes went up in 1960 or earlier (2016 census). Main floors of that age are small by modern standards, and living space has spread downward over the decades. The work moves with it: a stairwell, a lower-level bathroom and a finished basement room can take longer than the kitchen does.",
         ]}
       />
 

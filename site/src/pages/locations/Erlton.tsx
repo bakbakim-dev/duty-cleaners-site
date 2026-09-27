@@ -66,12 +66,12 @@ export default function Erlton() {
     <>
       <Helmet>
         <title>House Cleaning Services in Erlton, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Erlton sits beside Stampede Park in Calgary, and about seven buildings in ten are condos or apartments, so most house cleaning here is suite-scale." />
+        <meta name="description" content="Erlton sits beside Stampede Park in Calgary, and about two homes in three are apartments or condos, so most house cleaning here is suite-scale." />
         <meta property="og:title" content="House Cleaning Services in Erlton, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Erlton, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Erlton sits beside Stampede Park in Calgary, and about seven buildings in ten are condos or apartments, so most house cleaning here is suite-scale." />
-        <meta property="og:description" content="Erlton sits beside Stampede Park in Calgary, and about seven buildings in ten are condos or apartments, so most house cleaning here is suite-scale." />
+        <meta name="twitter:description" content="Erlton sits beside Stampede Park in Calgary, and about two homes in three are apartments or condos, so most house cleaning here is suite-scale." />
+        <meta property="og:description" content="Erlton sits beside Stampede Park in Calgary, and about two homes in three are apartments or condos, so most house cleaning here is suite-scale." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/erlton-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/erlton-calgary/" />
@@ -240,7 +240,7 @@ export default function Erlton() {
         heading="Erlton beside the grounds"
         paragraphs={[
           "Erlton sits between the Elbow River and Stampede Park, and for ten days each July the neighbourhood absorbs the grounds' dust, crowds and parking overflow.",
-          "The housing runs heavily to condominiums and apartments, about seven buildings in ten, with a scatter of heritage survivors among them. Most cleans here are suite-scale: compact kitchens and in-suite laundry. River-path cyclists and MNP Centre traffic keep entries busy year-round, and Macleod Trail bisects the community north to south. On the Macleod side, balcony glass and rails carry visible traffic film between visits. Both sit outside the clean, which stops at the balcony door and takes in the sills on the inside.",
+          "The housing runs heavily to condominiums and apartments, about two dwellings in three at the 2021 census, with a scatter of heritage survivors among them. Most cleans here are suite-scale: compact kitchens and in-suite laundry. River-path cyclists and MNP Centre traffic keep entries busy year-round, and Macleod Trail bisects the community north to south. On the Macleod side, balcony glass and rails carry visible traffic film between visits. Both sit outside the clean, which stops at the balcony door and takes in the sills on the inside.",
         ]}
       />
 

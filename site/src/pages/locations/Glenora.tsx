@@ -74,15 +74,15 @@ export default function Glenora() {
     <>
       <Helmet>
         <title>Home Cleaning You Can Count On in Glenora, Edmonton</title>
-        <meta name="description" content="Nine in ten Glenora homes in Edmonton were standing by 1970, and their plaster, deep milled trim and original hardwood take no saturated mop." />
+        <meta name="description" content="More than eight in ten Glenora homes in Edmonton were standing by 1980, and their plaster, deep milled trim and original hardwood take no saturated mop." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/glenora-edmonton/" />
         <meta property="og:title" content="Home Cleaning You Can Count On in Glenora, Edmonton" />
-        <meta property="og:description" content="Nine in ten Glenora homes in Edmonton were standing by 1970, and their plaster, deep milled trim and original hardwood take no saturated mop." />
+        <meta property="og:description" content="More than eight in ten Glenora homes in Edmonton were standing by 1980, and their plaster, deep milled trim and original hardwood take no saturated mop." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/glenora-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Home Cleaning You Can Count On in Glenora, Edmonton" />
-        <meta name="twitter:description" content="Nine in ten Glenora homes in Edmonton were standing by 1970, and their plaster, deep milled trim and original hardwood take no saturated mop." />
+        <meta name="twitter:description" content="More than eight in ten Glenora homes in Edmonton were standing by 1980, and their plaster, deep milled trim and original hardwood take no saturated mop." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Glenora Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/glenora-edmonton", areaServed: "Glenora, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -252,7 +252,7 @@ export default function Glenora() {
         eyebrow="Ground truth"
         heading="Government House and the ravine edge"
         paragraphs={[
-          "Nine homes in ten here were standing by 1970, and the south edge is not a street at all — it drops into the river valley and MacKinnon Ravine. Two consequences follow. Interiors of that age carry plaster, deep milled trim and original hardwood, none of which take a saturated mop; and the ravine sends leaf litter, seed and spring mud up to the doors that face it.",
+          "More than eight homes in ten here were standing by 1980 (2016 census), and the south edge is not a street at all — it drops into the river valley and MacKinnon Ravine. Two consequences follow. Interiors of that age carry plaster, deep milled trim and original hardwood, none of which take a saturated mop; and the ravine sends leaf litter, seed and spring mud up to the doors that face it.",
           "The other surprise is the housing mix. Three quarters is detached, but a full fifth sits in high-rise apartments, mostly along the Groat Road side by Government House. That is two different jobs on one street grid: a century house wants slow dry work on trim and radiators, while a tower suite is a compact kitchen and a bathroom fan.",
         ]}
       />

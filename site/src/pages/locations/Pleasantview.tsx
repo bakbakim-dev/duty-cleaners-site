@@ -264,7 +264,7 @@ export default function Pleasantview() {
         eyebrow="What we see"
         heading="Bungalow hours, apartment hours"
         paragraphs={[
-          "Pleasantview carries two housing stocks at once. Census counts from the early 2000s put just under half its homes as single-family and two in five as apartments, evenly split between towers of five storeys and up and low-rise walk-ups, with the 1960s the dominant build decade across the neighbourhood. The two stocks ask for different visits — a bungalow's hours go to floors and baseboards, an apartment's to a galley kitchen, a bathroom fan and a balcony door track that packs with dirt until it jams.",
+          "Pleasantview carries two housing stocks at once. At the 2016 municipal census about two in five homes were single detached and more than two in five were apartments, more of them in low-rise walk-ups than in towers of five storeys and up, with most homes dating from 1961 to 1980. The two stocks ask for different visits — a bungalow's hours go to floors and baseboards, an apartment's to a galley kitchen, a bathroom fan and a balcony door track that packs with dirt until it jams.",
           "Southgate station and its transit centre sit a few blocks south of the southwest corner, below where 111 Street meets 51 Avenue, which puts a walking commute within reach of these streets. Walking commutes bring the street indoors. From first snow through spring breakup that means road salt and sand at the door, and salt left to dry will dull a finish, so entry floors and the runner beyond them are worth weekly attention.",
         ]}
       />

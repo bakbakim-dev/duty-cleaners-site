@@ -119,7 +119,7 @@ export default function Bellevue() {
                 Professional House Cleaning in Bellevue
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Bellevue was essentially built out by 1960, and 96 per cent of its homes are detached. Houses facing the river valley track in spring mud, and those along Wayne Gretzky Drive get the winter sanding grit.
+                Bellevue was essentially built out by 1960, and at the 2016 municipal census 94 per cent of its homes were detached. Houses facing the river valley track in spring mud, and those along Wayne Gretzky Drive get the winter sanding grit.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -261,7 +261,7 @@ export default function Bellevue() {
         eyebrow="Local knowledge"
         heading="Wartime houses above the valley"
         paragraphs={[
-          "Building here was essentially finished by 1960, and better than a fifth of the houses predate the end of the Second World War. Ninety-six per cent are detached and three quarters are owner-occupied, which makes this long-run maintenance work on finishes people intend to keep rather than the reset a turnover needs. Softwood floors and painted trim of that age grey under standing water, so the wet work stays wrung out.",
+          "Building here was essentially finished by 1960, and better than a fifth of the houses predate the end of the Second World War. At the 2016 municipal census 94 per cent were detached and four in five responding households owned their home, which makes this long-run maintenance work on finishes people intend to keep rather than the reset a turnover needs. Softwood floors and painted trim of that age grey under standing water, so the wet work stays wrung out.",
           "The south boundary is the river valley itself and Wayne Gretzky Drive runs the west side. Those are two very different neighbours: the valley sends organic litter and spring mud to the doors facing it, while the arterial throws winter sanding grit at the houses on its flank. Which side a home sits on decides which of the two it fights.",
         ]}
       />

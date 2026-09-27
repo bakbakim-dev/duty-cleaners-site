@@ -117,7 +117,7 @@ export default function Kildare() {
                   Professional House Cleaning in Kildare
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  About half of Kildare's homes date from the 1960s and three in ten from the 1970s, with a large row-house development in the northwest corner. Our Edmonton branch cleans each at a flat rate by home size.
+                  Nearly three in four of Kildare's homes date from 1961 to 1980 (2016 census), with a large row-house development in the northwest corner. Our Edmonton branch cleans each at a flat rate by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -268,7 +268,7 @@ export default function Kildare() {
         heading="Grit season on 137 Avenue"
         paragraphs={[
           "Kildare is boxed in on four sides by 137 Avenue to the south, 66 Street to the east, 144 Avenue to the north and 82 Street to the west. 137 Avenue and 66 Street, which meet at the southeast corner, both get sanded through winter, and the sand does not stay outdoors. It rides in on boots and works into the mat weave, the door sweep and the grout of the entry tile, and it keeps arriving until the spring sweep clears 137 Avenue.",
-          "About half the housing dates from the 1960s and another three in ten from the 1970s. At the 2005 municipal count roughly a quarter of dwellings were row houses, and they are not spread evenly — a large row-house development takes up the northwest corner. Those units are narrow and vertical, so kitchen, bathroom and stairwell absorb most of the daily wear while floor area stays small. A visit to one of them goes mostly to those three rooms rather than to floor area.",
+          "Nearly three in four homes date from 1961 to 1980, and at the 2016 municipal census about three in ten dwellings were row houses, and they are not spread evenly — a large row-house development takes up the northwest corner. Those units are narrow and vertical, so kitchen, bathroom and stairwell absorb most of the daily wear while floor area stays small. A visit to one of them goes mostly to those three rooms rather than to floor area.",
         ]}
       />
 

@@ -93,7 +93,7 @@ export default function Hazeldean() {
                 Professional House Cleaning in Hazeldean
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Three in four Hazeldean houses date from the end of the war to 1960, on streets between rail land to the west and Mill Creek Ravine to the east. You pay once the clean is complete, at a flat rate set by the size of the house.
+                Nearly three in four Hazeldean houses date from 1960 or earlier (2016 census), on streets between rail land to the west and Mill Creek Ravine to the east. You pay once the clean is complete, at a flat rate set by the size of the house.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -196,7 +196,7 @@ export default function Hazeldean() {
         heading="Rail yards west, ravine east"
         paragraphs={[
           "Rail land sits on the west and northwest of this pocket and industrial blocks wrap the south, which puts a fine mineral dust on window tracks and sills — the sort that dry dusting lifts into the air and drops again two feet away.",
-          "The east boundary is Mill Creek Ravine, where the paved path north of 67 Avenue runs on the old rail bed and the dirt side trails off it turn to mud after the melt — April soil and August soil arrive at the same door looking nothing alike. Indoors, three houses in four date from between the war's end and 1960 and barely one in fifteen from after 1970, so post-construction work here means renovation dust in an occupied house, not an empty shell.",
+          "The east boundary is Mill Creek Ravine, where the paved path north of 67 Avenue runs on the old rail bed and the dirt side trails off it turn to mud after the melt — April soil and August soil arrive at the same door looking nothing alike. Indoors, nearly three houses in four date from 1960 or earlier and fewer than one in ten from after 1980 (2016 census), so post-construction work here means renovation dust in an occupied house, not an empty shell.",
         ]}
       />
 
