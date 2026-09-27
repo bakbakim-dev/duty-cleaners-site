@@ -322,6 +322,10 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - Location-page local notes are fact-checked. Never delete one to fix a guard: the duplicate-content
   guards depend on them. Geographic claims need an independent check.
 - `_redirects` and `.htaccess` are generated; never hand-edit them.
+- The Content-Security-Policy is ENFORCED since 2026-09-27 (83a63cd; was Report-Only). A new
+  third-party script, fetch, frame or image host must go into `public/_headers` first or it is
+  blocked (note 1 there says how it was verified). Blog bylines render from the schema's dates
+  (`PostDateline`); never hand-type a post date.
 - Location-page cards (2026-09-18): the service and "why us" cards on all 163 location pages come
   from `site/src/data/location-cards.tsx` and render through `site/src/components/LocationCards.tsx`.
   They are titles and links on purpose (only the rating card keeps a line): identical card
