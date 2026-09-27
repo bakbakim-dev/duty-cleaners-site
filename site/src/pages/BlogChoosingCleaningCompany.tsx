@@ -50,7 +50,7 @@ const customizationOptions = [
   },
   {
     title: "Special Requests",
-    description: "If you prefer particular products or want the team to focus on high-traffic areas, say so before booking. At Duty Cleaners, optional alternative products are a paid add-on: ask the office which products are available and suitable for your surfaces when you book."
+    description: "If you prefer particular products or want the team to focus on high-traffic areas, say so before booking. At Duty Cleaners, eco-friendly products are a paid add-on: ask for them when you book."
   },
   {
     title: "Adjustable Frequency",

@@ -28,7 +28,7 @@ export interface ServicePolicy {
   cancellationFee: Confirmed<string> | Unconfirmed;
   lockoutFee: Confirmed<string> | Unconfirmed;
   /**
-   * Charge for optional alternative products instead of the team's usual ones.
+   * Charge for eco-friendly products instead of the team's usual ones.
    * (The key keeps its old "eco" name so existing imports still compile; the
    * copy never says "eco-friendly", see below.)
    *
@@ -113,7 +113,7 @@ export const POLICY: ServicePolicy = {
    * literals on the service pages precisely so prices come from one place, and
    * for a charge BookingKoala does not carry, that place is here.
    *
-   * Owner, 2026-09-11: the option is named "optional alternative products",
+   * Owner, 2026-09-11: the option is named "eco-friendly products",
    * never "eco-friendly". The cleaners are subcontractors who choose their own
    * products, so nothing on file supports an environmental, green, non-toxic
    * or pet-safe claim for them. The customer asks the office which products
@@ -121,7 +121,7 @@ export const POLICY: ServicePolicy = {
    * owner-answers-0911.test.ts.
    */
   ecoProductsFee: confirm("$15", { by: "owner", on: "2026-09-07" }),
-  ecoProductsHowToRequest: confirm("ask the office which products are available and suitable for your surfaces when you book", { by: "owner", on: "2026-09-11" }),
+  ecoProductsHowToRequest: confirm("ask for them when you book, and the team uses eco-friendly products instead of its usual ones", { by: "owner", on: "2026-09-26" }),
 
   /**
    * Confirmed by the owner. Neither the current site nor the legacy mirror had
@@ -339,7 +339,7 @@ export const NOT_INCLUDED = [
 /** Access, scheduling and what we bring. Consistent across the FAQ and Prepare. */
 export const SERVICE_TERMS = [
   "You do not need to be home. Most customers leave a key, a lockbox code, or smart-lock access, and we lock up when we finish.",
-  `We bring all cleaning supplies and equipment. Optional alternative products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}. That charge is before GST.`,
+  `We bring all cleaning supplies and equipment. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}. That charge is before GST.`,
   "Running water is required. Some tasks, including vacuuming, may not be possible without electricity.",
   "Tell us about pets, parking, how to get in, and any rooms to skip when you book — the booking form asks for each of these.",
   // Per branch, from proof.ts: the Red Deer office keeps different hours.

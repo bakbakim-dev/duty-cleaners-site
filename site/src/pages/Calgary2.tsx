@@ -215,7 +215,7 @@ export default function Calgary2() {
     answer: "No. A key, a lockbox code or a smart-lock code is how most Calgary customers handle it, and the team locks the door behind them. The water has to be on, and without electricity the vacuuming may not be possible."
   }, {
     question: "Whose products and equipment are used?",
-    answer: `The products are ours: the team brings every supply and every piece of equipment. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
+    answer: `The products are ours: the team brings every supply and every piece of equipment. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
   }, {
     question: "Is there a charge for pets in a Calgary home?",
     answer: `Yes. A home with pets carries ${PET_FEE} per visit, before GST. The charge is compulsory, and it shows on the quote before you book. Litter boxes and animal waste are outside what the team cleans.`

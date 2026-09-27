@@ -92,7 +92,7 @@ export default function Devon() {
     },
     {
       question: "Do the cleaners bring their own supplies to Devon?",
-      answer: `Yes. The team brings all supplies and equipment, from products and cloths to the mop and the vacuum. Leave the water and power on until the clean is done: running water is required, and vacuuming may not be possible without electricity. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `Yes. The team brings all supplies and equipment, from products and cloths to the mop and the vacuum. Leave the water and power on until the clean is done: running water is required, and vacuuming may not be possible without electricity. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What happens if something is missed?",

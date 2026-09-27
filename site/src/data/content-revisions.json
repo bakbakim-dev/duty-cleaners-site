@@ -1,14 +1,14 @@
 {
   "/": {
-    "hash": "9eaf78e636468eb712d5d21b7599bc0905e3f8a10a0156b4700873ac5c903f95",
+    "hash": "88b2068acf40128d20bbdf466963cfbde3bfe84d7e2727217b2dfb0328124bed",
     "modified": "2026-09-26"
   },
   "/about-us": {
-    "hash": "680b62b19ea3ae48d9094b3bf21306285d72f413e8d1b5784a7619ff8498fa6c",
+    "hash": "7a30ce9b29aba12a7b277b826a5bc47be76da37f124f2cb66e25da8ef5b62021",
     "modified": "2026-09-26"
   },
   "/airbnb-cleaning-services-calgary": {
-    "hash": "ac4810ca870e524fef6a8f5f8f035d245e2beb605eaa6d0835a2fb517b4e0ac5",
+    "hash": "f43858cc929f3ec1b2c7ed9af4b373a176ee536c170d64e139ac598744117643",
     "modified": "2026-09-26"
   },
   "/blog": {
@@ -16,35 +16,35 @@
     "modified": "2026-09-17"
   },
   "/blog/choosing-cleaning-company": {
-    "hash": "cf9a64c536ac574a26900d77e8539430fc75806d99b0d1c8257d15b9a6988c13",
-    "modified": "2026-09-12"
+    "hash": "7c5a904557f9c824227395e84c6f0d4ab0b9910959a74c753ac3d58d327e43da",
+    "modified": "2026-09-26"
   },
   "/blog/cleaning-schedule": {
     "hash": "a3fcd900863de45d1cbcc0ded7682f40d583a8ed18d184ec33df8ee38056cf3e",
     "modified": "2026-09-12"
   },
   "/blog/cleaning-services-calgary": {
-    "hash": "6c83647b4e2b024dd00769e4ee7942caaec46b8e422e7f61e9121e0e9b7bf0fa",
-    "modified": "2026-09-13"
+    "hash": "08f8f135ccefa154f3f27c9368e8bd62ba1067cb4ccd2c97d5e5c295a81b36e7",
+    "modified": "2026-09-26"
   },
   "/blog/spotless-home-tips": {
     "hash": "6736b49d569465fb8387454b1a2b346e424a9bce3e6866489099eab0cd6e742f",
     "modified": "2026-09-13"
   },
   "/calgary/deep-cleaning": {
-    "hash": "4d9fbabd36b4e45b865f712ccaa1e6b155ed1e5f43e533449528355c567c19b8",
+    "hash": "19884ac30298ce2b4d2d8c0ad01dbef9da8e24fba1997133b61a5f833336eab2",
     "modified": "2026-09-26"
   },
   "/calgary/pricing": {
-    "hash": "d6b32bc31211ebdf01dbb2a04765fea0ef6e3519afc81be98f45c4bc8e3df6b3",
+    "hash": "62ad5854768e83f1d27fdf73aab80be576e3ed32fac6e9f5987d02c336b53b7f",
     "modified": "2026-09-26"
   },
   "/calgary/recurring-cleaning": {
-    "hash": "9f5383bebb01ef6a0dcf80066df64a4d35f2f86e9f86ba65d9a886d2f52d2db3",
+    "hash": "5a95637f33d067febe7c8bedb9949cb53f2a4d04f0a3e08078276eca026264ed",
     "modified": "2026-09-26"
   },
   "/calgary/regular-cleaning": {
-    "hash": "8d7bbaa5fa197232880b6a339d0612e41fb7c93a19e565a59e429db9ed7b41b9",
+    "hash": "5738e561cbefa5a23093d8f1620032c99225de9edc1cfec21ea722175fb1c2e3",
     "modified": "2026-09-26"
   },
   "/calgary/services": {
@@ -52,55 +52,55 @@
     "modified": "2026-09-13"
   },
   "/cleaning-services-airdrie": {
-    "hash": "21f9bb41a877cc59ffcba4ba001354ab7da44a1dceb0646741c907c85cb44f61",
+    "hash": "37a369295e40184999c47bf15e11414cd49b740332840676608d7ff31e3abc8a",
     "modified": "2026-09-26"
   },
   "/cleaning-services-beaumont": {
-    "hash": "764845c57cfdea203e286b77268dde4c25b08158252d157d815cfb95ad7ea773",
+    "hash": "ecb6b158b3cdeb29e2fd6975932c11c55a2449d5fa2b9c2fe7d0de5ac1ccc62f",
     "modified": "2026-09-26"
   },
   "/cleaning-services-calgary": {
-    "hash": "3c4b4e9b97c2e8f7876dd2f45bea1420f9a22c63c1ad70a2edb3f00e46378e6c",
+    "hash": "4b0c3cd9c6955c5e6f21b9a5c07435e076eaed435a4cf61d144a5ad5f9e76395",
     "modified": "2026-09-26"
   },
   "/cleaning-services-cochrane": {
-    "hash": "bfc29ba741e8a566dc05985c907c22bd4bdd984160db4e66f22358a963571f6d",
+    "hash": "f60dd66036c6711fa588b2d3126dbd540f9fba4090b2381fcbe7a66c61be3f30",
     "modified": "2026-09-26"
   },
   "/cleaning-services-devon": {
-    "hash": "97d786d06f65e690b1e58845f8d35e4e15d3a7bd33bc14fe10487748ad31711d",
+    "hash": "75ad974cf95a0ad7fa60aa7e23afe1cd6ca2212de77bc02efa9f4a7684a4eb9d",
     "modified": "2026-09-26"
   },
   "/cleaning-services-fort-saskatchewan": {
-    "hash": "b5d4e370ef3c75add8268afe875a5bc17e6a298bce8731ea6147e54c2f5e17ab",
+    "hash": "bce4c947111aa578dfe88561a79f50886cd612dcaf70cb00cc0ecfb4e1b7d58b",
     "modified": "2026-09-26"
   },
   "/cleaning-services-leduc": {
-    "hash": "a72dedaeda4cbf9e0385f50ee057670fe963261565f9c72fff1db808f82ec366",
+    "hash": "c107d818631374f376935dac0d655e191b2e9427f22342b5829522daa0a015a6",
     "modified": "2026-09-26"
   },
   "/cleaning-services-morinville": {
-    "hash": "dc78dc5aece820852f45628a1caf1a3afc1c3a34e4dccc73b75fd633e46a844e",
-    "modified": "2026-09-22"
+    "hash": "5aeac745e585ae108df0bb310d0d1f6a71d63acf6932b35a7a487dbbb37c2f62",
+    "modified": "2026-09-26"
   },
   "/cleaning-services-red-deer": {
     "hash": "3034f93a5cadd08584c9ea59b0231f3aad4ec18099a244e3fcd38e0b345adfeb",
     "modified": "2026-09-26"
   },
   "/cleaning-services-sherwood-park": {
-    "hash": "db151c01f7fa02cbd3a5f6e89157efec2a280be7f4d91cca4025ae8ef2060bd1",
+    "hash": "b4bbc434b65c6bcc1d5634af4ae01d37ed790de9f0e5a83ee75d36af99fe7912",
     "modified": "2026-09-26"
   },
   "/cleaning-services-spruce-grove": {
-    "hash": "8b57d190272bc7957a2af2ea84e49fee2a2b08f1ac16ed2d77dd878a1bf4b10a",
+    "hash": "201be9c0d0521323ef62f1237fb3bec5b81bb23ea352066e4478c0be09330f18",
     "modified": "2026-09-26"
   },
   "/cleaning-services-st-albert": {
-    "hash": "2566042cff3ab297d399f3ee380a2c319468a755f119ce2256f84e515e1aa7be",
+    "hash": "43b9e43a484d16d6d523e7691af75efff1e1b17b2185a5b86d8f12dd46772cb1",
     "modified": "2026-09-26"
   },
   "/cleaning-services-stony-plain": {
-    "hash": "0eabfcaceceeb5faa5b62c061cd732b30c2d99a3dd6e9321600ff9b196d49d0d",
+    "hash": "4dcf1b6509eb856c421f38da686ed3f02aa6dd6ab652cbee3af7da20767482ed",
     "modified": "2026-09-26"
   },
   "/cleaning-services-windermere": {
@@ -108,8 +108,8 @@
     "modified": "2026-09-22"
   },
   "/cleaning-with-vinegar-and-baking-soda": {
-    "hash": "1ec4fa76be232f6c528d2b4e26d3f15d713e7e44d5c0b1355c6062c2238185c8",
-    "modified": "2026-09-13"
+    "hash": "e7cc2ac38f07b9bb7e473929457b9db35ef8e402a285ea8b5086d985e7aaae81",
+    "modified": "2026-09-26"
   },
   "/commercial-cleaning": {
     "hash": "7d4e42c626422e5120d15e8a1c486cd6ea7af500229e42b0e5fb337af818c792",
@@ -124,11 +124,11 @@
     "modified": "2026-09-22"
   },
   "/edmonton/airbnb-cleaning": {
-    "hash": "932aa657aee815fc84429d348bfda5d1f34b5314ed384a372d71167dda268499",
+    "hash": "79e214c8a620199dac997a85efc46bfe63f6ce1ffe0a258f96ff7d88f1683589",
     "modified": "2026-09-26"
   },
   "/edmonton/deep-cleaning": {
-    "hash": "62dc10cf1b4bc2a70ad3658044a1131c518567cf040e02afcd3a41883d0da46a",
+    "hash": "82bb42f3ace471d73a5155bf1fb608ae2194103d6c32fba069094a7fb15b2b72",
     "modified": "2026-09-26"
   },
   "/edmonton/march-out-cleaning": {
@@ -136,15 +136,15 @@
     "modified": "2026-09-26"
   },
   "/edmonton/recurring-cleaning": {
-    "hash": "067e0ec2fd02ccb3fb5f89d28b8fda7972ffa09f65f87a4c40ba7e2770c2614f",
+    "hash": "0f2bbc08f86e8cef0c877baaff8b36e3f8db491595e1214ba32a990b17d15bcf",
     "modified": "2026-09-26"
   },
   "/edmonton/regular-cleaning": {
-    "hash": "f072a41e22651d70876cb2933279a15a315a30b99901938b72ac380cb8132170",
+    "hash": "dc855cef5b199017c8845d24954979ec2659d94ec55de5b331ec0e6f4626c9d7",
     "modified": "2026-09-26"
   },
   "/faqs": {
-    "hash": "9683797c1b9b12e572dc85a72af4ddbc33ae6e317a7189f7c2923b2136a77b1b",
+    "hash": "e1d279667ca1fb2a2a5de4092deec61e1d3fd25c818397aa295570a39a592a39",
     "modified": "2026-09-26"
   },
   "/gift-card": {
@@ -172,8 +172,8 @@
     "modified": "2026-09-22"
   },
   "/locations/allendale": {
-    "hash": "2e9a525789a30ee50ccd134546e9d05f0939882ea421688a15feb9069f1e09b0",
-    "modified": "2026-09-18"
+    "hash": "0b74737c2ac20eeb3b005dcedf3e1a12eb163c0330328523b14ad20641f2222b",
+    "modified": "2026-09-26"
   },
   "/locations/altadore-calgary": {
     "hash": "5cdf120546dffa2c5a0b74e584cadfa6dc34b0dab31e3e254bd2047f364dd837",
@@ -212,16 +212,16 @@
     "modified": "2026-09-22"
   },
   "/locations/bannerman": {
-    "hash": "9146f72d884a3bdcdfe1037ea4bba398272655ce102878bb51e909667c63e1ef",
-    "modified": "2026-09-22"
+    "hash": "0614d5b0afd4988a1d22b6efd93f57dcbd6e6f78d1129510cd2ee81fd9a6eef1",
+    "modified": "2026-09-26"
   },
   "/locations/beacon-heights-edmonton": {
     "hash": "f5df4697c18a966552a62d8a42026b1393010d57a87b46cd4a244e91839d7aec",
     "modified": "2026-09-22"
   },
   "/locations/bellevue-edmonton": {
-    "hash": "c0fc9d3d6573f26109e12c51adffa13a9fafe656aa88291ef3a42294081199ad",
-    "modified": "2026-09-18"
+    "hash": "d43d8baaa6133d876135e4beafc1e6a616421725c0c563efd2ff9d6c19051d5b",
+    "modified": "2026-09-26"
   },
   "/locations/belmont-edmonton": {
     "hash": "3b8cc1af5cb7ce6fe23b1bc1b3a1a17b1cfdc04f1eda01c2057844d177f1052b",
@@ -780,11 +780,11 @@
     "modified": "2026-09-22"
   },
   "/move-out-cleaning-calgary": {
-    "hash": "be8f38074d74d548144f8cbf69c061a69183f52f5092ce3a61c34a4c61351934",
+    "hash": "ba9633e63ca3e1a777d21e25c454d98c33ed508de1aaf854fbd485cc16df2c3f",
     "modified": "2026-09-26"
   },
   "/move-out-cleaning-edmonton": {
-    "hash": "480d454e7ac848ca6e1f39ef05fd466c75befcdf87216ae3f228ef7fe34d752a",
+    "hash": "ccfb1dcc1a2217273f0b36158096b5ba8108913f1438f7cd67fb11478254d9d2",
     "modified": "2026-09-26"
   },
   "/post-construction-cleaning": {
@@ -800,7 +800,7 @@
     "modified": "2026-09-26"
   },
   "/pricing": {
-    "hash": "5eae454d8d6d7a58118e787280d4d2a72b17836e23951cefd78dece7dbc9cfc5",
+    "hash": "a09b7074e52db676dc3f33f9c1723ad878e593339624721ce9f221d36cb7c42b",
     "modified": "2026-09-26"
   },
   "/privacy-policy": {
@@ -820,12 +820,12 @@
     "modified": "2026-09-12"
   },
   "/terms": {
-    "hash": "0d5fa96038d4a606ef34de2e3e104ae7fde111e01b4f3e42f235f17ef56c4c46",
+    "hash": "27ec95f6e9e99a676dbb54ed673a67a31c01d878ab95cc8017d6db4b8ebd70fb",
     "modified": "2026-09-26"
   },
   "/the-top-5-must-have-cleaning-products-for-a-spotless-home": {
-    "hash": "de27e9442ab564ea5e775b7a10875128ac601fe25f016f3d4eadc0431a112b7a",
-    "modified": "2026-09-13"
+    "hash": "d784f57ec3562b741c9c495600f5c08222711d3e06a297b84ae24cafb8b49750",
+    "modified": "2026-09-26"
   },
   "/wall-washing-wall-cleaning": {
     "hash": "2f7d5f3cb023f7bbcf5f46ff63e4b608cef78ea727e1ddacccc63363cfdd4008",

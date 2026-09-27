@@ -87,7 +87,7 @@ export default function SpruceGrove() {
     },
     {
       question: "Do you bring the supplies?",
-      answer: `Yes. The team brings all supplies and equipment. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming needs power.`
+      answer: `Yes. The team brings all supplies and equipment. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming needs power.`
     },
     {
       question: "How long does a first clean in Spruce Grove take?",

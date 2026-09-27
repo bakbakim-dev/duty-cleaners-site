@@ -753,8 +753,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/copy-quality.test.ts",
     target: "src/data/policy.ts",
-    find: "`We bring all cleaning supplies and equipment. Optional alternative products",
-    replace: "`We bring all cleaning supplies and equipment and disinfect every bathroom. Optional alternative products",
+    find: "`We bring all cleaning supplies and equipment. Eco-friendly products",
+    replace: "`We bring all cleaning supplies and equipment and disinfect every bathroom. Eco-friendly products",
     failing: "service copy promises cleaning, not sanitising or disinfecting",
     why: "Puts a disinfecting claim into the shared service terms, which the page scan alone would never read.",
   },
@@ -892,10 +892,10 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/owner-answers-0911.test.ts",
     target: "public/llms.txt",
-    find: "- Optional alternative products available as a $15 add-on, before GST",
-    replace: "- Eco-friendly products available as a $15 add-on, before GST",
-    failing: "no page, data file or llms file sells eco-friendly or green products",
-    why: "Puts the unsubstantiated eco-friendly label back on the machine-reader surface, when subcontractors choose their own products.",
+    find: "- Eco-friendly products available as a $15 add-on, before GST",
+    replace: "- Non-toxic products available as a $15 add-on, before GST",
+    failing: "no page, data file or llms file sells green, non-toxic or pet-safe products",
+    why: "Puts an unsubstantiated product-safety claim on the machine-reader surface.",
   },
   {
     guard: "src/data/owner-answers-0911.test.ts",

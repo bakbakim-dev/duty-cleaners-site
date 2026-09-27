@@ -78,16 +78,19 @@ describe("the owner's answers of 2026-09-11", () => {
     expect(hits, "the 10-day rule stated without the statement of deductions (alberta.ca/ending-a-tenancy)").toEqual([]);
   });
 
-  it("no page, data file or llms file sells eco-friendly or green products", () => {
-    const CLAIM = /eco-?friendly|eco products|green products/i;
+  // Owner, 2026-09-26: the $15 option IS eco-friendly products (the team buys or
+  // uses them on request), superseding 2026-09-11. "Eco-friendly" is the owner's
+  // call; "green", "non-toxic" and "pet-safe" stay out: health and safety claims.
+  it("no page, data file or llms file sells green, non-toxic or pet-safe products", () => {
+    const CLAIM = /green products|non-?toxic products|pet-?safe products/i;
     const hits: string[] = [];
     for (const full of [...pageAndComponentFiles(), ...dataFiles(), ...llmsFiles()]) {
       const text = read(full);
       const m = CLAIM.exec(text);
       if (m) hits.push(`${rel(full)}: "${text.slice(Math.max(0, m.index - 30), m.index + 40).replace(/\s+/g, " ")}"`);
     }
-    expect(hits, "the $15 option is 'optional alternative products' (owner, 2026-09-11)").toEqual([]);
-    expect(POLICY.ecoProductsHowToRequest).toMatch(/which products are available and suitable for your surfaces/);
+    expect(hits, "the $15 option is 'eco-friendly products' (owner, 2026-09-26), nothing stronger").toEqual([]);
+    expect(POLICY.ecoProductsHowToRequest).toMatch(/eco-friendly products/);
   });
 
   it("no page describes the top tier as five or more bedrooms", () => {

@@ -90,7 +90,7 @@ export default function Leduc() {
     },
     {
       question: "Do you bring supplies to Leduc?",
-      answer: `Yes. The team brings all supplies and equipment, from products and cloths to the vacuum and mop. Leduc's post-war bungalows and its newest subdivisions have different surfaces, painted softwood and original tile on one and sealed stone and engineered plank on the other, and the kit covers both. Leave the water and power on until the clean is done. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `Yes. The team brings all supplies and equipment, from products and cloths to the vacuum and mop. Leduc's post-war bungalows and its newest subdivisions have different surfaces, painted softwood and original tile on one and sealed stone and engineered plank on the other, and the kit covers both. Leave the water and power on until the clean is done. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "How long does a first clean in Leduc take?",

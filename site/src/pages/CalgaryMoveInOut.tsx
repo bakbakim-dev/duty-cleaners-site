@@ -546,7 +546,7 @@ export default function CalgaryMoveInOut() {
             </TermCard>
 
             <TermCard icon={<span className="dc-icon dc-icon-sparkles w-6 h-6" aria-hidden="true" />} title="Supplies and equipment included">
-              The team brings everything. Optional alternative products are available for{" "}
+              The team brings everything. Eco-friendly products are available for{" "}
               {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}. You only need the power and
               running water on at the address.
             </TermCard>

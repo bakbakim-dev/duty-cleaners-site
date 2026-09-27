@@ -62,7 +62,7 @@ const faqs = [
   },
   {
     question: "Do the cleaners bring their own products?",
-    answer: `Yes. The team brings all supplies and equipment to a Bannerman clean, and needs running water, plus power for the vacuum. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`,
+    answer: `Yes. The team brings all supplies and equipment to a Bannerman clean, and needs running water, plus power for the vacuum. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`,
   },
   {
     question: "How long does an initial cleaning take?",

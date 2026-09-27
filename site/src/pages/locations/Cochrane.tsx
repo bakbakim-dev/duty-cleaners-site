@@ -101,7 +101,7 @@ export default function Cochrane() {
     },
     {
       question: "Do I need to supply anything for the clean?",
-      answer: `No. The team brings all supplies and equipment. It does need running water, and vacuuming may not be possible without electricity, so leave the water and power on. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `No. The team brings all supplies and equipment. It does need running water, and vacuuming may not be possible without electricity, so leave the water and power on. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What happens if something is missed?",

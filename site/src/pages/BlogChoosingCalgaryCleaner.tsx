@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: "Do Calgary cleaning companies bring their own supplies?",
-    a: "Duty Cleaners teams in Calgary bring all supplies and equipment, so there is nothing to buy or leave out before a clean. The home needs running water, and vacuuming may not be possible without electricity. Optional alternative products are a paid add-on: ask the office which products are available and suitable for your surfaces when you book.",
+    a: "Duty Cleaners teams in Calgary bring all supplies and equipment, so there is nothing to buy or leave out before a clean. The home needs running water, and vacuuming may not be possible without electricity. Eco-friendly products are a paid add-on: ask for them when you book.",
   },
   {
     q: "Is a cleaning service worth it for a Calgary condo versus a house?",

@@ -88,7 +88,7 @@ export default function Morinville() {
     },
     {
       question: "Do you bring supplies out to Morinville?",
-      answer: `Yes. The team brings all supplies and equipment to every Morinville visit. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without electricity.`
+      answer: `Yes. The team brings all supplies and equipment to every Morinville visit. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without electricity.`
     },
     {
       question: "How long does a first clean in Morinville take?",

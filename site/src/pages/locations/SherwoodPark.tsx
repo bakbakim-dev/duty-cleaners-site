@@ -85,7 +85,7 @@ export default function SherwoodPark() {
     },
     {
       question: "Do you bring your own supplies?",
-      answer: `Yes. The team brings all supplies and equipment to every Sherwood Park clean. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without power.`
+      answer: `Yes. The team brings all supplies and equipment to every Sherwood Park clean. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without power.`
     },
     {
       question: "How long does a first clean in Sherwood Park take?",

@@ -95,7 +95,7 @@ export default function Beaumont() {
     },
     {
       question: "Do I need to have cleaning supplies at the house?",
-      answer: `No. The team brings all supplies and equipment. Running water is required, and vacuuming may not be possible without electricity, so both need to be on while the team works. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `No. The team brings all supplies and equipment. Running water is required, and vacuuming may not be possible without electricity, so both need to be on while the team works. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What happens if something is missed?",

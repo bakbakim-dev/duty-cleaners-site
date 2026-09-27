@@ -193,7 +193,7 @@ const AirbnbCleaningCalgary = () => {
     { icon: Clock, title: "Three arrival windows a day", description: `${ARRIVAL_WINDOWS.join(", ")}. With an 11 o'clock checkout and a 4 o'clock check-in, the midday window is the one to ask for; tell us both times when you book.` },
     { icon: Star, title: CALGARY_RATING_CLAIM, description: `The Calgary listing has ${proof.googleReviewCount} reviews behind that figure. Cleaners are reference-checked before their first job and rated by the customer after each one; the ratings decide who we keep sending.` },
     { icon: Calendar, title: "Book one or book the season", description: `Each turnover is its own booking. Nothing is charged at booking, the card is charged after the turnover, and moving or cancelling one costs nothing with ${POLICY.cancellationNoticeHours} hours' notice.` },
-    { icon: Shield, title: "Alternative products on request", description: `Optional alternative products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}. The unit needs running water for any turnover, and vacuuming may not be possible if the power is off.` },
+    { icon: Shield, title: "Eco-friendly products on request", description: `Eco-friendly products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}. The unit needs running water for any turnover, and vacuuming may not be possible if the power is off.` },
   ];
 
   const gallery = [

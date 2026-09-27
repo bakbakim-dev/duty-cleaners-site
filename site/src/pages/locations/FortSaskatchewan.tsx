@@ -88,7 +88,7 @@ export default function FortSaskatchewan() {
     },
     {
       question: "Do I have to provide cleaning products?",
-      answer: `No. The team brings all supplies and equipment, including the vacuum. Leave the water and power on until the clean is done, because running water is required and vacuuming may not be possible without electricity. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `No. The team brings all supplies and equipment, including the vacuum. Leave the water and power on until the clean is done, because running water is required and vacuuming may not be possible without electricity. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What happens if something is missed?",

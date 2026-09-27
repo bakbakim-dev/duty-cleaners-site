@@ -2,14 +2,14 @@
 // Dates come from content-revisions.json, also used by the sitemap generator.
 // Approve substantive rendered changes with bun run content-dates --approve YYYY-MM-DD.
 export const POST_MODIFIED: Readonly<Record<string, string>> = {
-  "/blog/choosing-cleaning-company": "2026-09-12",
+  "/blog/choosing-cleaning-company": "2026-09-26",
   "/blog/cleaning-schedule": "2026-09-12",
-  "/blog/cleaning-services-calgary": "2026-09-13",
+  "/blog/cleaning-services-calgary": "2026-09-26",
   "/blog/spotless-home-tips": "2026-09-13",
-  "/cleaning-with-vinegar-and-baking-soda": "2026-09-13",
+  "/cleaning-with-vinegar-and-baking-soda": "2026-09-26",
   "/how-much-does-a-house-cleaning-cost": "2026-09-26",
   "/how-often-should-a-cleaning-service-clean-my-house": "2026-09-12",
-  "/the-top-5-must-have-cleaning-products-for-a-spotless-home": "2026-09-13",
+  "/the-top-5-must-have-cleaning-products-for-a-spotless-home": "2026-09-26",
 };
 
 export function modifiedFor(path: string, datePublished: string): string {

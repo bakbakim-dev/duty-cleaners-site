@@ -105,7 +105,7 @@ export default function Airdrie() {
     },
     {
       question: "Do the cleaners bring supplies to Airdrie?",
-      answer: `Yes. The team brings all supplies and equipment, including the vacuum. Running water is required, and vacuuming may not be possible without electricity, so leave both on until the clean is done. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `Yes. The team brings all supplies and equipment, including the vacuum. Running water is required, and vacuuming may not be possible without electricity, so leave both on until the clean is done. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What happens if something is missed?",

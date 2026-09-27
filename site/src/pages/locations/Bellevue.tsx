@@ -47,7 +47,7 @@ const TRUST_ANSWER = "Every cleaner is reference-checked before a first job and 
 const COST_ANSWER = `A standard clean in Bellevue starts at ${RECURRING_FROM} before 5% GST, for a one-bedroom, one-bathroom apartment or condo. A bungalow, basement suite, townhouse or two-storey house adds a home-type charge, and a home with pets adds a compulsory pet charge. There is no trip fee inside Edmonton city limits, and the instant price shows every charge before you book.`;
 
 /** Shared by the visible FAQ and its FAQPage schema. The alternative-products fee comes from POLICY (P12). */
-const PRODUCTS_ANSWER = `We bring all the products and equipment the job needs. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`;
+const PRODUCTS_ANSWER = `We bring all the products and equipment the job needs. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`;
 
 const services = locationServices("Bellevue", "edmonton");
 

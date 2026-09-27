@@ -100,7 +100,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do I need to provide cleaning supplies?",
-        answer: `No. The team brings all cleaning supplies and equipment. Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.`,
+        answer: `No. The team brings all cleaning supplies and equipment. Eco-friendly products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.`,
       },
       {
         question: "Do you take out the trash after cleaning?",
