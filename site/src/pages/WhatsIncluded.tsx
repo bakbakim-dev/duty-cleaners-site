@@ -524,8 +524,13 @@ export default function WhatsIncluded() {
                     group: "Move-ready extras",
                     rows: [
                       { item: "Inside oven & fridge", standard: "addon", deep: "addon", move: "yes" },
-                      { item: "Inside all drawers & cabinets", standard: "no", deep: "no", move: "yes" },
-                      { item: "Inside closets & window sills", standard: "no", deep: "no", move: "yes" },
+                      // Audit of 2026-09-27: this row said "no" for standard and deep, though the
+                      // kitchen and bathroom cabinet interiors are a BookingKoala add-on there, and a
+                      // combined closets-and-sills row hid that sills are dusted on every clean.
+                      { item: "Inside kitchen & bathroom cabinets", standard: "addon", deep: "addon", move: "yes" },
+                      { item: "Inside all other drawers, cabinets & closets", standard: "no", deep: "no", move: "yes" },
+                      { item: "Window sills dusted", standard: "yes", deep: "yes", move: "yes" },
+                      { item: "Window tracks wiped", standard: "no", deep: "no", move: "yes" },
                       { item: "Wall washing", standard: "addon", deep: "addon", move: "addon" },
                     ],
                   },

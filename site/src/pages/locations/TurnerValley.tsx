@@ -9,7 +9,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { sitePriceRange, standardTierRows, FREQUENCIES } from "@/data/pricing";
+import { sitePriceRange, standardTierRows, FREQUENCIES, formatPrice } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
+
+// Audit F07 (2026-09-27): this sentence named a travel fee without its amount.
+const TV_TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+const TV_POST_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -118,7 +123,7 @@ export default function TurnerValley() {
                   House Cleaning in Diamond Valley — Turner Valley Area
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Turner Valley has been part of the Town of Diamond Valley since 1 January 2023, and one street here can hold a 1920s worker's cottage and a house finished last year. Our Calgary branch cleans both at flat rates by home size, plus a travel fee because the town is outside Calgary city limits.
+                  Turner Valley has been part of the Town of Diamond Valley since 1 January 2023, and one street here can hold a 1920s worker's cottage and a house finished last year. Our Calgary branch cleans both at flat rates by home size, plus a {TV_TRAVEL_FEE} travel fee ({TV_POST_TRAVEL_FEE} on a post-construction clean) because the town is outside Calgary city limits.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

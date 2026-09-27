@@ -59,6 +59,7 @@ import {
   type DcParking,
   type ResolvedExtra,
 } from "@/lib/booking-redirect";
+import { explicitBranchFromPath } from "@/lib/city-from-path";
 import { BOOKINGS_CLAIM, CITY_PROOF, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating, hoursLineFor, ratingClaimFor } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
@@ -335,6 +336,11 @@ export default function QuoteFlow({
     setLimitsError(null);
   };
   const proof = area && !area.general ? CITY_PROOF[area.branch] : pageProof;
+  // Callback links name a city only when the page (or the visitor's answer) has one;
+  // a branch-neutral page lets the contact form ask instead of assuming Edmonton
+  // (audit F04, 2026-09-27).
+  const callbackBranch = area && !area.general ? area.branch : explicitBranchFromPath(pathname);
+  const callbackCity = callbackBranch ? `&city=${callbackBranch}` : "";
   // The overlay header (QuoteOverlay) shows the same office as the funnel.
   useEffect(() => {
     setQuoteBranch(area && !area.general ? area.branch : null);
@@ -2138,7 +2144,7 @@ export default function QuoteFlow({
                 </a>{" "}
                 or{" "}
                 <Link
-                  to={`/contact-us/#topic=airbnb&city=${proof.key}`}
+                  to={`/contact-us/#topic=airbnb${callbackCity}`}
                   onClick={onClose}
                   className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
                 >
@@ -2146,7 +2152,7 @@ export default function QuoteFlow({
                 </Link>
                 . Office cleaning is quoted separately:{" "}
                 <Link
-                  to={`/contact-us/#topic=office&city=${proof.key}`}
+                  to={`/contact-us/#topic=office${callbackCity}`}
                   onClick={onClose}
                   className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
                 >

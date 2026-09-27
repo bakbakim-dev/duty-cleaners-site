@@ -1,7 +1,7 @@
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { addOnFromPrice } from "@/data/pricing";
 import { TRAVEL_FEE_KEY, travelFee } from "@/data/addon-table";
-import { POLICY } from "@/data/policy";
+import { EXTRA_WORK_TERM, POLICY } from "@/data/policy";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import LocalMarketNote from "@/components/LocalMarketNote";
@@ -391,10 +391,8 @@ export default function CalgaryPricing() {
                 <Info className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-sm text-foreground/90 leading-relaxed">
-                    <span className="font-semibold text-foreground">The rate is fixed by home size and bathroom count, and it does not go up because the crew took longer.</span>{" "}
-                    It changes in one case only: a home that needs substantially more work than the booking described,
-                    heavy build-up or far more glass and cabinetry than stated. Then the crew tells you what they found
-                    and your options before continuing.
+                    <span className="font-semibold text-foreground">The rate is set by home size and bathroom count, for the condition you describe when you book.</span>{" "}
+                    {EXTRA_WORK_TERM}
                   </p>
                 </div>
               </div>

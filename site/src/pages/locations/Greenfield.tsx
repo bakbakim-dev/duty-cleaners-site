@@ -163,7 +163,7 @@ export default function Greenfield() {
                 You do not need to be home for a clean in Greenfield. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up on the way out. The team brings all supplies and equipment; running water is required, and vacuuming may not be possible without electricity.
               </p>
               <p>
-                If the team arrives and cannot get in, the lockout charge is half the cost of the scheduled service, so check the code or the key the day before.
+                If the team arrives and cannot get in, the lockout charge is up to half the cost of the scheduled service, so check the code or the key the day before.
               </p>
               <p>
                 Greenfield is inside Edmonton city limits, so no trip fee is added to a clean here.

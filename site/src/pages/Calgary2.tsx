@@ -521,7 +521,7 @@ export default function Calgary2() {
 
               <div id="quote-form" className="mx-auto grid w-full max-w-4xl scroll-mt-20 items-stretch overflow-hidden rounded-lg border border-border shadow-xl shadow-brand-navy/10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,20rem)]">
                 <div className="bg-card p-2 sm:p-4">
-                  <ServiceStartCard phone="(403) 768-1341" phoneLink="tel:4037681341" topBorder="accent" />
+                  <ServiceStartCard phone="(403) 768-1341" phoneLink="tel:4037681341" city="calgary" topBorder="accent" />
                 </div>
                 <DirectContactPanel city="Calgary" phone="(403) 768-1341" phoneLink="tel:4037681341" />
               </div>

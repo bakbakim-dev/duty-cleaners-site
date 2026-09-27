@@ -654,8 +654,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/copy-quality.test.ts",
     target: "src/components/quote/ServiceStartCard.tsx",
-    find: 'to="/contact-us/#topic=airbnb" className="font-semibold',
-    replace: 'to="/contact-us/" className="font-semibold',
+    find: 'to={`/contact-us/#topic=airbnb${city ? `&city=${city}` : ""}`} className="font-semibold',
+    replace: 'to={`/contact-us/${city ? `#city=${city}` : ""}`} className="font-semibold',
     failing: "online quotes are for office cleaning only, and short-term rentals get a callback",
     why: "Sends Airbnb hosts to the general quote form again instead of the callback request.",
   },
@@ -2222,6 +2222,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: "We work to a checklist, not a clock. The price is set by home size",
     failing: "no page, component, policy line or llms file says the team stays until done or the price holds however long it takes",
     why: "Puts back the promise a customer quotes against a fair extra charge.",
+  },
+  {
+    guard: "src/data/extra-work-terms.test.ts",
+    target: "src/components/CityPricingTable.tsx",
+    find: "You see your number before you book, plus 5% GST. If a flat rate",
+    replace: "You see your number before you book, plus 5% GST, and it does not go up because a clean took longer. If a flat rate",
+    failing: "no page, component, policy line or llms file says the team stays until done or the price holds however long it takes",
+    why: "Puts back the 'price never goes up' promise that sat on every location page until the 2026-09-27 audit.",
   },
   {
     guard: "src/data/extra-work-terms.test.ts",

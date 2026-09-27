@@ -99,6 +99,9 @@ add("/sitemaps.xml", "/sitemap.xml", "301");
 for (const child of [
   "/post-sitemap1.xml",
   "/page-sitemap1.xml",
+  // Unnumbered WordPress sitemap names still 404ed (audit, 2026-09-27).
+  "/page-sitemap.xml",
+  "/post-sitemap.xml",
   "/category-sitemap1.xml",
   "/post_tag-sitemap1.xml",
 ]) {

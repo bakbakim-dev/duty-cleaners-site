@@ -196,6 +196,10 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/author/lokkom", target: "/blog", mode: "redirect", impressions: 0 },
   { legacy: "/category/cleaning-services", target: "/blog", mode: "redirect", impressions: 0 },
   { legacy: "/category/house-cleaning", target: "/blog", mode: "redirect", impressions: 0 },
+  // Audit of 2026-09-27: the old blog category still 404s, and BookingKoala's
+  // own footer links /terms-conditions/, an address the new site never had.
+  { legacy: "/category/duty-cleaners-blogging", target: "/blog", mode: "redirect", impressions: 0 },
+  { legacy: "/terms-conditions", target: "/terms", mode: "redirect", impressions: 0 },
   // ---------------------------------------------------------------------
   // From the Coverage export (2026-09-05), not Performance. These URLs earn
   // no impressions, so the impressions-derived map above never saw them --

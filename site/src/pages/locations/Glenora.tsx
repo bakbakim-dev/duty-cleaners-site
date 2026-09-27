@@ -29,7 +29,7 @@ export default function Glenora() {
   const faqs = [
     {
       question: "How much does cleaning cost in Glenora?",
-      answer: "A Glenora clean is a flat rate set by the service and the size of the home, before 5% GST, and it does not go up because the clean took longer than expected. The base rates are for an apartment or condo, so a detached house adds a home-type surcharge and a home with pets adds a compulsory pet charge. There is no trip fee inside Edmonton, and the instant price shows the full figure before you book."
+      answer: "A Glenora clean is a flat rate set by the service and the size of the home, before 5% GST, for the condition you describe when you book. The base rates are for an apartment or condo, so a detached house adds a home-type surcharge and a home with pets adds a compulsory pet charge. There is no trip fee inside Edmonton, and the instant price shows the full figure before you book."
     },
     {
       question: "Do I need to be home during the cleaning?",

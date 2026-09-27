@@ -314,7 +314,7 @@ export default function BlogHouseCleaningCost() {
 
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
-                <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                <span className="inline-flex items-center gap-1 bg-primary/10 text-brand-navy px-3 py-1 rounded-full font-medium">
                   Cost Guide
                 </span>
                 <span className="flex items-center gap-1">
@@ -384,8 +384,9 @@ export default function BlogHouseCleaningCost() {
                   <strong className="text-foreground">About the figures in this guide.</strong>{" "}
                   Every Duty Cleaners price in this guide is in Canadian dollars before 5% GST, read
                   from our booking system, so it matches what the booking form shows for the same
-                  home. The market ranges in the per-hour section are other companies&rsquo;
-                  published prices, with their source and date beside them.
+                  home. The market ranges further down are other companies&rsquo; own published
+                  prices: how many companies and the month they were checked are noted beside
+                  the ranges. They are shown as each company published them, so some include GST.
                 </p>
               </div>
 
@@ -432,7 +433,7 @@ export default function BlogHouseCleaningCost() {
                       <DollarSign className="h-5 w-5 text-accent-foreground" />
                       <h3 className="font-bold text-foreground">Priced by the home</h3>
                     </div>
-                    <ul className="text-muted-foreground text-sm space-y-2">
+                    <ul className="text-foreground/80 text-sm space-y-2">
                       <li>• The price is set by bedrooms, bathrooms and home type.</li>
                       <li>• You know the number before anyone arrives.</li>
                       <li>• Ours covers standard, deep and move-out cleans; post-construction is priced by square footage.</li>
@@ -447,7 +448,7 @@ export default function BlogHouseCleaningCost() {
                       Usually priced by the hour, at a rate the person sets. Someone starting out tends to charge less than an established cleaner with a full book. There is rarely a second cleaner to send if they are ill, and any promise to come back and re-clean is between you and them.
                     </p>
                     <div className="bg-primary/10 rounded-lg p-3">
-                      <p className="text-primary font-semibold text-center">Rate set by the person</p>
+                      <p className="text-brand-navy font-semibold text-center">Rate set by the person</p>
                     </div>
                   </div>
                   <div className="p-6 bg-muted/30 rounded-xl border">
@@ -456,7 +457,7 @@ export default function BlogHouseCleaningCost() {
                       Many price flat by home size and show the number before you book; some quote per hour with a minimum. Duty Cleaners prices whole-home standard, deep and move-out cleans flat by size, quotes partial jobs by the hour, discounts recurring visits from the second one, and re-cleans anything missed at no charge if you tell us within 24 hours.
                     </p>
                     <div className="bg-primary/10 rounded-lg p-3">
-                      <p className="text-primary font-semibold text-center">Discounts for recurring visits</p>
+                      <p className="text-brand-navy font-semibold text-center">Discounts for recurring visits</p>
                     </div>
                   </div>
                 </div>
@@ -573,7 +574,7 @@ export default function BlogHouseCleaningCost() {
                 <div className="space-y-4">
                   <div className="p-5 bg-destructive/10 rounded-xl border border-destructive/20">
                     <h4 className="font-semibold text-foreground mb-2">Late cancellation and lockout fees</h4>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-foreground/80 text-sm">
                       Ask any company for two numbers before you book: what a late cancellation costs, and what happens if the cleaner arrives and cannot get in. Ours are {POLICY.cancellationFee} inside {POLICY.cancellationNoticeHours} hours, and {POLICY.lockoutFee} for a lockout.
                     </p>
                   </div>

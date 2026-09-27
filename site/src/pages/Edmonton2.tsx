@@ -539,7 +539,7 @@ export default function Edmonton2() {
 
               <div id="quote-form" className="mx-auto grid w-full max-w-4xl scroll-mt-20 items-stretch overflow-hidden rounded-lg border border-border shadow-xl shadow-brand-navy/10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,20rem)]">
                 <div className="bg-card p-2 sm:p-4">
-                  <ServiceStartCard phone="(780) 913-6565" phoneLink="tel:7809136565" topBorder="accent" />
+                  <ServiceStartCard phone="(780) 913-6565" phoneLink="tel:7809136565" city="edmonton" topBorder="accent" />
                 </div>
                 <DirectContactPanel city="Edmonton" phone="(780) 913-6565" phoneLink="tel:7809136565" />
               </div>

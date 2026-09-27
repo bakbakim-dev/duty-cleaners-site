@@ -109,8 +109,8 @@ export default function LocationPricing({ place }: LocationPricingProps) {
           <p className="text-muted-foreground text-lg leading-relaxed mb-4">
             A standard clean in {name} runs {PRICES.standard} from one bedroom to five, a deep
             clean {PRICES.deep}, and a move-in or move-out clean {PRICES.moveInOut}. Those are flat
-            rates for an apartment or condo, in Canadian dollars before 5% GST. More bathrooms or a sixth or seventh bedroom raise them, and they do not go up
-            because a clean took longer than expected.
+            rates for an apartment or condo, in Canadian dollars before 5% GST. More bathrooms or a sixth or seventh bedroom raise them, and they are
+            set for the condition you describe when you book.
           </p>
           <p className="text-muted-foreground text-lg leading-relaxed mb-4">
             A bungalow or basement suite adds{" "}

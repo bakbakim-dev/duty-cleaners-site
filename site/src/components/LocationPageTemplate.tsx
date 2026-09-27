@@ -6,7 +6,7 @@ import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { canonicalUrlForPath, canonicalForPath } from "@/data/legacy-urls";
 import { standardTierRows, deepCleanTierRows, moveInOutTierRows, addOnFromPrice, formatPrice, FREQUENCIES } from "@/data/pricing";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
-import { TRAVEL_FEE_KEY } from "@/data/addon-table";
+import { TRAVEL_FEE_KEY, travelFee } from "@/data/addon-table";
 import { getListing } from "@/lib/google-listings";
 import Navigation from "@/components/Navigation";
 import heroFamilyBedroom from "@/assets/hero-family-bedroom.webp";
@@ -82,6 +82,11 @@ const LOCATION_PRICES = {
 /** Mandatory outside the two metros, applied by postal code at booking. */
 const TRAVEL_FEE = (() => {
   const v = addOnFromPrice("standard", TRAVEL_FEE_KEY);
+  return v === null ? null : formatPrice(v);
+})();
+/** Post-construction pays its own travel fee (audit F07, 2026-09-27: Black Diamond named only the home fee). */
+const POST_TRAVEL_FEE = (() => {
+  const v = travelFee("post-construction");
   return v === null ? null : formatPrice(v);
 })();
 
@@ -326,8 +331,8 @@ export default function LocationPageTemplate({
               <p className="text-muted-foreground text-lg leading-relaxed mb-4">
                 A standard clean in {city} runs {LOCATION_PRICES.standard} depending on the size of your
                 home, a deep clean {LOCATION_PRICES.deep}, and a move-in or move-out clean{" "}
-                {LOCATION_PRICES.moveInOut}. Those are flat rates in Canadian dollars before 5% GST, and
-                they do not go up because a clean took longer than expected. Those figures are for an
+                {LOCATION_PRICES.moveInOut}. Those are flat rates in Canadian dollars before 5% GST, set by
+                home size for the condition you describe when you book. Those figures are for an
                 apartment or condo: a bungalow or
                 basement suite adds {HOME_TYPE_EXTRA.bungalow}, a townhouse {HOME_TYPE_EXTRA.townhouse} and
                 a two-storey house {HOME_TYPE_EXTRA.twoStorey}, and a home with pets {PET_FEE} a visit.
@@ -337,7 +342,7 @@ export default function LocationPageTemplate({
                     against the branch this page belongs to, so that is the
                     boundary to name. */}
                 {isOwnMunicipality && TRAVEL_FEE !== null
-                  ? ` Because ${city} is outside ${regionLabel} city limits, a ${TRAVEL_FEE} travel fee is added to bookings here.`
+                  ? ` Because ${city} is outside ${regionLabel} city limits, a ${TRAVEL_FEE} travel fee is added to home cleaning here${POST_TRAVEL_FEE ? `, and ${POST_TRAVEL_FEE} to a post-construction clean` : ""}.`
                   : ""}
                 {" Every one of them shows on the quote before you book."}
               </p>

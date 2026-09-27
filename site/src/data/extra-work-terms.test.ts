@@ -52,6 +52,10 @@ const PROMISES: RegExp[] = [
   /whatever the time/i,
   /costs the same whether the clean/i,
   /a longer visit costs the same/i,
+  // Audit of 2026-09-27: "it does not go up because a clean took longer" sat on
+  // seven surfaces, including every location page, because no pattern above said "go up".
+  /(do|does|will|would) not go up[^.]{0,60}(longer|took|how long|the time)/i,
+  /(doesn't|won't|don't) go up[^.]{0,60}(longer|took|how long|the time)/i,
 ];
 
 describe("no page promises unlimited time for a set price", () => {

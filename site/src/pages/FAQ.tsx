@@ -80,7 +80,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What if the cleaners cannot get in?",
-        answer: "If the team arrives and cannot get into the home because no key was left, a code does not work or nobody can let them in, the visit is charged at half the cost of the scheduled service. The cleaner has already travelled and the slot cannot be reassigned at that point. Letting us know at least 24 hours ahead avoids the charge.",
+        answer: "If the team arrives and cannot get into the home because no key was left, a code does not work or nobody can let them in, the visit is charged at up to half the cost of the scheduled service. The cleaner has already travelled and the slot cannot be reassigned at that point. Letting us know at least 24 hours ahead avoids the charge.",
       },
       {
         question: "What are your operating hours?",
@@ -246,7 +246,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "How does your pricing work?",
-        answer: "Homes are priced flat by home size, and the exact figure shows before you book, plus 5% GST. It does not go up because a clean took longer than expected. The pet charge, a larger home type and the travel fee outside city limits are added on the quote where they apply. If the home needs substantially more work than you described, such as heavy build-up or far more glass or cabinetry, the team explains what it found and the options before continuing.",
+        answer: "Homes are priced flat by home size, and the exact figure shows before you book, plus 5% GST. It is set for the condition you describe when you book. The pet charge, a larger home type and the travel fee outside city limits are added on the quote where they apply. If the home needs substantially more work than you described, such as heavy build-up or far more glass or cabinetry, the team explains what it found and the options before continuing.",
       },
       {
         question: "What payment methods do you accept?",

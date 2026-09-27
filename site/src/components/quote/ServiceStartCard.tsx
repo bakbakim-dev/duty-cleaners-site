@@ -30,6 +30,8 @@ const SPECIALTY_SERVICE_IDS: ServiceId[] = ["post-construction"];
 interface ServiceStartCardProps {
   phone: string;
   phoneLink: string;
+  /** The page's branch, so the Airbnb callback opens with that city selected (audit F04, 2026-09-27). */
+  city?: "edmonton" | "calgary" | "reddeer";
   className?: string;
   /** "accent" gives the hero variant its 3px orange top edge. */
   topBorder?: "gold" | "accent";
@@ -43,6 +45,7 @@ interface ServiceStartCardProps {
 export default function ServiceStartCard({
   phone,
   phoneLink,
+  city,
   className = "",
   topBorder = "gold",
   variant = "form",
@@ -230,7 +233,7 @@ export default function ServiceStartCard({
           {phone}
         </a>{" "}
         or{" "}
-        <Link to="/contact-us/#topic=airbnb" className="font-semibold text-foreground underline underline-offset-4">
+        <Link to={`/contact-us/#topic=airbnb${city ? `&city=${city}` : ""}`} className="font-semibold text-foreground underline underline-offset-4">
           request a callback
         </Link>
         .

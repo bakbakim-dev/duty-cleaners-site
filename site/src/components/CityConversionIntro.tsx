@@ -325,6 +325,7 @@ export default function CityConversionIntro({
             <ServiceStartCard
               phone={phone}
               phoneLink={phoneLink}
+              city={city === "Calgary" ? "calgary" : "edmonton"}
               variant="ink"
               className="lg:justify-self-end"
             />

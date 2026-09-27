@@ -45,7 +45,7 @@ DirectoryIndex index.html
   # with a redirect to the booking page, so a bad code never shows an error.
   RewriteRule ^r/([A-Za-z0-9]{10})/?$ /api/resume.php?c=$1 [L]
 
-  # 188 permanent redirects.
+  # 192 permanent redirects.
   RewriteRule ^8038/how-much-does-a-house-cleaning-cost/?$ /how-much-does-a-house-cleaning-cost/ [R=301,L]
   RewriteRule ^8081/the-top-5-must-have-cleaning-products-for-a-spotless-home/?$ /the-top-5-must-have-cleaning-products-for-a-spotless-home/ [R=301,L]
   RewriteRule ^8060/how-often-should-a-cleaning-service-clean-my-house/?$ /how-often-should-a-cleaning-service-clean-my-house/ [R=301,L]
@@ -157,6 +157,8 @@ DirectoryIndex index.html
   RewriteRule ^author/lokkom/?$ /blog/ [R=301,L]
   RewriteRule ^category/cleaning-services/?$ /blog/ [R=301,L]
   RewriteRule ^category/house-cleaning/?$ /blog/ [R=301,L]
+  RewriteRule ^category/duty-cleaners-blogging/?$ /blog/ [R=301,L]
+  RewriteRule ^terms-conditions/?$ /terms/ [R=301,L]
   RewriteRule ^cleaning-services-for-sherwood-park-ab/?$ /cleaning-services-sherwood-park/ [R=301,L]
   RewriteRule ^cleaning-services-for-st-albert-ab/?$ /cleaning-services-st-albert/ [R=301,L]
   RewriteRule ^cleaning-services-for-spruce-grove-ab/?$ /cleaning-services-spruce-grove/ [R=301,L]
@@ -232,6 +234,8 @@ DirectoryIndex index.html
   RewriteRule ^sitemaps\.xml/?$ /sitemap.xml [R=301,L]
   RewriteRule ^post-sitemap1\.xml/?$ /sitemap.xml [R=301,L]
   RewriteRule ^page-sitemap1\.xml/?$ /sitemap.xml [R=301,L]
+  RewriteRule ^page-sitemap\.xml/?$ /sitemap.xml [R=301,L]
+  RewriteRule ^post-sitemap\.xml/?$ /sitemap.xml [R=301,L]
   RewriteRule ^category-sitemap1\.xml/?$ /sitemap.xml [R=301,L]
   RewriteRule ^post_tag-sitemap1\.xml/?$ /sitemap.xml [R=301,L]
 </IfModule>

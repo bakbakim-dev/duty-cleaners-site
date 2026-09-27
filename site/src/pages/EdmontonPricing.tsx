@@ -34,7 +34,8 @@ import {
 } from "@/data/pricing";
 import { addOnTableRows } from "@/data/addon-table";
 
-import heroPricingCleaner from "@/assets/hero-edmonton-pricing-cleaner.webp";
+import heroPricingCleaner from "@/assets/hero-edmonton-pricing-cleaner.webp?hero";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
 import { Calculator, Star, Home, Info, Receipt, Clock, Check } from "lucide-react";
 import { CITY_PROOF, COMPANY, EDMONTON_RATING_CLAIM } from "@/data/proof";
 
@@ -247,11 +248,11 @@ export default function EdmontonPricing() {
           the no-overtime rule and the hourly terms live in the info box and the
           flat-rate-against-hourly section, so the rates start one screen down. */}
       <section className="bg-brand-navy py-14 md:py-20 relative overflow-hidden">
-        <img
-          src={heroPricingCleaner}
+        {/* Responsive variants (audit F09, 2026-09-27): phones fetched the full 1280 px file. */}
+        <ResponsiveImage
+          picture={heroPricingCleaner}
+          sizes={SIZES.full}
           alt="Professional cleaner wiping kitchen counter in a bright modern home"
-          width={1280}
-          height={725}
           className="absolute inset-0 w-full h-full object-cover opacity-25"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-navy/90 pointer-events-none" />

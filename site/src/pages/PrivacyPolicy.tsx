@@ -157,6 +157,12 @@ export default function PrivacyPolicy() {
                 </li>
                 <li>Whether you have dismissed the announcement bar, so it stays dismissed</li>
                 <li>A flag noting that you have been sent to our booking system, so the page can restore correctly if you come back</li>
+                <li>
+                  When you continue from your instant price to our booking system, a copy of your quote answers,
+                  including the name, email and phone you typed, so that pressing Back reopens your quote instead of
+                  starting over. It is never sent anywhere from your browser, it is deleted as soon as it is used or
+                  after two hours, and it is gone when you close the tab
+                </li>
               </ul>
               <p className="mb-4">
                 One preference is kept in your browser's local storage, which survives closing the tab: the
@@ -165,8 +171,10 @@ export default function PrivacyPolicy() {
                 anywhere, and clearing your browser's site data removes it.
               </p>
               <p className="mb-8">
-                None of this identifies you personally, and none of it survives the browser session. You can
-                also block or clear storage and cookies through your browser settings.
+                Apart from the saved quote, which only you can see in that tab, none of this identifies you
+                personally. Everything in session storage ends when you close the tab; the remembered office
+                stays until you clear your browser's site data. You can also block or clear storage and cookies
+                through your browser settings.
               </p>
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">Website Analytics</h2>

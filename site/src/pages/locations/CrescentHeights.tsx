@@ -140,7 +140,7 @@ export default function CrescentHeights() {
               <div className="text-center mb-14">
                 <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Cleaning Services for Crescent Heights Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Standard, deep and move-out cleaning are priced flat by home size before GST, and the price does not go up because an older Crescent Heights house took longer than expected.
+                  Standard, deep and move-out cleaning are priced flat by home size before GST, for the condition you describe when you book, so an older Crescent Heights house is priced by its size, not its age.
                 </p>
               </div>
             </AnimatedSection>
