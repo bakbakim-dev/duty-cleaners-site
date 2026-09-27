@@ -42,7 +42,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do you make beds during standard cleaning?",
-        answer: "Bed-making is not part of the standard checklist, and laundry is not included either.",
+        answer: "Yes, on request and at no extra charge: leave fresh sheets out and the team will make the beds with them. Laundry is not included.",
       },
       {
         question: "What's the difference between standard and deep cleaning?",

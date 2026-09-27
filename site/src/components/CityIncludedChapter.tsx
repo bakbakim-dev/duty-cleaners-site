@@ -51,7 +51,7 @@ const rooms = [
     title: "Bedrooms",
     items: [
       "Dusting all surfaces",
-      "Beds made (linens if provided)",
+      "Beds made on request (leave fresh sheets out)",
       "Mirrors & glass cleaned",
       "Floors vacuumed & mopped",
       "Garbage taken out",

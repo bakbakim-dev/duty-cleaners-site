@@ -21,7 +21,7 @@ const faqs = [
   {
     question: "Should I book a standard clean or a deep clean?",
     answer:
-      "If the home had a proper clean within the last month or so, a standard clean keeps it there. If there is build-up, the last proper clean was a while ago, or a small job left some renovation dust, choose a deep clean: it is the standard checklist plus the deep-clean package, which adds baseboards, doors, switches and vent covers. After a full renovation, post-construction cleaning is the service for it, priced by square footage.",
+      "If the home had a proper clean within the last month or so, a standard clean keeps it there. If there is build-up or the last proper clean was a while ago, choose a deep clean: it is the standard checklist plus the deep-clean package, which adds baseboards, doors, switches and vent covers. Dust from building or renovation work, even a small job, is a post-construction clean, priced by square footage. If your photos, or the team on arrival, show only a little dust, the office can change it to a deep clean.",
   },
   {
     question: "What should I tell you about a move-out clean?",
@@ -153,8 +153,8 @@ export default function Prepare() {
                       Choose deep
                     </span>
                     <p className="mt-3 text-base leading-relaxed text-foreground">
-                      There&rsquo;s build-up, it&rsquo;s the first proper clean in a while, or a
-                      small job has left some renovation dust. Deep adds baseboards, doors, switches,
+                      There&rsquo;s build-up or it&rsquo;s the first proper clean in a while. Renovation
+                      dust, even from a small job, is a post-construction clean. Deep adds baseboards, doors, switches,
                       vent covers and the detail work a standard visit does not include.
                     </p>
                   </div>
