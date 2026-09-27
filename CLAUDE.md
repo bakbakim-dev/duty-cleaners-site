@@ -157,7 +157,7 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   was removed with the old site.
 
 ## Owner decisions (2026-09-17) — do not contradict or re-ask
-- HSTS is on for the production host only (`env=DUTY_PRODUCTION_HOST`), `max-age=86400` to start,
+- HSTS is on for the production host only (`env=DUTY_PRODUCTION_HOST`), `max-age=63072000` since 2026-09-27 (was 86400; edited in place on SiteGround, 5b289c3),
   no includeSubDomains (mail., ftp. and autodiscover. exist and are not confirmed HTTPS), no
   preload. Raise to 63072000 after a clean week on the domain (launch-day reminder).
 - The four preserved WordPress posts were published 2025-02-07 (read from the live site's
