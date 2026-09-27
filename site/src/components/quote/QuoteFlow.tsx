@@ -2736,6 +2736,16 @@ export default function QuoteFlow({
                       </button>
                     ))}
                   </div>
+                  {/* Owner, 2026-09-26 (tracker decide-07, option C): homes more than
+                      40 minutes' drive from Edmonton, beyond its surrounding cities,
+                      pay $75 and book by phone, so the fee is quoted before booking. */}
+                  {area.outside === true && area.branch !== "calgary" && (
+                    <p className="mt-3 text-sm text-fine-print">
+                      More than 40 minutes&rsquo; drive from Edmonton, past the surrounding cities?
+                      Please call us on {CITY_PROOF.edmonton.phone} to book: the travel fee there is
+                      higher, and we quote it before you book.
+                    </p>
+                  )}
                   {limitsError && (
                     <p id="dc-limits-error" className="funnel-missing-text">
                       {limitsError}

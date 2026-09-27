@@ -347,8 +347,10 @@ export const SERVICE_TERMS = [
   "We schedule to an arrival window rather than an exact time, so traffic or an earlier job running long does not push your whole day.",
   // Owner, 2026-09-26 (site-04): windows are sometimes widened on purpose.
   "If an earlier clean runs long, we may widen your arrival window, and we'll tell you. Ask for a call 30 minutes before the team arrives, or 30 minutes before they finish so you can walk through with them.",
-  // Owner, 2026-09-26 (decide-13): hourly only; flat-rate early ends are not published.
-  "If you ask the team to stop an hourly clean early, you're charged for the time worked, with the booked minimum.",
+  // Owner, 2026-09-26 (decide-13).
+  "If you ask the team to stop after they've started, you're charged for the work already done: for a flat-rate clean, up to the full price, depending on how much was completed; for an hourly clean, the time worked, with the booked minimum.",
+  // Owner, 2026-09-26 (decide-07, option C): far addresses book by phone.
+  "Homes more than 40 minutes' drive from Edmonton, past its surrounding cities, pay a higher travel fee and book by phone, so we can quote it before you book.",
 ] as const;
 
 /**
