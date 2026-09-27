@@ -1727,7 +1727,7 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/htaccess-parity.test.ts",
     target: "public/.htaccess",
-    find: 'Header always set Strict-Transport-Security "max-age=86400" env=DUTY_PRODUCTION_HOST',
+    find: 'Header always set Strict-Transport-Security "max-age=63072000" env=DUTY_PRODUCTION_HOST',
     replace: 'Header always set Strict-Transport-Security "max-age=86400; includeSubDomains; preload"',
     failing: "carries the security headers and scopes HSTS to the production host, without includeSubDomains or preload",
     why: "Drops the host scope and adds the two directives the owner deferred: pins the test host and every subdomain.",

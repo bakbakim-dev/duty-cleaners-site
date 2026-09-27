@@ -17,10 +17,10 @@
 #    allowlist is complete against real traffic, then rename the header to
 #    Content-Security-Policy to enforce it.
 #
-# 2. HSTS is set (owner decision, 2026-09-17) at a one-day max-age, without
+# 2. HSTS is set (owner decision, 2026-09-17), raised from one day to two years
+#    (63072000) on 2026-09-27 after a clean week (owner), still without
 #    includeSubDomains (mail., ftp. and autodiscover. exist and are not
-#    confirmed HTTPS) and without preload. Raise max-age to 63072000 after a
-#    clean week on the domain: that is the one-way door, taken knowingly.
+#    confirmed HTTPS) and without preload.
 
 /*
   # Clickjacking. frame-ancestors is the modern control; X-Frame-Options is
@@ -36,7 +36,7 @@
   # HSTS, see note 2. Netlify hosts only the private preview on *.netlify.app,
   # itself HSTS-preloaded, so this is parity with the Apache rules, where the
   # header is scoped to the production host.
-  Strict-Transport-Security: max-age=86400
+  Strict-Transport-Security: max-age=63072000
 
   # Stop MIME sniffing turning an uploaded file into executable script.
   X-Content-Type-Options: nosniff
