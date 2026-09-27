@@ -241,6 +241,12 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - Job photos may be used on the website, social media and ads with identifying details kept out;
   opt-out any time. Office calls are recorded (Dialpad). Cleaners: reference-checked only.
 - Cleaners carry a two-step stool (the site said 3-step ladder until 2026-09-26).
+- The $15 option is "eco-friendly products" (owner, 2026-09-26; supersedes "optional alternative
+  products" of 2026-09-11): the team buys or uses them on request. Say "eco-friendly" only; "green",
+  "non-toxic", "pet-safe" and "safe" stay out (guarded). Review requests: the owner keeps sending the
+  Google link to happy clients only (told it breaks Google's policy, 2026-09-26). Far addresses (40+ min
+  from Edmonton past its surrounding cities): $75, booked by phone. Deployed to SiteGround 2026-09-26
+  (1a64700, f060555, 99db80a; 294 assets + 212 pages verified).
 
 ## Owner decisions (2026-09-23) — do not contradict or re-ask
 - Step 1 cards: Standard is "The everyday clean…" (never "a home already in good shape"); Deep names no
