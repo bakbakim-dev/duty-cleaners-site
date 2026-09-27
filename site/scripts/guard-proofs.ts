@@ -161,6 +161,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Reintroduces a hand-typed modification date in a post's schema.",
   },
   {
+    guard: "src/data/blog-posts.test.ts",
+    target: "src/pages/BlogVinegarBakingSoda.tsx",
+    find: '<PostDateline path="/cleaning-with-vinegar-and-baking-soda" />',
+    replace: '<span className="flex items-center gap-1">January 25, 2026</span>',
+    failing: "each post shows the same dates its Article schema declares",
+    why: "Puts back the hand-typed byline date that contradicted the schema.",
+  },
+  {
     guard: "src/data/city-twins.test.ts",
     target: "dist/calgary/pricing/index.html",
     find: '<main id="main-content" tabindex="-1">',

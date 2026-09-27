@@ -1,4 +1,5 @@
 import { modifiedOr, publishedFor } from "@/data/post-published";
+import { PostDateline } from "@/components/blog/PostDateline";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -120,10 +121,7 @@ export default function BlogChoosingCalgaryCleaner() {
                 <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
                   Hiring Guide
                 </span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  August 24, 2026
-                </span>
+                <PostDateline path="/blog/cleaning-services-calgary" />
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">What to Check Before Hiring a Cleaner in Calgary</h1>

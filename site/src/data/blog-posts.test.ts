@@ -134,6 +134,34 @@ describe("blog post metadata", () => {
   });
 
   /**
+   * The Article schema read its dates from post-published.ts and post-dates.ts,
+   * but the byline under each post's title was hand-typed: the preserved
+   * WordPress posts said "January 22, 2026" over a 2025-02-07 datePublished
+   * (an audit flagged all three, 2026-09-27). Every visible <time> in the post
+   * header must now name a date the schema also states, and every schema date
+   * must be shown.
+   */
+  it("each post shows the same dates its Article schema declares", () => {
+    if (!existsSync(DIST)) return;
+    const bad: string[] = [];
+    for (const u of POSTS) {
+      const html = read(u);
+      const article = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+        .map((m) => { try { return JSON.parse(m[1]); } catch { return null; } })
+        .find((j) => j?.["@type"] === "Article" || j?.["@type"] === "BlogPosting");
+      const schema = new Set([article?.datePublished, article?.dateModified].filter(Boolean) as string[]);
+      const main = html.slice(html.indexOf("<main"));
+      const header = main.slice(0, main.indexOf("<h1") > 0 ? main.indexOf("</h1>") + 2000 : 4000);
+      const shown = new Set([...header.matchAll(/<time[^>]*dateTime="([^"]+)"/gi)].map((m) => m[1]));
+      const handTyped = /<span[^>]*>\s*(?:<svg[\s\S]*?<\/svg>)?\s*[A-Z][a-z]+ \d{1,2}, \d{4}\s*<\/span>/.test(header);
+      if (handTyped) bad.push(`${u} has a hand-typed display date`);
+      for (const d of shown) if (!schema.has(d)) bad.push(`${u} shows ${d}, schema says ${[...schema].join("/")}`);
+      for (const d of schema) if (!shown.has(d)) bad.push(`${u} schema ${d} is not shown`);
+    }
+    expect(bad).toEqual([]);
+  });
+
+  /**
    * The vinegar and cost articles opened with un-edited WordPress copy that had
    * survived the rebuild — "household items that are not only skilled and
    * efficient", "unsafe to use in every household" (which states the opposite

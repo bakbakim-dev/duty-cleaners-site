@@ -1,4 +1,5 @@
 import { modifiedOr, publishedFor } from "@/data/post-published";
+import { PostDateline } from "@/components/blog/PostDateline";
 import { useEffect } from "react";
 import {
   standardTierRows,
@@ -224,12 +225,6 @@ const ILLUSTRATIVE_QUOTE = calculateQuote({ service: "standard", homeType: homeT
 const TITLE = "How Much Does House Cleaning Cost? Rates Explained";
 const DESCRIPTION = "Understand flat-rate and hourly cleaning quotes, the extras that change the total, and how to compare services. Find Duty Cleaners' local price lists.";
 
-/** "2026-09-05" -> "September 5, 2026", without a timezone shifting the day. */
-const readableDate = (iso: string) => {
-  const [y, m, d] = iso.split("-").map(Number);
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  return months[m - 1] && d ? `${months[m - 1]} ${d}, ${y}` : iso;
-};
 
 /**
  * Words in the article body at 220 words a minute. The page said "12 min
@@ -317,10 +312,7 @@ export default function BlogHouseCleaningCost() {
                 <span className="inline-flex items-center gap-1 bg-primary/10 text-brand-navy px-3 py-1 rounded-full font-medium">
                   Cost Guide
                 </span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  Updated {readableDate(modified)}
-                </span>
+                <PostDateline path={POST_PATH} />
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">House Cleaning Costs Explained: Rates, Scope and Extras</h1>

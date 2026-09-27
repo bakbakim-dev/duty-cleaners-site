@@ -1,4 +1,5 @@
 import { modifiedOr, publishedFor } from "@/data/post-published";
+import { PostDateline } from "@/components/blog/PostDateline";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { modifiedFor } from "@/data/post-dates";
@@ -149,10 +150,7 @@ export default function BlogSpotlessHomeTips() {
                 <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
                   Cleaning Tips
                 </span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  August 24, 2026
-                </span>
+                <PostDateline path="/blog/spotless-home-tips" />
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">

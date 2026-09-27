@@ -1,4 +1,5 @@
 import { modifiedOr, publishedFor } from "@/data/post-published";
+import { PostDateline } from "@/components/blog/PostDateline";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -159,10 +160,7 @@ export default function BlogChoosingCleaningCompany() {
                 Choosing the Right Cleaning Company for Your Needs
               </h1>
               <div className="flex items-center gap-6 text-muted-foreground mb-8">
-                <span className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  January 27, 2026
-                </span>
+                <PostDateline path="/blog/choosing-cleaning-company" />
                 <span className="flex items-center gap-2">
                   <span className="dc-icon dc-icon-clock h-4 w-4" aria-hidden="true" />
                   14 min read

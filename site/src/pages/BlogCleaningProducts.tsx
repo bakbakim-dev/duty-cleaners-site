@@ -1,5 +1,6 @@
 import { modifiedOr, publishedFor } from "@/data/post-published";
 import { absoluteAssetUrl } from "@/lib/seo";
+import { PostDateline } from "@/components/blog/PostDateline";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { modifiedFor } from "@/data/post-dates";
@@ -201,10 +202,7 @@ export default function BlogCleaningProducts() {
                 <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
                   Cleaning Supplies
                 </span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  August 23, 2026
-                </span>
+                <PostDateline path="/the-top-5-must-have-cleaning-products-for-a-spotless-home" />
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">

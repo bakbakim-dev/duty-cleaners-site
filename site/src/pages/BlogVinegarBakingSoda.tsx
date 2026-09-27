@@ -1,4 +1,5 @@
 import { modifiedOr, publishedFor } from "@/data/post-published";
+import { PostDateline } from "@/components/blog/PostDateline";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -136,10 +137,7 @@ export default function BlogVinegarBakingSoda() {
                 <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
                   Green Cleaning
                 </span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  January 25, 2026
-                </span>
+                <PostDateline path="/cleaning-with-vinegar-and-baking-soda" />
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
