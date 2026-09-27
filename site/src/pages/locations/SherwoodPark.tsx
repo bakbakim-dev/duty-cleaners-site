@@ -97,7 +97,7 @@ export default function SherwoodPark() {
     },
     {
       question: "What is not part of a Sherwood Park clean?",
-      answer: `Lifting anything over 25 lb, outdoor work including exterior windows, and anything beyond a 3-step ladder are not included. Neither are garages and patios, carpet steam cleaning and upholstery, laundry and dishes, or litter boxes and animal waste. Heavy scrubbing of walls and doors is the wall-washing package, which is booked together with a clean.`
+      answer: `Lifting anything over 25 lb, outdoor work including exterior windows, and anything beyond a two-step stool are not included. Neither are garages and patios, carpet steam cleaning and upholstery, laundry and dishes, or litter boxes and animal waste. Heavy scrubbing of walls and doors is the wall-washing package, which is booked together with a clean.`
     }
   ];
   const faqJsonLd = {

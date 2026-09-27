@@ -72,9 +72,14 @@ describe("no page promises unlimited time for a set price", () => {
     // The price card lines were removed as clutter (owner, 2026-09-22); the rule
     // stays where the customer states the condition, on the cleanliness question.
     expect(flow).toContain("your price is for the condition you describe here");
-    expect(flow).toContain("Much more work than this is agreed with you before it is done.");
+    expect(flow).toContain("If the home needs much more work than this, we contact you before any extra time, and you decide.");
     const policy = codeOf(join(ROOT, "src/data/policy.ts"));
-    expect(policy).toContain("any extra charge is agreed with you before that work is done");
+    // Owner-approved wording, 2026-09-26: contact first, a halfway estimate, then
+    // continue, add time or a priority list at the booked price.
+    expect(policy).toContain("we'll contact you as soon as we know");
+    expect(policy).toContain("we can't know the final total until it is finished");
+    expect(policy).toContain("your price stays the same");
+    expect(policy).not.toMatch(/most likely|tell you the new total/i);
     expect(policy).toContain("A clean is booked as one visit.");
   });
 });

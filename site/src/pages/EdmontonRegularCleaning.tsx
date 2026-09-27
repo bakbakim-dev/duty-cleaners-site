@@ -261,7 +261,7 @@ export default function EdmontonRegularCleaning() {
         "Moving heavy items over 25 lbs",
         "Outdoor or exterior window cleaning",
         "Mould remediation, bodily fluids, or pest removal",
-        "Areas beyond the reach of a 3-step ladder",
+        "Areas beyond the reach of a two-step stool",
         "Light bulbs and fragile fixtures",
         "Garages, patios and outdoor areas, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
         "Laundry and dishes",

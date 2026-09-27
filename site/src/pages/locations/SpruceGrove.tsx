@@ -244,7 +244,7 @@ export default function SpruceGrove() {
                   For tenants, Alberta's Residential Tenancies Act sets two things. The landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
                   <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. The landlord decides what happens to the deposit, and we do not promise it comes back.</p>
                 <p>
-                  Empty rooms make the best move-out clean, because a cupboard with plates still in it cannot be cleaned inside. No one needs to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. Anything beyond a 3-step ladder is outside the checklist, and so are exterior windows and garages. The checklist is shared with{" "}
+                  Empty rooms make the best move-out clean, because a cupboard with plates still in it cannot be cleaned inside. No one needs to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. Anything beyond a two-step stool is outside the checklist, and so are exterior windows and garages. The checklist is shared with{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">move-out cleaning across Edmonton</Link>.
                 </p>
               </div>

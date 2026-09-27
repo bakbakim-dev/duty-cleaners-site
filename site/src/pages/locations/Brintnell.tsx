@@ -166,7 +166,7 @@ export default function Brintnell() {
                   Cleaning Services for Brintnell Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Two-storey Brintnell houses are priced by bedroom and bathroom count before 5% GST, plus a home-type surcharge. The team works up to what a 3-step ladder reaches, so the top of a great-room wall is out of scope.
+                  Two-storey Brintnell houses are priced by bedroom and bathroom count before 5% GST, plus a home-type surcharge. The team works up to what a two-step stool reaches, so the top of a great-room wall is out of scope.
                 </p>
               </div>
             </AnimatedSection>

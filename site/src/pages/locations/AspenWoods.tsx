@@ -21,7 +21,7 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
 
 const services = locationServices("Aspen Woods", "calgary", ["standard", "deep", "move-out", "post-construction", "wall-washing"]);
 
-const whyUsItems = locationWhyUs("calgary", { icon: Leaf, title: "Clear About Reach", description: "Nothing beyond a 3-step ladder is included, so the top panes of a two-storey window wall and high great-room fixtures stay outside the clean." });
+const whyUsItems = locationWhyUs("calgary", { icon: Leaf, title: "Clear About Reach", description: "Nothing beyond a two-step stool is included, so the top panes of a two-storey window wall and high great-room fixtures stay outside the clean." });
 
 const faqs = [
   { question: "How long does an initial cleaning take?", answer: "It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it." },
@@ -145,7 +145,7 @@ export default function AspenWoods() {
         eyebrow="What we see here"
         heading="Two storeys of west-facing glass"
         paragraphs={[
-          "Two-storey window walls, tall stairwell glass, great-room fixtures well past ladder height: the houses on this high, open ground, at roughly 1,230 metres, were built to take the foothills straight on. Low winter sun swinging through the south and southwest lights up every streak on that west elevation. When interior windows are added to a clean, the inside of the west glass within a 3-step ladder's reach gets squeegee work and a dry buff, not a spray-and-wipe that leaves its own record.",
+          "Two-storey window walls, tall stairwell glass, great-room fixtures well past ladder height: the houses on this high, open ground, at roughly 1,230 metres, were built to take the foothills straight on. Low winter sun swinging through the south and southwest lights up every streak on that west elevation. When interior windows are added to a clean, the inside of the west glass within a two-step stool's reach gets squeegee work and a dry buff, not a spray-and-wipe that leaves its own record.",
           "The ring road's last leg runs just west of here, and 17 Avenue SW closes Aspen Woods off to the south. Homes date from 2001, which puts the first generation of surfaces at the age where handling changes: hardwood thinned through the traffic lanes, stone counters that want a pH-neutral product rather than a degreaser.",
         ]}
         accent="calgary"

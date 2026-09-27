@@ -121,7 +121,7 @@ export default function EdmontonDeepCleaning() {
         { icon: UtensilsCrossed, title: "Kitchen", description: "The team details the stovetop, grates and fridge top, wipes appliance exteriors, cabinet fronts and the backsplash, and wipes down all prep surfaces." },
         { icon: Bath, title: "Bathrooms", description: "Tile, grout and shower glass detailed, soap scum and mineral build-up removed from tubs and fixtures, toilets scrubbed inside and out, vanities and mirrors polished." },
         { icon: Layers, title: "Baseboards and door frames", description: "Hand-wiping baseboards, door frames, light switches, outlet covers, vents, and corners that collect dust." },
-        { icon: Sparkles, title: "Dusting, high and low", description: "Detailed dusting of vents and the high and low areas a 3-step ladder reaches, throughout the home. Ceiling fans on request, where they can be reached safely." },
+        { icon: Sparkles, title: "Dusting, high and low", description: "Detailed dusting of vents and the high and low areas a two-step stool reaches, throughout the home. Ceiling fans on request, where they can be reached safely." },
       ]}
       bullets={[
         "All standard cleaning tasks included",
@@ -161,7 +161,7 @@ export default function EdmontonDeepCleaning() {
           items: [
             "Moving heavy items over 25 lbs",
             "Mould remediation, bodily fluids, or pest removal",
-            "Areas beyond the reach of a 3-step ladder",
+            "Areas beyond the reach of a two-step stool",
             "Light bulbs and fragile fixtures",
           ],
         },

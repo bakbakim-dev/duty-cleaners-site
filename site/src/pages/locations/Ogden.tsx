@@ -196,7 +196,7 @@ export default function Ogden() {
                 <div>
                   <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">What an Ogden Clean Covers</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    An Ogden clean covers the inside of the home. Outdoor work, exterior windows and removing window screens are not included, and neither is anything beyond a 3-step ladder.
+                    An Ogden clean covers the inside of the home. Outdoor work, exterior windows and removing window screens are not included, and neither is anything beyond a two-step stool.
                   </p>
                   <ul className="space-y-3">
                     {["Reference-checked and customer-rated cleaners","Supplies and equipment brought to the door","Missed spots re-cleaned at no charge if reported within 24 hours"].map((t,i)=>(

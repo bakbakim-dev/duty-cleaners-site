@@ -95,7 +95,7 @@ export default function StonyPlain() {
     },
     {
       question: "What is not included in a Stony Plain clean?",
-      answer: `Outdoor work is not part of any clean, so exterior windows, garages and patios are excluded (apart from a balcony or garage sweep add-on, offered mostly in summer when the weather allows), and so is removing window screens. In Stony Plain that matters, because the wind off the open country around the town lands on the screens and the outward face of the glass. Lifting anything over 25 lb, anything beyond a 3-step ladder, carpet steam cleaning, upholstery, laundry and dishes are also excluded.`
+      answer: `Outdoor work is not part of any clean, so exterior windows, garages and patios are excluded (apart from a balcony or garage sweep add-on, offered mostly in summer when the weather allows), and so is removing window screens. In Stony Plain that matters, because the wind off the open country around the town lands on the screens and the outward face of the glass. Lifting anything over 25 lb, anything beyond a two-step stool, carpet steam cleaning, upholstery, laundry and dishes are also excluded.`
     }
   ];
   const faqJsonLd = {

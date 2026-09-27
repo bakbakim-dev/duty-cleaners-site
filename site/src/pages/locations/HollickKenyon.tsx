@@ -263,7 +263,7 @@ export default function HollickKenyon() {
         eyebrow="Local knowledge"
         heading="Hollick-Kenyon's plan-book interiors"
         paragraphs={[
-          "Hollick-Kenyon's 1990s plan-book homes share a repertoire that shapes every clean: two-storey foyers whose ledges sit above stool height, oak spindle staircases that are all hand-work, corner gas fireplaces with dust-holding mantels, and ensuites with jetted tubs whose decks and skirts collect film. Ledges beyond the reach of a 3-step ladder are outside a clean. The era's oak trim shows dust readily and rewards a proper wipe visibly.",
+          "Hollick-Kenyon's 1990s plan-book homes share a repertoire that shapes every clean: two-storey foyers whose ledges sit above stool height, oak spindle staircases that are all hand-work, corner gas fireplaces with dust-holding mantels, and ensuites with jetted tubs whose decks and skirts collect film. Ledges beyond the reach of a two-step stool are outside a clean. The era's oak trim shows dust readily and rewards a proper wipe visibly.",
           "The neighbourhood's schools and pocket parks keep family traffic steady through the garage-mudroom route, and 167 Avenue's retail strip adds errand-run comings and goings. Winter is the heavy season, when rink bags and boot slush come through the same mudroom that handles cleats in June.",
         ]}
       />

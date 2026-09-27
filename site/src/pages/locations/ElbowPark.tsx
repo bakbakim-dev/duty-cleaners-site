@@ -197,7 +197,7 @@ export default function ElbowPark() {
                   <span className="text-accent text-sm font-semibold tracking-wider uppercase">Heritage houses</span>
                   <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-4 text-balance">Panel Doors, Leaded Glass and Radiators in Elbow Park</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    In an older Elbow Park house, light bulbs and fragile fixtures are outside a clean, and so is anything beyond a 3-step ladder. Heavy scrubbing of walls and panel doors is the wall-washing package, which is booked together with a clean.
+                    In an older Elbow Park house, light bulbs and fragile fixtures are outside a clean, and so is anything beyond a two-step stool. Heavy scrubbing of walls and panel doors is the wall-washing package, which is booked together with a clean.
                   </p>
                   <ul className="space-y-3">
                     {["Flat rate by home size, before 5% GST","Supplies and equipment come with the team","Anything missed re-cleaned if reported within 24 hours"].map((t,i)=>(

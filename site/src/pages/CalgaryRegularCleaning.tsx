@@ -106,8 +106,8 @@ export default function CalgaryRegularCleaning() {
                 Two things are different in a tower. Access: the team has to get past the lobby, so leave a fob with the
                 concierge or meet them at the door, and tell us the visitor-parking arrangement when you book. Scope:
                 the balcony is a sweep-only add-on
-                {BALCONY !== null ? ` at ${formatPrice(BALCONY)}` : ""}, and anything beyond the reach of a three-step
-                ladder, including high glass, stays off the list.
+                {BALCONY !== null ? ` at ${formatPrice(BALCONY)}` : ""}, and anything beyond the reach of a two-step
+                stool, including high glass, stays off the list.
               </p>
             </>
           ),
@@ -183,7 +183,7 @@ export default function CalgaryRegularCleaning() {
         "Furniture and anything else over 25 lbs stays where it is",
         "Exterior windows and any outdoor work",
         "Mould remediation, bodily fluids and pest removal",
-        "Anything higher than a 3-step ladder reaches",
+        "Anything higher than a two-step stool reaches",
         "Light bulbs, chandeliers and fragile fixtures",
         "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
       ]}

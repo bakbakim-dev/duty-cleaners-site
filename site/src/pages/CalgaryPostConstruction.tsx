@@ -60,8 +60,8 @@ const excludedServices = [
     items: [
       "No removal or scraping of appliance film, stickers, labels, paint, adhesive, silicone, grout haze or other hardened trade residue; the builder or trade removes these first",
       // The two-step stool was this page's own invention; policy.ts (NOT_INCLUDED)
-      // puts the limit at a 3-step ladder and the rest of the site follows it.
-      "The 3-step ladder the crew carries is the ceiling on height: no extension ladders, no scaffolding",
+      // puts the limit at a two-step stool and the rest of the site follows it.
+      "The two-step stool the crew carries is the ceiling on height: no extension ladders, no scaffolding",
       "No exterior glass, pressure washing or outdoor surfaces",
     ],
   },

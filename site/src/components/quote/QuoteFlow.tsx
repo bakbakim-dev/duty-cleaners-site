@@ -2077,7 +2077,8 @@ export default function QuoteFlow({
                             <p className="funnel-rule-body">
                               Offices, dens and bonus rooms count as bedrooms. We price by home size,
                               not by the rooms you want cleaned, so count them all even if you only
-                              want some rooms done.
+                              want some rooms done. In a house, basement bedrooms don't count
+                              here: a finished basement is its own add-on in the extras.
                             </p>
                           </div>
                         </div>
@@ -3116,7 +3117,7 @@ export default function QuoteFlow({
                   </legend>
                   <p className="mt-1 text-sm text-fine-print">
                     Pick the closest match: your price is for the condition you describe here, and your
-                    cleaner prepares for it. Much more work than this is agreed with you before it is done.
+                    cleaner prepares for it. If the home needs much more work than this, we contact you before any extra time, and you decide.
                   </p>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_CLEANLINESS_OPTIONS.map((option) => (

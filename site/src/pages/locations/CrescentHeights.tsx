@@ -199,7 +199,7 @@ export default function CrescentHeights() {
                 <div>
                   <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">Trim-Heavy Houses in Crescent Heights</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    On a deep clean, the baseboards and panel doors in a Crescent Heights house are wiped by hand. If the house needs substantially more work than was described at booking, the team explains what it found and the options before continuing. Anything beyond a 3-step ladder is not included, and neither are exterior windows.
+                    On a deep clean, the baseboards and panel doors in a Crescent Heights house are wiped by hand. If the house needs substantially more work than was described at booking, the team explains what it found and the options before continuing. Anything beyond a two-step stool is not included, and neither are exterior windows.
                   </p>
                   <ul className="space-y-3">
                     {["Flat price by home size, before GST","Supplies and equipment brought","Free re-clean if told within 24 hours"].map((t,i)=>(

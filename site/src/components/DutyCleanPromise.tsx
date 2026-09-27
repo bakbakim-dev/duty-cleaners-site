@@ -40,7 +40,7 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
     {
       icon: Receipt,
       title: "Priced from what you tell us",
-      desc: "The price is set by home size, worked out from what you enter on the booking form, for a home in the condition you describe. Some things only show themselves once we start: heavy build-up, clutter, far more glass or cabinetry than the form described. When that happens, the team explains what it found, and any extra charge is agreed with you before that work is done.",
+      desc: "The price is set by home size, worked out from what you enter on the booking form, for a home in the condition you describe. Some things only show themselves once we start: heavy build-up, clutter, far more glass or cabinetry than the form described. When that happens, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.",
     },
     {
       icon: RotateCcw,

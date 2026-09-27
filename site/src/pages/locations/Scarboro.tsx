@@ -200,7 +200,7 @@ export default function Scarboro() {
                   <span className="text-accent text-sm font-semibold tracking-wider uppercase">Stairs and reach</span>
                   <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-4 text-balance">Houses With Stairs in Scarboro</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    A Scarboro house usually means stairs, and the team cleans what it can reach from the floor or a 3-step ladder; anything higher is outside a clean. Basement window wells and the ground against the foundation are outdoor work, which a clean does not include.
+                    A Scarboro house usually means stairs, and the team cleans what it can reach from the floor or a two-step stool; anything higher is outside a clean. Basement window wells and the ground against the foundation are outdoor work, which a clean does not include.
                   </p>
                   <ul className="space-y-3">
                     {["You do not need to be home","Charged once the clean is complete","Tell us within 24 hours and we re-clean it"].map((t,i)=>(

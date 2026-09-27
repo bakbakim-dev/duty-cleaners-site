@@ -98,7 +98,7 @@ export default function CalgaryDeepCleaning() {
         { icon: UtensilsCrossed, title: "Kitchen", description: "The stovetop and range hood degreased, appliance exteriors, cabinet fronts and the backsplash wiped, and every prep surface wiped down." },
         { icon: Bath, title: "Bathrooms", description: "Tile, grout and shower glass worked over, soap scum and mineral scale lifted off tubs and fixtures, toilets done inside and out, vanities and mirrors polished." },
         { icon: Layers, title: "Baseboards and door frames", description: "Baseboards, door frames, light switches, outlet covers, vents and the corners that hold dust, all wiped by hand." },
-        { icon: Sparkles, title: "Dusting, high and low", description: "Vents and the high and low surfaces a 3-step ladder reaches, dusted through the whole home. Ceiling fans on request, where they can be reached safely." },
+        { icon: Sparkles, title: "Dusting, high and low", description: "Vents and the high and low surfaces a two-step stool reaches, dusted through the whole home. Ceiling fans on request, where they can be reached safely." },
       ]}
       bullets={[
         "All standard cleaning tasks included",
@@ -137,7 +137,7 @@ export default function CalgaryDeepCleaning() {
           items: [
             "Furniture and anything else over 25 lbs stays where it is",
             "Mould remediation, bodily fluids and pest removal",
-            "Anything higher than a 3-step ladder reaches",
+            "Anything higher than a two-step stool reaches",
             "Light bulbs, chandeliers and fragile fixtures",
           ],
         },

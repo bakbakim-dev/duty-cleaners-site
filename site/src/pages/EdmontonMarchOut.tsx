@@ -165,7 +165,7 @@ const faqs = [
   },
   {
     q: "Why is there no instant online price for a march-out clean?",
-    a: `The online form prices a civilian home by size, and a march-out follows the inspection list for the home, which decides the add-ons the job needs. The Edmonton office prices it by phone at ${PHONE_DISPLAY}, Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM, and every figure is before ${GST_PCT} GST. It is for the home as described; if it needs much more work than that, the team explains what it found, and any extra charge is agreed with you before that work is done.`,
+    a: `The online form prices a civilian home by size, and a march-out follows the inspection list for the home, which decides the add-ons the job needs. The Edmonton office prices it by phone at ${PHONE_DISPLAY}, Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM, and every figure is before ${GST_PCT} GST. It is for the home as described; if it needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.`,
   },
   {
     q: "What if the inspector finds something the clean missed?",
@@ -181,7 +181,7 @@ const faqs = [
   },
   {
     q: "What does a march-out clean not include?",
-    a: "A march-out clean does not include lifting anything over 25 lb, exterior windows or other outdoor work, garages (a balcony or garage sweep is a separate add-on, offered mostly in summer when the weather allows), anything beyond a 3-step ladder, carpet steam cleaning, furnace and duct cleaning, furnace filters, light bulbs, repairs, or mould remediation. Light surface mildew may be wiped where it is safe to do so. If the inspection list asks for any of these, tell the Edmonton office on the call so the quote says plainly what the team will and will not do.",
+    a: "A march-out clean does not include lifting anything over 25 lb, exterior windows or other outdoor work, garages (a balcony or garage sweep is a separate add-on, offered mostly in summer when the weather allows), anything beyond a two-step stool, carpet steam cleaning, furnace and duct cleaning, furnace filters, light bulbs, repairs, or mould remediation. Light surface mildew may be wiped where it is safe to do so. If the inspection list asks for any of these, tell the Edmonton office on the call so the quote says plainly what the team will and will not do.",
   },
 ];
 

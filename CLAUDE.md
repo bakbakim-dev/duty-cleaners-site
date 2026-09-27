@@ -93,7 +93,8 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   BookingKoala's Home Cleaning hourly service), quoted as "from $65".
 - Deep package: baseboards, doors, light switches, wall outlets, vent covers, plus cobwebs.
   Light switches and cobwebs are deep-only. Ceiling fans are in no package: dusted only on
-  request, where a 3-step ladder reaches them safely.
+  request, where a two-step stool reaches them safely (owner, 2026-09-26: cleaners carry a
+  two-step stool, not a 3-step ladder).
 - Commercial: office cleaning is the only commercial work quoted online (contact form "Office
   Cleaning"). Airbnb/short-term-rental turnovers are priced per hour on a callback
   (`/contact-us/#topic=airbnb`). The owner approved strengthening the two commercial pages on
@@ -189,8 +190,8 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - The funnel does not ask for a postal code or address (still true after 2026-09-22 below).
 - The cleanliness question stays on the cleaner-details pane. Cobwebs stay out of the
   BookingKoala deep-clean descriptions. We may phone quote leads; never promise "only on request".
-- Open question, owner undecided: whether basement bedrooms count under the bedroom counting
-  rule (finished basements are separate add-ons). Raise it again when the funnel copy is next touched.
+- Basement bedrooms (owner, 2026-09-26): in a house they do NOT count toward the bedroom tier; a
+  finished basement is its own add-on (funnel bedroom rule says so).
 
 ## Owner decisions (2026-09-22) — do not contradict or re-ask
 - Where the home is (owner, 2026-09-22; `src/lib/service-area.ts`). Step 1 asks no location
@@ -212,8 +213,7 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   no arrival-window or "comment section" explainer (the booking page shows the windows).
 - Extra work (owner, 2026-09-22): a clean is booked as one visit (normally one day). The price is set
   by home size for the condition the customer describes; if the home needs much more work than
-  described, the team explains what it found and any extra charge is agreed with the customer before
-  that work is done; work beyond the booked visit is quoted and scheduled separately, by phone or
+  described, the office contacts the customer (superseded 2026-09-26, see below); work beyond the booked visit is quoted and scheduled separately, by phone or
   email (`PRICING_TERMS` in policy.ts, the funnel price card, the cleanliness question). Never write
   "we work to a checklist, not a clock", "the team stays until every task is done", "the price holds
   however long it takes" or "does not change if the clean runs long": they hand a customer an
@@ -221,6 +221,26 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   as the name of the pricing model (by home size, not by the hour) is fine.
 - Card holds: never "no money moves" or "it is not a charge" alone. A hold is for the price; on
   a debit card the amount is set aside until the charge (`PAYMENT_TERMS`). Guarded.
+
+## Owner decisions (2026-09-26, open-items tracker) — do not contradict or re-ask
+- Extra work, verbatim in `EXTRA_WORK_TERM` (policy.ts): contact as soon as we know; the final total
+  is known only at the end; a halfway estimate of time and cost; then continue, add some time, or a
+  priority list at the booked price ("your price stays the same"). Never "most likely", never "tell
+  you the new total" up front. No reply to the halfway message = booked time only, no extra charge.
+  Extra time by the half hour, per cleaner, from $65 standard / $70 deep / $75 move-out
+  (`POLICY.extraTimeRates`); heavy work at a higher rate stated before extra time. The free
+  flat-rate overrun (30 labour-minutes) is internal only, never published.
+- Up to half the visit when the team can't start (no access, no water/power, building work, an
+  unsecured pet, undisclosed extreme conditions); inside-24-hours changes stay $50.
+- Smoke surcharge from $75 (`POLICY.smokeSurchargeFrom`), quoted before booking; can be much more.
+  Paid parking added at cost. Photos may be requested before confirming move-out, post-construction,
+  smoked-in and 4-5 rated homes. Hourly early end: time worked with the minimum (flat-rate early end
+  not published). E-transfer extras: a card hold, or the estimated extra by e-transfer, settled after.
+- Guarantee: no refunds for cleaning done; "call the office and we'll talk it through". Never publish
+  a goodwill credit (offered internally only). Return visit needs access; walkthrough encouraged.
+- Job photos may be used on the website, social media and ads with identifying details kept out;
+  opt-out any time. Office calls are recorded (Dialpad). Cleaners: reference-checked only.
+- Cleaners carry a two-step stool (the site said 3-step ladder until 2026-09-26).
 
 ## Owner decisions (2026-09-23) — do not contradict or re-ask
 - Step 1 cards: Standard is "The everyday clean…" (never "a home already in good shape"); Deep names no

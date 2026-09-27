@@ -216,7 +216,7 @@ export default function AboutUs() {
             </p>
             <p className="text-lg text-muted-foreground mb-8">
               Some things are outside every service: outdoor work and exterior windows, anything beyond a
-              3-step ladder, lifting anything over 25 lb, carpet steam cleaning, and laundry and dishes. The
+              two-step stool, lifting anything over 25 lb, carpet steam cleaning, and laundry and dishes. The
               full scope of each service is on{" "}
               <Link to="/whats-included/" className="text-primary underline underline-offset-2">
                 what's included in each clean

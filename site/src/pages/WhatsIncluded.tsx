@@ -46,7 +46,7 @@ const last = <T,>(rows: T[]) => rows[rows.length - 1];
 const FAQS = [
   {
     q: "What is the difference between a standard clean and a deep clean?",
-    a: `A deep clean is the standard checklist plus the deep package: baseboards, doors, light switches, wall outlets and vent covers, cobwebs where there are any, and a detailed stovetop, grates and fridge top. Ceiling fans are not part of the package; the team dusts them on request, where a 3-step ladder reaches them safely. The package adds ${DEEP[0].packagePrice} to a 1-bedroom standard clean and ${last(DEEP).packagePrice} to a 5-bedroom, so a deep clean runs ${DEEP[0].price} to ${last(DEEP).price} against ${STANDARD[0].price} to ${last(STANDARD).price} for standard, before GST.`,
+    a: `A deep clean is the standard checklist plus the deep package: baseboards, doors, light switches, wall outlets and vent covers, cobwebs where there are any, and a detailed stovetop, grates and fridge top. Ceiling fans are not part of the package; the team dusts them on request, where a two-step stool reaches them safely. The package adds ${DEEP[0].packagePrice} to a 1-bedroom standard clean and ${last(DEEP).packagePrice} to a 5-bedroom, so a deep clean runs ${DEEP[0].price} to ${last(DEEP).price} against ${STANDARD[0].price} to ${last(STANDARD).price} for standard, before GST.`,
   },
   {
     q: "Is the inside of the oven included?",
@@ -62,7 +62,7 @@ const FAQS = [
   },
   {
     q: "What is never included in a clean?",
-    a: "Moving anything over 25 pounds, anything past the reach of a 3-step ladder, outdoor work including exterior windows, garages and patios (a balcony or garage sweep is an add-on, offered mostly in summer when the weather allows), light bulbs and chandeliers, bodily fluids and litter boxes, mould remediation, pest removal, carpet steam cleaning, duct cleaning, plumbing, hoarding clean-outs, laundry and dishes. Heavy scrubbing of walls is a separate wall-washing package rather than an exclusion.",
+    a: "Moving anything over 25 pounds, anything past the reach of a two-step stool, outdoor work including exterior windows, garages and patios (a balcony or garage sweep is an add-on, offered mostly in summer when the weather allows), light bulbs and chandeliers, bodily fluids and litter boxes, mould remediation, pest removal, carpet steam cleaning, duct cleaning, plumbing, hoarding clean-outs, laundry and dishes. Heavy scrubbing of walls is a separate wall-washing package rather than an exclusion.",
   },
   {
     q: "What happens if something on the checklist was missed?",

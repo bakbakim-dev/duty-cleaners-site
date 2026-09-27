@@ -147,7 +147,7 @@ const whyUsItems = [
   // in the card title, so the description does not say the number again.
   { icon: DollarSign, title: "Set price by home size", description: "The price is set by bedrooms and bathrooms when you book, for an empty home in the condition you describe." },
   { icon: Award, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `Walk through the home within ${POLICY.guaranteeWindowHours} hours of the clean and tell us anything missed, and we return to put it right at no charge. The window runs from the clean, not the inspection, so book the clean as close to the inspection as you can. Photos help but are not required.` },
-  { icon: Package, title: "Supplies included", description: "The crew brings the products, the vacuum and the step ladder. You need the water left on, and power for the vacuum." },
+  { icon: Package, title: "Supplies included", description: "The crew brings the products, the vacuum and a step stool. You need the water left on, and power for the vacuum." },
   { icon: Package, title: `Alternative products for ${POLICY.ecoProductsFee}`, description: `Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
   { icon: Clock, title: "Pay after the clean", description: "Nothing is charged when you book. A temporary hold goes on your card the day before, and the charge goes through once the clean is complete." },
 ];
@@ -379,7 +379,7 @@ export default function EdmontonMoveInOut() {
               </div>
               <p className="text-sm text-muted-foreground max-w-3xl mx-auto mt-8 text-center leading-relaxed">
                 Not included: exterior windows, carpet steam cleaning, furnace and duct cleaning, anything
-                beyond the reach of a 3-step ladder, and moving anything over 25 pounds. Garages and balconies
+                beyond the reach of a two-step stool, and moving anything over 25 pounds. Garages and balconies
                 are a sweep of the floor only, booked as an add-on and offered mostly in summer, when the
                 weather allows. Marks on the paint are a separate row on
                 the same form: what a wash takes off, and what it costs by home size, is on{" "}

@@ -93,7 +93,7 @@ const steps = [
 const whyUs = [
   { icon: Shield, title: "What the paint allows", description: "Very flat or delicate paint limits how hard a mark can be worked, and some stains only fade." },
   { icon: Home, title: "When to book it", description: "Before painting, after a tenant moves out, or with a move-out clean." },
-  { icon: Droplets, title: "What the team leaves alone", description: "Wallpaper, bare drywall and unpainted wood are not washed, and nothing is reached from higher than a 3-step ladder." },
+  { icon: Droplets, title: "What the team leaves alone", description: "Wallpaper, bare drywall and unpainted wood are not washed, and nothing is reached from higher than a two-step stool." },
   { icon: ThumbsUp, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `Tell us within ${POLICY.guaranteeWindowHours} hours about a wall or a mark we missed and we come back to it at no charge.` },
   /* This card repeated the rating the hero badge and the reviews heading
      already give, a third time. It now carries R2 from the content prompt. */
@@ -118,7 +118,7 @@ const faqs = [
   /* This answer used to offer a flat ceiling "for a charge agreed before the
      visit" and to say a smoke-stained ceiling "is normally replaced". Neither
      is on file; the ladder limit is (content prompt T7). */
-  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: `Ceilings are not part of wall washing, and the team works from nothing higher than a 3-step ladder. Smoke stain and smell can both survive a wash on the walls, so call the Edmonton office at ${CITY_PROOF.edmonton.phone} before booking to talk through a particular room.` },
+  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: `Ceilings are not part of wall washing, and the team works from nothing higher than a two-step stool. Smoke stain and smell can both survive a wash on the walls, so call the Edmonton office at ${CITY_PROOF.edmonton.phone} before booking to talk through a particular room.` },
   { q: "How much does wall washing cost in Edmonton?", a: `Spot cleaning runs ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0)} and a full wash ${formatPrice(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0)}, by home size and before 5% GST. Wall washing is booked together with a clean, so the bill also carries that clean, from ${standardTierRows()[0]?.price ?? ""} for a one-bedroom apartment. A home with pets adds a compulsory ${formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0)} a visit, a bungalow, basement suite, townhouse or two-storey house costs more than an apartment, and an address outside Edmonton city limits adds a ${formatPrice(travelFee("standard") ?? 0)} travel fee; each shows on the quote before you book.` },
 ];
 

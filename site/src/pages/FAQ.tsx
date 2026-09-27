@@ -1,4 +1,4 @@
-import { POLICY } from "@/data/policy";
+import { EXTRA_TIME_RATE_TERM, POLICY } from "@/data/policy";
 import { deepCleanTierRows, formatPrice, HOURLY_RATE, standardTierRows } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { Helmet } from "react-helmet-async";
@@ -143,11 +143,11 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do you clean grout, hard-water stains, or fixtures like fans and chandeliers?",
-        answer: "Grout restoration is not offered, but hard-water stains are cleaned: hard Alberta water leaves mineral scale on taps and shower glass. Ceiling fans are not part of any package: the team dusts them on request, where a 3-step ladder reaches them safely. Chandeliers, light bulbs and other fragile fixtures are not included.",
+        answer: "Grout restoration is not offered, but hard-water stains are cleaned: hard Alberta water leaves mineral scale on taps and shower glass. Ceiling fans are not part of any package: the team dusts them on request, where a two-step stool reaches them safely. Chandeliers, light bulbs and other fragile fixtures are not included.",
       },
       {
         question: "What if my home needs extra attention or is very dirty?",
-        answer: "The price is based on the home size and the condition you describe when you book. If the home needs much more work than described, such as heavy build-up, clutter or far more glass or cabinetry than stated, the team explains what it found, and any extra charge is agreed with you before that work is done. A job that needs more than the booked visit is quoted and scheduled separately, by phone or email.",
+        answer: "The price is based on the home size and the condition you describe when you book. If the home needs much more work than described, such as heavy build-up, clutter or far more glass or cabinetry than stated, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price. " + EXTRA_TIME_RATE_TERM + " A job that needs more than the booked visit is quoted and scheduled separately, by phone or email.",
       },
       {
         question: "Does the deep cleaning package include wall washing and cleaning inside appliances?",
@@ -224,7 +224,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What is NOT included in post-construction cleaning?",
-        answer: "Post-construction cleaning does not include inside vents or ductwork, grout restoration, removing construction materials, paint or stain stripping, or exterior windows. Light bulbs and fragile fixtures are not included, and nothing past the reach of a 3-step ladder is cleaned. The service covers the interior surfaces, the kitchen and the bathrooms.",
+        answer: "Post-construction cleaning does not include inside vents or ductwork, grout restoration, removing construction materials, paint or stain stripping, or exterior windows. Light bulbs and fragile fixtures are not included, and nothing past the reach of a two-step stool is cleaned. The service covers the interior surfaces, the kitchen and the bathrooms.",
       },
       {
         question: "Does post-construction cleaning include debris removal?",

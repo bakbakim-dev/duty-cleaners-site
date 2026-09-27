@@ -99,6 +99,23 @@ export default function PrivacyPolicy() {
                 <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
               </ul>
 
+              {/* Owner, 2026-09-26 (tracker decide-15, decide-16): job photos are used
+                  in marketing with identifying details kept out, and office calls
+                  are recorded on Dialpad. */}
+              <h2 className="text-2xl font-bold mb-4 text-foreground">Photos and Phone Calls</h2>
+              <p className="mb-4">
+                <strong>Photos of your home.</strong> Our team may take before-and-after photos of the areas
+                we clean. We may use some of them on our website, social media and ads. We never show people,
+                faces, family photos, documents, mail, house numbers or anything else that could identify you
+                or your home. If you'd rather your photos not be used, tell us at any time and we'll stop
+                using them and take down any we've posted.
+              </p>
+              <p className="mb-8">
+                <strong>Phone calls.</strong> Calls with our offices are recorded for training and quality,
+                and to keep an accurate record of what was agreed. If you'd rather not be recorded, say so at
+                the start of the call and we'll continue by email or text.
+              </p>
+
               <h2 className="text-2xl font-bold mb-4 text-foreground">Data Security</h2>
               <p className="mb-8">
                 We implement appropriate technical and organisational measures to protect your personal information

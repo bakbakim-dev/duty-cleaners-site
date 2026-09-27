@@ -69,9 +69,9 @@ const excludedServices = [
     items: [
       "No removal or scraping of appliance film, stickers, labels, paint, adhesive, silicone, grout haze or other hardened trade residue; the builder or trade removes these first",
       // Was "more than a two-step stool", a limit that appeared on this page and
-      // nowhere else. NOT_INCLUDED in policy.ts sets it at a 3-step ladder, which is
+      // nowhere else. NOT_INCLUDED in policy.ts sets it at a two-step stool, which is
       // what the crew carries and what every other page tells a customer.
-      "Anything beyond the reach of a 3-step ladder, which is what the crew carries: no extension ladders, no scaffolding",
+      "Anything beyond the reach of a two-step stool, which is what the crew carries: no extension ladders, no scaffolding",
       "No exterior window cleaning, pressure washing, or outdoor surface cleaning",
     ],
   },
@@ -84,7 +84,7 @@ const whyChooseUs = [
   { title: "Booked around your possession date", desc: "The crew arrives in a booked window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than at an exact time. Give us the date the last trade finishes and book the first open slot after it." },
   { title: "Pay after the clean", desc: "Nothing is charged when you book. The day before your appointment a temporary hold confirms the card is valid, and no money moves. Your card is charged once the clean is complete." },
   { title: "Ledges, tracks and vents by hand", desc: "Four places a machine cannot do are wiped by hand: the ledges, the window tracks, the vent slots and the top edge of the trim." },
-  { title: "What the crew brings, what the site needs", desc: "Vacuums, cloths, products and the 3-step ladder come with the crew. The site has to have power and running water, which on a new build is worth confirming with the builder." },
+  { title: "What the crew brings, what the site needs", desc: "Vacuums, cloths, products and the two-step stool come with the crew. The site has to have power and running water, which on a new build is worth confirming with the builder." },
   { title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: `Tell us within ${POLICY.guaranteeWindowHours} hours about anything we missed and we re-clean it free of charge. Photos help the team find it and are not a condition.` },
 ];
 
@@ -360,7 +360,7 @@ export default function EdmontonPostConstruction() {
               <p className="text-muted-foreground leading-relaxed">
                 This is the one clean we price by square footage rather than by bedrooms, because the dust
                 does not care how the rooms are divided. Pick the band the finished space falls in and that
-                is the rate, before 5% GST. It is for the condition you describe; much more work than that is agreed with you before it is done.
+                is the rate, before 5% GST. It is for the condition you describe; if it needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.
               </p>
             </div>
             <div className="mx-auto mt-10 max-w-2xl overflow-hidden border border-border rounded-xl">

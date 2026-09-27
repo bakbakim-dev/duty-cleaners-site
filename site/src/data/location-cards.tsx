@@ -111,7 +111,7 @@ export function locationServices(
 
 /**
  * The four "why us" cards. `third` replaces the supplies card on a page that has
- * something of its own to say there (Aspen Woods: what a 3-step ladder reaches).
+ * something of its own to say there (Aspen Woods: what a two-step stool reaches).
  */
 export function locationWhyUs(region: LocationRegion, third?: LocationWhyUsCard): LocationWhyUsCard[] {
   return [

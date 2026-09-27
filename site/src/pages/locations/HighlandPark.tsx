@@ -198,7 +198,7 @@ export default function HighlandPark() {
                 <div>
                   <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">Hard Water in Highland Park Bathrooms</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Hard Alberta water leaves mineral scale on taps and shower glass, in a long-held detached house and a rented suite alike. The standard clean covers every bathroom in the home, priced by home size. Heavy build-up is the exception: the team explains what it found, and any extra charge is agreed with you before that work is done.
+                    Hard Alberta water leaves mineral scale on taps and shower glass, in a long-held detached house and a rented suite alike. The standard clean covers every bathroom in the home, priced by home size. Heavy build-up is the exception: we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.
                   </p>
                   <ul className="space-y-3">
                     {["Rated by the customer after every visit","The team brings all supplies and equipment","A free re-clean if you report a miss within 24 hours"].map((t,i)=>(

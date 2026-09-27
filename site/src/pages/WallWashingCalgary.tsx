@@ -78,7 +78,7 @@ const wallProblems = [
 ];
 
 const includedItems = [
-  { title: "The full wash", description: "The team washes painted drywall in each room on the booking with a damp cloth and a bucket, from the top of the wall to the baseboard, within reach of a 3-step ladder." },
+  { title: "The full wash", description: "The team washes painted drywall in each room on the booking with a damp cloth and a bucket, from the top of the wall to the baseboard, within reach of a two-step stool." },
   { title: "Marks first", description: "Scuffs, handprints and the odd crayon line are worked one at a time before the wash, so the wash does not spread them." },
   { title: "Corners and the ceiling line", description: "The furnace halo along the ceiling line is cleared before the wall is washed, or it ends up back on the wall." },
   { title: "Hard-water haze", description: "Describe mineral marks around the shower and taps before booking. The team checks the surface and paint finish; washing is not a promise that all marks will lift." },
@@ -108,7 +108,7 @@ const faqs = [
   { q: "Do you remove mould from walls?", a: "Light surface mildew on a painted bathroom wall, yes, where it is safe to wipe it. Mould that has grown into the drywall or the wall behind it, no; that is a remediation job, and washing the face of it hides the problem without fixing it. If we find that, we tell you and leave it alone." },
   { q: "Do I need to move furniture?", a: "Move what you can. A wall behind a sofa gets washed to where we can reach without dragging the sofa, and we do not move anything over 25 pounds. Pictures and shelves come down before we arrive if you want the wall behind them done." },
   { q: "Do you offer wall cleaning for rentals or move-outs?", a: `Yes. The wall add-on is on the move-out booking form as well as the standard one, priced by home size from ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} for spot cleaning before GST. Spot cleaning the entry wall and the stairwell, where hands and bags touch the paint, is the lighter choice for a Calgary rental; the full wash suits a repaint or a listing.` },
-  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "Not as part of the wall add-on, which covers painted walls from the top of the wall to the baseboard. Anything beyond the reach of a 3-step ladder is outside what the team does. Smoke film on the walls fades with washing, but we do not promise the stain or the smell goes completely. If the smoke has reached the ceiling, call the Calgary office at (403) 768-1341 before you book and we will say what the wall wash can and cannot do." },
+  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "Not as part of the wall add-on, which covers painted walls from the top of the wall to the baseboard. Anything beyond the reach of a two-step stool is outside what the team does. Smoke film on the walls fades with washing, but we do not promise the stain or the smell goes completely. If the smoke has reached the ceiling, call the Calgary office at (403) 768-1341 before you book and we will say what the wall wash can and cannot do." },
 ];
 
 /** Cheapest bookable wall service, derived from bk-config — never typed. */

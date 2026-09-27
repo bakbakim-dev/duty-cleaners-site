@@ -104,7 +104,7 @@ export default function Devon() {
     },
     {
       question: "What is not included in a Devon house clean?",
-      answer: `Outdoor work is not included, which means exterior windows, garages, patios and other outdoor areas, apart from a balcony or garage sweep add-on offered mostly in summer when the weather allows; in a Devon house backing the river valley, the mud gets cleaned once it is inside the door. The team does not lift anything over 25 lb or work beyond a 3-step ladder. Carpet steam cleaning, upholstery, mould remediation, pests, litter boxes, laundry and dishes are also out of scope. Heavy scrubbing of walls and doors is the separate wall-washing package, and decluttering or organising is a separate hourly add-on.`
+      answer: `Outdoor work is not included, which means exterior windows, garages, patios and other outdoor areas, apart from a balcony or garage sweep add-on offered mostly in summer when the weather allows; in a Devon house backing the river valley, the mud gets cleaned once it is inside the door. The team does not lift anything over 25 lb or work beyond a two-step stool. Carpet steam cleaning, upholstery, mould remediation, pests, litter boxes, laundry and dishes are also out of scope. Heavy scrubbing of walls and doors is the separate wall-washing package, and decluttering or organising is a separate hourly add-on.`
     }
   ];
   const faqJsonLd = {

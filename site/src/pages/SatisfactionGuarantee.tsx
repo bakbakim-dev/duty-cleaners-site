@@ -116,6 +116,9 @@ export default function SatisfactionGuarantee() {
               <ul className="space-y-2 mb-8">
                 <li>• Services not included in the original cleaning package</li>
                 <li>• Pre-existing stains, damage, or permanent discolouration</li>
+                <li>• Paint, adhesive, construction residue, or wear and marks that don't come off with cleaning</li>
+                <li>• Areas the team couldn't reach because items were left in place, such as a full fridge, furniture or boxes</li>
+                <li>• On hourly cleans, and when you switch to a priority list, anything outside your list or the time booked</li>
                 {/* This said 48 hours while the promise at the top of the same page
                     — and roughly 100 other surfaces — said 24, so a customer calling
                     at 30 hours could not tell whether they were covered. The owner
@@ -139,9 +142,14 @@ export default function SatisfactionGuarantee() {
                 The remedy is a return visit. If something in your service scope was missed or
                 not done well, we come back and clean it again at no additional charge — that is
                 the whole of it, and it is deliberately the whole of it. We do not describe this
-                as a money-back guarantee, because a refund is not what we are promising. If a
-                re-clean is not what you want, call and say so and we will talk about it, but the
-                commitment on this page is the return visit.
+                as a money-back guarantee, because a refund is not what we are promising. We don't
+                refund cleaning that has been done. If a re-clean doesn't work for you, call the
+                office and we'll talk it through.
+              </p>
+              <p className="mb-4">
+                Someone needs to let the team in for the return visit, or leave access the same way
+                as for the clean. If you're home at the end of a clean, walk through with the team
+                before they leave: it's the quickest way to have anything put right on the spot.
               </p>
               <p className="mb-4">
                 It is also not a guarantee about someone else's decision. Move-out customers ask

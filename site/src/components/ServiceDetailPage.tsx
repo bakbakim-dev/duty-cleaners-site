@@ -588,7 +588,7 @@ const ServiceDetailPage = ({
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
               Each card is the apartment or condo rate for the bedroom and bathroom count shown,
               rounded to the nearest dollar and before GST. The booking quote uses the exact price
-              including cents. It is for a home in the condition you describe. If a home needs much more work than described, the team explains what it found, and any extra charge is agreed with you before that work is done.
+              including cents. It is for a home in the condition you describe. If a home needs much more work than described, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
               {pricingBySize.map((tier) => (

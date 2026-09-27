@@ -274,7 +274,7 @@ export default function Cochrane() {
                     </Button>
                   </div>
                   <p>
-                    Bedrooms, bathrooms, the type of home, pets and add-ons are what change a Cochrane price. The inside of the oven, the inside of the fridge and interior windows are add-ons with their own prices. The rate is set by home size for the condition you describe. When a home needs much more work than described, such as heavy build-up, the team explains what it found, and any extra charge is agreed with you before it goes on.
+                    Bedrooms, bathrooms, the type of home, pets and add-ons are what change a Cochrane price. The inside of the oven, the inside of the fridge and interior windows are add-ons with their own prices. The rate is set by home size for the condition you describe. When a home needs much more work than described, such as heavy build-up, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.
                   </p>
                   <p>
                     Nothing is charged when you book. A temporary hold goes on the card the day before to confirm it is valid, and the card is charged once the clean is complete; no money moves before then. To weigh the options first, see{" "}

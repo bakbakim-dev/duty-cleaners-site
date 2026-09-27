@@ -136,7 +136,7 @@ export default function CalgaryRecurringCleaning() {
         "Furniture and anything else over 25 lbs stays where it is",
         "Exterior windows and any outdoor work",
         "Mould remediation, bodily fluids and pest removal",
-        "Anything higher than a 3-step ladder reaches",
+        "Anything higher than a two-step stool reaches",
         "Light bulbs, chandeliers and fragile fixtures",
         "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
       ]}

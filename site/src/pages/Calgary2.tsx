@@ -221,7 +221,7 @@ export default function Calgary2() {
     answer: `Yes. A home with pets carries ${PET_FEE} per visit, before GST. The charge is compulsory, and it shows on the quote before you book. Litter boxes and animal waste are outside what the team cleans.`
   }, {
     question: "What will the Calgary team not clean?",
-    answer: "The team does no outdoor work, which rules out exterior windows, garages and patios (a balcony or garage sweep is an add-on, offered mostly in summer when the weather allows), and it will not lift anything over 25 lb or climb beyond a 3-step ladder. Mould remediation, pests, bodily fluids, carpet steam cleaning, upholstery, ducts, drains, laundry and dishes are also outside the service. Heavy scrubbing of walls and doors belongs to the wall-washing package, and decluttering or organising is a separate hourly add-on."
+    answer: "The team does no outdoor work, which rules out exterior windows, garages and patios (a balcony or garage sweep is an add-on, offered mostly in summer when the weather allows), and it will not lift anything over 25 lb or climb beyond a two-step stool. Mould remediation, pests, bodily fluids, carpet steam cleaning, upholstery, ducts, drains, laundry and dishes are also outside the service. Heavy scrubbing of walls and doors belongs to the wall-washing package, and decluttering or organising is a separate hourly add-on."
   }];
   // Schema must mirror the FAQs actually rendered on the page.
   const faqSchema = {

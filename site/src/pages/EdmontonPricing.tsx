@@ -1,7 +1,7 @@
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { addOnFromPrice } from "@/data/pricing";
 import { TRAVEL_FEE_KEY, travelFee } from "@/data/addon-table";
-import { POLICY, PRICING_TERMS } from "@/data/policy";
+import { EXTRA_WORK_TERM, POLICY, PRICING_TERMS } from "@/data/policy";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import LocalMarketNote from "@/components/LocalMarketNote";
@@ -116,8 +116,8 @@ const tierBathrooms = (t: { bathrooms: number; halfBaths: number }) =>
   `${t.bathrooms} full${t.halfBaths ? ` and ${t.halfBaths} half` : ""}`;
 
 /** The two policy lines that say how a quote can and cannot change. */
-const FIXED_RATE_TERM = PRICING_TERMS.find((t) => /flat rate does not change/.test(t)) ?? "";
-const MORE_WORK_TERM = PRICING_TERMS.find((t) => /substantially more work/.test(t)) ?? "";
+const FIXED_RATE_TERM = PRICING_TERMS.find((t) => /priced by size/.test(t)) ?? "";
+const MORE_WORK_TERM = EXTRA_WORK_TERM;
 
 const standardIncludes = [
   "Dust & clean all surfaces",
@@ -186,7 +186,7 @@ const faqItems = [
   // never drift away from the terms it summarises.
   // It is also lifted on its own from the FAQPage markup, so it names the
   // home-type charges and an add-on's price instead of "the table above".
-  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. The quote shows every charge added to the flat rate for your home size before you book, each before 5% GST: a bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse} and a two-storey house ${HOME_TYPE_EXTRA.twoStorey} to the apartment or condo rate, a home with pets adds ${PET_FEE} a visit, and an address outside Edmonton city limits adds a ${TRAVEL_FEE} travel fee to a home clean or ${POST_TRAVEL_FEE} to a post-construction clean, with no trip fee inside the city. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Add-ons such as the inside of the oven at ${OVEN_FEE} before GST are optional, each a tick-box on the booking form with its price beside it, except optional alternative products at ${POLICY.ecoProductsFee}, which are not on the form, so ${POLICY.ecoProductsHowToRequest}. The rate is for the home as you describe it; if it needs much more work than that, the team explains what they found, and any extra charge is agreed with you before that work is done.` },
+  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. The quote shows every charge added to the flat rate for your home size before you book, each before 5% GST: a bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse} and a two-storey house ${HOME_TYPE_EXTRA.twoStorey} to the apartment or condo rate, a home with pets adds ${PET_FEE} a visit, and an address outside Edmonton city limits adds a ${TRAVEL_FEE} travel fee to a home clean or ${POST_TRAVEL_FEE} to a post-construction clean, with no trip fee inside the city. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Add-ons such as the inside of the oven at ${OVEN_FEE} before GST are optional, each a tick-box on the booking form with its price beside it, except optional alternative products at ${POLICY.ecoProductsFee}, which are not on the form, so ${POLICY.ecoProductsHowToRequest}. The rate is for the home as you describe it; if it needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price. A home that has been smoked in carries a smoke surcharge from ${POLICY.smokeSurchargeFrom}, quoted before you book, and if the only parking near the home is paid, the parking cost is added at the amount we paid.` },
   { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean the areas that were missed at no additional cost. Photos help but are not required. The commitment is the return visit; it is not a money-back guarantee, though you can call the Edmonton office at (780) 913-6565 to talk about anything else.` },
 ];
 

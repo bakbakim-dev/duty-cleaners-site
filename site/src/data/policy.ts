@@ -17,7 +17,7 @@
  */
 
 import { confirm, type Confirmed, type Unconfirmed } from "./confirmed";
-import { addOnFromPrice, formatPrice, FREQUENCIES } from "./pricing";
+import { addOnFromPrice, formatPrice, FREQUENCIES, HOME_HOURLY_RATE } from "./pricing";
 import { travelFee } from "./addon-table";
 import { hoursLineFor } from "./proof";
 
@@ -53,6 +53,9 @@ export interface ServicePolicy {
   insuranceStatus: Confirmed<string> | Unconfirmed;
   /** Typical time on site for a 2-bedroom, 1-bathroom apartment (owner, 2026-09-18). */
   typicalVisitLength: Confirmed<{ standard: string; deep: string }> | Unconfirmed;
+  /** Extra time per cleaner-hour, deep and move-out (standard is BookingKoala's hourly rate). */
+  extraTimeRates: Confirmed<{ deep: string; moveOut: string }> | Unconfirmed;
+  smokeSurchargeFrom: Confirmed<string> | Unconfirmed;
 }
 
 export const POLICY: ServicePolicy = {
@@ -96,7 +99,7 @@ export const POLICY: ServicePolicy = {
    * arriving and being unable to get in, which mattered because customers are
    * explicitly told they need not be home.
    */
-  lockoutFee: confirm("half the cost of the scheduled service", { by: "owner", on: "2026-08-24" }),
+  lockoutFee: confirm("up to half the cost of the scheduled service", { by: "owner", on: "2026-09-25" }),
 
   /**
    * Confirmed by the owner (2026-09-07): a real charge the office quotes by
@@ -221,6 +224,11 @@ export const POLICY: ServicePolicy = {
     { standard: "about 2 hours 30 minutes", deep: "about 4 hours" },
     { by: "owner", on: "2026-09-18" },
   ),
+
+  /** Owner, 2026-09-26 (tracker decide-14): published as "from" rates. */
+  extraTimeRates: confirm({ deep: "$70", moveOut: "$75" }, { by: "owner", on: "2026-09-26" }),
+  /** Owner, 2026-09-26 (decide-09): minimum $75; a heavily smoked-in home has cost double the booking. */
+  smokeSurchargeFrom: confirm("$75", { by: "owner", on: "2026-09-26" }),
 };
 
 /* ---------------------------------------------------------------------------
@@ -252,11 +260,30 @@ export const PAYMENT_TERMS = [
   // spent until the charge, so "no money moves" misled debit customers.
   "The day before your appointment a temporary hold for the price is placed on your card. It is not a charge, but on a debit card the amount is set aside until the clean is charged.",
   "Your card is charged once the clean is complete.",
+  // Owner, 2026-09-26 (tracker site-04): the office confirms online bookings, and
+  // the team is only sent once the hold is in place.
+  "After you book online, our office confirms your booking by phone or email. If we can't reach you, or the booking or card details don't check out, we may not be able to send a team.",
+  "The team is sent once the hold for the price is in place. If the hold is declined, we'll contact you; a booking without a hold may be cancelled.",
   // Owner, 2026-09-21: e-transfer is arranged by phone, not online, and with no
   // card to hold it is paid in full the day before the clean.
-  "We accept Visa, Mastercard and American Express, and debit. E-transfer can be arranged by phone; with no card to hold, an e-transfer booking is paid in full the day before the clean.",
+  "We accept Visa, Mastercard and American Express, and debit. E-transfer can be arranged by phone; with no card to hold, an e-transfer booking is paid in full the day before the clean. If you approve extra work on the day, we either place a hold for it on a card, if you have one, or ask you to e-transfer the estimated extra that day; once the clean is finished, any difference is refunded to you or paid by you.",
   "Every quoted figure is before tax. GST of 5% is added on top.",
 ] as const;
+
+/**
+ * Owner-approved, 2026-09-26 (tracker decide-01). The one full statement of what
+ * happens when a home needs much more work than described.
+ */
+export const EXTRA_WORK_TERM =
+  "If our team finds much more work than described, we'll contact you as soon as we know. Any extra charge depends on the extra time the clean takes, so we can't know the final total until it is finished. About halfway through, we'll contact you again with our best estimate of how much longer the clean will take and what it may cost. You can then continue, and we finish the clean at the extra cost; add some time for the things that matter most to you; or switch to a priority list: you choose what gets done from what's left of the clean, and your price stays the same. Some things won't get done.";
+
+/** Owner, 2026-09-26 (decide-04, decide-14): by the half hour, per cleaner, "from" rates. */
+export const EXTRA_TIME_RATE_TERM =
+  `Extra time is charged by the half hour, for each cleaner, from ${formatPrice(HOME_HOURLY_RATE)} an hour for a standard clean, ${POLICY.extraTimeRates.deep} for a deep clean and ${POLICY.extraTimeRates.moveOut} for a move-in or move-out clean, before GST. A home that needs heavy work, such as thick build-up, strong products or special equipment, is charged at a higher rate. We tell you the rate when we first contact you, before any extra time is done.`;
+
+/** The short form, for pages that mention extra work in passing. */
+export const EXTRA_WORK_SHORT =
+  "If the home needs much more work than described, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.";
 
 /** How a quote can change. Consistent across both pricing pages and the FAQ. */
 export const PRICING_TERMS = [
@@ -269,10 +296,21 @@ export const PRICING_TERMS = [
   // Compulsory, not an add-on: BookingKoala's extra is literally named "Must
   // choose if you have pets", and it recurs on every visit.
   `Homes with pets are charged ${money(addOnFromPrice("standard", "must-choose-if-you-have-pets"))} per visit — paw prints, nose marks on glass and shed hair add real time in every room. It appears on your quote before you book, and litter boxes and animal waste stay outside what we handle.`,
-  "Most homes are priced by size. The price covers the checklist for the service booked, for a home in the condition you describe when you book. A clean is booked as one visit.",
-  "If the home turns out to need much more work than described, such as heavy build-up, clutter or far more glass or cabinetry than stated, the team explains what it found, and any extra charge is agreed with you before that work is done. Work that needs more than the booked visit is quoted and scheduled separately, by phone or email.",
-  `Recurring discounts of ${recurringDiscounts()} apply from your second visit. The first clean is charged at the standard one-time rate.`,
-  "Hourly service has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners.",
+  "Most homes are priced by size. Your price is for the home size and the condition you chose when you book, and covers the checklist for the service booked. A clean is booked as one visit.",
+  // Owner-approved wording, 2026-09-26 (tracker decide-01, 02, 04, 14). The exact
+  // total is only known at the end, so never promise "the new total" up front,
+  // and never "most likely". Guarded in extra-work-terms.test.ts.
+  EXTRA_WORK_TERM,
+  EXTRA_TIME_RATE_TERM,
+  "If you don't answer our halfway message, the team finishes your booked time and there is no extra charge. Work that needs more than the booked visit is quoted and scheduled separately, by phone or email.",
+  `Recurring discounts of ${recurringDiscounts()} apply to flat-rate cleans from your second visit. The first clean is charged at the standard one-time rate. Hourly cleans are charged at the hourly rate every visit.`,
+  "Hourly service has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners. The team works through your priority list from the top, for the time booked, and any extra time is confirmed with you first.",
+  // Owner, 2026-09-26 (decide-09): from $75; a badly smoked-in home has cost double the booking.
+  `If anyone has smoked inside the home, tell us when you book. Smoke film takes extra time to wash off, so a smoke surcharge from ${POLICY.smokeSurchargeFrom} is added, depending on the size of the home and how heavy the residue is; a heavily smoked-in home can cost much more. We quote it before you book and the team confirms it on arrival; if it's heavier than described, we ask before charging more. Washing reduces smoke film and odour, but we can't promise to remove it completely.`,
+  // Owner, 2026-09-26 (decide-10).
+  "Most homes have free parking nearby. If the only parking near your home is paid, the parking cost is added to your bill at the amount we paid. Tell us about free visitor stalls or driveway space when you book.",
+  // Owner, 2026-09-26 (site-07).
+  "For move-out and post-construction cleans, homes that have been smoked in, and homes rated 4 or 5 on the booking form, we may ask for a few photos before confirming, so the team arrives prepared and your price is right.",
 ] as const;
 
 /** Scope limits. Taken from the master list on /whats-included, which the
@@ -280,7 +318,7 @@ export const PRICING_TERMS = [
 export const NOT_INCLUDED = [
   "Moving or lifting anything over 25 pounds",
   "Outdoor work, including exterior windows",
-  "Anything beyond the reach of a 3-step ladder",
+  "Anything beyond the reach of a two-step stool",
   "Light bulbs and fragile lighting fixtures, including chandeliers",
   "Bodily fluids, animal waste, and cat litter boxes — a health call rather than a time one; the pet charge covers the extra time pets add everywhere else in the home",
   "Mould remediation and heavy mould removal — we may wipe light surface mildew where it is safe to do so",
@@ -307,6 +345,10 @@ export const SERVICE_TERMS = [
   // Per branch, from proof.ts: the Red Deer office keeps different hours.
   `The Edmonton and Calgary offices are open ${hoursLineFor("edmonton")}. The Red Deer office is open ${hoursLineFor("reddeer")}.`,
   "We schedule to an arrival window rather than an exact time, so traffic or an earlier job running long does not push your whole day.",
+  // Owner, 2026-09-26 (site-04): windows are sometimes widened on purpose.
+  "If an earlier clean runs long, we may widen your arrival window, and we'll tell you. Ask for a call 30 minutes before the team arrives, or 30 minutes before they finish so you can walk through with them.",
+  // Owner, 2026-09-26 (decide-13): hourly only; flat-rate early ends are not published.
+  "If you ask the team to stop an hourly clean early, you're charged for the time worked, with the booked minimum.",
 ] as const;
 
 /**

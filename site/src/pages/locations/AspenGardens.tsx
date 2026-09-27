@@ -267,7 +267,7 @@ export default function AspenGardens() {
         eyebrow="Local knowledge"
         heading="Aspen Gardens under the canopy"
         paragraphs={[
-          "Aspen Gardens is 1960s executive stock backing the Whitemud ravine, with vaulted cedar ceilings and floor-to-ceiling ravine glass in many homes. Cedar sheds fine fibres and holds dust along its grain lines, and those big view windows set the room's first impression. The inside of that glass within a 3-step ladder's reach is the interior-windows add-on.",
+          "Aspen Gardens is 1960s executive stock backing the Whitemud ravine, with vaulted cedar ceilings and floor-to-ceiling ravine glass in many homes. Cedar sheds fine fibres and holds dust along its grain lines, and those big view windows set the room's first impression. The inside of that glass within a two-step stool's reach is the interior-windows add-on.",
           "Ravine adjacency sets the calendar: heavy pollen weeks off the aspen and spruce, needle drop through fall, and wildlife-carried debris at grade. Homes on the ravine lots need threshold attention on a rhythm street-side homes never do.",
         ]}
       />

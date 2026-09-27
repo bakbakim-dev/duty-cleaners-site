@@ -369,7 +369,7 @@ export default function CalgaryMoveInOut() {
             </p>
             <p>
               Some things stay outside the checklist in any home: carpet steam cleaning, exterior
-              windows, anything past the reach of a three-step ladder, and lifting anything over 25
+              windows, anything past the reach of a two-step stool, and lifting anything over 25
               pounds. Inside windows, blinds,{" "}
               <Link to="/wall-washing-wall-cleaning-calgary/" className="text-primary underline underline-offset-4">wall washing in Calgary</Link>,
               the basement and a garage sweep are add-ons you pick at booking, each a separate line

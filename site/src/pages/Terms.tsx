@@ -138,11 +138,20 @@ export default function Terms() {
                       ? " Please include photos of the areas in question so the team knows exactly what to put right."
                       : " Photos help the team know exactly what to put right, but they are not required — a phone call describing what was missed is enough."}
                   </p>
+                  <p className="mb-4">
+                    We don't refund cleaning that has been done. If a re-clean doesn't work for you,
+                    call the office and we'll talk it through. Someone needs to let the team in for
+                    the return visit, or leave access the same way as for the clean.
+                  </p>
                   <p className="mb-2">The guarantee covers the work included in your booking. It does not cover:</p>
                   <ul className="list-disc pl-6">
                     <li>Services that were not part of the clean you booked</li>
                     <li>Pre-existing stains, damage or permanent discolouration</li>
+                    <li>Paint, adhesive, construction residue, or wear and marks that don't come off with cleaning</li>
+                    <li>Areas the team couldn't reach because items were left in place, such as a full fridge, furniture or boxes</li>
+                    <li>On hourly cleans, and when you switch to a priority list, anything outside your list or the time booked</li>
                     <li>Ordinary dust that settles after we leave</li>
+                    <li>Issues reported more than {POLICY.guaranteeWindowHours} hours after the clean</li>
                   </ul>
                 </div>
               )}
@@ -178,13 +187,21 @@ export default function Terms() {
 
               {POLICY.lockoutFee !== null && (
                 <>
-                  <h2 className="text-2xl font-bold mb-4 text-foreground">If We Cannot Get In</h2>
+                  <h2 className="text-2xl font-bold mb-4 text-foreground">If the Team Can't Start</h2>
+                  <p className="mb-2">
+                    If the team arrives and can't get in, or can't start because the home isn't
+                    ready, we charge {POLICY.lockoutFee}. That covers:
+                  </p>
+                  <ul className="list-disc pl-6 mb-4">
+                    <li>no key, a code that doesn't work, or nobody to let them in</li>
+                    <li>no running water, or no power where the clean needs it</li>
+                    <li>building or renovation work still under way</li>
+                    <li>a pet that can't be kept safely away from the team</li>
+                    <li>conditions we don't clean that weren't mentioned when booking, such as bodily fluids or animal waste, pests, heavy mould or hoarding</li>
+                  </ul>
                   <p className="mb-8">
-                    If our team arrives for a scheduled clean and cannot get into the home because
-                    no key was left, a code does not work or nobody is able to let them in, we
-                    charge {POLICY.lockoutFee}. The cleaner has already travelled and the slot
-                    cannot be given to anyone else at that point. Telling us at least{" "}
-                    {POLICY.cancellationNoticeHours} hours ahead avoids this entirely.
+                    The team has already travelled and the slot can't be given to anyone else.
+                    Telling us at least {POLICY.cancellationNoticeHours} hours ahead avoids this.
                   </p>
                 </>
               )}

@@ -24,7 +24,7 @@ const values: Value[] = [
     label: "Craft",
     title: "The Checklist, Done Right",
     desc: () =>
-      "The team works through the checklist for the service you booked. The price is set by home size for the condition you describe, and any extra work is agreed with you before it is done. If something was missed, tell us within 24 hours and we come back and re-clean it at no charge.",
+      "The team works through the checklist for the service you booked. The price is set by home size for the condition you describe, and if the home needs much more work than described, we contact you before any extra time, and you decide. If something was missed, tell us within 24 hours and we come back and re-clean it at no charge.",
   },
   {
     icon: Clock,
