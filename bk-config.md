@@ -4,7 +4,7 @@
 (Settings → Industries → Home Cleaning → Form 1). Currency CAD. Prices exclude GST.
 
 ⚠️ The website must NEVER invent an option or a price. Everything below comes from BookingKoala.
-Re-capture whenever BK settings change.
+Re-capture whenever BK settings change. Post-construction bands (industry 2) re-read from BK admin 2026-09-27: renamed "Up to 1000" and "2000-2499" (owner), 2500+ bands $1,050-$1,850 (owner confirmed BK is right).
 
 ---
 

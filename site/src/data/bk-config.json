@@ -4212,7 +4212,7 @@
           "value": [
             {
               "id": 62,
-              "name": "Under 1000 sq/ft",
+              "name": "Up to 1000 sq/ft",
               "description": "",
               "price_ml": 550,
               "time_ml": 14400,
@@ -4260,7 +4260,7 @@
             },
             {
               "id": 65,
-              "name": "2001-2499 sq/ft",
+              "name": "2000-2499 sq/ft",
               "description": "",
               "price_ml": 850,
               "time_ml": 25200,
@@ -4278,7 +4278,7 @@
               "id": 66,
               "name": "2500-2999 sq/ft",
               "description": "",
-              "price_ml": 1100,
+              "price_ml": 1050,
               "time_ml": 28800,
               "service_categories": [
                 0
@@ -4294,7 +4294,7 @@
               "id": 67,
               "name": "3000-3499 sq/ft",
               "description": "",
-              "price_ml": 1300,
+              "price_ml": 1250,
               "time_ml": 36000,
               "service_categories": [
                 0
@@ -4310,7 +4310,7 @@
               "id": 68,
               "name": "3500-3999 sq/ft",
               "description": "",
-              "price_ml": 1500,
+              "price_ml": 1450,
               "time_ml": 43200,
               "service_categories": [
                 0
@@ -4326,7 +4326,7 @@
               "id": 69,
               "name": "4000-4499 sq/ft",
               "description": "",
-              "price_ml": 1700,
+              "price_ml": 1650,
               "time_ml": 50400,
               "service_categories": [
                 0
@@ -4342,7 +4342,7 @@
               "id": 70,
               "name": "4500-4999 sq/ft",
               "description": "",
-              "price_ml": 1900,
+              "price_ml": 1850,
               "time_ml": 57600,
               "service_categories": [
                 0

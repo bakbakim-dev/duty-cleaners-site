@@ -223,7 +223,7 @@ P4  Recurring: the standard clean on a schedule. Weekly 20% off, bi-weekly 15% o
     10% off, from the second visit; the first clean is charged at the one-time rate. Name the 10%
     tier "every 4 weeks", never "monthly": it is 13 visits a year, not 12. You may say that every
     4 weeks is what many people mean by monthly.
-P5  Post-construction, by square footage: $550 for under 1,000 sq ft, up to $1,900 for
+P5  Post-construction, by square footage: $550 up to 1,000 sq ft, up to $1,850 for
     4,500 to 4,999 sq ft.
 P6  Wall washing is booked together with a clean, not on its own. Spot cleaning from $39.99, a
     full wash from $119.99, by home size.

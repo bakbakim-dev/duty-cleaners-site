@@ -20,7 +20,7 @@ import { startingPrice, formatPrice, sqftTierOptions, withGst } from "@/data/pri
 /* The figure /calgary/services/ already publishes for this service, from bk-config. */
 const startingPriceLabel = formatPrice(startingPrice("post-construction"));
 /* And the top of the real ladder. "Starts at $550" is true but anchors a
-   visitor at the floor of a nine-tier table that reaches $1,900, and the
+   visitor at the floor of a nine-tier table that reaches $1,850, and the
    new-build communities this page names (Seton, Mahogany, Livingston) are not
    sub-1000 sq ft homes. Derived, so it cannot drift from bk-config. */
 const sqftTiers = sqftTierOptions("post-construction");

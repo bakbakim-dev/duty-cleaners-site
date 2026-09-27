@@ -115,7 +115,7 @@ export function buildServiceSchema(input: {
             /*
               A scalar `price` states one number as THE price. That is right for
               a single figure and wrong for a published band: post-construction
-              runs $550 to $1,900 by square footage, and wall washing $39.99 to
+              runs $550 to $1,850 by square footage, and wall washing $39.99 to
               $234.99 by scope, so a bare minimum advertises a job most readers
               cannot have at that price. Where the caller gives a top, emit a
               priceSpecification carrying both ends — which is what schema.org

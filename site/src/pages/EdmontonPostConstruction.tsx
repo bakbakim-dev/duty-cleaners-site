@@ -24,7 +24,7 @@ const withGst = (value: number) => formatPrice(Math.round(value * (1 + GST_RATE)
 /* The figure /services/ already publishes for this service, from bk-config. */
 const startingPriceLabel = formatPrice(startingPrice("post-construction"));
 /* And the top of the real ladder. "Starts at $550" is true but anchors a
-   visitor at the floor of a nine-tier table that reaches $1,900.
+   visitor at the floor of a nine-tier table that reaches $1,850.
    Quoting a floor beside the words "no hidden fees" is how a page sets up its
    own quote call to disappoint. Derived, so it cannot drift from bk-config. */
 const sqftTiers = sqftTierOptions("post-construction");
