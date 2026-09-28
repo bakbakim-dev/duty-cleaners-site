@@ -409,3 +409,31 @@ describe("service offers match the band the page publishes", () => {
     expect(offenders, "a Service advertises a floor as though it were the price").toEqual([]);
   });
 });
+
+/**
+ * TextFocus, 2026-09-28: the homepage carried no WebSite node, which Google's
+ * site-names guidance reads for the name shown above results; and the two hub
+ * snapshots shipped the neighbourhood strip's animation copy (the loop started
+ * inside the headless prerender), repeating every place name a second time.
+ */
+describe("homepage WebSite node and hub marquee snapshot", () => {
+  const read = (rel: string) => readFileSync(join(DIST, rel), "utf-8");
+  it("the homepage declares one WebSite named like the Organization", () => {
+    if (!existsSync(DIST)) return;
+    const blocks = [...read("index.html").matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+      .map((m) => JSON.parse(m[1]) as Node)
+      .filter((n) => n["@type"] === "WebSite");
+    expect(blocks).toHaveLength(1);
+    expect(blocks[0].name).toBe("Duty Cleaners");
+    expect(blocks[0].url).toBe("https://dutycleaners.ca/");
+    expect((blocks[0].publisher as Node)["@id"]).toBe("https://dutycleaners.ca/#org");
+  });
+  it("the hub snapshots ship the neighbourhood strip once, not the looping copy", () => {
+    if (!existsSync(DIST)) return;
+    for (const rel of ["index.html", join("cleaning-services-calgary", "index.html")]) {
+      const html = read(rel);
+      expect(html, `${rel} has no marquee`).toContain('class="dc-marquee"');
+      expect(html.includes("dc-marquee-track"), `${rel} baked the looping copy`).toBe(false);
+    }
+  });
+});

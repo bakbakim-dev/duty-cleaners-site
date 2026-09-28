@@ -371,6 +371,22 @@ export const BRANCH_PROFILES: Record<Branch, readonly string[]> = {
 export const ORG_ID = "https://dutycleaners.ca/#org";
 
 /**
+ * WebSite node for the homepage only. Google's site-names guidance reads the
+ * name shown above search results from WebSite markup on the home page; the
+ * site had none (TextFocus, 2026-09-28). Same name as the Organization. No
+ * SearchAction: the site has no search, and the sitelinks search box is gone.
+ */
+export const WEBSITE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://dutycleaners.ca/#website",
+  name: "Duty Cleaners",
+  url: "https://dutycleaners.ca/",
+  inLanguage: "en-CA",
+  publisher: { "@id": ORG_ID },
+} as const;
+
+/**
  * The trade, for every LocalBusiness node. schema.org has no cleaning-service
  * subtype, so the nodes stay LocalBusiness and name the trade with
  * additionalType, the route schema.org documents for this. Wikidata Q6735317

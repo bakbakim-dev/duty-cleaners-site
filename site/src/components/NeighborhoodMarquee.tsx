@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { withTrailingSlash } from "@/data/legacy-urls";
 import { Link } from "react-router-dom";
 import { Pause, Play } from "lucide-react";
@@ -47,9 +47,34 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
   // copy) and it cost every prerendered hub 60 nodes before hydration. Ship
   // one copy; add the duplicate and start the animation once JavaScript is
   // running. Until then the row simply sits still.
+  //
+  // "Once JavaScript is running" was not enough: the prerender runs the page
+  // in headless Chrome, the mount effect fired there, and every snapshot
+  // shipped both copies anyway (20 of the homepage's 87 "Edmonton"s,
+  // TextFocus 2026-09-28). The loop now starts when the strip nears the
+  // viewport. The headless render never scrolls, so the snapshot keeps one
+  // copy and matches React's first render; visitors see it start on arrival.
   const [looping, setLooping] = useState(false);
   const [paused, setPaused] = useState(false);
-  useEffect(() => setLooping(true), []);
+  const sectionRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setLooping(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setLooping(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   const run = (ariaHidden: boolean) => (
     <div className="flex w-max items-baseline" aria-hidden={ariaHidden || undefined}>
       {places.map(({ name, to, qualifier }) => (
@@ -70,7 +95,7 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
   );
 
   return (
-    <section className="band-hairline relative overflow-hidden bg-card py-10 md:py-14" aria-label={`Neighbourhoods and communities the ${city} branch serves`}>
+    <section ref={sectionRef} className="band-hairline relative overflow-hidden bg-card py-10 md:py-14" aria-label={`Neighbourhoods and communities the ${city} branch serves`}>
       {looping && (
         <button
           type="button"

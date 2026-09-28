@@ -1,4 +1,4 @@
-import { BUSINESS_TRADE_TYPE } from "@/data/proof";
+import { BUSINESS_TRADE_TYPE, WEBSITE_SCHEMA } from "@/data/proof";
 import { CITY_PROOF, COMPANY, CALGARY_RATING_CLAIM, hoursRowsFor } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import {
@@ -252,6 +252,7 @@ export default function Edmonton2() {
         <meta name="twitter:description" content={PAGE_DESCRIPTION} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(WEBSITE_SCHEMA)}</script>
       </Helmet>
 
       <div className="relative min-h-screen bg-background">
