@@ -1081,6 +1081,22 @@ function dc_ghl_name_case(string $name): string
     return is_string($cased) ? $cased : $name;
 }
 
+/**
+ * The quote fields a price-check submission leaves empty, plus the "left at"
+ * step, as clears for one PUT: what a new price check or confirmation must not
+ * inherit from an earlier visit. Only for the quote funnel's own fields.
+ */
+function dc_ghl_stale_fields(array $fieldIds, array $payload, ?string $stepFieldId): array
+{
+    $clear = [];
+    foreach (DC_GHL_FIELD_MAP as $fieldKey => $payloadKey) {
+        if (!isset($fieldIds[$fieldKey])) continue;
+        if (dc_ghl_custom_value($payload[$payloadKey] ?? null) === '') $clear[] = ['id' => $fieldIds[$fieldKey], 'field_value' => ''];
+    }
+    if ($stepFieldId !== null) $clear[] = ['id' => $stepFieldId, 'field_value' => ''];
+    return $clear;
+}
+
 function dc_ghl_deliver(array $config, array $payload): array
 {
     $fieldIds = dc_ghl_field_ids($config);
@@ -1189,6 +1205,20 @@ function dc_ghl_deliver(array $config, array $payload): array
     // that workflow starts afresh. Best effort: a stale tag costs one text.
     if (!$isCareers && !$isContact && $payload['stage'] === 'confirm') {
         dc_ghl_remove_tags($headers, $contactId, ['quote-started', 'quote-left']);
+    }
+    // A returning visitor's earlier quote must not linger on the contact
+    // (2026-09-30: a one-time quote still showed a $241.99 recurring price and
+    // "left at the price screen" from an old visit). The upsert skips empty
+    // values, so clear them in a separate PUT. Best effort, after the lead is
+    // safely in: a refused clear never costs the lead.
+    if (!$isCareers && !$isContact) {
+        try {
+            $stepFieldId = dc_ghl_optional_field_id($config, 'contact.funnel_last_step');
+            $stale = dc_ghl_stale_fields($fieldIds, $payload, $stepFieldId);
+            if ($stale !== []) dc_ghl_put_fields($headers, $contactId, [], $stale);
+        } catch (Throwable) {
+            // The next price check tries again.
+        }
     }
     if (trim($payload['notes']) !== '') {
         [$noteStatus, $_noteBody, $noteError] = dc_ghl_http(
