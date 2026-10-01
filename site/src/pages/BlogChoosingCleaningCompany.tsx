@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Shield, Star, Settings, MessageSquare, DollarSign, Users, Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import LinkedText from "@/components/LinkedText";
 
 import { COMPANY, RATING_CLAIM } from "@/data/proof";
 
@@ -23,7 +24,13 @@ const keyFactors = [
   {
     icon: Users,
     title: "Assessing Your Cleaning Needs",
-    description: "Start with what the home needs. Regular upkeep, a one-time deep clean and a move-out clean are different jobs with different checklists, so a quote should say which one it covers. Note the type of home as well: at Duty Cleaners, for example, a two-storey house costs more than a condo with the same number of bedrooms.",
+    description: "Start with what the home needs. Regular upkeep, a one-time deep clean and a move-out clean are different jobs with different checklists, so a quote should say which one it covers. Deep and move-out cleans each have their own page for Edmonton and Calgary: deep cleaning in Edmonton, deep cleaning in Calgary, move-out cleaning in Edmonton and move-out cleaning in Calgary. Note the type of home as well: at Duty Cleaners, for example, a two-storey house costs more than a condo with the same number of bedrooms.",
+    links: [
+      { text: "deep cleaning in Edmonton", href: "/edmonton/deep-cleaning/" },
+      { text: "deep cleaning in Calgary", href: "/calgary/deep-cleaning/" },
+      { text: "move-out cleaning in Edmonton", href: "/move-out-cleaning-edmonton/" },
+      { text: "move-out cleaning in Calgary", href: "/move-out-cleaning-calgary/" },
+    ],
     details: "Write down anything specific before you call, such as pets, a product preference or a room that needs extra time. Ask about the jobs a company does not do, too. Duty Cleaners, for example, does not do carpet steam cleaning, upholstery or exterior windows, so those jobs need a specialist. It does not clean garages either: the only garage work is a balcony or garage sweep add-on, offered mostly in summer when the weather allows."
   },
   {
@@ -198,7 +205,7 @@ export default function BlogChoosingCleaningCompany() {
                           </div>
                           <div>
                             <h3 className="text-xl font-bold mb-3 text-foreground">{factor.title}</h3>
-                            <p className="text-muted-foreground mb-3">{factor.description}</p>
+                            <p className="text-muted-foreground mb-3"><LinkedText text={factor.description} links={factor.links} /></p>
                             <p className="text-muted-foreground">{factor.details}</p>
                           </div>
                         </div>

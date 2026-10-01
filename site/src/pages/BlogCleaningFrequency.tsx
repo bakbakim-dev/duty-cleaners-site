@@ -11,6 +11,7 @@ import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { Calendar, Clock, ArrowLeft, Home, Users, PawPrint, Briefcase, DollarSign, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import LinkedText from "@/components/LinkedText";
 import { Card, CardContent } from "@/components/ui/card";
 import { FREQUENCIES, flatRateFromPrice, formatPrice } from "@/data/pricing";
 import { POLICY } from "@/data/policy";
@@ -84,7 +85,13 @@ const frequencyOptions = [
   {
     title: "One-time or Special Events",
     ideal: "Holiday gatherings, parties, move-in/move-out, seasonal deep cleaning",
-    description: "A one-time clean suits a home before guests arrive for the holidays or a party, or as a seasonal reset. A move-in or move-out clean and a deep clean are separate services, each with its own checklist and price.",
+    description: "A one-time clean suits a home before guests arrive for the holidays or a party, or as a seasonal reset. A move-in or move-out clean and a deep clean are separate services, each with its own checklist and price. Deep and move-out cleans each have their own page for Edmonton and Calgary: deep cleaning in Edmonton, deep cleaning in Calgary, move-out cleaning in Edmonton and move-out cleaning in Calgary.",
+    links: [
+      { text: "deep cleaning in Edmonton", href: "/edmonton/deep-cleaning/" },
+      { text: "deep cleaning in Calgary", href: "/calgary/deep-cleaning/" },
+      { text: "move-out cleaning in Edmonton", href: "/move-out-cleaning-edmonton/" },
+      { text: "move-out cleaning in Calgary", href: "/move-out-cleaning-calgary/" },
+    ],
     benefit: "A one-time clean is priced by home size like any other visit. If it goes well, a recurring plan can start from there."
   }
 ];
@@ -309,7 +316,7 @@ export default function BlogCleaningFrequency() {
                       <CardContent className="p-6">
                         <h3 className="text-xl font-bold mb-2 text-foreground">{option.title}</h3>
                         <p className="text-sm text-primary font-medium mb-3">Ideal for: {option.ideal}</p>
-                        <p className="text-muted-foreground text-sm mb-4">{option.description}</p>
+                        <p className="text-muted-foreground text-sm mb-4"><LinkedText text={option.description} links={option.links} /></p>
                         <div className="p-3 bg-muted/50 rounded-lg">
                           <p className="text-sm text-muted-foreground italic">{option.benefit}</p>
                         </div>

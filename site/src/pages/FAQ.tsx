@@ -10,6 +10,7 @@ import { Home, Truck, Building2, HardHat, DollarSign, Award, MessageSquare, Shie
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import heroFaqLivingRoom from "@/assets/hero-faq-living-room.webp";
 import { CITY_PROOF, RATING_CLAIM, hoursLineFor } from "@/data/proof";
+import LinkedText, { type TextLink } from "@/components/LinkedText";
 
 /** Figures read from bk-config, so an answer cannot drift from the booking form. */
 const STANDARD_FROM = standardTierRows()[0].price;
@@ -24,7 +25,7 @@ const FAQ_DESCRIPTION =
 interface FAQCategory {
   title: string;
   icon: React.ElementType;
-  items: { question: string; answer: string; link?: { text: string; href: string } }[];
+  items: { question: string; answer: string; link?: TextLink; links?: TextLink[] }[];
 }
 
 const faqCategories: FAQCategory[] = [
@@ -46,7 +47,11 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What's the difference between standard and deep cleaning?",
-        answer: "A standard clean covers dusting, vacuuming, mopping, bathrooms and the kitchen. A deep clean is that checklist plus detailed work on baseboards, doors, light switches, wall outlets and vent covers. Choose it when the home needs those tasks or has enough build-up to require them; whether it is the first professional visit does not decide the service by itself.",
+        answer: "A standard clean covers dusting, vacuuming, mopping, bathrooms and the kitchen. A deep clean is that checklist plus detailed work on baseboards, doors, light switches, wall outlets and vent covers. Choose it when the home needs those tasks or has enough build-up to require them; whether it is the first professional visit does not decide the service by itself. Checklists and prices are on deep cleaning in Edmonton and deep cleaning in Calgary.",
+        links: [
+          { text: "deep cleaning in Edmonton", href: "/edmonton/deep-cleaning/" },
+          { text: "deep cleaning in Calgary", href: "/calgary/deep-cleaning/" },
+        ],
       },
       {
         question: "How often should I schedule recurring cleaning?",
@@ -151,7 +156,11 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Does the deep cleaning package include wall washing and cleaning inside appliances?",
-        answer: "No. Wall washing is a separate package booked together with a clean, and inside the oven and inside the fridge are add-ons on a deep clean. A move-in or move-out clean is the service that includes the inside of the oven and fridge.",
+        answer: "No. Wall washing is a separate package booked together with a clean, and inside the oven and inside the fridge are add-ons on a deep clean. A move-in or move-out clean is the service that includes the inside of the oven and fridge: see move-out cleaning in Edmonton and move-out cleaning in Calgary.",
+        links: [
+          { text: "move-out cleaning in Edmonton", href: "/move-out-cleaning-edmonton/" },
+          { text: "move-out cleaning in Calgary", href: "/move-out-cleaning-calgary/" },
+        ],
       },
     ],
   },
@@ -340,22 +349,13 @@ const FAQCategoryCard = ({ category, categoryIndex }: { category: FAQCategory; c
 };
 
 /**
- * An answer with one phrase linked to its official source. The FAQPage schema
- * keeps the plain answer text; only the visible answer carries the link.
+ * An answer with phrases linked: an official source, or the service page an
+ * answer names. The FAQPage schema keeps the plain answer text; only the
+ * visible answer carries the links.
  */
-const renderAnswer = (item: { answer: string; link?: { text: string; href: string } }) => {
-  const at = item.link ? item.answer.indexOf(item.link.text) : -1;
-  if (!item.link || at < 0) return item.answer;
-  return (
-    <>
-      {item.answer.slice(0, at)}
-      <a href={item.link.href} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">
-        {item.link.text}
-      </a>
-      {item.answer.slice(at + item.link.text.length)}
-    </>
-  );
-};
+const renderAnswer = (item: { answer: string; link?: TextLink; links?: TextLink[] }) => (
+  <LinkedText text={item.answer} links={[...(item.link ? [item.link] : []), ...(item.links ?? [])]} />
+);
 
 export default function FAQ() {
   const faqSchema = {
