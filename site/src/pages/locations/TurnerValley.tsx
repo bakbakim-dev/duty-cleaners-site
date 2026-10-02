@@ -49,7 +49,8 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Turner Valley",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/turner-valley",
-  areaServed: "Turner Valley, AB",
+  // Owner rule: every label names Diamond Valley (Black Diamond + Turner Valley amalgamated).
+  areaServed: "Turner Valley, Diamond Valley, AB",
   priceRange: sitePriceRange(),
 });
 

@@ -178,17 +178,20 @@ export default function LocationPageTemplate({
   // preserved legacy route (e.g. /locations/black-diamond vs its real canonical
   // /cleaning-services-black-diamond/).
   const canonicalUrl = canonicalUrlForPath(pathname);
+  // Black Diamond and Turner Valley are the Town of Diamond Valley (owner rule:
+  // every label names Diamond Valley), so their markup names it too.
+  const municipalityLabel = city === "Black Diamond" || city === "Turner Valley" ? `${city}, Diamond Valley` : city;
   const jsonLd = buildLocationSchema({
     // A neighbourhood is genuinely "Allendale Edmonton". A separate municipality
     // is not: "Leduc Edmonton" or "St. Albert Edmonton" names a place that does
     // not exist, and reads as though the town were part of the city. The
     // isOwnMunicipality flag already distinguishes the two for areaServed below;
     // the entity name needs it just as much.
-    name: isOwnMunicipality ? `Duty Cleaners - ${city}, AB` : `Duty Cleaners - ${city} ${regionLabel}`,
+    name: isOwnMunicipality ? `Duty Cleaners - ${municipalityLabel}, AB` : `Duty Cleaners - ${city} ${regionLabel}`,
     city: region,
     url: canonicalUrl,
     description,
-    areaServed: isOwnMunicipality ? `${city}, AB` : `${city}, ${regionLabel}, AB`,
+    areaServed: isOwnMunicipality ? `${municipalityLabel}, AB` : `${city}, ${regionLabel}, AB`,
   });
 
   const faqs = [

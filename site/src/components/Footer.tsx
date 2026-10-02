@@ -182,7 +182,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
               says: nothing is charged when you book, the card is charged after
               the clean, and these are the methods accepted. */}
           <div className="mx-auto grid max-w-2xl grid-cols-2 gap-3">
-            <div className="flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-xs font-semibold leading-tight text-brand-navy-foreground/85"><Shield className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" /><span>Pay After<br />Your Clean</span></div>
+            <div className="flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-xs font-semibold leading-tight text-brand-navy-foreground/85"><Shield className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" /><span>Card Charged<br />After Your Clean</span></div>
             <div className="flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-xs font-semibold leading-tight text-brand-navy-foreground/85"><CreditCard className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" /><span>Visa, Mastercard,<br />Amex, debit, e-transfer</span></div>
           </div>
 
