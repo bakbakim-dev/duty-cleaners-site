@@ -634,7 +634,7 @@ const AirbnbCleaningEdmonton = () => {
                 <div className="bg-muted/30 rounded-xl p-6 text-left">
                   <h3 className="font-bold text-foreground mb-2">Payment</h3>
                   <p className="text-muted-foreground text-sm">
-                    Nothing is charged when you book. The day before, a temporary hold confirms the
+                    Nothing is charged when you book. The day before, a temporary hold for the price goes on the
                     card; it is charged once the turnover is complete. Visa, Mastercard, American
                     Express and debit; e-transfer can be arranged by phone.
                   </p>

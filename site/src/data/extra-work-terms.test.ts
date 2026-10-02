@@ -86,7 +86,7 @@ describe("no page promises unlimited time for a set price", () => {
   it("no page, component, policy line or llms file says the team stays until done or the price holds however long it takes", () => {
     const offenders: string[] = [];
     for (const file of FILES) {
-      const text = codeOf(file);
+      const text = codeOf(file).replace(/\s+/g, " ");
       for (const pattern of PROMISES) {
         const match = text.match(pattern);
         if (match) offenders.push(`${file.slice(ROOT.length + 1)}: "${match[0]}"`);
@@ -101,7 +101,8 @@ describe("no page promises unlimited time for a set price", () => {
     // tells a debit customer nothing is frozen. Review of 2026-10-01: 11 pages.
     const offenders: string[] = [];
     for (const file of FILES) {
-      const text = codeOf(file);
+      // Collapsed: a JSX line wrap inside "a temporary hold confirms the card" hid one.
+      const text = codeOf(file).replace(/\s+/g, " ");
       for (const pattern of CARD_CHECK) {
         const match = text.match(pattern);
         if (match) offenders.push(`${file.slice(ROOT.length + 1)}: "${match[0]}"`);
