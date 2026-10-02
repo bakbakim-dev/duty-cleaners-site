@@ -64,7 +64,7 @@ const FAQS = [
     // washing and leave out the hourly short-term-rental turnovers the site
     // sells on its two Airbnb pages.
     q: "Where can the gift card be used?",
-    a: "On any of our home cleaning services in Edmonton or Calgary: standard, deep, move-in or move-out, post-construction, wall washing, and Airbnb and short-term rental turnovers, which are billed by the hour rather than by home size. The recipient picks the service and the date.",
+    a: "On any of our home cleaning services in Edmonton, Calgary or Red Deer: standard, deep, move-in or move-out, post-construction, wall washing, and Airbnb and short-term rental turnovers, which are billed by the hour rather than by home size. The recipient picks the service and the date.",
   },
   {
     q: "Does the gift card expire?",
@@ -94,9 +94,9 @@ const FAQS = [
   },
 ];
 
-const TITLE = "House Cleaning Gift Cards Edmonton & Calgary | Duty Cleaners";
+const TITLE = "Gift Cards: Edmonton, Calgary & Red Deer | Duty Cleaners";
 const DESCRIPTION =
-  "Buy a house cleaning gift card for Edmonton or Calgary in any amount, with no expiry, emailed right away or on a date you pick.";
+  "Buy a house cleaning gift card for Edmonton, Calgary or Red Deer in any amount, with no expiry, emailed right away or on a date you pick.";
 
 export default function GiftCard() {
   const [loaded, setLoaded] = useState(false);
@@ -148,11 +148,11 @@ export default function GiftCard() {
         <section className="bg-brand-navy py-14 md:py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="mb-5 text-3xl font-bold text-white md:text-5xl">House Cleaning Gift Cards for Edmonton and Calgary</h1>
+              <h1 className="mb-5 text-3xl font-bold text-white md:text-5xl">House Cleaning Gift Cards for Edmonton, Calgary and Red Deer</h1>
               <p className="text-lg leading-relaxed text-white/85 md:text-xl">
                 Choose any amount, add a message, and the card arrives by email, right away or on a
-                date you pick. The recipient can use it on any clean from the Edmonton or Calgary
-                office, and both are rated {RATING_CLAIM}.
+                date you pick. The recipient can use it on any clean from the Edmonton, Calgary or Red Deer
+                office; Edmonton and Calgary are both rated {RATING_CLAIM}.
               </p>
 
               <ul className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -209,7 +209,7 @@ export default function GiftCard() {
                 Any amount works, because the balance is applied to whatever they book. If you would
                 rather cover a whole visit, these amounts include the one-visit apartment or condo
                 price and 5% GST. A larger home type, a pet charge, an add-on or a travel fee outside
-                Edmonton or Calgary city limits adds to the total.
+                Edmonton, Calgary or Red Deer city limits adds to the total.
               </p>
               <ul className="grid gap-5 sm:grid-cols-3">
                 {suggestions.map((item) => (
