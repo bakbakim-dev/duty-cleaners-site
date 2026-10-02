@@ -486,8 +486,7 @@ export default function CalgaryMoveInOut() {
               with the fee added on the quote.
             </p>
             <p>
-              What does not move it: how long the clean takes. The rate on your quote is the rate
-              you pay, and a two-bedroom that takes an extra hour is still a two-bedroom. If the home
+              The rate on your quote is set by the home and the condition you describe. If the home turns out to need much more work than described, we contact you before any extra time is charged. If the home
               is staying lived in, the service you want is{" "}
               <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean in Calgary</Link>{" "}
               instead, and the standard, deep and move-out rates sit row against row on{" "}
@@ -559,7 +558,7 @@ export default function CalgaryMoveInOut() {
             </TermCard>
 
             <TermCard icon={<span className="dc-icon dc-icon-clock w-6 h-6" aria-hidden="true" />} title="Pay after the clean">
-              Nothing is charged when you book. A temporary hold checks the card the day before,
+              Nothing is charged when you book. A temporary hold for the price goes on the card the day before,
               and the charge goes through once the clean is complete. Visa, Mastercard, American
               Express and debit; e-transfer can be arranged by phone.
             </TermCard>

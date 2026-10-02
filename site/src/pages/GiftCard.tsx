@@ -42,12 +42,13 @@ const steps = [
 const standard = standardTierRows();
 const deep = deepCleanTierRows();
 const move = moveInOutTierRows();
-const taxIncluded = (price?: string) =>
-  price ? formatPrice(withGst(Number(price.replace(/[^0-9.]/g, "")))) : "";
+// From the unrounded price: GST on the display-rounded figure ($155) put a cent
+// too much on each amount ($162.75 for $154.99 + GST = $162.74; review 2026-10-01).
+const taxIncluded = (exact?: number) => (exact == null ? "" : formatPrice(withGst(exact)));
 const suggestions = [
-  { amount: taxIncluded(standard[0]?.price), label: "A standard clean of a 1-bedroom, 1-bathroom apartment or condo" },
-  { amount: taxIncluded(standard[1]?.price), label: "A standard clean of a 2-bedroom, 2-bathroom apartment or condo" },
-  { amount: taxIncluded(deep[1]?.price), label: "A deep clean of a 2-bedroom, 2-bathroom apartment or condo" },
+  { amount: taxIncluded(standard[0]?.exact), label: "A standard clean of a 1-bedroom, 1-bathroom apartment or condo" },
+  { amount: taxIncluded(standard[1]?.exact), label: "A standard clean of a 2-bedroom, 2-bathroom apartment or condo" },
+  { amount: taxIncluded(deep[1]?.exact), label: "A deep clean of a 2-bedroom, 2-bathroom apartment or condo" },
 ];
 
 /**
@@ -74,7 +75,7 @@ const FAQS = [
   },
   {
     q: "What if the clean costs more, or less, than the card?",
-    a: `If the clean costs more, they pay the difference at checkout. If it costs less, the remaining balance stays on the card for the next visit. A ${taxIncluded(standard[0]?.price)} card covers a standard clean of a 1-bedroom, 1-bathroom apartment or condo, and a ${taxIncluded(move[move.length - 1]?.price)} card covers a move-out clean of a 5-bedroom apartment or condo. Those amounts include 5% GST; a pet charge, home-type surcharge, travel fee outside city limits or selected add-on costs extra.`,
+    a: `If the clean costs more, they pay the difference at checkout. If it costs less, the remaining balance stays on the card for the next visit. A ${taxIncluded(standard[0]?.exact)} card covers a standard clean of a 1-bedroom, 1-bathroom apartment or condo, and a ${taxIncluded(move[move.length - 1]?.exact)} card covers a move-out clean of a 5-bedroom apartment or condo. Those amounts include 5% GST; a pet charge, home-type surcharge, travel fee outside city limits or selected add-on costs extra.`,
   },
   {
     q: "Is there a minimum or maximum amount?",

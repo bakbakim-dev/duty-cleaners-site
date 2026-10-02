@@ -191,7 +191,7 @@ export default function Terwillegar() {
                 <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6 text-balance">Getting In When You Are Not Home</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>You do not need to be home for a clean in Terwillegar. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up on the way out. In a lane-access house, tell us whether the team should use the back door.</p>
-                  <p>We book an arrival window rather than an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM. If the team arrives and cannot get in, the lockout charge is half the cost of the scheduled service, so check the code or key before the day.</p>
+                  <p>We book an arrival window rather than an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM. If the team arrives and cannot get in, the lockout charge is up to half the cost of the scheduled service, so check the code or key before the day.</p>
                 </div>
               </div>
             </AnimatedSection>

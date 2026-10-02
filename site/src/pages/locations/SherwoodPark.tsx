@@ -219,7 +219,7 @@ export default function SherwoodPark() {
                   The deep clean is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers. Book a standard clean instead and the same house is quoted from the standard rate for its size, with the same surcharge and travel fee.
                 </p>
                 <p>
-                  Size and home type set the rate, and a clean that runs long costs the same. The figure moves for more bathrooms than the table assumes, a larger home type, a pet or an add-on. When a home needs substantially more work than was described, such as heavy build-up or far more glass or cabinetry, the team says what it found and sets out the options before carrying on.
+                  Size and home type set the rate, for the condition you describe. The figure moves for more bathrooms than the table assumes, a larger home type, a pet or an add-on. When a home needs substantially more work than was described, such as heavy build-up or far more glass or cabinetry, the team says what it found and sets out the options before carrying on.
                 </p>
                 <p>
                   Sherwood Park pays the travel fee because it is outside Edmonton city limits; a post-construction booking carries {PC_TRAVEL_FEE} instead. Inside the city there is no trip fee, and the rest of the quote is worked out the same way as for{" "}

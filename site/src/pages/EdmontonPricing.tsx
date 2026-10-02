@@ -407,7 +407,7 @@ export default function EdmontonPricing() {
                     Post-construction cleaning in Edmonton
                   </Link>{" "}
                   goes by square footage instead, because drywall dust settles on every surface regardless of
-                  how many bedrooms there are. It starts at {POST_CONSTRUCTION_FROM} for under 1,000 sq ft before
+                  how many bedrooms there are. It starts at {POST_CONSTRUCTION_FROM} for up to 1,000 sq ft before
                   GST, with a {POST_TRAVEL_FEE} post-construction travel fee outside city limits.
                 </p>
               </section>

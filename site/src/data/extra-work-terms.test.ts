@@ -56,7 +56,31 @@ const PROMISES: RegExp[] = [
   // seven surfaces, including every location page, because no pattern above said "go up".
   /(do|does|will|would) not go up[^.]{0,60}(longer|took|how long|the time)/i,
   /(doesn't|won't|don't) go up[^.]{0,60}(longer|took|how long|the time)/i,
+  // Review of 2026-10-01: 23 pages and llms.txt reworded the same promise past
+  // every pattern above ("a clean that runs long costs the same", "the rate
+  // holds if the visit runs long", "how long the clean takes does not change
+  // it", "the time on site does not change the price", "a slow heritage room
+  // does not raise the bill"). The owner's own "your price stays the same"
+  // (priority list, EXTRA_WORK_TERM) names no length of time, so it passes.
+  /(runs?|ran|running|takes?|took) long(er)?[^.]{0,60}(costs the same|stays the same|unchanged|holds|stays fixed)/i,
+  /(costs the same|unchanged|holds|stays fixed|does not (move|grow|climb|change))[^.]{0,60}(runs? long|ran long|takes? longer|took longer|how long)/i,
+  /(does not|doesn't|never) (move|grow|climb|change|raise)s?[^.]{0,40}(because[^.]{0,30}(slow|longer)|with how long)/i,
+  /how long the (clean|crew|visit)[^.]{0,30}(does not|doesn't|never)/i,
+  /the time the clean takes does not/i,
+  /time on site does not/i,
+  /not (by |to )?the clock/i,
+  /costs? more for taking longer/i,
+  /slow[^.]{0,30}(does not|doesn't) raise/i,
+  /the hours do not/i,
 ];
+
+const CARD_CHECK: RegExp[] = [
+  /no money moves/i,
+  /hold[^.]{0,40}(checks|confirms) (the|your) card/i,
+  /(check|confirm) (that )?(it|the card) is valid/i,
+];
+
+const LOCKOUT_HALF = /(?<!up to )\bhalf (of what )?the (scheduled|cost of the scheduled)/i;
 
 describe("no page promises unlimited time for a set price", () => {
   it("no page, component, policy line or llms file says the team stays until done or the price holds however long it takes", () => {
@@ -67,6 +91,32 @@ describe("no page promises unlimited time for a set price", () => {
         const match = text.match(pattern);
         if (match) offenders.push(`${file.slice(ROOT.length + 1)}: "${match[0]}"`);
       }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  it("no page describes the card hold as a check of the card", () => {
+    // Owner, 2026-09-22 (PAYMENT_TERMS): the hold is for the price, and on a debit
+    // card the amount is set aside. "A hold checks the card" or "no money moves"
+    // tells a debit customer nothing is frozen. Review of 2026-10-01: 11 pages.
+    const offenders: string[] = [];
+    for (const file of FILES) {
+      const text = codeOf(file);
+      for (const pattern of CARD_CHECK) {
+        const match = text.match(pattern);
+        if (match) offenders.push(`${file.slice(ROOT.length + 1)}: "${match[0]}"`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  it("no page states the lockout charge as half without up to", () => {
+    // Owner, 2026-09-25 (POLICY.lockoutFee): "up to half the cost of the scheduled
+    // service". Review of 2026-10-01 found a flat "half" on four pages.
+    const offenders: string[] = [];
+    for (const file of FILES) {
+      const match = codeOf(file).replace(/\s+/g, " ").match(LOCKOUT_HALF);
+      if (match) offenders.push(`${file.slice(ROOT.length + 1)}: "${match[0]}"`);
     }
     expect(offenders).toEqual([]);
   });

@@ -93,7 +93,7 @@ export default function Kensington() {
                   Professional House Cleaning in Kensington
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Kensington's walk-ups and character homes line the Bow's north bank, with radiators and original casings to clean by hand. Our Calgary branch prices each clean flat by home size, so a slow heritage room does not raise the bill.
+                  Kensington's walk-ups and character homes line the Bow's north bank, with radiators and original casings to clean by hand. Our Calgary branch prices each clean flat by home size, so a heritage home is quoted by its rooms, not by the hour.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

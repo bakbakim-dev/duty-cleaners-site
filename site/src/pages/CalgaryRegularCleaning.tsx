@@ -52,7 +52,7 @@ export default function CalgaryRegularCleaning() {
         <>
           A standard clean is a single visit: kitchen, bathrooms, floors, bedrooms and the living spaces you use,
           dusted, vacuumed, mopped and wiped down. It is priced flat by home size from {FROM} for a one-bedroom, the
-          rate holds if the visit runs long, and{" "}
+          rate is for the home in the condition you describe, and{" "}
           <Link to="/calgary/pricing/">Calgary house cleaning prices by home size</Link> lists the rest.
         </>,
         "When you book, tell us about tracked-in grit, heavily used rooms or unusual buildup. Dust left by renovation work needs a post-construction scope.",
@@ -192,7 +192,7 @@ export default function CalgaryRegularCleaning() {
         { q: "Can a standard clean help with dust and tracked-in grit?", a: "Yes, routine dusting, vacuuming and mopping are on the standard checklist. Tell us about unusual buildup before booking. Baseboards are part of the deep-clean package, renovation dust needs a post-construction scope, and carpet steam cleaning is not offered." },
         { q: "What does a Calgary standard clean do in the kitchen?", a: "Counters, the sink and the stovetop are cleaned, the microwave is done inside and out, the outside of the fridge, oven and dishwasher and the cabinet fronts are wiped, and the floor is vacuumed and mopped. The inside of the oven and fridge are separate add-ons." },
         { q: "When is a deep clean the better choice?", a: "A deep clean is the better choice once the grit has already worked in. A standard clean resets a Calgary home that is basically kept up. If the baseboards, door frames, switch plates, vents and the range hood have not been touched in months, book the deep clean first and keep it up with standard visits after that." },
-        { q: "Is the price by the hour?", a: "No. The rate is fixed by home size before the team arrives, and it stays fixed if the visit takes longer than expected. The team works to the checklist, not to a clock, and leaves when the checklist is done." },
+        { q: "Is the price by the hour?", a: "No. The rate is set by home size before the team arrives, for the condition you describe, and the clean is booked as one visit. If the home needs much more work than described, we contact you before any extra time is charged." },
         { q: "How often do Calgary homes need a standard clean?", a: "One visit is one visit; book it when the house needs it. To keep a Calgary home at one level, put the standard clean on a schedule: weekly visits are 20% off, bi-weekly 15% off and every 4 weeks 10% off. The discount starts on the second visit, and the first is charged at the one-time rate." },
         { q: "Can the team get in if I am at work?", a: `Yes. You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and in a Calgary tower a fob left with the concierge does the same job. Tell us which when you book, and the team locks up on the way out. If the team cannot get in, the lockout charge is ${POLICY.lockoutFee}.` },
         { q: "Who supplies the products and the vacuum?", a: `We do. The team brings every product and piece of equipment, the vacuum included. If there is a product you want used or avoided, say so when you book. Eco-friendly products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },

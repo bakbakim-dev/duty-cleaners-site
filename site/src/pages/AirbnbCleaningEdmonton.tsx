@@ -201,7 +201,7 @@ const AirbnbCleaningEdmonton = () => {
   const whyChooseUs = [
     { icon: Clock, title: "A booked arrival window", description: `The team arrives in one of three windows: ${WINDOWS_LINE}. When checkout and check-in fall on the same day, tell us both times and we look for the window that fits between them.` },
     { icon: Star, title: EDMONTON_RATING_CLAIM, description: `That is the rating across ${proof.googleReviewCount} reviews on the Edmonton Google listing, for a company that has cleaned Alberta homes ${COMPANY.sinceLabel}. Every cleaner is reference-checked before their first job and rated by the customer after every visit.` },
-    { icon: Calendar, title: "Paid after the turnover", description: "Nothing is charged when you book. The day before, a temporary hold confirms the card, and the charge goes through once the turnover is complete. Book one turnover or a run of them." },
+    { icon: Calendar, title: "Paid after the turnover", description: "Nothing is charged when you book. The day before, a temporary hold for the price goes on the card, and the charge goes through once the turnover is complete. Book one turnover or a run of them." },
     { icon: Shield, title: "We bring the supplies", description: `Products and equipment come with the team. Eco-friendly products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
   ];
 

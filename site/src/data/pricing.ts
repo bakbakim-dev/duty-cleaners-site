@@ -803,6 +803,8 @@ export const deepCleanTierRows = () =>
       standard: displayPrice(standard),
       packagePrice: displayPrice(packagePrice),
       price: displayPrice(money(standard + packagePrice)),
+      /** Unrounded, for arithmetic (GST): `price` is display-rounded. */
+      exact: money(standard + packagePrice),
     };
   });
 
@@ -813,21 +815,24 @@ export const deepCleanTierRows = () =>
  * snapshot updates every table at once.
  */
 export const serviceTierRows = (id: ServiceId) =>
-  PRICING_TIERS.map((tier) => ({
-    beds: tier.label,
-    assumption: bathroomAssumption(tier),
-    price: displayPrice(
-      calculateQuote({
-        service: id,
-        homeType: homeTypeOptions(id)[0]?.id ?? null,
-        bedrooms: tier.beds,
-        bathrooms: tier.bathrooms,
-        halfBaths: tier.halfBaths,
-        addOns: [],
-        frequency: "one-time",
-      }).firstClean,
-    ),
-  }));
+  PRICING_TIERS.map((tier) => {
+    const firstClean = calculateQuote({
+      service: id,
+      homeType: homeTypeOptions(id)[0]?.id ?? null,
+      bedrooms: tier.beds,
+      bathrooms: tier.bathrooms,
+      halfBaths: tier.halfBaths,
+      addOns: [],
+      frequency: "one-time",
+    }).firstClean;
+    return {
+      beds: tier.label,
+      assumption: bathroomAssumption(tier),
+      price: displayPrice(firstClean),
+      /** Unrounded, for arithmetic (GST): `price` is display-rounded ($154.99 shows as $155). */
+      exact: firstClean,
+    };
+  });
 
 export const standardTierRows = () => serviceTierRows("standard");
 

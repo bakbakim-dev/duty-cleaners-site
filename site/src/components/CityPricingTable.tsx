@@ -69,14 +69,14 @@ const COPY = {
     heading: "Pricing that fits the job",
     intro:
       "Most homes are priced flat by size. You see your number before you book, plus 5% GST. If a flat rate does not suit your job or your budget, we can quote it hourly instead.",
-    note: "Six or seven bedrooms, home type, pets and add-ons change your initial quote. BookingKoala shows any travel fee for an address outside city limits and the final total before you book.",
+    note: "Six or seven bedrooms, home type, pets, an address outside city limits and add-ons move the number, and the instant price lists each one, travel fee included, before you book.",
     recurring: `Booking regularly? From your second visit you save ${RECURRING_SAVINGS}. The first clean is charged at the standard one-time rate.`,
     after: "Answer a few quick questions and see your exact price without calling.",
   },
   "/calgary": {
     heading: "What a clean costs in Calgary",
     intro:
-      "Calgary prices are the same as Edmonton's: flat by home size, GST on top, and the figure does not climb because the team was slow. Where a flat rate is the wrong shape for the job, we can quote it by the hour.",
+      "Calgary prices are the same as Edmonton's: flat by home size for the condition you describe, with GST on top. Where a flat rate is the wrong shape for the job, we can quote it by the hour.",
     note: "Six or seven bedrooms, home type, pets, an address outside city limits and add-ons move the number, and the quote lists each one before you book.",
     recurring: `Book on a schedule and the discount starts on the second visit: ${RECURRING_SAVINGS}. The first clean is billed at the one-time rate.`,
     after: "A few questions, then the exact figure for your home. Nobody needs to phone you.",

@@ -447,7 +447,7 @@ export default function EdmontonMarchOut() {
               {[
                 "Every cleaner is reference-checked before a first job and rated by the customer after each visit, and the ratings decide who we keep sending.",
                 "The team brings all supplies and equipment, so an empty house needs only running water and, for the vacuum, electricity.",
-                "Nothing is charged at booking. A temporary hold the day before confirms the card, and the charge goes through once the clean is complete.",
+                "Nothing is charged at booking. A temporary hold for the price goes on the card the day before, and the charge goes through once the clean is complete.",
                 `If something was missed, tell us within ${GUARANTEE_HOURS} hours and the team comes back and re-cleans it at no charge.`,
               ].map((point) => (
                 <div

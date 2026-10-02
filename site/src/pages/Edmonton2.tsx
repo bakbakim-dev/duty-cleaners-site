@@ -209,7 +209,7 @@ export default function Edmonton2() {
     answer: "Edmonton holds its cold rather than cycling through thaws, so the sand and salt tracked in from November arrive dry and stay, working into carpet edges and along baseboards. Furnace season runs from October into April, and a house sealed up that long cycles dust faster. The spring melt in late March and April then brings a winter of grit indoors in about three weeks."
   }, {
     question: "Do you clean condos and apartments in downtown Edmonton?",
-    answer: "Yes. Downtown is one of the Edmonton neighbourhoods the branch covers, and a condo or apartment is priced straight from the size table, by bedrooms and bathrooms, with no home-type charge and before 5% GST. Put the fob, front-desk and visitor-parking details on the booking. If the team arrives and cannot get in, the lockout charge is half the cost of the scheduled service."
+    answer: "Yes. Downtown is one of the Edmonton neighbourhoods the branch covers, and a condo or apartment is priced straight from the size table, by bedrooms and bathrooms, with no home-type charge and before 5% GST. Put the fob, front-desk and visitor-parking details on the booking. If the team arrives and cannot get in, the lockout charge is up to half the cost of the scheduled service."
   }, {
     question: "Do you offer same-day cleaning service in Edmonton?",
     answer: "Same-day and next-day slots depend on the schedule. Call the Edmonton office at (780) 913-6565 and ask what the schedule has open."
@@ -383,7 +383,7 @@ export default function Edmonton2() {
               <div className="mt-5 space-y-4 leading-relaxed text-muted-foreground">
                 <p>
                   Include lobby access, visitor parking and any required elevator booking.
-                  If the team cannot enter, the lockout charge is half the scheduled service cost.
+                  If the team cannot enter, the lockout charge is up to half the scheduled service cost.
                 </p>
                 <p>
                   Apartments and condos have no home-type surcharge; houses do.

@@ -50,7 +50,7 @@ const FAQS = [
   },
   {
     q: "Is the inside of the oven included?",
-    a: `Only on a move-in or move-out clean, where the inside of the oven, fridge, cabinets and drawers are part of the service. On a standard or deep clean the oven is an add-on at ${OVEN_FEE}, the fridge ${FRIDGE_FEE}, and inside cabinets ${CABINET_FEE} once they are empty, all before GST. Each is a tick-box in the booking form.`,
+    a: `Only on a move-in or move-out clean, where the inside of the oven, fridge, cabinets and drawers are part of the service. On a standard or deep clean the oven is an add-on at ${OVEN_FEE}, the fridge ${FRIDGE_FEE}, and inside cabinets from ${CABINET_FEE} once they are empty, all before GST. Each is a tick-box in the booking form.`,
   },
   {
     q: "Is there a charge for pets?",

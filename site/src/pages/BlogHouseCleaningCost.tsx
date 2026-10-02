@@ -187,7 +187,7 @@ const SECTIONS = [
     id: "per-hour",
     h2: "What should you compare in flat-rate and hourly quotes?",
     q: "What should you compare in flat-rate and hourly quotes?",
-    a: `At Duty Cleaners, whole-home standard, deep and move-out cleans are priced flat by home size, so the price stays the same if a clean runs long. Partial or unusual home-cleaning jobs, such as a few rooms, a one-off task list or a home no size tier fits, are quoted by the hour from ${HOME_HOURLY} per cleaner-hour before 5% GST, with a minimum of 3 hours for one cleaner or 2 hours for two. Airbnb and short-term rental turnovers have a separate rate of ${HOURLY} per cleaner-hour before GST, with the same minimums. Outside Edmonton or Calgary city limits, a home clean also carries a ${TRAVEL_FEE} travel fee.`,
+    a: `At Duty Cleaners, whole-home standard, deep and move-out cleans are priced flat by home size, for the condition you describe; if a home needs much more work than described, any extra time is agreed with you before it is charged. Partial or unusual home-cleaning jobs, such as a few rooms, a one-off task list or a home no size tier fits, are quoted by the hour from ${HOME_HOURLY} per cleaner-hour before 5% GST, with a minimum of 3 hours for one cleaner or 2 hours for two. Airbnb and short-term rental turnovers have a separate rate of ${HOURLY} per cleaner-hour before GST, with the same minimums. Outside Edmonton or Calgary city limits, a home clean also carries a ${TRAVEL_FEE} travel fee.`,
   },
   {
     id: "edmonton",
@@ -357,8 +357,7 @@ export default function BlogHouseCleaningCost() {
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   At Duty Cleaners, a standard clean in Edmonton or Calgary is {COST_SPANS.standard} depending on the size
                   of the home, a deep clean {COST_SPANS.deep}, and a move-in or move-out clean{" "}
-                  {COST_SPANS.moveInOut}. Those are flat rates in Canadian dollars before 5% GST for an
-                  apartment or condo, and they do not change because a clean ran long. A house rather than an apartment, a
+                  {COST_SPANS.moveInOut}. Those are flat rates in Canadian dollars before 5% GST for an apartment or condo in the condition you describe. A house rather than an apartment, a
                   home with pets and an address outside Edmonton or Calgary city limits each add a
                   charge.
                 </p>

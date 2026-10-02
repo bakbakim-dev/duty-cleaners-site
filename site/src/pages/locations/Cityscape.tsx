@@ -202,7 +202,7 @@ export default function Cityscape() {
                 <div>
                   <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">High Great-Room Ledges in Cityscape</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    The high great-room ledges in Cityscape homes gather dust out of arm's reach. The team works from a ladder of three steps at most, so a ledge higher than that is not part of the clean. In a home with pets, the compulsory pet charge shows on the quote before you book.
+                    The high great-room ledges in Cityscape homes gather dust out of arm's reach. The team works from a two-step stool, so a ledge higher than that can reach is not part of the clean. In a home with pets, the compulsory pet charge shows on the quote before you book.
                   </p>
                   <ul className="space-y-3">
                     {["You do not need to be home","A one-hour arrival window, booked ahead","Nothing charged until the clean is done"].map((t,i)=>(

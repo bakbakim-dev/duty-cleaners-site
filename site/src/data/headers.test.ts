@@ -41,6 +41,25 @@ describe("_headers", () => {
     }
   });
 
+  /**
+   * "Show map" frames Google Maps only after a click, so no page load and no
+   * crawl ever hit the block: frame-src was enforced on 2026-09-27 without
+   * google.com and the map stayed an empty box on ~95 location pages until a
+   * review clicked it (2026-10-01). The host is read from the component, so a
+   * new embed URL has to be allowed here too.
+   */
+  it("frame-src allows the host the Show map button frames", () => {
+    const embed = readFileSync(join(ROOT, "src", "components", "GoogleMapEmbed.tsx"), "utf-8");
+    const host = /`(https:\/\/[^/`]+)\/maps\?[^`]*output=embed`/.exec(embed)?.[1];
+    expect(host, "GoogleMapEmbed.tsx no longer builds a maps?…output=embed URL").toBeTruthy();
+    const policy =
+      headers
+        .split(/\r?\n/)
+        .find((line) => /^\s*Content-Security-Policy:/.test(line)) ?? "";
+    const frameSrc = /frame-src([^;]*)/.exec(policy)?.[1] ?? "";
+    expect(frameSrc.split(/\s+/), `frame-src does not allow ${host}, so "Show map" stays blank`).toContain(host);
+  });
+
   it("allows the Google Analytics 4 loader's origins in the directives it uses", () => {
     // src/lib/analytics.ts injects gtag.js (script-src) when VITE_GA4_MEASUREMENT_ID
     // is set, and gtag.js sends its hits by fetch/beacon (connect-src) or pixel

@@ -82,7 +82,7 @@ const excludedServices = [
    Each now states the term it was standing in for. */
 const whyChooseUs = [
   { title: "Booked around your possession date", desc: "The crew arrives in a booked window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than at an exact time. Give us the date the last trade finishes and book the first open slot after it." },
-  { title: "Pay after the clean", desc: "Nothing is charged when you book. The day before your appointment a temporary hold confirms the card is valid, and no money moves. Your card is charged once the clean is complete." },
+  { title: "Pay after the clean", desc: "Nothing is charged when you book. The day before your appointment a temporary hold for the price goes on your card; on a debit card the amount is set aside until the charge. Your card is charged once the clean is complete." },
   { title: "Ledges, tracks and vents by hand", desc: "Four places a machine cannot do are wiped by hand: the ledges, the window tracks, the vent slots and the top edge of the trim." },
   { title: "What the crew brings, what the site needs", desc: "Vacuums, cloths, products and the two-step stool come with the crew. The site has to have power and running water, which on a new build is worth confirming with the builder." },
   { title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: `Tell us within ${POLICY.guaranteeWindowHours} hours about anything we missed and we re-clean it free of charge. Photos help the team find it and are not a condition.` },

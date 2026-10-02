@@ -65,7 +65,7 @@ export default function CommercialCleaningCalgary() {
     { icon: ShoppingBag, title: "Retail Cleaning", description: "Counters, fitting rooms, entry glass, sales floors and customer washrooms, timed around opening hours." },
     { icon: Stethoscope, title: "Medical Office Cleaning", description: "Medical-office cleaning is scoped at a walkthrough. Before accepting the work, we confirm the rooms, surfaces, product requirements and documentation we can provide." },
     { icon: UtensilsCrossed, title: "Restaurant Cleaning", description: "Kitchen and dining-area cleaning within the written scope agreed at the walkthrough." },
-    { icon: Dumbbell, title: "Gym & Fitness Center", description: "High-touch surfaces wiped down, and change rooms, washrooms and floors cleaned, to the scope agreed at the walkthrough." },
+    { icon: Dumbbell, title: "Gym & Fitness Centre", description: "High-touch surfaces wiped down, and change rooms, washrooms and floors cleaned, to the scope agreed at the walkthrough." },
   ];
 
   return (

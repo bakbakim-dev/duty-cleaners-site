@@ -69,7 +69,7 @@ const excludedServices = [
 
 const whyChooseUs = [
   { title: "Timed after the last trade", desc: "Book us for after the final walkthrough. A clean done while a trade still has a key gets undone by the next visit. Weekday and weekend slots depend on the schedule." },
-  { title: "Pay after the clean", desc: "Nothing is charged when you book. A temporary hold checks the card the day before, and the charge goes through once the clean is complete." },
+  { title: "Pay after the clean", desc: "Nothing is charged when you book. A temporary hold for the price goes on the card the day before, and the charge goes through once the clean is complete." },
   { title: "Priced by square footage", desc: `${startingPriceLabel} to ${topPriceLabel} before 5% GST, by the size band of the finished space. The quote shows the band before you book, and a travel fee is added only outside Calgary city limits.` },
   { title: "Supplies and equipment", desc: "The team brings the vacuums, cloths and products. You need the power and water on, which on a new build means checking the builder has not shut them off." },
   { title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: `A ledge or a track we missed is re-cleaned free if you tell us within ${POLICY.guaranteeWindowHours} hours.` },

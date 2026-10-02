@@ -1,19 +1,24 @@
 import LocationPageTemplate from "@/components/LocationPageTemplate";
 
+// Local note rewritten 2026-10-02: the old note described older, larger homes on
+// mature tree-lined streets bracketed by Whitemud Drive and the Henday. Maple Ridge
+// is a manufactured-home community (every home), mostly placed in the 1970s, on the
+// east side of 17 Street NW at 66 Avenue NW and surrounded by industrial land
+// (Wikipedia "Maple Ridge, Edmonton"; City of Edmonton neighbourhood profile).
 export default function MapleRidge() {
   return (
     <LocationPageTemplate
       city="Maple Ridge"
       region="edmonton"
       title="House Cleaning Services Maple Ridge Edmonton | Duty Cleaners"
-      description="Maple Ridge homes are older and more generously sized, with more separate rooms than an open-plan build, and winter road grit off Whitemud Drive and the Anthony Henday is constant from November through April."
-      seoDescription="House cleaning in Maple Ridge, Edmonton, where older, larger homes have more separate rooms and winter grit comes off Whitemud Drive."
+      description="Maple Ridge is a manufactured-home community off 17 Street in southeast Edmonton, with industrial land on every side, so dust and grit from the surrounding yards and roads find their way in all year."
+      seoDescription="House cleaning in Maple Ridge, Edmonton: manufactured homes off 17 Street, priced by bedrooms and bathrooms."
       localNote={{
         heading: "What a Maple Ridge home needs",
         paragraphs: [
-          "The homes here are older and more generously sized than a modern build of the same footprint, which usually means more separate rooms rather than one open plan. That matters for the booking: a home divided into more rooms takes longer than an open-plan home of the same square footage, so describe the layout when you book rather than only the bedroom count.",
-          "Maple Ridge is established, and mature tree-lined streets change the cleaning year in a way new neighbourhoods do not experience. Spring brings pollen and seed fall, autumn brings leaf litter, and both get walked in and tracked through the main floor for weeks at a stretch. Homes with a big canopy overhead also get more organic debris in window tracks and door channels than a newer street does — it is fine, dark, and easy to mistake for general dirt until it is cleared out properly.",
-          "Whitemud Drive and the Anthony Henday bracket the area, so winter road grit is a constant from November through April.",
+          "Every home in Maple Ridge is a manufactured home, most of them placed here in the 1970s. Book by the bedrooms and bathrooms the home has, and mention any addition or enclosed porch, so the quote covers every room the team will clean.",
+          "The community sits on the east side of 17 Street NW at 66 Avenue, with industrial parks around it. Fine dust from the surrounding yards and roads settles on window sills and tracks, door channels and the floor just inside the entry, and it builds up faster than in a neighbourhood with only houses around it.",
+          "In winter that grit is joined by road sand and salt from 17 Street, so the entry, the floor around it and the door tracks need the most attention from November through April.",
         ],
       }}
       phone="(780) 913-6565"

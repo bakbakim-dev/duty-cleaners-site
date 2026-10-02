@@ -292,7 +292,7 @@ export default function BlogChoosingCleaningCompany() {
               </h2>
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-muted-foreground">
-                  Reviews show how past customers found a cleaning company, including its weak spots. Check more than one platform, such as Google, Yelp and social media, and read the recent reviews as well as the average.
+                  Reviews show how past customers found a cleaning company, including its weak spots. Check more than one place, such as Google reviews and social media, and read the recent reviews as well as the average.
                 </p>
                 <p className="text-muted-foreground mt-4">
                   Look for patterns in the feedback, such as steady praise for turning up on time or repeated complaints about communication. The replies matter too: a company that answers a bad review with a specific fix is showing you its process. Duty Cleaners' Edmonton and Calgary branches each have their own Google listing, and both are rated {RATING_CLAIM}. If you are comparing companies for <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Edmonton</Link>, read each company's recent reviews before you book. For Calgary, the <Link to="/blog/cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">Calgary hiring guide</Link> covers what to check before you book there.

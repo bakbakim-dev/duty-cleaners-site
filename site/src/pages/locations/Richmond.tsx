@@ -140,7 +140,7 @@ export default function Richmond() {
               <div className="text-center mb-14">
                 <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Cleaning Services for Richmond Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  For a standard clean, a three-storey infill and a small 1950s bungalow are both priced by bedrooms, bathrooms and home type, and neither costs more for taking longer.
+                  For a standard clean, a three-storey infill and a small 1950s bungalow are both priced by bedrooms, bathrooms and home type, and neither is billed by the hour.
                 </p>
               </div>
             </AnimatedSection>

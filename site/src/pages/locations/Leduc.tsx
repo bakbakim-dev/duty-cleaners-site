@@ -308,10 +308,10 @@ export default function Leduc() {
                 <p>
                   The clean itself is priced the way our{" "}
                   <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning across Edmonton</Link>{" "}
-                  is, and the travel fee is the only line an Edmonton address would not have. More bathrooms than the table assumes, a townhouse or a two-storey house, and add-ons such as inside the oven, from {OVEN_FROM} before GST, all raise the figure. The time the clean takes does not. If a home needs substantially more work than described, such as heavy build-up, the team explains what it found and the options before continuing.
+                  is, and the travel fee is the only line an Edmonton address would not have. More bathrooms than the table assumes, a townhouse or a two-storey house, and add-ons such as inside the oven, from {OVEN_FROM} before GST, all raise the figure.  If a home needs substantially more work than described, such as heavy build-up, the team explains what it found and the options before continuing.
                 </p>
                 <p>
-                  Every line shows on the instant price before you book. Nothing is charged at booking: the day before, a temporary hold confirms the card is valid, and the card is charged once the clean is complete.
+                  Every line shows on the instant price before you book. Nothing is charged at booking: the day before, a temporary hold for the price goes on the card, and the card is charged once the clean is complete.
                 </p>
               </div>
             </div>

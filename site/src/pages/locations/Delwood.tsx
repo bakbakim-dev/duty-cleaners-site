@@ -166,7 +166,7 @@ export default function Delwood() {
                   Cleaning Services for Delwood Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  A Delwood post-construction clean is priced by square footage and every other service flat by home size, and neither price changes if the job runs longer than expected.
+                  A Delwood post-construction clean is priced by square footage and every other service flat by home size, and both are priced for the condition you describe.
                 </p>
               </div>
             </AnimatedSection>

@@ -62,7 +62,7 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
     {
       icon: Receipt,
       title: "Priced from your description",
-      desc: "The quote comes from the home size you enter, and a clean that runs long costs the same. Some things only show up once the team is through the door: heavy build-up, more cabinets than expected, a glass railing. When the job is substantially bigger than described, the team tells you what it found and the options before carrying on.",
+      desc: "The quote comes from the home size and the condition you describe. Some things only show up once the team is through the door: heavy build-up, more cabinets than expected, a glass railing. When the job is substantially bigger than described, we tell you what the team found and the options before any extra time is charged.",
     },
     {
       icon: RotateCcw,

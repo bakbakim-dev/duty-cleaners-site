@@ -221,8 +221,9 @@ export default function PrivacyPolicy() {
                   you to their booking form. See the section below on what travels with you.
                 </li>
                 <li>
-                  <strong>Supabase</strong> — the database behind our own quote relay. Everything you enter in
-                  the quote, contact and careers forms is written here first, before it reaches our CRM.
+                  <strong>SiteGround</strong> — our web host. Our own quote relay runs on their servers: everything
+                  you enter in the quote, contact and careers forms is encrypted and stored there first, in a
+                  queue that passes it on to our CRM.
                 </li>
                 <li>
                   <strong>HighLevel</strong> — our CRM. Nothing of theirs is embedded on this site any more;
@@ -238,9 +239,9 @@ export default function PrivacyPolicy() {
                   numbers or addresses.
                 </li>
                 <li>
-                  <strong>Google Maps</strong> — the service-area map embedded on many of our neighbourhood
-                  pages. Loading the page loads the map, and Google receives your IP address and the page you
-                  are viewing.
+                  <strong>Google Maps</strong> — the map on many of our neighbourhood pages. Nothing loads from
+                  Google until you press &ldquo;Show map&rdquo;; then Google receives your IP address and the page
+                  you are viewing.
                 </li>
                 <li>
                   <strong>OpenStreetMap</strong> — supplies the map tiles on our coverage maps, and likewise
@@ -253,7 +254,7 @@ export default function PrivacyPolicy() {
                 Our booking system is operated by BookingKoala on their own website. When you press the button
                 to choose a time, we carry the details you have already given us across to their booking form
                 so you do not have to type them twice. Depending on what you filled in, that can include your
-                name, email address, phone number, postal code, and any access notes or special instructions
+                name, email address, phone number, the service and home details you chose, and any access notes or special instructions
                 you wrote for the cleaner. This happens only when you actively choose to continue to booking —
                 nothing is sent to BookingKoala while you are simply filling in or reading your quote. Once you
                 are on their site, their privacy policy governs the information you enter there.
@@ -263,7 +264,7 @@ export default function PrivacyPolicy() {
               <p className="mb-8">
                 Duty Cleaners operates in Alberta, but two of the services we rely on are based in the
                 United States: BookingKoala, which runs our booking system, and HighLevel, which is our CRM.
-                Our own quote relay stores enquiries in Supabase before passing them on. When you book or request a quote, the details you enter (including your
+                Our own quote relay stores enquiries, encrypted, on our web host&rsquo;s servers before passing them on. When you book or request a quote, the details you enter (including your
                 name, address, phone number, email and any access instructions) are stored and processed
                 on servers outside Canada. While your information is in another country it is subject to
                 that country&rsquo;s laws, and may be accessible to its courts and government authorities.

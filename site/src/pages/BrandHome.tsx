@@ -61,7 +61,7 @@ const HERO_SRCSET = heroCleanHousePicture.sources.webp;
 const whyChooseUs = [{
   icon: Shield,
   title: "Pay After Your Clean",
-  desc: "Nothing is charged when you book. The day before, a temporary hold confirms the card is valid, and the card is charged once the clean is complete."
+  desc: "Nothing is charged when you book. The day before, a temporary hold for the price goes on the card, and the card is charged once the clean is complete."
 }, {
   icon: Star,
   title: RATING_CLAIM,

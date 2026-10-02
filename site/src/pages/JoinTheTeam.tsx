@@ -430,7 +430,7 @@ export default function JoinTheTeam() {
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
                 <span className="dc-icon dc-icon-sparkles w-4 h-4 text-primary" aria-hidden="true" />
-                <span className="text-primary text-sm font-medium">Why Work With Us</span>
+                <span className="text-secondary-foreground text-sm font-medium">Why Work With Us</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What You Get</h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -496,7 +496,7 @@ export default function JoinTheTeam() {
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
                 <span className="dc-icon dc-icon-arrow-right w-4 h-4 text-primary" aria-hidden="true" />
-                <span className="text-primary text-sm font-medium">How It Works</span>
+                <span className="text-secondary-foreground text-sm font-medium">How It Works</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">From Application to Your First Clean</h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -569,7 +569,7 @@ export default function JoinTheTeam() {
                       <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
                         <StepIcon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" />
                       </div>
-                      <span className="text-sm font-bold text-brand-gold">{String(index + 1).padStart(2, "0")}</span>
+                      <span className="text-sm font-bold text-accent">{String(index + 1).padStart(2, "0")}</span>
                     </div>
                     <h3 className="font-bold text-lg mb-2">{step.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-5">{step.text}</p>
@@ -590,7 +590,7 @@ export default function JoinTheTeam() {
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
                   <span className="dc-icon dc-icon-circle-help w-4 h-4 text-primary" aria-hidden="true" />
-                  <span className="text-primary text-sm font-medium">FAQ</span>
+                  <span className="text-secondary-foreground text-sm font-medium">FAQ</span>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Questions About Cleaning Jobs</h2>
                 <p className="text-xl text-muted-foreground">

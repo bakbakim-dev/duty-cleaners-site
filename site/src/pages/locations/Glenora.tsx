@@ -190,7 +190,7 @@ export default function Glenora() {
                 <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-6 text-balance">Getting Into a Glenora Home</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    You do not need to be home for a Glenora clean. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up on the way out. If the team arrives and cannot get in, the lockout charge is half the cost of the scheduled service.
+                    You do not need to be home for a Glenora clean. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up on the way out. If the team arrives and cannot get in, the lockout charge is up to half the cost of the scheduled service.
                   </p>
                   <p>
                     In a high-rise suite on the Groat Road side, tell us how the team reaches the unit. In a house facing the ravine, tell us which door takes the spring mud. On a recurring schedule, we send your regular team where we can send them.

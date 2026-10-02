@@ -241,7 +241,7 @@ export default function Montgomery() {
         heading="Its own place, with the Bow on two sides"
         paragraphs={[
           "Montgomery ran its own affairs until it was amalgamated into the city, and it still reads as a separate place, with the Bow River closing both the south and the west. About one home in eight is an apartment in the 2021 Census, so this is mostly whole houses, and 37% of households rent, which puts a steady run of possession-date work alongside the recurring visits.",
-          "The Alberta Children's Hospital sits inside the community, and 32 Avenue closes the north. Hospital rotations are the practical detail: enough households here work nights that it is worth telling us which room someone sleeps in, because the order rooms get done in costs nothing to change and the vacuum is the part that carries.",
+          "The Alberta Children's Hospital is close by, and 32 Avenue closes the north. Hospital rotations are the practical detail: enough households here work nights that it is worth telling us which room someone sleeps in, because the order rooms get done in costs nothing to change and the vacuum is the part that carries.",
         ]}
         accent="calgary"
       />

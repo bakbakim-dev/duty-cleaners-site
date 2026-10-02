@@ -119,8 +119,7 @@ export default function Terms() {
                     {POLICY.cancellationFee
                       ? ` Cancelling or rescheduling inside that window is charged ${POLICY.cancellationFee}.`
                       : ""}{" "}
-                    There is no long-term contract, and you can change or pause a recurring
-                    schedule at any time.
+                    There is no long-term contract, and you can change or pause a recurring schedule; changes inside 24 hours of a visit are charged as above.
                   </p>
                 </>
               )}

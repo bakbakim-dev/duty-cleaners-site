@@ -206,7 +206,7 @@ export default function Calgary2() {
     answer: "It changes what people book, not how we work. Every thaw and refreeze brings sand and de-icer back to the door between November and April, and the grit settles along baseboards and carpet edges. When the roads are unsafe and a booking has to move, the office tells you once it knows and offers its earliest open slot."
   }, {
     question: "Do you clean condos in the Beltline and downtown towers?",
-    answer: "Yes. Apartments and condos in the Beltline, Mission, Eau Claire and the downtown towers carry no home-type charge on top of the size table, which is before 5% GST. Put the building's rules on the booking: desk sign-in, visitor parking, and how the team gets through the door. If the team reaches the door and cannot get in, you are billed half of what the scheduled clean would have cost."
+    answer: "Yes. Apartments and condos in the Beltline, Mission, Eau Claire and the downtown towers carry no home-type charge on top of the size table, which is before 5% GST. Put the building's rules on the booking: desk sign-in, visitor parking, and how the team gets through the door. If the team reaches the door and cannot get in, you are billed up to half of what the scheduled clean would have cost."
   }, {
     question: "Can I get a same-day clean in Calgary?",
     answer: "Same-day and next-day slots depend on the schedule. Phone the Calgary line at (403) 768-1341 and the office can check what the day has open."

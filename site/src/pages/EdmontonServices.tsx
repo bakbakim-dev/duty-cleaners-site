@@ -144,7 +144,7 @@ type Service = {
 const services: Service[] = [
   {
     title: "Standard Cleaning",
-    description: "One visit, flat rate by home size. Kitchen, bathrooms, floors and dusting in every room, and the price does not move if it takes longer than planned.",
+    description: "One visit, flat rate by home size. Kitchen, bathrooms, floors and dusting in every room, priced for the condition you describe.",
     features: [
       "All rooms dusted and vacuumed",
       "Bathrooms scrubbed and wiped down",
@@ -222,10 +222,10 @@ const services: Service[] = [
   },
   {
     title: "Post-Construction Cleaning",
-    description: `The fine dust a renovation leaves, cleared from walls, inside windows, baseboards and floors after the trades are out. Priced by square footage, ${POST_FROM} for under 1,000 sq ft, before GST.`,
+    description: `The fine dust a renovation leaves, cleared from walls, inside windows, baseboards and floors after the trades are out. Priced by square footage, ${POST_FROM} for up to 1,000 sq ft, before GST.`,
     features: [
       "Drywall and sanding dust removed",
-      "Cleaning of walls, inside windows, baseboards",
+      "Dust cleared from walls, inside windows, baseboards (full wall washing is a separate add-on)",
       "Vacuuming and mopping of all floors",
       "Final move-in ready detailing"
     ],
@@ -298,7 +298,7 @@ const faqs = [
   },
   {
     q: "Do the prices include GST?",
-    a: `No. Every price we quote in Edmonton, whether the flat rate for a home, an add-on, the pet charge or the travel fee outside city limits, is before tax, and ${GST_PCT} GST is added on top. Nothing is charged when you book. The day before the visit a temporary hold confirms the card, and it is charged once the clean is complete. Visa, Mastercard, American Express, debit and e-transfer are accepted.`,
+    a: `No. Every price we quote in Edmonton, whether the flat rate for a home, an add-on, the pet charge or the travel fee outside city limits, is before tax, and ${GST_PCT} GST is added on top. Nothing is charged when you book. The day before the visit a temporary hold for the price goes on the card, and it is charged once the clean is complete. Visa, Mastercard, American Express, debit and e-transfer are accepted.`,
   },
   {
     q: "How do the recurring discounts work?",

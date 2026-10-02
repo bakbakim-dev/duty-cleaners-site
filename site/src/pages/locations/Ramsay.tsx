@@ -140,7 +140,7 @@ export default function Ramsay() {
               <div className="text-center mb-14">
                 <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Cleaning Services for Ramsay Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Standard, deep and move-out cleans are priced by bedrooms, bathrooms and home type, and a clean that runs longer than expected costs the same.
+                  Standard, deep and move-out cleans are priced by bedrooms, bathrooms and home type, for the condition you describe.
                 </p>
               </div>
             </AnimatedSection>

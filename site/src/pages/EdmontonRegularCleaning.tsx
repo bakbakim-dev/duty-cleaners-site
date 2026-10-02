@@ -109,8 +109,7 @@ export default function EdmontonRegularCleaning() {
                 For maid service or help with housekeeping, our standard clean covers the kitchen,
                 bathrooms, bedrooms and living areas from a checklist, once or on a recurring schedule.
                 It is not live-in help and does not include laundry or dishes. The price is flat by home size, {FROM} for a
-                one-bedroom and {THREE_BED} for a three-bedroom apartment or condo before GST, and it does not move if the
-                visit runs long.
+                one-bedroom and {THREE_BED} for a three-bedroom apartment or condo before GST, for the home in the condition you describe.
               </p>
               <p>
                 Bedrooms and bathrooms set the base rate, a bungalow,

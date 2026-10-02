@@ -32,7 +32,7 @@ export interface CityReview {
 
 export const REVIEWS: CityReview[] = [
   {
-    name: "Meredith Shewchuk",
+    name: "Meredith S.",
     initial: "M",
     location: "Edmonton",
     rating: 5,

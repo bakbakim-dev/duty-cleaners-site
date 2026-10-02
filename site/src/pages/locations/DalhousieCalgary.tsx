@@ -107,7 +107,7 @@ export default function DalhousieCalgary() {
                 Professional House Cleaning in Dalhousie
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Dalhousie went up mostly in the 1970s, and its four-level splits and bi-levels mean stairs, spindles and landings on every clean. Each visit is quoted flat by home size, and the quote does not grow if the clean runs long.
+                Dalhousie went up mostly in the 1970s, and its four-level splits and bi-levels mean stairs, spindles and landings on every clean. Each visit is quoted flat by home size, for the condition you describe.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

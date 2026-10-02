@@ -211,7 +211,7 @@ export default function SatisfactionGuarantee() {
                 before you book.
               </p>
 
-              <div className="bg-accent/10 border-2 border-accent/20 rounded-xl p-6">
+              <div className="bg-accent/5 border-2 border-accent/20 rounded-xl p-6">
                 <h3 className="text-xl font-bold mb-4 text-foreground">Contact Us</h3>
                 <p className="mb-4">
                   To request a re-clean or discuss any concerns:

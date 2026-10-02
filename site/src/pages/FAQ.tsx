@@ -63,7 +63,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Should I tip the cleaners?",
-        answer: "Tipping is not expected and never required. The quoted price plus 5% GST is the whole bill. A review helps and costs nothing.",
+        answer: "Tipping is not expected and never required, and there is no tip line on the bill. A review helps and costs nothing.",
       },
       {
         question: "What happens if something is damaged during a clean?",

@@ -93,7 +93,7 @@ const TRUST_ITEMS = {
       icon: ShieldCheck,
       label: "You pay after the clean",
       detail:
-        "No charge at booking. The day before, a hold goes on your card to check it is valid; the charge itself goes through when the clean is finished.",
+        "No charge at booking. The day before, a temporary hold for the price goes on your card (on debit, the amount is set aside); the charge itself goes through when the clean is finished.",
     },
     {
       icon: UserCheck,
