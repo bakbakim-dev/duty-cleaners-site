@@ -46,14 +46,15 @@ BookingKoala header script.
 - `bun run prove` — break-it proofs: every guard test has an entry in `scripts/guard-proofs.ts`
   that breaks its target and must make the named `it()` fail. Proof targets must be committed
   first (it refuses dirty targets). Add a guard, add its proof.
-- Deploy: `bun run deploy:preview` / `bun run deploy:production -- --site <id> --verify-url <url>`
-  (`scripts/deploy.mjs`, Netlify). The preview is https://duty-cleaners-preview.netlify.app on the
-  owner's lokkom Netlify team (since 2026-09-11; the CLI must be logged in as lokkom@gmail.com).
-  The old dutycleaners-preview site on bakbakim's team is stale: that team spent its free credits.
-  The new site sits behind Netlify visitor access (401 + login redirect for anyone not signed in
-  to the lokkom team), so it is private, not just noindexed; turning that off is the owner's call.
-  deploy.mjs uploads with `--no-build` (newer netlify-cli rebuilds by default, wiping the noindex).
-  The old GitHub Pages preview and its `deploy-preview.ps1` were retired on 2026-09-11.
+- Deploy: production is SiteGround (see the SiteGround deploy notes; uploads only when the owner
+  says "upload to SiteGround production"). NO NETLIFY PREVIEW EXISTS any more (checked 2026-10-03):
+  duty-cleaners-preview.netlify.app on the lokkom team returns 404 and is gone from that account's
+  site list, and the stale dutycleaners-preview site on bakbakim's team was deleted 2026-10-03
+  (owner OK). `bun run deploy:preview` (`scripts/deploy.mjs`, Netlify) therefore has no target;
+  create a new Netlify site first if a preview is ever wanted again (deploy.mjs uploads with
+  `--no-build`, because newer netlify-cli rebuilds by default and wipes the noindex). The old
+  GitHub Pages preview (bakbakim-dev/dutycleaners-preview) was switched off 2026-10-03; the repo
+  is kept. Its `deploy-preview.ps1` was retired on 2026-09-11.
 
 **Commit order when content changes:** commit the content, run `bun run build`, then commit only
 the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
@@ -371,7 +372,7 @@ Owner reminder request (2026-09-13): when the owner announces launch, review and
    points to `https://dutycleaners.ca/api/booking-handoff.php`. A controlled final booking with a
    date/card is still required to prove saved-record persistence. See
    `site/docs/booking-handoff-implementation-2026-09-12.md`.
-4. Take down the old GitHub Pages preview (bakbakim-dev.github.io/dutycleaners-preview).
+4. Completed 2026-10-03: GitHub Pages switched off for bakbakim-dev/dutycleaners-preview (repo kept).
 5. Yelp: correct the Edmonton profile's address (it is claimed; the old URL now redirects to
    "duty-cleaners-edmonton-2", so check for a duplicate listing) and claim the Calgary profile.
 6. Book a real photo shoot (PHOTO-SHOOT-BRIEF.md): every people image is still AI-generated.
@@ -380,8 +381,7 @@ Owner reminder request (2026-09-13): when the owner announces launch, review and
    Netlify production plans are superseded and must not be treated as launch requirements.
 8. Say which products the $15 "optional alternative products" option means, if you want the site
    to name them. Until then it sends people to the office and makes no environmental claim.
-9. Delete the stale dutycleaners-preview site on bakbakim's Netlify team (it still serves the
-   5 September build, noindexed).
+9. Completed 2026-10-03: the stale dutycleaners-preview site on bakbakim's Netlify team was deleted.
 10. Completed/superseded 2026-09-20: the quote relay runs natively on SiteGround at
     `/api/ghl-quote.php`; Supabase is not part of the production lead path. The encrypted queue and
     retry cron are live (every minute since 2026-09-23, owner; it also marks visitors who left). The receiver acknowledges durable storage before GHL delivery.
