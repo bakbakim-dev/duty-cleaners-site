@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/callback-task.php';
+require_once __DIR__ . '/enquiry-evidence.php';
 
 /*
  * Duty Cleaners' SiteGround-native lead receiver.
@@ -355,6 +357,9 @@ function dc_ghl_store(array $config, array $payload): array
             'next_retry_at' => time(),
             'last_status' => 0,
             'contact_id' => null,
+            // New receipts only: never turn historical callbacks into tasks.
+            'callback_requested' => str_contains((string) ($payload['source'] ?? ''), '(call-back requested)'),
+            'callback_task' => ['status' => 'pending', 'attempts' => 0],
             'last_error' => null,
             'payload' => dc_ghl_encrypt($payload, $config['encryption_key']),
         ];
@@ -486,6 +491,13 @@ function dc_ghl_remove_tags(array $headers, string $contactId, array $tags): voi
  */
 const DC_GHL_QUIET_SECONDS = 300;
 const DC_GHL_SESSION_TTL_SECONDS = 172800;
+/*
+ * A left visit's follow-up (office email, fields, quote-left) is retried with
+ * backoff for two hours after the leave was noticed, then given up and
+ * reported to form-health (2026-10-06). Past that the office's "call now" is
+ * stale, and a long mail outage must not end in a burst of old alerts.
+ */
+const DC_GHL_LEFT_RETRY_SECONDS = 7200;
 const DC_GHL_STEPS = ['price' => 'the price screen', 'details' => 'the last details screen'];
 /** Everything a "still here" report may say about the quote on screen (quote-presence.ts ShownQuote). */
 const DC_GHL_SHOWN_TEXT_KEYS = ['city', 'service', 'home_type', 'bedrooms', 'full_bathrooms', 'half_baths', 'frequency'];
@@ -577,6 +589,7 @@ function dc_ghl_session_record(array $config, array $payload, string $recordPath
         if ($payload['stage'] === 'confirm') {
             $session['state'] = 'confirmed';
         } else {
+            foreach (array_keys($session) as $key) if (str_starts_with($key, 'left_')) unset($session[$key]);
             $session['state'] = 'open';
             $session['step'] = 'price';
             $session['lead'] = basename($recordPath);
@@ -817,14 +830,15 @@ function dc_ghl_shown_fields(array $config, array $session): array
  * One PUT for the step and the shown quote. If GoHighLevel refuses the
  * quote fields, the step still goes on its own: the workflow needs it.
  */
-function dc_ghl_put_fields(array $headers, string $contactId, array $required, array $extra): void
+function dc_ghl_put_fields(array $headers, string $contactId, array $required, array $extra): bool
 {
     $put = static fn (array $fields): array => dc_ghl_http(DC_GHL_API . '/contacts/' . rawurlencode($contactId), 'PUT', $headers, json_encode([
         'customFields' => $fields,
     ], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
-    if ($required === [] && $extra === []) return;
+    if ($required === [] && $extra === []) return true;
     [$status] = $put(array_merge($required, $extra));
-    if (($status < 200 || $status >= 300) && $required !== [] && $extra !== []) $put($required);
+    if (($status < 200 || $status >= 300) && $required !== [] && $extra !== []) [$status] = $put($required);
+    return $status >= 200 && $status < 300;
 }
 
 /**
@@ -835,52 +849,95 @@ function dc_ghl_put_fields(array $headers, string $contactId, array $required, a
 function dc_ghl_sweep_sessions(array $config, int $limit = 10): int
 {
     $dir = dc_ghl_queue_dir($config) . DIRECTORY_SEPARATOR . 'sessions';
-    $marked = 0;
-    $now = time();
+    $marked = 0; $attempted = 0; $gaveUp = 0; $now = time();
     foreach (glob($dir . DIRECTORY_SEPARATOR . '*.json') ?: [] as $path) {
         $session = json_decode((string) @file_get_contents($path), true);
         if (!is_array($session)) continue;
-        if ((int) ($session['created_at'] ?? 0) < $now - DC_GHL_SESSION_TTL_SECONDS) {
-            @unlink($path);
+        $state = (string) ($session['state'] ?? '');
+        // A follow-up still being retried outlives the session's own expiry,
+        // but only until its retry window closes (DC_GHL_LEFT_RETRY_SECONDS).
+        if ((int) ($session['created_at'] ?? 0) < $now - DC_GHL_SESSION_TTL_SECONDS && $state !== 'left_pending') {
+            @unlink($path); continue;
+        }
+        if ($state === 'left_pending' && (int) ($session['left_at'] ?? 0) < $now - DC_GHL_LEFT_RETRY_SECONDS) {
+            dc_ghl_session_update($path, static function (?array $current) use ($now, &$gaveUp) {
+                if (($current['state'] ?? '') !== 'left_pending' || (int) ($current['left_at'] ?? 0) >= $now - DC_GHL_LEFT_RETRY_SECONDS) return null;
+                $current['state'] = 'left_failed';
+                $gaveUp++;
+                return $current;
+            });
             continue;
         }
-        if (($session['state'] ?? '') !== 'open' || (int) ($session['last_seen'] ?? $now) > $now - DC_GHL_QUIET_SECONDS) continue;
-        if ($marked >= $limit) break;
+        if (!in_array($state, ['open', 'left_pending'], true)
+            || ($state === 'open' && (int) ($session['last_seen'] ?? $now) > $now - DC_GHL_QUIET_SECONDS)
+            || (int) ($session['left_retry_at'] ?? 0) > $now) continue;
+        if ($attempted >= $limit) break;
         $lead = json_decode((string) @file_get_contents(dc_ghl_queue_dir($config) . DIRECTORY_SEPARATOR . basename((string) ($session['lead'] ?? ''))), true);
         $contactId = is_array($lead) && ($lead['state'] ?? '') === 'delivered' ? ($lead['contact_id'] ?? null) : null;
         if (!is_string($contactId) || $contactId === '') continue;
-        // Claim the session first so two sweeps can never tag the same visit.
-        $won = false;
-        $claimed = dc_ghl_session_update($path, static function (?array $current) use ($now, &$won) {
-            if (($current['state'] ?? '') !== 'open' || (int) ($current['last_seen'] ?? $now) > $now - DC_GHL_QUIET_SECONDS) return null;
-            $current['state'] = 'left';
-            $current['left_at'] = $now;
-            $won = true;
-            return $current;
-        });
-        if (!$won || !is_array($claimed)) continue;
-        $session = $claimed;
-        // The office hears first, and even if GoHighLevel is down.
-        dc_ghl_office_alert($config, $lead, $contactId, $session);
-        $headers = dc_ghl_headers($config);
-        // The fields first, in one PUT: the workflow started by the tag reads
-        // the step, and whoever opens the contact sees the quote they saw.
-        $fieldId = dc_ghl_optional_field_id($config, 'contact.funnel_last_step');
-        $stepField = $fieldId === null ? [] : [['id' => $fieldId, 'field_value' => DC_GHL_STEPS[$session['step'] ?? 'price'] ?? DC_GHL_STEPS['price']]];
-        $extra = dc_ghl_shown_fields($config, $session);
-        // The visitor's own booking link, for the follow-up texts and emails.
-        // A lost link file must never stop the tag, so a failure skips it.
-        try {
-            $link = dc_ghl_session_link($config, $session, $lead, basename($path, '.json'));
-        } catch (Throwable) {
-            $link = '';
+        // Serialize deliveries. Session updates retain their own short lock,
+        // so a customer's confirmation can still cancel pending follow-up.
+        $lock = @fopen($path . '.delivery.lock', 'c+');
+        if ($lock === false || !flock($lock, LOCK_EX | LOCK_NB)) {
+            if (is_resource($lock)) fclose($lock);
+            continue;
         }
-        $linkFieldId = $link === '' ? null : dc_ghl_optional_field_id($config, 'contact.site_booking_link');
-        if ($linkFieldId !== null) $extra[] = ['id' => $linkFieldId, 'field_value' => $link];
-        dc_ghl_put_fields($headers, $contactId, $stepField, $extra);
-        dc_ghl_http(DC_GHL_API . '/contacts/' . rawurlencode($contactId) . '/tags', 'POST', $headers, json_encode(['tags' => ['quote-left']], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
-        $marked++;
+        try {
+            $claimed = false;
+            $session = dc_ghl_session_update($path, static function (?array $current) use ($now, &$claimed) {
+                $state = (string) ($current['state'] ?? '');
+                if (!in_array($state, ['open', 'left_pending'], true)
+                    || ($state === 'open' && (int) ($current['last_seen'] ?? $now) > $now - DC_GHL_QUIET_SECONDS)
+                    || (int) ($current['left_retry_at'] ?? 0) > $now) return null;
+                $current['state'] = 'left_pending';
+                $current['left_at'] ??= $now;
+                $current['left_attempts'] = (int) ($current['left_attempts'] ?? 0) + 1;
+                $claimed = true;
+                return $current;
+            });
+            if (!$claimed || !is_array($session)) continue;
+            $attempted++;
+            // Persist each acknowledgement separately. HTTP success is not
+            // proof of downstream execution; it is the delivery checkpoint.
+            $ack = static function (string $field) use ($path, &$session): void {
+                $session = dc_ghl_session_update($path, static function (?array $current) use ($field) {
+                    if (($current['state'] ?? '') !== 'left_pending') return null;
+                    $current[$field] = true; return $current;
+                }) ?? $session;
+            };
+            if (!($session['left_office_acked'] ?? false) && dc_ghl_office_alert($config, $lead, $contactId, $session)) $ack('left_office_acked');
+            if (($session['state'] ?? '') !== 'left_pending') continue;
+            $headers = dc_ghl_headers($config);
+            if (!($session['left_fields_acked'] ?? false)) {
+                $fieldId = dc_ghl_optional_field_id($config, 'contact.funnel_last_step');
+                $stepField = $fieldId === null ? [] : [['id' => $fieldId, 'field_value' => DC_GHL_STEPS[$session['step'] ?? 'price'] ?? DC_GHL_STEPS['price']]];
+                $extra = dc_ghl_shown_fields($config, $session);
+                try { $link = dc_ghl_session_link($config, $session, $lead, basename($path, '.json')); }
+                catch (Throwable) { $link = ''; }
+                $linkFieldId = $link === '' ? null : dc_ghl_optional_field_id($config, 'contact.site_booking_link');
+                if ($linkFieldId !== null) $extra[] = ['id' => $linkFieldId, 'field_value' => $link];
+                if ($fieldId !== null && dc_ghl_put_fields($headers, $contactId, $stepField, $extra)) $ack('left_fields_acked');
+            }
+            $session = json_decode((string) @file_get_contents($path), true) ?? $session;
+            if (($session['state'] ?? '') !== 'left_pending') continue;
+            // Never start marketing before its context fields were accepted.
+            if (($session['left_fields_acked'] ?? false) && !($session['left_tag_acked'] ?? false)) {
+                [$status] = dc_ghl_http(DC_GHL_API . '/contacts/' . rawurlencode($contactId) . '/tags', 'POST', $headers, json_encode(['tags' => ['quote-left']], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+                if ($status >= 200 && $status < 300) $ack('left_tag_acked');
+            }
+            $done = false;
+            dc_ghl_session_update($path, static function (?array $current) use ($now, &$done) {
+                if (($current['state'] ?? '') !== 'left_pending') return null;
+                $done = ($current['left_office_acked'] ?? false) && ($current['left_fields_acked'] ?? false) && ($current['left_tag_acked'] ?? false);
+                $current['state'] = $done ? 'left' : 'left_pending';
+                $current['left_retry_at'] = $done ? null : $now + min(3600, 60 * (2 ** min(6, (int) ($current['left_attempts'] ?? 1) - 1)));
+                return $current;
+            });
+            if ($done) $marked++;
+        } finally { flock($lock, LOCK_UN); fclose($lock); }
     }
+    // One report per sweep however many were given up: form-health counts the incident.
+    if ($gaveUp > 0) dc_ghl_health($config, 'failed', 'delivery', 0, 'dutycleaners.ca instant quote');
     return $marked;
 }
 
@@ -1245,7 +1302,7 @@ function dc_ghl_form_name(string $source): string
     return 'quote-funnel';
 }
 
-function dc_ghl_health(array $config, string $event, string $category, int $status, string $source): void
+function dc_ghl_health(array $config, string $event, string $category, int $status, string $source, string $stage = 'ghl-delivery'): void
 {
     $healthPath = $config['form_health_config'] ?? (dc_ghl_private_root() . '/private/form-health-config.php');
     if (!is_string($healthPath) || !is_file($healthPath)) return;
@@ -1257,7 +1314,7 @@ function dc_ghl_health(array $config, string $event, string $category, int $stat
         dc_ghl_http($url, 'POST', ['Content-Type: application/json', 'X-Form-Health-Secret: ' . $secret], json_encode([
             'event' => $event,
             'form' => dc_ghl_form_name($source),
-            'stage' => 'ghl-delivery',
+            'stage' => $stage,
             'category' => $category,
             'status' => max(0, min(599, $status)),
             'path' => '/server/ghl-quote',
@@ -1265,6 +1322,101 @@ function dc_ghl_health(array $config, string $event, string $category, int $stat
     } catch (Throwable) {
         // Monitoring must never block lead storage or delivery.
     }
+}
+
+/*
+ * What a delivered lead may still owe after its tags and office email
+ * (2026-10-06): the call-back task (callback-task.php) and the enquiry
+ * evidence fields (enquiry-evidence.php). Each keeps its own state and attempt
+ * cap on the record and never replays the delivery. The time the next try is
+ * due, or null when nothing is owed: for the cron job and the lock clean-up.
+ */
+function dc_ghl_follow_up_at(array $record): ?int
+{
+    if (($record['state'] ?? '') !== 'delivered') return null;
+    $at = [];
+    $task = (array) ($record['callback_task'] ?? []);
+    if (($record['callback_requested'] ?? false) && ($task['status'] ?? '') !== 'saved' && (int) ($task['attempts'] ?? 0) < DC_GHL_MAX_ATTEMPTS) {
+        $at[] = (int) ($task['next_retry_at'] ?? 0);
+    }
+    $enquiry = (array) ($record['enquiry_evidence'] ?? []);
+    if (($enquiry['status'] ?? '') === 'pending') $at[] = (int) ($enquiry['next_retry_at'] ?? 0);
+    return $at === [] ? null : min($at);
+}
+
+/** Caller holds the stable delivery lock; task failures never replay lead delivery. */
+function dc_ghl_callback_maybe(array $config, array $record, string $path, array $payload): array
+{
+    if (!($record['callback_requested'] ?? false) || ($record['state'] ?? '') !== 'delivered'
+        || !is_string($record['contact_id'] ?? null) || ($record['callback_task']['status'] ?? '') === 'saved') return $record;
+    $state = $record['callback_task'] ?? ['status' => 'pending'];
+    if ((int) ($state['next_retry_at'] ?? 0) > time() || (int) ($state['attempts'] ?? 0) >= DC_GHL_MAX_ATTEMPTS) return $record;
+    $state['attempts'] = (int) ($state['attempts'] ?? 0) + 1;
+    $http = static function (string $method, string $endpoint, ?array $body) use ($config): array {
+        [$status, $raw] = dc_ghl_http(DC_GHL_API . $endpoint, $method, [
+            'Authorization: Bearer ' . $config['token'], 'Version: ' . DC_GHL_VERSION,
+            'Accept: application/json', 'Content-Type: application/json'
+        ], $body === null ? null : json_encode($body, JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+        return [$status, json_decode($raw, true) ?? []];
+    };
+    $save = static function (array $taskState) use (&$record, $path): void {
+        $record['callback_task'] = $taskState;
+        dc_ghl_write_record($path, $record);
+    };
+    // An outage can delay initial creation into another staff shift. Route by
+    // the current creation time; an existing task receipt is never reassigned.
+    try {
+        $state = dc_callback_task($record['contact_id'], (string) $payload['request_id'], gmdate('c'), $state, $http, $save);
+    } catch (Throwable) {
+        // One failed try, never the end of the cron run. Keep the last state
+        // handed to $save, so a recorded "posting" is never forgotten.
+        $state = [...$state, ...(array) ($record['callback_task'] ?? []), 'attempts' => $state['attempts'], 'issue' => 'task attempt failed'];
+    }
+    $state['next_retry_at'] = $state['status'] === 'saved' ? null : time() + 300;
+    if ($state['status'] !== 'saved' && $state['attempts'] >= DC_GHL_MAX_ATTEMPTS) $state['status'] = 'review';
+    $record['callback_task'] = $state;
+    dc_ghl_write_record($path, $record);
+    // Reported like a failed delivery (2026-10-06: a task that never landed
+    // ended in a silent "review" state, so nobody knew to make it by hand).
+    $source = (string) ($payload['source'] ?? '');
+    if ($state['status'] !== 'saved') dc_ghl_health($config, 'failed', 'delivery', (int) ($state['http_status'] ?? 0), $source, 'callback');
+    elseif ($state['attempts'] > 1) dc_ghl_health($config, 'recovered', 'delivery', 200, $source, 'callback');
+    return $record;
+}
+
+/*
+ * The enquiry evidence fields that Long Term Nurture's consent gates read
+ * (enquiry-evidence.php), for a confirmed quote, call-back or contact form.
+ * Their three GoHighLevel calls ran before the tags and failed the whole
+ * delivery, so one hiccup left the lead untagged and the office's automations
+ * waited for the next retry (2026-10-06). They now run last, after the tags,
+ * office email and call-back task, keep their own state on the record, and
+ * retry on the lead's schedule up to DC_GHL_MAX_ATTEMPTS tries; a give-up is
+ * reported to form-health.
+ */
+function dc_ghl_enquiry_maybe(array $config, array $record, string $path, array $payload): array
+{
+    $state = $record['enquiry_evidence'] ?? null;
+    if (!is_array($state) || ($state['status'] ?? '') !== 'pending' || ($record['state'] ?? '') !== 'delivered'
+        || !is_string($record['contact_id'] ?? null) || (int) ($state['next_retry_at'] ?? 0) > time()) return $record;
+    $attempt = (int) ($state['attempts'] ?? 0) + 1;
+    try {
+        dc_enquiry_update($config, dc_ghl_headers($config), $record['contact_id'], $record);
+        $state = ['status' => 'saved', 'attempts' => $attempt];
+    } catch (Throwable $error) {
+        $last = $attempt >= DC_GHL_MAX_ATTEMPTS;
+        $delay = DC_GHL_RETRY_MINUTES[min($attempt - 1, count(DC_GHL_RETRY_MINUTES) - 1)];
+        $state = [
+            'status' => $last ? 'failed' : 'pending',
+            'attempts' => $attempt,
+            'next_retry_at' => $last ? null : time() + ($delay * 60),
+            'error' => substr($error->getMessage(), 0, 120),
+        ];
+        if ($last) dc_ghl_health($config, 'failed', 'delivery', 0, (string) ($payload['source'] ?? ''));
+    }
+    $record['enquiry_evidence'] = $state;
+    dc_ghl_write_record($path, $record);
+    return $record;
 }
 
 function dc_ghl_attempt(array $config, array $record, string $path): array
@@ -1277,7 +1429,10 @@ function dc_ghl_attempt(array $config, array $record, string $path): array
     try {
         $latest = json_decode((string) @file_get_contents($path), true);
         if (is_array($latest)) $record = $latest;
-        if (($record['state'] ?? '') === 'delivered' && is_string($record['contact_id'] ?? null)) return $record;
+        if (($record['state'] ?? '') === 'delivered' && is_string($record['contact_id'] ?? null)) {
+            $payload = dc_ghl_decrypt((array) ($record['payload'] ?? []), $config['encryption_key']);
+            return dc_ghl_enquiry_maybe($config, dc_ghl_callback_maybe($config, $record, $path, $payload), $path, $payload);
+        }
         $payload = dc_ghl_decrypt((array) ($record['payload'] ?? []), $config['encryption_key']);
         $attempt = (int) ($record['attempts'] ?? 0) + 1;
         try {
@@ -1293,6 +1448,7 @@ function dc_ghl_attempt(array $config, array $record, string $path): array
             $record['contact_id'] = $result['contact_id'];
             $record['last_error'] = null;
             $record['next_retry_at'] = null;
+            if (dc_enquiry_candidate($payload)) $record['enquiry_evidence'] = ['status' => 'pending', 'attempts' => 0];
             if ($attempt > 1) dc_ghl_health($config, 'recovered', 'delivery', $record['last_status'], (string) $payload['source']);
         } else {
             $terminal = $attempt >= DC_GHL_MAX_ATTEMPTS;
@@ -1304,16 +1460,59 @@ function dc_ghl_attempt(array $config, array $record, string $path): array
         }
         // Once per confirmed quote, after the first attempt either way: the
         // office hears even when GoHighLevel is down (link only when it is not).
-        if (!($record['office_alerted'] ?? false) && ($payload['stage'] ?? '') === 'confirm') {
-            $record['office_alerted'] = true;
-            dc_ghl_confirm_alert($config, $payload, ($record['state'] ?? '') === 'delivered' ? (string) $record['contact_id'] : null);
+        // A failed send is left to the cron job (dc_ghl_retry_office_alert).
+        if (!($record['office_alerted'] ?? false) && !isset($record['office_alert_pending']) && ($payload['stage'] ?? '') === 'confirm') {
+            $source = (string) ($payload['source'] ?? '');
+            if (!str_starts_with($source, 'contact-form') && !str_starts_with($source, 'careers-application')) {
+                $record = dc_ghl_confirm_alert_try($config, $record, $payload);
+            }
         }
         dc_ghl_write_record($path, $record);
-        return $record;
+        // Then the call-back task, and the enquiry fields last of all.
+        return dc_ghl_enquiry_maybe($config, dc_ghl_callback_maybe($config, $record, $path, $payload), $path, $payload);
     } finally {
         flock($deliveryLock, LOCK_UN);
         fclose($deliveryLock);
     }
+}
+
+/*
+ * A confirmed quote's office email that did not go is retried by the cron job,
+ * one minute and then every five minutes, for at most
+ * DC_GHL_OFFICE_ALERT_MAX_ATTEMPTS tries in all: about two hours. Past that the
+ * "call now" is stale (2026-10-06: a failed send was retried for good, so a
+ * mail outage would have ended in a burst of old alerts); form-health hears
+ * instead.
+ */
+const DC_GHL_OFFICE_ALERT_MAX_ATTEMPTS = 24;
+
+/** One try at a confirmed quote's office email, counted against the cap. */
+function dc_ghl_confirm_alert_try(array $config, array $record, array $payload): array
+{
+    $attempts = (int) ($record['office_alert_attempts'] ?? 0) + 1;
+    $sent = dc_ghl_confirm_alert($config, $payload, is_string($record['contact_id'] ?? null) ? $record['contact_id'] : null);
+    $record['office_alerted'] = $sent;
+    $record['office_alert_attempts'] = $attempts;
+    $record['office_alert_pending'] = !$sent && $attempts < DC_GHL_OFFICE_ALERT_MAX_ATTEMPTS;
+    $record['office_alert_retry_at'] = $record['office_alert_pending'] ? time() + ($attempts === 1 ? 60 : 300) : null;
+    if (!$sent && !$record['office_alert_pending']) dc_ghl_health($config, 'failed', 'delivery', 0, (string) ($payload['source'] ?? ''));
+    return $record;
+}
+
+/** Retry only acknowledged-pending office mail; never replay the GHL delivery. */
+function dc_ghl_retry_office_alert(array $config, string $path): void
+{
+    $lock = @fopen($path . '.lock', 'c+');
+    if ($lock === false || !flock($lock, LOCK_EX | LOCK_NB)) {
+        if (is_resource($lock)) fclose($lock); return;
+    }
+    try {
+        $record = json_decode((string) @file_get_contents($path), true);
+        if (!is_array($record) || !($record['office_alert_pending'] ?? false)
+            || ($record['office_alerted'] ?? false) || (int) ($record['office_alert_retry_at'] ?? 0) > time()) return;
+        $payload = dc_ghl_decrypt((array) ($record['payload'] ?? []), $config['encryption_key']);
+        dc_ghl_write_record($path, dc_ghl_confirm_alert_try($config, $record, $payload));
+    } finally { flock($lock, LOCK_UN); fclose($lock); }
 }
 
 function dc_ghl_retry_pending(array $config): array
@@ -1325,7 +1524,11 @@ function dc_ghl_retry_pending(array $config): array
     foreach (glob(dc_ghl_queue_dir($config) . DIRECTORY_SEPARATOR . '*.json') ?: [] as $path) {
         if (in_array(basename($path), ['field-cache.json', 'rate-limit.json'], true)) continue;
         $record = json_decode((string) @file_get_contents($path), true);
-        if (!is_array($record) || ($record['state'] ?? '') !== 'pending' || (int) ($record['next_retry_at'] ?? PHP_INT_MAX) > time()) continue;
+        if (!is_array($record)) continue;
+        if (($record['office_alert_pending'] ?? false) && (int) ($record['office_alert_retry_at'] ?? 0) <= time()) dc_ghl_retry_office_alert($config, $path);
+        $followUp = dc_ghl_follow_up_at($record);
+        if ($followUp !== null && $followUp <= time()) { $due[] = [$path, $record]; continue; }
+        if (($record['state'] ?? '') !== 'pending' || (int) ($record['next_retry_at'] ?? PHP_INT_MAX) > time()) continue;
         $due[] = [$path, $record];
     }
     // Oldest first (2026-09-23): file names are hashes, so glob order is random,
@@ -1347,16 +1550,23 @@ function dc_ghl_retry_pending(array $config): array
 /**
  * Remove the delivery lock beside a lead record once nothing can attempt that
  * record again (2026-09-25: every lead left one lock file behind for good, and
- * the hosting plan counts files). A delivered record is never attempted again.
+ * the hosting plan counts files). A delivered record is not attempted again
+ * once its follow-ups (office email, call-back task, enquiry fields) are done.
  * A failed one can be, when the same request is posted again, so its lock
  * waits a week. A lock whose record is gone is always an orphan. The hour of
  * quiet keeps the cleanup clear of an attempt still finishing.
+ *
+ * The same for the two locks added on 2026-10-02 (2026-10-06): a visit's
+ * delivery lock goes an hour after its session last changed, unless a left
+ * follow-up is still being retried, or an hour after the session expired; the
+ * per-contact enquiry lock goes once it has not been used for an hour.
  */
 function dc_ghl_prune_locks(array $config, int $limit = 200): int
 {
     $removed = 0;
     $now = time();
-    foreach (glob(dc_ghl_queue_dir($config) . DIRECTORY_SEPARATOR . '*.json.lock') ?: [] as $lockPath) {
+    $queue = dc_ghl_queue_dir($config);
+    foreach (glob($queue . DIRECTORY_SEPARATOR . '*.json.lock') ?: [] as $lockPath) {
         if ($removed >= $limit) break;
         $recordPath = substr($lockPath, 0, -strlen('.lock'));
         if (!is_file($recordPath)) {
@@ -1367,9 +1577,21 @@ function dc_ghl_prune_locks(array $config, int $limit = 200): int
         if (!is_array($record)) continue;
         $updated = strtotime((string) ($record['updated_at'] ?? '')) ?: $now;
         $state = (string) ($record['state'] ?? '');
-        $done = ($state === 'delivered' && $updated < $now - 3600)
+        $owed = dc_ghl_follow_up_at($record) !== null || ($record['office_alert_pending'] ?? false);
+        $done = ($state === 'delivered' && $updated < $now - 3600 && !$owed)
             || ($state === 'failed' && $updated < $now - 7 * 86400);
         if ($done && @unlink($lockPath)) $removed++;
+    }
+    foreach (glob($queue . DIRECTORY_SEPARATOR . 'sessions' . DIRECTORY_SEPARATOR . '*.json.delivery.lock') ?: [] as $lockPath) {
+        if ($removed >= $limit) break;
+        $sessionPath = substr($lockPath, 0, -strlen('.delivery.lock'));
+        $session = is_file($sessionPath) ? json_decode((string) @file_get_contents($sessionPath), true) : null;
+        $quiet = (int) @filemtime(is_file($sessionPath) ? $sessionPath : $lockPath) < $now - 3600;
+        if ($quiet && ($session['state'] ?? '') !== 'left_pending' && @unlink($lockPath)) $removed++;
+    }
+    foreach (glob($queue . DIRECTORY_SEPARATOR . 'enquiry-*.lock') ?: [] as $lockPath) {
+        if ($removed >= $limit) break;
+        if ((int) @filemtime($lockPath) < $now - 3600 && @unlink($lockPath)) $removed++;
     }
     return $removed;
 }

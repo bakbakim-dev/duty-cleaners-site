@@ -118,7 +118,7 @@ describe.skipIf(!hasPhp)("booking link in the finish-booking text", () => {
     expect(result.open.fields).toEqual({ f_name: "Brooke", l_name: "Van Hayes", email: "brooke@example.com", phone: "7805550199" });
     expect(new URLSearchParams(result.open.query).get("service_id")).toBe("6");
     const relaySource = readFileSync(relay, "utf8");
-    expect(relaySource).toMatch(/\$link = dc_ghl_session_link\(\$config, \$session, \$lead, basename\(\$path, '\.json'\)\);[\s\S]{0,300}\$extra\[\] = \['id' => \$linkFieldId, 'field_value' => \$link\];\s*dc_ghl_put_fields\(\$headers, \$contactId, \$stepField, \$extra\);/);
+    expect(relaySource).toMatch(/\$link = dc_ghl_session_link\(\$config, \$session, \$lead, basename\(\$path, '\.json'\)\);[\s\S]{0,300}\$extra\[\] = \['id' => \$linkFieldId, 'field_value' => \$link\];\s*if \(\$fieldId !== null && dc_ghl_put_fields\(\$headers, \$contactId, \$stepField, \$extra\)\)/);
   });
 
   it("writes the link on the contact of a confirmed quote", () => {

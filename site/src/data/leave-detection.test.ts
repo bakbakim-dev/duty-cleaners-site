@@ -26,7 +26,9 @@ describe("the relay", () => {
   it("a visit counts as left after five quiet minutes", () => {
     const relay = codeOf("public/api/ghl-quote.php");
     expect(relay).toMatch(/const DC_GHL_QUIET_SECONDS = 300;/);
-    expect(relay).toMatch(/\(\$current\['state'\] \?\? ''\) !== 'open' \|\| \(int\) \(\$current\['last_seen'\] \?\? \$now\) > \$now - DC_GHL_QUIET_SECONDS\) return null;/);
+    // The claim, under the session's lock: an open visit seen within the
+    // quiet time is never taken (2026-10-02: retried visits are claimed too).
+    expect(relay).toMatch(/\(\$state === 'open' && \(int\) \(\$current\['last_seen'\] \?\? \$now\) > \$now - DC_GHL_QUIET_SECONDS\)[^;]*\) return null;/);
   });
 
   it("a left visit sets the step field, then adds quote-left", () => {
@@ -36,7 +38,10 @@ describe("the relay", () => {
 
   it("a left visit emails the office from this server before tagging", () => {
     const relay = codeOf("public/api/ghl-quote.php");
-    expect(relay).toMatch(/dc_ghl_office_alert\(\$config, \$lead, \$contactId, \$session\);[\s\S]{0,1200}json_encode\(\['tags' => \['quote-left'\]\]/);
+    // First, and until it has gone; then the fields and the tag.
+    expect(relay).toMatch(
+      /if \(!\(\$session\['left_office_acked'\] \?\? false\) && dc_ghl_office_alert\(\$config, \$lead, \$contactId, \$session\)\) \$ack\('left_office_acked'\);[\s\S]{0,2000}json_encode\(\['tags' => \['quote-left'\]\]/,
+    );
     expect(relay).toMatch(/return @mail\(implode\(',', \$to\), \$subject, \$message\['body'\]/);
   });
 
@@ -48,9 +53,13 @@ describe("the relay", () => {
 
   it("a confirmed quote or call-back emails the office once, from this server", () => {
     const relay = codeOf("public/api/ghl-quote.php");
+    // The first try only on a record never tried; a failed send is retried by
+    // the cron job (capped), only while unsent and due. Behaviour is proved in
+    // ghl-follow-up-php.test.ts.
     expect(relay).toMatch(
-      /if \(!\(\$record\['office_alerted'\] \?\? false\) && \(\$payload\['stage'\] \?\? ''\) === 'confirm'\) \{\s*\$record\['office_alerted'\] = true;\s*dc_ghl_confirm_alert\(\$config, \$payload, /,
+      /if \(!\(\$record\['office_alerted'\] \?\? false\) && !isset\(\$record\['office_alert_pending'\]\) && \(\$payload\['stage'\] \?\? ''\) === 'confirm'\) \{[\s\S]{0,300}\$record = dc_ghl_confirm_alert_try\(\$config, \$record, \$payload\);/,
     );
+    expect(relay).toMatch(/\|\| \(\$record\['office_alerted'\] \?\? false\) \|\| \(int\) \(\$record\['office_alert_retry_at'\] \?\? 0\) > time\(\)\) return;/);
     expect(relay).toMatch(/function dc_ghl_confirm_alert\([\s\S]{0,400}return dc_ghl_office_send\(\$config, dc_ghl_confirm_alert_message\(/);
   });
 
@@ -151,8 +160,10 @@ describe("the quote on screen", () => {
 
   it("a left visit writes the shown quote to the contact in the step's PUT, before quote-left", () => {
     const relay = codeOf("public/api/ghl-quote.php");
+    // quote-left only once that PUT was accepted (2026-10-02): the workflow
+    // it starts reads the step and the link.
     expect(relay).toMatch(
-      /\$extra = dc_ghl_shown_fields\(\$config, \$session\);[\s\S]{0,800}dc_ghl_put_fields\(\$headers, \$contactId, \$stepField, \$extra\);\s*dc_ghl_http\([^;]*\['tags' => \['quote-left'\]\]/,
+      /\$extra = dc_ghl_shown_fields\(\$config, \$session\);[\s\S]{0,800}if \(\$fieldId !== null && dc_ghl_put_fields\(\$headers, \$contactId, \$stepField, \$extra\)\) \$ack\('left_fields_acked'\);[\s\S]{0,400}if \(\(\$session\['left_fields_acked'\] \?\? false\) && !\(\$session\['left_tag_acked'\] \?\? false\)\) \{\s*\[\$status\] = dc_ghl_http\([^;]*\['tags' => \['quote-left'\]\]/,
     );
     expect(relay).toMatch(/\[\$status\] = \$put\(array_merge\(\$required, \$extra\)\);/);
     const fields = between(relay, "function dc_ghl_shown_fields", "function dc_ghl_put_fields");

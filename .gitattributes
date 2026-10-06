@@ -16,3 +16,8 @@ index.html    text eol=lf
 robots.txt    text eol=lf
 *.xml         text eol=lf
 llms*.txt     text eol=lf
+
+# The SiteGround PHP endpoints are uploaded as they sit on disk, and the guard
+# proofs match multi-line text in them. A CRLF copy (2026-10: the live relay
+# came back that way) breaks those matches, so pin LF.
+*.php         text eol=lf
