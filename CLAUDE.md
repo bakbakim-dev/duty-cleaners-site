@@ -334,6 +334,22 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   descriptions back or copy the cards into a page. `location-similarity.test.ts` repeats
   AuditSpur's measure on the build and fails at 0.48.
 
+## Page speed (owner "go ahead", 2026-10-06; commits 95cff60 + e00a601, NOT deployed: SiteGround hold)
+- gtag.js loads on the visitor's first scroll, tap or key press, or after 10 s on an untouched page
+  (`whenSomeoneUsesThePage` in analytics.ts); the consent default, config and page_view still queue at
+  startup. Never move it back to startup or to load+idle: both were measured and lose (comment there).
+- Every route is `lazyWithPreload` (src/lib/lazy-with-preload.ts) and `routeTree` stays in App.tsx (the
+  sitemap, redirect and .htaccess generators read its `<Route path>` lines). main.tsx loads the matched
+  page's module before createRoot on a prerendered page; plain React.lazy put the "Loading page…"
+  spinner over the prerendered page on every load. Guarded in src/lib/page-speed.test.ts.
+- Real visitors' LCP/INP/CLS/FCP/TTFB go to GA4 as `web_vital` events (metric, metric_value,
+  metric_rating, connection), disclosed in the privacy policy. web-vitals is imported by URL so the
+  10 KB small-chunk rule cannot fold it into the entry. GA4 custom definitions for these parameters
+  are not registered yet (owner OK needed). PageSpeed-equivalent runs: 50–79 before, 90–96 after.
+- BookingKoala's booking page is the slow page in the path (about 6.8 s to content on a mid-range
+  phone, 2 MB of JavaScript). Preconnecting from our pages does not help: Chrome partitions
+  connections by site (tested 2026-10-06). Only BookingKoala can fix it.
+
 ## Design rules for money and location pages (owner-approved taste pass, 2026-09-18)
 - One hero pattern: H1 in `display-serif` (two lines at 1366px), one sentence carrying the from-price,
   "before GST", the unit and pay-after wording, then "See My Instant Price" as the filled accent button,
