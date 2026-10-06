@@ -335,7 +335,20 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   descriptions back or copy the cards into a page. `location-similarity.test.ts` repeats
   AuditSpur's measure on the build and fails at 0.48.
 
-## Page speed (owner "go ahead", 2026-10-06; commits 95cff60 + e00a601, NOT deployed: SiteGround hold)
+## Codex's live changes, reviewed and kept (owner, 2026-10-06; deployed to SiteGround 2026-10-06)
+- Another agent (Codex) changed the live relay on 2-3 Oct and re-uploaded /about-us/ from its own build on
+  5 Oct (that broke the About quote form: ~250 chunks never uploaded). The owner kept the relay changes
+  with fixes (ff2ac7a): a GoHighLevel call-back task per call-back (`callback-task.php`; Sherree weekdays,
+  Gelica weekends; call-back hours Mon-Fri 8-20, Sat 8-18, Sun 9-15 — Saturday internal hours stay 6 PM
+  "for now", owner 2026-10-06, though the website and Google say 8 PM) and the "last qualifying enquiry"
+  fields Long Term Nurture's consent gates read (`enquiry-evidence.php`, runs after the tags, never blocks
+  them). `ghl-quote.php` requires both helpers: upload all three together. PHP is LF (`.gitattributes`).
+- Single-build deploy 2026-10-06 (owner "upload to SiteGround production"): entry index-DDzsYlKt.js, 296 changed
+  assets + 212 pages sha/md5-verified, 266 chunks 200, .htaccess (frame-src www.google.com, utf-8 .txt),
+  relay files; About quote form verified in a browser. Codex left public_html/about-claim-patch-20261005/
+  and about-claim-patch-20261005.zip publicly reachable: owner to delete.
+
+## Page speed (owner "go ahead", 2026-10-06; commits 95cff60 + e00a601, deployed to SiteGround 2026-10-06)
 - gtag.js loads on the visitor's first scroll, tap or key press, or after 10 s on an untouched page
   (`whenSomeoneUsesThePage` in analytics.ts); the consent default, config and page_view still queue at
   startup. Never move it back to startup or to load+idle: both were measured and lose (comment there).
