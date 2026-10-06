@@ -110,8 +110,9 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   label names Diamond Valley.
 - Office pins are the Google listings' own coordinates (`CITY_PROOF.geo`); the addresses match
   the listings.
-- Cleaners: reference-checked, customer-rated, and "under 5% of applicants are accepted"
-  (`COMPANY.applicantAcceptanceRate`, the owner's figure). Always hiring: the JobPosting has a
+- Cleaners: reference-checked and customer-rated; the ratings decide who we keep sending. The
+  "under 5% of applicants are accepted" claim was removed everywhere by the owner on 2026-10-06:
+  never publish an acceptance rate (guarded in copy-quality.test.ts). Always hiring: the JobPosting has a
   datePosted, no validThrough and no pay range (independent contractors paid per job).
 - No new-customer offer. The rebook rate stays unpublished.
 - Products (2026-09-11): the cleaners are subcontractors who choose their own products, so

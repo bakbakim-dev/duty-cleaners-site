@@ -572,6 +572,23 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "no money page makes a promise the content prompt retired",
     why: "Restores a '100% satisfaction' promise the re-clean guarantee (policy T1) does not make.",
   },
+  // ---- applicant acceptance rate removed (owner, 2026-10-06) ----
+  {
+    guard: "src/data/copy-quality.test.ts",
+    target: "src/components/DutyCleanPromise.tsx",
+    find: "the ratings customers give after each clean decide who we keep sending.",
+    replace: "the ratings customers give after each clean decide who we keep sending. Under 5% of applicants are accepted.",
+    failing: "no page publishes an applicant acceptance rate",
+    why: "Puts the removed 'under 5% of applicants' claim back on the Edmonton hub's promise card.",
+  },
+  {
+    guard: "src/data/copy-quality.test.ts",
+    target: "public/llms.txt",
+    find: "- Reference-checked, customer-rated cleaners; customer ratings decide who we keep sending",
+    replace: "- Reference-checked, customer-rated cleaners; under 5% are accepted",
+    failing: "no page publishes an applicant acceptance rate",
+    why: "Restores the claim in the AI-facing summary, in the wording the old Calgary card used.",
+  },
   {
     guard: "src/data/copy-quality.test.ts",
     target: "src/pages/locations/Mahogany.tsx",

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { POLICY, PRICING_TERMS, SERVICE_TERMS } from "./policy";
-import { BOOKINGS, CITY_PROOF, COMPANY, RESPONSE_TIME_PROMISE, RISK_REVERSAL } from "./proof";
+import { BOOKINGS, CITY_PROOF, RESPONSE_TIME_PROMISE, RISK_REVERSAL } from "./proof";
 import { confirm, PROVENANCE } from "./confirmed";
 import { travelFee } from "./addon-table";
 import { addOnFromPrice, formatPrice, FREQUENCIES } from "./pricing";
@@ -110,7 +110,6 @@ describe("every confirmed value carries its provenance", () => {
       CITY_PROOF.calgary.geo,
       // The Red Deer office pin (2026-09-11), read from its Google listing.
       CITY_PROOF.reddeer.geo,
-      COMPANY.applicantAcceptanceRate,
     ];
     for (const claim of ownerClaims) {
       expect(PROVENANCE.some((p) => p.by === "owner" && p.value === claim), `${String(claim)} carries no provenance`).toBe(true);

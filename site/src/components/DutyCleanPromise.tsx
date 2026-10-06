@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { BadgeCheck, HeartHandshake, Receipt, RotateCcw, type LucideIcon } from "lucide-react";
 import { POLICY } from "@/data/policy";
-import { COMPANY } from "@/data/proof";
 import Eyebrow from "@/components/Eyebrow";
 
 interface Pillar {
@@ -16,18 +15,15 @@ interface Pillar {
  * Edmonton one. Nothing differs between the cities except the wording; the
  * figures come from policy.ts either way. The About page uses the default.
  */
-/** "under 5%" at the start of a sentence. */
-const ACCEPTANCE = COMPANY.applicantAcceptanceRate.charAt(0).toUpperCase() + COMPANY.applicantAcceptanceRate.slice(1);
-
 const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
   Edmonton: [
     {
       icon: BadgeCheck,
       // The trust strip at the top of the hub already says reference-checked
-      // and customer-rated in almost these words; this card adds the one
-      // vetting fact the page did not state (owner's figure, proof.ts).
+      // and customer-rated; this card adds what the ratings are for. It carried
+      // the applicant acceptance rate until the owner removed it (2026-10-06).
       title: "Who cleans your home",
-      desc: `${ACCEPTANCE} of applicants are accepted, and the customer rates every clean.`,
+      desc: "Every cleaner is reference-checked before a first job, and the ratings customers give after each clean decide who we keep sending.",
     },
     {
       icon: HeartHandshake,
@@ -52,7 +48,7 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
     {
       icon: BadgeCheck,
       title: "Who we send",
-      desc: `Of the people who apply to clean for us, ${COMPANY.applicantAcceptanceRate} are accepted. Each visit is then rated by the customer.`,
+      desc: "We check each cleaner's references before a first job. After every visit the customer rates the clean, and those ratings decide who keeps cleaning for us.",
     },
     {
       icon: HeartHandshake,

@@ -373,6 +373,32 @@ describe("the copy does not read like a template filled in by a machine", () => 
     expect(hits, "a product-effect claim on house-cleaning copy; say what the team does").toEqual([]);
   });
 
+  it("no page publishes an applicant acceptance rate", () => {
+    // Owner, 2026-10-06: "under 5% of applicants are accepted" (published from
+    // 2026-09-11, a figure carried over from the old site) is removed
+    // everywhere. Cleaners are described as reference-checked and rated by
+    // customers; no acceptance rate, in any wording, on any page or AI file.
+    const CLAIM = /applicants? (?:are |is |get |gets )?(?:accepted|hired)|acceptance rate|\d+ ?% (?:of (?:applicants|cleaners|people who apply)|(?:are|get) (?:accepted|hired))|\b1 in \d+ (?:applicants|people who apply)/i;
+    const files = [...allTsx(join(SRC, "pages"), "pages/"), ...allTsx(join(SRC, "components"), "components/")];
+    for (const dir of ["data", "lib"]) {
+      for (const name of readdirSync(join(SRC, dir))) {
+        if (name.endsWith(".ts") && !name.endsWith(".test.ts")) files.push(`${dir}/${name}`);
+      }
+    }
+    const hits: string[] = [];
+    for (const rel of files) {
+      const text = stripComments(readFileSync(join(SRC, rel), "utf-8"));
+      const m = CLAIM.exec(text);
+      if (m) hits.push(`${rel}: "${text.slice(Math.max(0, m.index - 40), m.index + 40).replace(/\s+/g, " ")}"`);
+    }
+    for (const name of ["llms.txt", "llms-full.txt"]) {
+      for (const line of readFileSync(join(SRC, "..", "public", name), "utf-8").split("\n")) {
+        if (CLAIM.test(line)) hits.push(`${name}: "${line.trim().slice(0, 100)}"`);
+      }
+    }
+    expect(hits, "an applicant acceptance rate; the owner removed it on 2026-10-06").toEqual([]);
+  });
+
   it("the march-out copy works from CFHA's checklist and never claims its standards", () => {
     // CFHA's move-out checklist (the Occupant Handbook, linked from the march-out
     // page) covers repairs, bulbs, the furnace filter, the yard, steam-cleaned

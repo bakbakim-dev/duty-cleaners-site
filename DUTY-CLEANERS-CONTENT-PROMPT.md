@@ -189,8 +189,8 @@ R1  Rated 4.9 on Google. The Edmonton listing has 236 reviews and the Calgary li
     1 September 2026. Use the count of the branch this page belongs to. Never add the two
     together: Google publishes no combined figure.
 R2  Every cleaner is reference-checked before a first job and rated by the customer after each
-    visit, and the ratings decide who we keep sending. Under 5% of applicants are accepted (the
-    owner's figure, COMPANY.applicantAcceptanceRate).
+    visit, and the ratings decide who we keep sending. Never state an applicant acceptance rate:
+    the owner removed "under 5% of applicants are accepted" on 6 October 2026.
 R3  Over 5,000 bookings across Alberta since 2017, confirmed by the owner on 10 September 2026.
     Write it as "5,000+ bookings". It counts bookings, not homes: never write "homes cleaned",
     and never split it by city.

@@ -258,13 +258,10 @@ export const cityProofFor = (pathname: string) =>
 export const COMPANY = {
   foundedYear: 2017,
   sinceLabel: "since 2017",
-  /**
-   * Applicant acceptance rate: "under 5%". The owner asked on 2026-09-11 to
-   * publish the figure most likely to be accurate. This is the only figure on
-   * record (the old site printed it), so it is published as the owner's figure.
-   * Replace it if hiring records show otherwise.
-   */
-  applicantAcceptanceRate: confirm("under 5%", { by: "owner", on: "2026-09-11", note: "the owner's figure, carried over from the old site" }) as Confirmed<string> | Unconfirmed,
+  // No applicant acceptance rate. "Under 5% of applicants are accepted" was
+  // published from 2026-09-11 (a figure carried over from the old site) and
+  // removed by the owner on 2026-10-06. Never publish an acceptance rate;
+  // copy-quality.test.ts fails on one.
   /**
    * Percentage of customers who rebook. Null by the owner's choice (2026-09-10):
    * the site publishes no rebook rate. Do not ask again or fill it in unless the
