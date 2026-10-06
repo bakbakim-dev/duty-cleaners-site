@@ -11,7 +11,7 @@ import { Lock, Mail } from "lucide-react";
  * a stack change that added the BookingKoala handoff, the GoHighLevel form
  * embed and the map embeds, none of which the old text mentioned.
  */
-const LAST_UPDATED = "September 2026";
+const LAST_UPDATED = "October 2026";
 
 export default function PrivacyPolicy() {
   return (
@@ -138,7 +138,8 @@ export default function PrivacyPolicy() {
                   VITE_GA4_MEASUREMENT_ID is set and only on dutycleaners.ca, sends
                   page addresses through safePageLocation(), with Google signals and ad
                   personalisation off, not on GPC / Do Not Track browsers, and every
-                  event passes filterEventProps() in src/lib/analytics.ts first; and the
+                  event, the page-speed ones from src/lib/web-vitals.ts included,
+                  passes filterEventProps() in src/lib/analytics.ts first; and the
                   third parties named below are exactly the external origins the site
                   contacts. If an embed, analytics tag or pixel is ever added, it
                   belongs here too. */}
@@ -188,6 +189,11 @@ export default function PrivacyPolicy() {
                 ad personalisation for it.
               </p>
               <p className="mb-4">
+                It also records how quickly each page appeared and responded on your device, and the type of
+                connection your browser reports, such as 4G, so we can keep the site fast on phones. These
+                measurements go through the same filter as everything else and carry nothing you typed.
+              </p>
+              <p className="mb-4">
                 We do not send your name, email address, phone number, address, postal code or anything you
                 type into a form to Google Analytics. The site removes those details before any analytics
                 event leaves your browser, and the phone number or email address in a link you tap is not
@@ -234,7 +240,7 @@ export default function PrivacyPolicy() {
                   there too.
                 </li>
                 <li>
-                  <strong>Google Analytics</strong> — counts visits and quote steps when it is switched on, as
+                  <strong>Google Analytics</strong> — counts visits and quote steps and measures page speed when it is switched on, as
                   described in the Website Analytics section. It receives no names, email addresses, phone
                   numbers or addresses.
                 </li>

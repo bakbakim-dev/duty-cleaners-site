@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { pageServiceFor, serviceOnOpen } from "@/lib/tracking";
@@ -213,13 +213,22 @@ describe("analytics sends nothing personal", () => {
 });
 
 describe("the Google Analytics loader", () => {
-  afterEach(() => vi.unstubAllGlobals());
+  // gtag.js waits for the first interaction or a 10 s fallback (2026-10-06);
+  // fake timers keep that fallback from firing after a test has finished.
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+  });
 
   function stubBrowser(hostname = "dutycleaners.ca", path = "/") {
     const appended: { src?: string }[] = [];
+    const listeners = new Map<string, () => void>();
     const win: Record<string, unknown> = {
       location: { hostname, href: `https://${hostname}${path}` },
       innerWidth: 1200,
+      addEventListener: (type: string, fn: () => void) => listeners.set(type, fn),
+      removeEventListener: (type: string) => listeners.delete(type),
     };
     vi.stubGlobal("window", win);
     vi.stubGlobal("navigator", { userAgent: "Mozilla/5.0 Chrome/128" });
@@ -227,7 +236,7 @@ describe("the Google Analytics loader", () => {
       createElement: () => ({}),
       head: { appendChild: (node: { src?: string }) => appended.push(node) },
     });
-    return { win, appended };
+    return { win, appended, listeners };
   }
 
   it("loads nothing when no measurement ID is set", () => {
@@ -241,8 +250,10 @@ describe("the Google Analytics loader", () => {
   });
 
   it("with an ID, loads gtag.js with Google signals and ad personalisation off", () => {
-    const { win, appended } = stubBrowser();
+    const { win, appended, listeners } = stubBrowser();
     expect(initAnalytics("G-TEST12345")).toBe(true);
+    // The visitor's first tap is what requests gtag.js.
+    listeners.get("pointerdown")!();
     expect(appended).toHaveLength(1);
     expect(appended[0].src).toBe("https://www.googletagmanager.com/gtag/js?id=G-TEST12345");
     const commands = (win.dataLayer as ArrayLike<unknown>[]).map((args) => Array.from(args));

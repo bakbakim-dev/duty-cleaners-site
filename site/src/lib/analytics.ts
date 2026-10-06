@@ -15,7 +15,9 @@
  *     without the number or address itself.
  *
  * What may be sent: the city, the service, the funnel step, the frequency, the
- * kind of price shown, the deep-clean intent and the device class. Names,
+ * kind of price shown, the deep-clean intent and the device class, plus the
+ * page-speed measurements from web-vitals.ts (metric, value, rating) and the
+ * connection type the browser reports. Names,
  * emails, phone numbers, addresses, postal codes, notes and any other free text
  * are dropped here, whatever the caller passes. The privacy policy
  * (pages/PrivacyPolicy.tsx) describes exactly this.
@@ -44,6 +46,11 @@ export const ALLOWED_PROP_KEYS = [
   "price_type",
   "intent",
   "device",
+  // Page speed (web-vitals.ts): LCP/INP/CLS/FCP/TTFB, its value and rating.
+  "metric",
+  "metric_value",
+  "metric_rating",
+  "connection",
 ] as const;
 
 /** Keys that name personal data. Dropped even if a later edit allowlists them. */
@@ -244,8 +251,9 @@ function watchRouteChanges(): void {
 }
 
 /**
- * Loads gtag.js for the given GA4 measurement ID and configures it with
- * advertising features off. Returns true only when the tag was requested.
+ * Sets up GA4 for the given measurement ID with advertising features off, and
+ * schedules gtag.js for the visitor's first interaction (see
+ * whenSomeoneUsesThePage below). Returns true only when GA4 was set up.
  *
  * With no ID (the default: VITE_GA4_MEASUREMENT_ID unset), a malformed ID, no
  * browser, any host but dutycleaners.ca / www.dutycleaners.ca, a headless
@@ -294,8 +302,56 @@ export function initAnalytics(measurementId?: string | null): boolean {
   const script = document.createElement("script");
   script.async = true;
   script.src = `${GA4_SCRIPT_ORIGIN}/gtag/js?id=${encodeURIComponent(id)}`;
-  document.head.appendChild(script);
+  whenSomeoneUsesThePage(() => document.head.appendChild(script));
   return true;
+}
+
+/**
+ * gtag.js (about 190 KB) loads on the visitor's first scroll, tap or key
+ * press, or after GA4_FALLBACK_MS on a page nobody touches. Everything above
+ * still runs at startup: the consent default, the config and the page_view
+ * (with its campaign tags) wait in the dataLayer and are sent, in order, the
+ * moment gtag.js arrives, so attribution and funnel events are unchanged.
+ *
+ * Measured 2026-10-05 (live site and local builds):
+ * - Real phones: on a mid-range Android over LTE the Calgary hub's photo
+ *   appeared at 1.3 s instead of 1.9 s and the phone stopped being busy at
+ *   1.3 s instead of 2.3 s; on a budget phone with a weak signal, busy until
+ *   3.0 s instead of 5.3 s.
+ * - PageSpeed: when a test's first paint lands late, Lighthouse counted the
+ *   tag's download and run time against the hero photo (LCP 5–6 s, scores in
+ *   the 50s–70s on unchanged code). Loaded on interaction: 86–96.
+ * - Loading it after the load event and an idle callback instead was tried:
+ *   it fixed the photo but moved the cost into blocking time (691 ms on the
+ *   Calgary hub). Keep the interaction trigger.
+ *
+ * The cost: a visit that leaves within the fallback time without touching the
+ * page is not recorded. GA4 counts a session as engaged only after 10 seconds
+ * or an interaction, so those visits were unengaged ones.
+ */
+export const GA4_START_EVENTS = ["pointerdown", "keydown", "touchstart", "scroll", "wheel"] as const;
+export const GA4_FALLBACK_MS = 10_000;
+
+function whenSomeoneUsesThePage(load: () => void): void {
+  let done = false;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const run = () => {
+    if (done) return;
+    done = true;
+    if (timer !== undefined) clearTimeout(timer);
+    for (const type of GA4_START_EVENTS) window.removeEventListener?.(type, run, true);
+    try {
+      load();
+    } catch {
+      /* analytics must never break the page */
+    }
+  };
+  if (typeof window.addEventListener !== "function") {
+    run();
+    return;
+  }
+  for (const type of GA4_START_EVENTS) window.addEventListener(type, run, { capture: true, passive: true });
+  timer = setTimeout(run, GA4_FALLBACK_MS);
 }
 
 /* ------------------------------------------------------------------ *
