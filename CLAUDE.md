@@ -126,16 +126,18 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   bookable year-round in BookingKoala; the site note is enough (owner).
 - Move-out: interior window cleaning is a paid add-on, never part of the move-out clean (window
   sills and tracks are wiped).
-- Red Deer is a third branch (owner, 2026-09-11) with its own office and Google listing: "Duty
-  Cleaners House Cleaning Services Red Deer", 5212 48 St, Red Deer, AB T4N 1S4, (587) 570-6979,
-  Mon-Sat 7 AM-9 PM, Sunday closed, pin 52.2673285,-113.8189323, CID 10449244954117051184. Same
-  prices, no travel fee inside Red Deer, bookable online (BookingKoala accepts Red Deer postal
-  codes). The listing's website button points to /cleaning-services-red-deer/, which is the
-  branch page (no longer a redirect). No Google reviews yet: never give Red Deer a rating.
-  Red Deer offers every service the other branches do except march-out (owner): post-construction,
-  wall washing, Airbnb turnovers and office cleaning. Addresses around Red Deer pay the standard
-  travel fee and book online (owner). Hiring in Red Deer too. The commercial pages stay
-  Edmonton/Calgary (owner: no need to mention Red Deer).
+- Red Deer (owner, 2026-09-11; office status changed 2026-10-06: "It's not open until next year"):
+  NO office until 2027 (no month). Red Deer homes are booked online now, same prices, no travel fee
+  inside Red Deer (BookingKoala accepts Red Deer postal codes); the Edmonton office runs the cleans,
+  and (587) 570-6979 rings the office and is answered in its hours (METRO_HOURS). proof.ts holds no
+  Red Deer street address or pin (`office: { open: false, opensYear: 2027, handledBy: "edmonton" }`);
+  its schema is a service-area node (Red Deer, AB, CA; no geo). Never "Red Deer office", "three
+  offices", 5212 48 St or 7 AM-9 PM hours (guarded in red-deer-no-office.test.ts). Google listing
+  "Duty Cleaners House Cleaning Services Red Deer", CID 10449244954117051184, website button ->
+  /cleaning-services-red-deer/ (the Red Deer page, no redirect). No Google reviews: never a rating.
+  Red Deer offers every service except march-out (post-construction, wall washing, Airbnb turnovers,
+  office cleaning). Addresses around Red Deer pay the standard travel fee and book online. Hiring in
+  Red Deer too. The commercial pages stay Edmonton/Calgary.
 - Travel-fee postal codes (2026-09-11): T1Y is Calgary (no fee), T3Z pays the fee, Tsuut'ina
   Nation (T3T) pays no fee (owner). FSAs that straddle a city limit (T2Y, T3L, T3P, T3R, T2P, T1X,
   T4A) stay as they are (owner).
@@ -223,6 +225,23 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   as the name of the pricing model (by home size, not by the hour) is fine.
 - Card holds: never "no money moves" or "it is not a charge" alone. A hold is for the price; on
   a debit card the amount is set aside until the charge (`PAYMENT_TERMS`). Guarded.
+
+## Owner decisions (2026-10-06, AuditSpur hands-check answers) — do not contradict or re-ask
+- Red Deer has no office until 2027 (see the Red Deer bullet above).
+- The footer lists the page's own branch office first, from the path (`footerOfficeOrder`), never
+  the remembered branch: Google showed Red Deer's hours in a Calgary page's snippet.
+- The footer card badge no longer puts e-transfer under "Card Charged After Your Clean"; e-transfer
+  has its own line (arranged by phone, paid the day before).
+- Careers form option "No experience, willing to be trained" stays on purpose: it is a screening
+  question (an applicant who picks it is not a fit). Do not "fix" it against the paid-experience rule.
+- Offices are open on Thanksgiving Monday (owner); no holiday-hours notice needed for it.
+- DMARC got a report address 2026-10-06 (SiteGround DNS, owner "ok do it"):
+  `v=DMARC1; p=none; rua=mailto:info@dutycleaners.ca; aspf=r; adkim=r;`. Policy stays p=none; move
+  to quarantine only after the reports show every legitimate sender passing (owner decides).
+- The privacy policy discloses the quote follow-up (leave detection, finish-booking text, day 1/2/4/6
+  sequence, texting hours, STOP). Update it whenever those workflows change.
+- Generated "before/after" images are not used: the two-kitchens image left the Edmonton Airbnb page
+  and the oven before/after left the Calgary Deep card.
 
 ## Owner decisions (2026-09-26, open-items tracker) — do not contradict or re-ask
 - Extra work, verbatim in `EXTRA_WORK_TERM` (policy.ts): contact as soon as we know; the final total
