@@ -1140,7 +1140,8 @@ export const GUARD_PROOFS: GuardProof[] = [
     guard: "src/data/owner-answers-0911.test.ts",
     target: "src/pages/locations/Bannerman.tsx",
     find: "before GST: ${POLICY.ecoProductsHowToRequest}.`,",
-    replace: "before GST: ask the office which products are available and suitable for your surfaces when you book.`,",
+    // The clause changed 2026-09-26 (eco-friendly products); the replace must hand-type the current one.
+    replace: "before GST: ask for them when you book, and the team uses eco-friendly products instead of its usual ones.`,",
     failing: "location pages take the alternative-products request from policy.ts, with the fee before GST",
     why: "Hand-types the owner's alternative-products request clause again instead of reading it from policy.ts.",
   },
