@@ -12,7 +12,7 @@
 import { describe, it, expect } from "vitest";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { BRANCH_ID, CITY_PROOF, type Branch } from "./proof";
+import { BRANCH_ID, CITY_PROOF, hasOffice, type Branch } from "./proof";
 
 const ROOT = join(__dirname, "..", "..");
 const DIST = join(ROOT, "dist");
@@ -71,8 +71,14 @@ describe("the branch entity carries its office pin wherever it is referenced", (
       for (const node of branchNodes(readFileSync(page, "utf-8"))) {
         seen++;
         const branch = (Object.keys(BRANCH_ID) as Branch[]).find((b) => BRANCH_ID[b] === node["@id"])!;
-        const office = CITY_PROOF[branch].geo;
         const pin = node.geo as Node | undefined;
+        // A branch with no office yet (Red Deer until 2027, owner 2026-10-06)
+        // is a service-area node: it must carry no pin at all.
+        if (!hasOffice(branch)) {
+          if (pin) wrong.push(`${rel(page)} ${branch}: has a pin but no office`);
+          continue;
+        }
+        const office = CITY_PROOF[branch].geo;
         if (!pin || pin.latitude !== office.latitude || pin.longitude !== office.longitude || pin["@type"] !== "GeoCoordinates") {
           wrong.push(`${rel(page)} ${branch}: ${pin ? `${pin.latitude},${pin.longitude}` : "no geo"}`);
         }

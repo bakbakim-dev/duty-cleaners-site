@@ -1,3 +1,4 @@
+import { INITIAL_CLEAN_LENGTH_ANSWER } from "@/data/policy";
 import { ServiceCard, WhyUsCard, QuoteReceipt } from "@/components/LocationCards";
 import { locationServices, locationWhyUs } from "@/data/location-cards";
 import {
@@ -89,7 +90,7 @@ export default function SherwoodPark() {
     },
     {
       question: "How long does a first clean in Sherwood Park take?",
-      answer: `It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it.`
+      answer: INITIAL_CLEAN_LENGTH_ANSWER
     },
     {
       question: "What happens if something is missed?",

@@ -59,7 +59,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "How long does a house cleaning take?",
-        answer: `For a two-bedroom, one-bathroom apartment, a standard clean usually takes ${POLICY.typicalVisitLength?.standard} and a deep clean ${POLICY.typicalVisitLength?.deep}. Size, condition and the service booked all change that, so a bigger home takes longer. A clean is booked as one visit. The price is set by home size for the condition you describe; if the home needs much more work than that, we agree any extra charge with you before doing it, and anything beyond the booked visit is quoted and scheduled separately, by phone or email.`,
+        answer: `For a two-bedroom, one-bathroom apartment, a standard clean usually takes ${POLICY.typicalVisitLength?.standard} and a deep clean ${POLICY.typicalVisitLength?.deep}. Size, condition and the service booked all change that, so a bigger home takes longer. A clean is booked as one visit. The price is set by home size for the condition you describe; if the home needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on, and anything beyond the booked visit is quoted and scheduled separately, by phone or email.`,
       },
       {
         question: "Should I tip the cleaners?",
@@ -89,7 +89,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What are your operating hours?",
-        answer: `The Edmonton and Calgary offices answer ${hoursLineFor("edmonton")}. The Red Deer office answers ${hoursLineFor("reddeer")}. Cleans are booked into an arrival window of 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM.`,
+        answer: `The Edmonton and Calgary offices answer ${hoursLineFor("edmonton")}. The Red Deer line is answered in the same hours. Cleans are booked into an arrival window of 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM.`,
       },
       {
         question: "Do I need to be home during the cleaning?",
@@ -174,7 +174,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "How long does a move-out cleaning take?",
-        answer: "It depends on the size and condition of the home, which must be empty. The team works through the full move-out checklist, including inside the cabinets, closets and appliances. The price is set by home size for the condition you describe; if the home needs much more work than that, we agree any extra charge with you before doing it.",
+        answer: "It depends on the size and condition of the home, which must be empty. The team works through the full move-out checklist, including inside the cabinets, closets and appliances. The price is set by home size for the condition you describe; if the home needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on.",
       },
       {
         question: "Do you clean inside appliances?",
@@ -293,7 +293,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Which areas do you serve?",
-        answer: `The Edmonton office covers 80 Edmonton neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers 66 Calgary neighbourhoods plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley, which includes Black Diamond and Turner Valley. There is no trip fee inside either city's limits; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean. Red Deer has its own office at ${CITY_PROOF.reddeer.streetAddress}, on ${CITY_PROOF.reddeer.phone}, with the same price list and no travel fee inside Red Deer city limits; an address outside Red Deer pays the ${TRAVEL_FEE} travel fee, like any other out-of-town address. For any other address that is not listed, call the branch.`,
+        answer: `The Edmonton office covers 80 Edmonton neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers 66 Calgary neighbourhoods plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley, which includes Black Diamond and Turner Valley. There is no trip fee inside either city's limits; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean. Red Deer cleans are booked online and run by the Edmonton office, with a Red Deer line on ${CITY_PROOF.reddeer.phone}, the same price list and no travel fee inside Red Deer city limits; an address outside Red Deer pays the ${TRAVEL_FEE} travel fee, like any other out-of-town address. For any other address that is not listed, call the branch.`,
       },
     ],
   },
@@ -414,7 +414,7 @@ export default function FAQ() {
             </h1>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
               Prices, what each clean includes, access, payment and the 24-hour re-clean
-              guarantee, answered for all three branches.
+              guarantee, answered for Edmonton, Calgary and Red Deer.
             </p>
 
             {/* Quick Contact */}
@@ -522,13 +522,13 @@ export default function FAQ() {
             <div className="relative z-10">
               <span className="dc-icon dc-icon-sparkles w-10 h-10 text-accent mx-auto mb-4" aria-hidden="true" />
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Call the Edmonton, Calgary or Red Deer office
+                Call Edmonton, Calgary or Red Deer
               </h2>
               <p className="text-lg text-white/80 mb-3 max-w-2xl mx-auto">
-                The Edmonton and Calgary offices answer the phone seven days a week and the Red Deer
-                office Monday to Saturday, or you can see your price online in about a minute.
+                The Edmonton and Calgary offices answer the phone seven days a week, the Red Deer line
+                included, or you can see your price online in about a minute.
               </p>
-              <p className="text-sm text-white/90 mb-8">Edmonton and Calgary: {hoursLineFor("edmonton")}. Red Deer: {hoursLineFor("reddeer")}.</p>
+              <p className="text-sm text-white/90 mb-8">All three lines: {hoursLineFor("edmonton")}.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="#quote"

@@ -223,8 +223,6 @@ describe("each branch carries the office pin the owner confirmed", () => {
     const hubs = [
       ["edmonton", "index.html"],
       ["calgary", join("cleaning-services-calgary", "index.html")],
-      // The Red Deer branch page is that branch's hub (2026-09-11).
-      ["reddeer", join("cleaning-services-red-deer", "index.html")],
     ] as const;
     for (const [key, file] of hubs) {
       const html = readFileSync(join(DIST, file), "utf-8");
@@ -242,6 +240,27 @@ describe("each branch carries the office pin the owner confirmed", () => {
         { "@type": "GeoCoordinates", latitude: CITY_PROOF[key].geo.latitude, longitude: CITY_PROOF[key].geo.longitude },
       ]);
     }
+  });
+
+  // Owner, 2026-10-06: Red Deer has no office until 2027, so its branch node
+  // is a service-area business: the city as its address, no street, no
+  // postal code and no pin, on every page that describes it.
+  it("the Red Deer branch node carries no office address or pin", () => {
+    if (!existsSync(DIST)) return;
+    const bad: string[] = [];
+    let seen = 0;
+    for (const { url, html } of pages()) {
+      for (const n of nodesOf(html)) {
+        if (n["@id"] !== "https://dutycleaners.ca/#reddeer" || !n.address) continue;
+        seen++;
+        const address = n.address as Record<string, unknown>;
+        if (n.geo) bad.push(`${url}: geo`);
+        if (address.streetAddress || address.postalCode) bad.push(`${url}: street address or postal code`);
+        if (address.addressLocality !== "Red Deer") bad.push(`${url}: locality ${String(address.addressLocality)}`);
+      }
+    }
+    expect(seen, "no Red Deer branch node with an address was found in the build").toBeGreaterThan(0);
+    expect(bad).toEqual([]);
   });
 });
 

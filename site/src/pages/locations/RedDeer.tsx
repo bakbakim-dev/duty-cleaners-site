@@ -15,6 +15,8 @@ import {
   BRANCH_IDENTITY,
   BRANCH_PROFILES,
   ORG_ID,
+  RED_DEER_HANDLED_LINE,
+  RED_DEER_OPENS_LINE,
   RED_DEER_PATH,
   RESPONSE_TIME_PROMISE,
   SUPPORT_EMAIL,
@@ -48,13 +50,20 @@ const redDeerHero = redDeerHeroPicture.img.src;
 /**
  * The Red Deer branch page, at the preserved legacy URL /cleaning-services-red-deer/.
  *
- * Red Deer is a third branch with its own office and Google Business Profile
- * (owner, 2026-09-11), and that profile's Website button links this URL. Every
- * figure is derived: the NAP, hours and pin from proof.ts, prices from
- * bk-config through pricing.ts, terms from policy.ts. The price sheet is the
- * one Edmonton and Calgary use, with no travel fee inside Red Deer.
+ * Red Deer is a city we clean with its own phone line and Google Business
+ * Profile (owner, 2026-09-11), and that profile's Website button links this
+ * URL. It has NO office yet (owner, 2026-10-06: "Red Deer is not open until
+ * next year"): Red Deer homes are booked online, the Edmonton office runs the
+ * cleans and answers the Red Deer line in its hours, and a Red Deer office opens
+ * in 2027. Every figure is derived: the phone, hours and office status from
+ * proof.ts, prices from bk-config through pricing.ts, terms from policy.ts. The
+ * price sheet is the one Edmonton and Calgary use, with no travel fee inside
+ * Red Deer.
  *
  * What this page deliberately does NOT say:
+ *  - no street address, office pin or office hours of its own. The Google
+ *    listing's address is not an office a customer can visit, and the map is
+ *    of the city;
  *  - no rating or review count. The Red Deer listing has no reviews yet, and
  *    RATING_CLAIM is the Edmonton and Calgary listings' figure;
  *  - no surrounding communities by name. An address outside Red Deer city
@@ -67,6 +76,8 @@ const redDeerHero = redDeerHeroPicture.img.src;
  */
 
 const OFFICE = CITY_PROOF.reddeer;
+/** The office that runs Red Deer cleans until a Red Deer office opens. */
+const HANDLER = CITY_PROOF[OFFICE.office.handledBy];
 const PAGE_URL = `https://dutycleaners.ca${RED_DEER_PATH}`;
 
 const STANDARD = standardTierRows();
@@ -112,16 +123,17 @@ const TURNOVER_RATE = formatPrice(HOURLY_RATE);
 const paymentTerm = (pattern: RegExp) => PAYMENT_TERMS.find((term) => pattern.test(term)) ?? "";
 
 const PAGE_TITLE = `House Cleaning Red Deer from ${STANDARD_FROM} | Duty Cleaners`;
-const PAGE_DESCRIPTION = `House cleaning in Red Deer from ${STANDARD_FROM} before GST, with no travel fee inside the city. Book the Red Deer office online and pay after the clean.`;
+const PAGE_DESCRIPTION = `House cleaning in Red Deer from ${STANDARD_FROM} before GST, with no travel fee inside the city. Book online and pay after the clean.`;
 
-const FULL_ADDRESS = `${OFFICE.streetAddress}, Red Deer, AB ${OFFICE.postalCode}`;
 const HERO_SRCSET = redDeerHeroPicture.sources.webp;
 
 /**
- * The branch entity, the same shape as the Edmonton and Calgary hubs' nodes:
- * one @id, the Google listing's own name, the office's address, phone, pin and
- * hours, and the listing as sameAs. No aggregateRating: the listing has no
- * reviews, and self-serving review markup is not eligible anyway.
+ * The branch entity: one @id, the Google listing's own name, and the listing as
+ * sameAs. It is a service-area node, because Red Deer has no office until 2027:
+ * the address is the city only (no street, no postal code) and there is no
+ * `geo` pin. The phone and hours are the Red Deer line's, answered by the
+ * Edmonton office. No aggregateRating: the listing has no reviews, and
+ * self-serving review markup is not eligible anyway.
  */
 const branchJsonLd = {
   "@context": "https://schema.org",
@@ -136,7 +148,6 @@ const branchJsonLd = {
   telephone: OFFICE.phoneE164,
   email: SUPPORT_EMAIL,
   address: schemaAddressFor("reddeer"),
-  geo: { "@type": "GeoCoordinates", latitude: OFFICE.geo.latitude, longitude: OFFICE.geo.longitude },
   hasMap: RED_DEER_LISTING.url,
   sameAs: [...BRANCH_PROFILES.reddeer],
   areaServed: { "@type": "City", name: "Red Deer" },
@@ -154,15 +165,15 @@ const FAQS = [
   },
   {
     question: "Is there a travel fee for house cleaning in Red Deer?",
-    answer: `No. Duty Cleaners has an office in Red Deer, at ${OFFICE.streetAddress}, so an address inside Red Deer city limits pays no travel fee. The price is the same price list the Edmonton and Calgary branches use. An address outside Red Deer city limits pays the ${TRAVEL_FEE} travel fee, shown on the quote before you book.`,
+    answer: `No. An address inside Red Deer city limits pays no travel fee, and the price is the same price list the Edmonton and Calgary branches use. An address outside Red Deer city limits pays the ${TRAVEL_FEE} travel fee, shown on the quote before you book.`,
   },
   {
-    question: "What are the Red Deer office's hours?",
-    answer: `The Red Deer office is open ${hoursLineFor("reddeer")}. A clean is booked into an arrival window rather than an exact time: ${ARRIVAL_WINDOWS.join(", ")}.`,
+    question: "Is there a Duty Cleaners office in Red Deer?",
+    answer: `Not yet. ${RED_DEER_OPENS_LINE} Until then Red Deer cleans are booked online and run by the ${HANDLER.city} office, and the Red Deer line, ${OFFICE.phone}, is answered by the same team, ${hoursLineFor("reddeer")}. A clean is booked into an arrival window rather than an exact time: ${ARRIVAL_WINDOWS.join(", ")}.`,
   },
   {
     question: "How far ahead do I need to book a clean in Red Deer?",
-    answer: `Online bookings need at least 24 hours' notice. For anything sooner, call the Red Deer office at ${OFFICE.phone} and ask what the schedule has open; same-day and next-day slots depend on the schedule. After a quote request, the office texts within ${RESPONSE_TIME_PROMISE} to confirm the time.`,
+    answer: `Online bookings need at least 24 hours' notice. For anything sooner, call the Red Deer line at ${OFFICE.phone} and ask what the schedule has open; same-day and next-day slots depend on the schedule. After a quote request, the office texts within ${RESPONSE_TIME_PROMISE} to confirm the time.`,
   },
   {
     question: "Do I need to be home for a clean in Red Deer?",
@@ -242,7 +253,7 @@ const SERVICES = [
   {
     icon: KeyRound,
     title: "Airbnb turnovers",
-    text: `Turnovers between guests are priced by the hour, at ${TURNOVER_RATE} per cleaner-hour before GST, after a call from the Red Deer office.`,
+    text: `Turnovers between guests are priced by the hour, at ${TURNOVER_RATE} per cleaner-hour before GST, after a call from the office.`,
     to: "/contact-us/#topic=airbnb&city=reddeer",
     anchor: "Request a Red Deer turnover quote",
   },
@@ -306,13 +317,13 @@ export default function RedDeer() {
               <div className="mx-auto max-w-4xl text-center lg:text-left">
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2 backdrop-blur-sm">
                   <span className="dc-icon dc-icon-map-pin h-4 w-4 text-accent" aria-hidden="true" />
-                  <span className="text-sm font-medium text-white/90">The Red Deer office, {OFFICE.streetAddress}</span>
+                  <span className="text-sm font-medium text-white/90">Booked online, run by the {HANDLER.city} office</span>
                 </div>
                 <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
                   House cleaning in Red Deer
                 </h1>
                 <p className="mb-10 max-w-3xl text-lg leading-relaxed text-white/80 md:text-xl">
-                  {`Duty Cleaners has a Red Deer office with its own phone line, ${OFFICE.phone}. A standard clean of a one-bedroom apartment or condo in Red Deer is ${STANDARD_FROM} before GST, on the same price list as Edmonton and Calgary, and there is no travel fee inside Red Deer city limits. A house or a pet adds a set charge, shown on the quote before you book.`}
+                  {`Duty Cleaners cleans Red Deer homes, booked online and run by the ${HANDLER.city} office, with a Red Deer phone line, ${OFFICE.phone}. A standard clean of a one-bedroom apartment or condo in Red Deer is ${STANDARD_FROM} before GST, on the same price list as Edmonton and Calgary, and there is no travel fee inside Red Deer city limits. A house or a pet adds a set charge, shown on the quote before you book.`}
                 </p>
                 <div className="mb-10 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
                   <Button size="lg" className="bg-accent px-8 text-base text-accent-foreground hover:bg-accent/90" asChild>
@@ -341,17 +352,17 @@ export default function RedDeer() {
             </div>
           </section>
 
-          {/* The office */}
+          {/* Who runs Red Deer cleans: no office until 2027 */}
           <section className="bg-background py-16">
             <div className="container mx-auto px-4">
               <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2">
                 <div>
                   <span className="text-sm font-semibold uppercase tracking-wider text-primary">The branch</span>
-                  <h2 className="mb-6 mt-2 text-3xl font-bold text-foreground">The Red Deer office</h2>
+                  <h2 className="mb-6 mt-2 text-3xl font-bold text-foreground">Red Deer cleans and the {HANDLER.city} office</h2>
                   <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
                     <p>
-                      Red Deer cleans are booked through the Red Deer branch, which has its own office at{" "}
-                      {FULL_ADDRESS}, its own phone number and its own hours. Call it on{" "}
+                      {RED_DEER_HANDLED_LINE} There is no Red Deer office to visit yet. {RED_DEER_OPENS_LINE} Call the
+                      Red Deer line on{" "}
                       <a href={OFFICE.phoneLink} className="font-semibold text-primary underline underline-offset-2">
                         {OFFICE.phone}
                       </a>{" "}
@@ -360,7 +371,7 @@ export default function RedDeer() {
                     <div className="rounded-xl border border-border bg-muted/30 p-5">
                       <div className="mb-3 flex items-center gap-2 font-semibold text-foreground">
                         <span className="dc-icon dc-icon-clock h-5 w-5 text-primary" aria-hidden="true" />
-                        Red Deer office hours
+                        When the Red Deer line is answered
                       </div>
                       <dl className="space-y-1 text-base">
                         {hoursRowsFor("reddeer").map(([days, time]) => (
@@ -371,7 +382,7 @@ export default function RedDeer() {
                         ))}
                       </dl>
                       <p className="mt-3 text-sm">
-                        The Red Deer hours differ from the Edmonton and Calgary offices', which also open on Sunday.
+                        These are the {HANDLER.city} office's hours: the same team answers the Red Deer line.
                       </p>
                     </div>
                     {/* Rendered only while proof.ts records no review count for the
@@ -380,7 +391,7 @@ export default function RedDeer() {
                     <p>
                       The Red Deer listing on Google is new and has no reviews yet. You can find it as{" "}
                       <a href={RED_DEER_LISTING.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary underline underline-offset-2">
-                        the Red Deer office on Google Maps
+                        the Duty Cleaners Red Deer listing on Google Maps
                       </a>
                       . Reviews from customers of the Edmonton and Calgary branches are on the{" "}
                       <Link to="/reviews/" className="font-semibold text-primary underline underline-offset-2">
@@ -392,7 +403,8 @@ export default function RedDeer() {
                   </div>
                 </div>
                 <div className="overflow-hidden rounded-2xl shadow-xl">
-                  <GoogleMapEmbed query={`${RED_DEER_LISTING.name}, ${FULL_ADDRESS}`} title="Map of the Duty Cleaners Red Deer office" />
+                  {/* A map of the city served, not of an office: Red Deer has none yet. */}
+                  <GoogleMapEmbed query="Red Deer, AB" title="Map of Red Deer, Alberta" />
                 </div>
               </div>
             </div>
@@ -459,12 +471,12 @@ export default function RedDeer() {
             <div className="container mx-auto px-4">
               <div className="mx-auto max-w-5xl">
                 <span className="text-sm font-semibold uppercase tracking-wider text-primary">Services</span>
-                <h2 className="mb-4 mt-2 text-3xl font-bold text-foreground">Cleaning services from the Red Deer office</h2>
+                <h2 className="mb-4 mt-2 text-3xl font-bold text-foreground">Cleaning services in Red Deer</h2>
                 <p className="mb-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-                  The Red Deer office books the same services as the other branches, on the same checklists and prices. Home
+                  Red Deer gets the same services as Edmonton and Calgary, on the same checklists and prices. Home
                   cleaning and post-construction are priced instantly online; Airbnb turnovers and office cleaning are quoted by
                   the office. The service pages linked below are written for Edmonton; their prices are the Red Deer prices too.
-                  Questions go to the Red Deer office at{" "}
+                  Questions go to the Red Deer line at{" "}
                   <a href={OFFICE.phoneLink} className="text-primary underline underline-offset-2">{OFFICE.phone}</a>.
                 </p>
                 <div className="grid gap-6 md:grid-cols-2">
@@ -505,7 +517,7 @@ export default function RedDeer() {
                     The instant price asks for the home's size and type, whether there are pets, and the add-ons you want, then shows
                     the figure before you choose a date. A Red Deer postal code carries no travel fee, and the booking goes through
                     the same online booking page as an Edmonton or Calgary clean. Online bookings need at least 24 hours' notice; for
-                    anything sooner, call the Red Deer office and ask what is open.
+                    anything sooner, call the Red Deer line and ask what is open.
                   </p>
                   <p>
                     Nothing is charged at booking. The day before the clean, a temporary hold for the price goes on the card; on a
@@ -524,10 +536,10 @@ export default function RedDeer() {
                   <p>
                     The Red Deer page covers addresses inside Red Deer city limits. An address outside the city books the same
                     way and pays the {TRAVEL_FEE} travel fee on a home clean or {POST_TRAVEL_FEE} on post-construction, shown on
-                    the quote. For anything else, call the Red Deer office at{" "}
+                    the quote. For anything else, call the Red Deer line at{" "}
                     {OFFICE.phone}, or write through{" "}
                     <Link to="/contact-us/#city=reddeer" className="text-primary underline underline-offset-2">
-                      the contact form for the Red Deer office
+                      the contact form for Red Deer
                     </Link>
                     .
                   </p>
@@ -570,7 +582,7 @@ export default function RedDeer() {
                 <Button size="lg" variant="outline" className="border-white/30 px-8 text-base text-white hover:bg-white/10" asChild>
                   <a href={OFFICE.phoneLink}>
                     <span className="dc-icon dc-icon-phone mr-2 h-5 w-5" aria-hidden="true" />
-                    Call the Red Deer office
+                    Call {OFFICE.phone}
                   </a>
                 </Button>
               </div>

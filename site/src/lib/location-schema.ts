@@ -14,7 +14,7 @@ import {
   BRANCH_IDENTITY,
   openingHoursSpecFor,
   openingHoursShortFor,
-  branchGeoFor,
+  branchGeoField,
   type Branch,
 } from "@/data/proof";
 import { geoFor } from "@/data/location-geo";
@@ -161,13 +161,14 @@ export function buildLocationSchema(input: LocationSchemaInput) {
       address: schemaAddressFor(input.city),
       // The OFFICE pin, matching that address — not the served place's, which
       // is on areaServed above. Same value on every page of the branch, so the
-      // branch entity has one location wherever it is referenced.
-      geo: branchGeoFor(input.city),
+      // branch entity has one location wherever it is referenced. A branch with
+      // no office yet (Red Deer until 2027) carries no pin at all.
+      ...branchGeoField(input.city),
       // Derived, and the same on every page of the branch. See the note on the
       // deprecated `priceRange` input above for what it replaces.
       priceRange: sitePriceRange(),
-      // Per branch, from data/proof.ts: Red Deer keeps different hours from
-      // Edmonton and Calgary, so the hours are no longer one shared literal.
+      // Per branch, from data/proof.ts (every branch answers in the same
+      // office hours since 2026-10-06, but the model stays per branch).
       openingHours: openingHoursShortFor(input.city),
       openingHoursSpecification: openingHoursSpecFor(input.city),
       // Permalink to the actual Google Business Profile, not a search query.

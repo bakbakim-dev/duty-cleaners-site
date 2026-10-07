@@ -108,8 +108,9 @@ describe("every confirmed value carries its provenance", () => {
       RISK_REVERSAL.find((line) => line.id === "no-charge")?.label,
       CITY_PROOF.edmonton.geo,
       CITY_PROOF.calgary.geo,
-      // The Red Deer office pin (2026-09-11), read from its Google listing.
-      CITY_PROOF.reddeer.geo,
+      // The year a Red Deer office opens (owner, 2026-10-06). Red Deer has no
+      // office pin any more: it has no office until then.
+      CITY_PROOF.reddeer.office.opensYear,
     ];
     for (const claim of ownerClaims) {
       expect(PROVENANCE.some((p) => p.by === "owner" && p.value === claim), `${String(claim)} carries no provenance`).toBe(true);

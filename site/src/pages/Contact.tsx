@@ -27,15 +27,15 @@ import { travelFee } from "@/data/addon-table";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote } from "@/lib/quote-submit";
 import { track } from "@/lib/analytics";
 import { z } from "zod";
-import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, branchGeoFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM, branchRatingClaim, RED_DEER_PATH, hasGoogleRating, hoursLineFor, hoursRowsFor, openingHoursSpecFor, type Branch } from "@/data/proof";
+import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, branchGeoField, RED_DEER_HANDLED_LINE, RED_DEER_OPENS_LINE, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM, branchRatingClaim, RED_DEER_PATH, hasGoogleRating, hoursLineFor, hoursRowsFor, openingHoursSpecFor, type Branch } from "@/data/proof";
 
 const TITLE = "Contact Duty Cleaners | Edmonton, Calgary & Red Deer";
-const DESCRIPTION = `Call Duty Cleaners in Edmonton ${CITY_PROOF.edmonton.phone}, Calgary ${CITY_PROOF.calgary.phone} or Red Deer ${CITY_PROOF.reddeer.phone}, or send the form. Hours for each office are listed.`;
+const DESCRIPTION = `Call Duty Cleaners in Edmonton ${CITY_PROOF.edmonton.phone}, Calgary ${CITY_PROOF.calgary.phone} or Red Deer ${CITY_PROOF.reddeer.phone}, or send the form. Office hours are listed.`;
 
-/** The three branch offices, in the order the site lists them. */
+/** The three branches, in the order the site lists them. Red Deer has no office yet. */
 const BRANCHES: readonly Branch[] = ["edmonton", "calgary", "reddeer"];
 
-/** "Mon to Sat: 7:00 AM to 9:00 PM" lines for an office card, from proof.ts. */
+/** "Mon to Sat: 8:00 AM to 8:00 PM" lines for an office card, from proof.ts. */
 const hoursText = (branch: Branch) => hoursRowsFor(branch).map(([days, time]) => `${days}: ${time}`).join("\n");
 
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
@@ -89,7 +89,7 @@ const CONTACT_FAQS: { q: string; a: string; more: { to: string; label: string } 
   },
   {
     q: "Which areas do you serve?",
-    a: `The Edmonton office covers Edmonton plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers Calgary plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley. The Red Deer office covers Red Deer. Inside city limits there is no trip fee; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean, or ${POST_CONSTRUCTION_TRAVEL_FEE} on post-construction, shown on the quote before you book. For an address that is not listed, call the branch.`,
+    a: `The Edmonton office covers Edmonton plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers Calgary plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley. Red Deer cleans are booked online and run by the Edmonton office. Inside city limits there is no trip fee; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean, or ${POST_CONSTRUCTION_TRAVEL_FEE} on post-construction, shown on the quote before you book. For an address that is not listed, call the branch.`,
     more: { to: "/locations", label: "Every area we serve" },
   },
   {
@@ -151,6 +151,8 @@ const OfficeCard = ({
   email, 
   address, 
   hours,
+  note,
+  title,
   linkTo,
   reviewCount,
   showRating = true,
@@ -159,8 +161,14 @@ const OfficeCard = ({
   city: string;
   phone: string;
   email: string;
-  address: string;
-  hours: string;
+  /** Omitted for a branch with no office yet (Red Deer until 2027). */
+  address?: string;
+  /** Omitted for a branch whose line keeps another office's hours. */
+  hours?: string;
+  /** A line shown in place of the address and hours. */
+  note?: string;
+  /** Defaults to "<city> Office". */
+  title?: string;
   linkTo: string;
   /** This branch's own Google review count; never the two added together. */
   reviewCount?: number | null;
@@ -179,7 +187,7 @@ const OfficeCard = ({
         <Building2 className="w-7 h-7 text-accent transition-transform duration-300 group-hover:rotate-12" />
       </div>
       <div>
-        <h2 className="text-2xl font-bold text-white transition-transform duration-300 group-hover:translate-x-1">{city} Office</h2>
+        <h2 className="text-2xl font-bold text-white transition-transform duration-300 group-hover:translate-x-1">{title ?? `${city} Office`}</h2>
         {showRating && (
         <div className="flex items-center gap-1 text-sm text-white/90">
           <Star className="w-4 h-4 text-accent fill-accent" />
@@ -210,6 +218,7 @@ const OfficeCard = ({
         </div>
       </div>
 
+      {address && (
       <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 group-hover:bg-white/10">
         <span className="dc-icon dc-icon-map-pin w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
         <div>
@@ -217,7 +226,9 @@ const OfficeCard = ({
           <div className="text-white text-sm">{address}</div>
         </div>
       </div>
+      )}
 
+      {hours && (
       <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 group-hover:bg-white/10">
         <span className="dc-icon dc-icon-clock w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
         <div>
@@ -225,6 +236,14 @@ const OfficeCard = ({
           <div className="text-white text-sm whitespace-pre-line">{hours}</div>
         </div>
       </div>
+      )}
+
+      {note && (
+      <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 group-hover:bg-white/10">
+        <span className="dc-icon dc-icon-clock w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
+        <div className="text-white text-sm">{note}</div>
+      </div>
+      )}
     </div>
 
     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 h-12 text-base font-semibold transition-transform duration-300 group-hover:scale-[1.02] relative z-10">
@@ -343,7 +362,7 @@ export default function Contact() {
     });
   }, [presetCity, presetService, presetMessage]);
 
-  // #city=reddeer selects the Red Deer office. presetCity above covers the two
+  // #city=reddeer selects Red Deer. presetCity above covers the two
   // cities the commercial and Airbnb pages link with; the Red Deer page links here
   // with city=reddeer, so its preset is carried separately and never overwrites a
   // chosen city.
@@ -461,8 +480,9 @@ export default function Contact() {
                   // One authority (data/proof.ts) — the split-on-comma inline
                   // version carried no postalCode.
                   address: schemaAddressFor(key),
-                  // The office pin, matching the address (data/proof.ts).
-                  geo: branchGeoFor(key),
+                  // The office pin, matching the address (data/proof.ts). Red
+                  // Deer has no office until 2027, so no street and no pin.
+                  ...branchGeoField(key),
                   contactPoint: {
                     "@type": "ContactPoint",
                     contactType: "customer service",
@@ -513,7 +533,7 @@ export default function Contact() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm mb-6">
               <MessageSquare className="w-4 h-4 text-accent" />
-              <span>Edmonton, Calgary and Red Deer offices</span>
+              <span>Edmonton and Calgary offices, and Red Deer</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
@@ -586,9 +606,9 @@ export default function Contact() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="text-accent font-semibold text-sm uppercase tracking-wide">Our Locations</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">The Edmonton, Calgary and Red Deer offices</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2">The Edmonton and Calgary offices, and Red Deer</h2>
             <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
-              Call the office for the city the home is in. The Edmonton and Calgary branches are
+              Call the number for the city the home is in. The Edmonton and Calgary branches are
               rated {RATING_CLAIM}, each on its own Google listing; the Red Deer listing has no
               reviews yet.
             </p>
@@ -613,14 +633,16 @@ export default function Contact() {
               hours={hoursText("calgary")}
               linkTo={canonicalForPath("/calgary")}
             />
-            {/* No rating: the Red Deer listing has no reviews yet (proof.ts). */}
+            {/* No rating: the Red Deer listing has no reviews yet (proof.ts). No
+                address and no hours of its own: Red Deer has no office until
+                2027, and its line is answered by the Edmonton office team. */}
             <OfficeCard
               city="Red Deer"
+              title="Red Deer"
               phone={CITY_PROOF.reddeer.phone}
               email={SUPPORT_EMAIL}
               showRating={hasGoogleRating("reddeer")}
-              address={`${CITY_PROOF.reddeer.streetAddress}, Red Deer, AB ${CITY_PROOF.reddeer.postalCode}`}
-              hours={hoursText("reddeer")}
+              note={`${RED_DEER_HANDLED_LINE} This line is answered in the Edmonton office's hours. ${RED_DEER_OPENS_LINE}`}
               linkTo={RED_DEER_PATH}
             />
           </div>
@@ -898,7 +920,7 @@ export default function Contact() {
                     <FeatureHighlight
                       icon={Users}
                       title="One Email for Every Office"
-                      description={`Write to ${SUPPORT_EMAIL} for the Edmonton, Calgary or Red Deer office.`}
+                      description={`Write to ${SUPPORT_EMAIL} for Edmonton, Calgary or Red Deer.`}
                     />
                     <FeatureHighlight
                       icon={Shield}
@@ -971,8 +993,8 @@ export default function Contact() {
               Before you call
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-5">
-              The Edmonton and Calgary offices answer {hoursLineFor("edmonton")}; the Red Deer
-              office answers {hoursLineFor("reddeer")}.{" "}
+              The Edmonton and Calgary offices answer {hoursLineFor("edmonton")}, and the Red Deer
+              line is answered in the same hours.{" "}
               {isCallbackTopic ? (
                 <>
                   A specialist job is priced once the office knows what it involves, so say what

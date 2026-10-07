@@ -93,7 +93,7 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/airbnb-cleaning-service", target: "/edmonton/airbnb-cleaning", mode: "redirect", impressions: 918 },
   { legacy: "/cleaning-services-strathmore", target: "/locations/strathmore", mode: "redirect", impressions: 855 },
   { legacy: "/march-out-cleaning-edmonton", target: "/edmonton/march-out-cleaning", mode: "redirect", impressions: 806 },
-  // PRESERVED since 2026-09-11. Red Deer is a branch with its own office and
+  // PRESERVED since 2026-09-11. Red Deer is a branch with its own phone line and
   // Google Business Profile, and the listing's Website button links this URL,
   // so it serves the Red Deer page and is canonical here (it used to 301 to
   // /locations/). /locations/red-deer is the modern route it renders.

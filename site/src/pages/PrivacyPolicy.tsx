@@ -90,6 +90,39 @@ export default function PrivacyPolicy() {
                 <li>Comply with legal obligations</li>
               </ul>
 
+              {/* Owner, 2026-10-06 ("go ahead add that"): the follow-up a quote
+                  starts and the leave detection were not disclosed (AuditSpur
+                  hands check). Facts: CLAUDE.md 2026-09-23/25 and quote-presence.ts. */}
+              <h2 className="text-2xl font-bold mb-4 text-foreground">Messages After You Ask for a Price</h2>
+              <p className="mb-4">
+                When you give your name, email and phone to see an instant price, our customer system follows
+                up about that quote automatically:
+              </p>
+              <ul className="list-disc pl-6 mb-4">
+                <li>
+                  While the price or details screen is open and you are using it, the page tells our system about
+                  once a minute that you are still there. That report carries a random visit code, the step you
+                  are on and the quote on your screen (service, home size, plan, extras and price), never your
+                  notes or entry details.
+                </li>
+                <li>
+                  If those reports stop for five minutes before you book or ask for a call-back, the quote is
+                  marked as left. The office is told, may phone you, and may send you one text.
+                </li>
+                <li>
+                  If you open the booking page but don&rsquo;t book, we may text you once, about 10 minutes later,
+                  with a link back to your quote. The link works for 14 days.
+                </li>
+                <li>
+                  Then, if you haven&rsquo;t booked: an email the next day, a text on day 2, an email on day 4 and a
+                  text on day 6 asking whether to keep the quote open, and then we stop.
+                </li>
+              </ul>
+              <p className="mb-8">
+                These texts and emails go out Monday to Saturday between 8:00 AM and 7:30 PM. They stop as soon
+                as you book or reply. Reply STOP to any text to stop texts, or write to us to stop the emails.
+              </p>
+
               <h2 className="text-2xl font-bold mb-4 text-foreground">Information Sharing</h2>
               <p className="mb-4">We do not sell your personal information. We may share your information with:</p>
               <ul className="list-disc pl-6 mb-8">
@@ -167,8 +200,8 @@ export default function PrivacyPolicy() {
               </ul>
               <p className="mb-4">
                 One preference is kept in your browser's local storage, which survives closing the tab: the
-                office (Edmonton, Calgary or Red Deer) whose pages you last looked at, so that the phone number
-                and links in the header stay that office's on pages that belong to no city. It is never sent
+                city (Edmonton, Calgary or Red Deer) whose pages you last looked at, so that the phone number
+                and links in the header stay that city's on pages that belong to no city. It is never sent
                 anywhere, and clearing your browser's site data removes it.
               </p>
               <p className="mb-8">

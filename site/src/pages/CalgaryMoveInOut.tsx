@@ -108,7 +108,7 @@ const faqs = [
   },
   {
     q: "How long does a move out clean take?",
-    a: "It depends on the size and condition of the home, which must be empty. The price is set by home size for the condition you describe, and if it needs much more work than that, we agree any extra charge with you before doing it. You are given an arrival window when you book, not a finish time.",
+    a: "It depends on the size and condition of the home, which must be empty. The price is set by home size for the condition you describe, and if it needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on. You are given an arrival window when you book, not a finish time.",
   },
   {
     q: "Do I need to be there?",
@@ -532,7 +532,7 @@ export default function CalgaryMoveInOut() {
 
             <TermCard icon={<DollarSign className="w-6 h-6" />} title="Set price by home size">
               The price is set by bedrooms and bathrooms when you book, from {MOVE_FROM} for a
-              one-bedroom. It is for an empty home in the condition you describe; much more work than that is agreed with you, and priced, before it is done.
+              one-bedroom. It is for an empty home in the condition you describe; if it needs much more work than that, we contact you as soon as we know and again about halfway with an estimate, and you decide how to go on.
             </TermCard>
 
             <TermCard icon={<span className="dc-icon dc-icon-circle-check w-6 h-6" aria-hidden="true" />} title="The charges outside the flat rate">

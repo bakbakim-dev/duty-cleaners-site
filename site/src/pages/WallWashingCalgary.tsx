@@ -156,7 +156,7 @@ const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
 const OFFICE = CITY_PROOF.calgary;
 
 const PAGE_TITLE = "Wall Washing Add-On Calgary | Duty Cleaners";
-const META_DESCRIPTION = `Wall washing in Calgary from ${formatPrice(WALL_FROM)} before GST, added to a standard, deep or move-out clean: dust film, hard-water haze and cooking film.`;
+const META_DESCRIPTION = `Wall spot cleaning in Calgary from ${formatPrice(WALL_FROM)} and a full wall wash from ${formatPrice(WALL_FULL)} before GST, added to a standard, deep or move-out clean.`;
 
 export default function WallWashingCalgary() {
 

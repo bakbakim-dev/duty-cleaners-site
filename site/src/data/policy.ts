@@ -285,6 +285,14 @@ export const EXTRA_TIME_RATE_TERM =
 export const EXTRA_WORK_SHORT =
   "If the home needs much more work than described, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.";
 
+/**
+ * The location pages' "How long does an initial cleaning take?" answer. It said
+ * only "It depends", with the superseded "we agree any extra charge with you
+ * before doing it" (2026-09-22 wording), on 146 pages while the owner has
+ * confirmed a typical length (AuditSpur hands check, 2026-10-06).
+ */
+export const INITIAL_CLEAN_LENGTH_ANSWER = `It depends on the size and condition of the home. In a two-bedroom, one-bathroom apartment, a standard clean takes ${POLICY.typicalVisitLength?.standard} and a deep clean ${POLICY.typicalVisitLength?.deep}; a bigger home or heavier build-up takes longer. The price is set by home size for the condition you describe. ${EXTRA_WORK_SHORT}`;
+
 /** How a quote can change. Consistent across both pricing pages and the FAQ. */
 export const PRICING_TERMS = [
   "Published prices are starting estimates based on the details you give us — home size, number of bathrooms, and the add-ons you choose.",
@@ -342,8 +350,9 @@ export const SERVICE_TERMS = [
   `We bring all cleaning supplies and equipment. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}. That charge is before GST.`,
   "Running water is required. Some tasks, including vacuuming, may not be possible without electricity.",
   "Tell us about pets, parking, how to get in, and any rooms to skip when you book — the booking form asks for each of these.",
-  // Per branch, from proof.ts: the Red Deer office keeps different hours.
-  `The Edmonton and Calgary offices are open ${hoursLineFor("edmonton")}. The Red Deer office is open ${hoursLineFor("reddeer")}.`,
+  // From proof.ts. Red Deer has no office until 2027 (owner, 2026-10-06);
+  // its line is answered by the Edmonton office team in the same hours.
+  `The Edmonton and Calgary offices are open ${hoursLineFor("edmonton")}. The Red Deer line is answered in the same hours.`,
   "We schedule to an arrival window rather than an exact time, so traffic or an earlier job running long does not push your whole day.",
   // Owner, 2026-09-26 (site-04): windows are sometimes widened on purpose.
   "If an earlier clean runs long, we may widen your arrival window, and we'll tell you. Ask for a call 30 minutes before the team arrives, or 30 minutes before they finish so you can walk through with them.",

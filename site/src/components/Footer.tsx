@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { explicitBranchFromPath } from "@/lib/city-from-path";
 import { useBranchPreference } from "@/lib/branch-preference";
-import { CITY_PROOF, RED_DEER_PATH, hoursRowsFor, type Branch } from "@/data/proof";
+import { CITY_PROOF, RED_DEER_OPENS_LINE, RED_DEER_PATH, hoursRowsFor, officeFor, type Branch } from "@/data/proof";
 import ThresholdLine from "@/components/ThresholdLine";
 import type { ReactNode } from "react";
 import { Facebook, Instagram, Twitter, Phone, Youtube, Linkedin, Shield, CreditCard, ArrowUpRight } from "lucide-react";
@@ -58,26 +58,56 @@ function FooterLink({ to, children }: { to: string; children: ReactNode }) {
   );
 }
 
-/** The three branch offices, in the order the site lists them. */
-const FOOTER_OFFICES: { key: Branch; to: string; label: string }[] = [
-  { key: "edmonton", to: "/", label: "Edmonton Office" },
-  { key: "calgary", to: "/cleaning-services-calgary/", label: "Calgary Office" },
-  { key: "reddeer", to: RED_DEER_PATH, label: "Red Deer Office" },
-];
+/**
+ * The footer's branch blocks: the two offices, then Red Deer, which has no
+ * office until 2027 (owner, 2026-10-06) and so shows a phone line only.
+ */
+const FOOTER_OFFICES: Record<Branch, { to: string; label: string }> = {
+  edmonton: { to: "/", label: "Edmonton Office" },
+  calgary: { to: "/cleaning-services-calgary/", label: "Calgary Office" },
+  reddeer: { to: RED_DEER_PATH, label: "Red Deer" },
+};
 
-function FooterOffice({ branch, to, label }: { branch: Branch; to: string; label: string }) {
+/**
+ * The order of the branch blocks, from the page PATH only (owner, 2026-10-06).
+ * Google's snippet for a Calgary page quoted hours from the footer that were
+ * not Calgary's, so a page that belongs to a branch lists that branch first.
+ * Red Deer's cleans are run by the Edmonton office, so its page lists Edmonton,
+ * then Red Deer. A neutral page keeps Edmonton, Calgary, Red Deer. Never feed
+ * this the remembered branch: the prerender and crawlers must see the order
+ * the page's own path gives.
+ */
+export function footerOfficeOrder(pageBranch: Branch | null): Branch[] {
+  if (pageBranch === "calgary") return ["calgary", "edmonton", "reddeer"];
+  if (pageBranch === "reddeer") return ["edmonton", "reddeer", "calgary"];
+  return ["edmonton", "calgary", "reddeer"];
+}
+
+function FooterOffice({ branch }: { branch: Branch }) {
   const office = CITY_PROOF[branch];
+  const { to, label } = FOOTER_OFFICES[branch];
+  const status = office.office;
   return (
     <div>
       <Link to={to} className="group flex min-h-12 items-center gap-2 font-semibold transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><span className="dc-icon dc-icon-map-pin h-4 w-4 text-brand-gold" aria-hidden="true" /><span>{label}</span></Link>
       <a href={office.phoneLink} className="flex min-h-12 items-center gap-2 text-sm text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><span className="dc-icon dc-icon-phone h-4 w-4" aria-hidden="true" />{office.phone}</a>
-      <p className="text-sm leading-6 text-brand-navy-foreground/85">{office.streetAddress}<br />{office.city}, AB {office.postalCode}</p>
-      <div className="mt-2 space-y-1 text-sm leading-6 text-brand-navy-foreground/85">
-        <span className="sr-only">Hours: </span>
-        {hoursRowsFor(branch).map(([days, time]) => (
-          <div key={days} className="flex justify-between gap-3"><span className="inline-flex items-center gap-2"><span className="dc-icon dc-icon-clock h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />{days}</span><span>{time}</span></div>
-        ))}
-      </div>
+      {status.open ? (
+        <>
+          <p className="text-sm leading-6 text-brand-navy-foreground/85">{officeFor(branch).streetAddress}<br />{office.city}, AB {officeFor(branch).postalCode}</p>
+          <div className="mt-2 space-y-1 text-sm leading-6 text-brand-navy-foreground/85">
+            <span className="sr-only">Hours: </span>
+            {hoursRowsFor(branch).map(([days, time]) => (
+              <div key={days} className="flex justify-between gap-3"><span className="inline-flex items-center gap-2"><span className="dc-icon dc-icon-clock h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />{days}</span><span>{time}</span></div>
+            ))}
+          </div>
+        </>
+      ) : (
+        // No address and no hours of its own: the line rings the office that
+        // runs the branch's cleans and is answered in that office's hours.
+        <p className="text-sm leading-6 text-brand-navy-foreground/85">
+          Booked online and run by the {officeFor(branch).city} office, which answers this line in its hours. {RED_DEER_OPENS_LINE}
+        </p>
+      )}
     </div>
   );
 }
@@ -101,7 +131,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
     ? specialistCta.href
     : `${city === "calgary" ? canonicalForPath("/calgary") : "/"}#quote`;
   // The footer CTA must call the office the visitor is actually looking at:
-  // on the Red Deer page, the Red Deer office. Read from proof.ts, not typed.
+  // on the Red Deer page, the Red Deer line. Read from proof.ts, not typed.
   const office = CITY_PROOF[shownBranch ?? "edmonton"];
   const cityPhone = { href: office.phoneLink, display: office.phone };
 
@@ -136,7 +166,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
             </Button>
             {/* A page that belongs to no branch offers every office; any
                 other page, or a remembered branch, calls that one office. */}
-            {(neutral ? FOOTER_OFFICES.map((o) => o.key) : [null]).map((key) => {
+            {(neutral ? footerOfficeOrder(null) : [null]).map((key) => {
               const target = key ? CITY_PROOF[key] : null;
               return (
                 <Button
@@ -180,11 +210,15 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
 
               What is left is what PAYMENT_TERMS in data/policy.ts actually
               says: nothing is charged when you book, the card is charged after
-              the clean, and these are the methods accepted. */}
+              the clean, and these are the cards accepted. E-transfer is NOT
+              charged after the clean: it is arranged by phone and paid in full
+              the day before (owner, 2026-09-21), so it has its own line and is
+              never listed under "charged after" (badge fix, 2026-10-06). */}
           <div className="mx-auto grid max-w-2xl grid-cols-2 gap-3">
             <div className="flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-xs font-semibold leading-tight text-brand-navy-foreground/85"><Shield className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" /><span>Card Charged<br />After Your Clean</span></div>
-            <div className="flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-xs font-semibold leading-tight text-brand-navy-foreground/85"><CreditCard className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" /><span>Visa, Mastercard,<br />Amex, debit, e-transfer</span></div>
+            <div className="flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-xs font-semibold leading-tight text-brand-navy-foreground/85"><CreditCard className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" /><span>Visa, Mastercard,<br />Amex or debit</span></div>
           </div>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-xs leading-5 text-brand-navy-foreground/85">E-transfer: arranged by phone, paid the day before the clean.</p>
 
           <div className="mt-10">
             {/* Yelp tiles removed 2026-09-11: the Edmonton Yelp profile shows the wrong address
@@ -209,7 +243,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
           <div>
             <Link to="/" className="inline-flex rounded bg-brand-gold px-4 py-2 text-xl font-bold text-brand-gold-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy">DUTY CLEANERS</Link>
             <p className="mt-4 text-sm font-medium text-brand-gold">Cleaning Alberta homes since 2017</p>
-            <p className="mt-3 max-w-sm text-sm leading-6 text-brand-navy-foreground/85">House cleaning in Edmonton, Calgary, Red Deer and nearby communities, from a branch office in each of the three cities.</p>
+            <p className="mt-3 max-w-sm text-sm leading-6 text-brand-navy-foreground/85">House cleaning in Edmonton, Calgary, Red Deer and nearby communities, from offices in Edmonton and Calgary.</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {socialLinks.map(({ label, href, icon: Icon }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-navy-foreground/15 text-brand-navy-foreground/85 transition-colors hover:border-brand-gold hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold" aria-label={label}>
@@ -270,10 +304,9 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
           <div>
             <FooterHeading>Locations & contact</FooterHeading>
             <div id="offices" className="space-y-6">
-              {/* One block per branch office, each with its own hours: Red Deer's
-                  differ from Edmonton's and Calgary's (proof.ts). */}
-              {FOOTER_OFFICES.map(({ key, to, label }) => (
-                <FooterOffice key={key} branch={key} to={to} label={label} />
+              {/* The page's own branch first, from the path (footerOfficeOrder). */}
+              {footerOfficeOrder(pageBranch).map((key) => (
+                <FooterOffice key={key} branch={key} />
               ))}
             </div>
           </div>

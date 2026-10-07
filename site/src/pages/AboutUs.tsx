@@ -1,6 +1,6 @@
 import { POLICY } from "@/data/policy";
 import OfficeCallLink from "@/components/OfficeCallLink";
-import { BOOKINGS, CITY_PROOF, RATING_CLAIM, RED_DEER_PATH, hoursLineFor } from "@/data/proof";
+import { BOOKINGS, CITY_PROOF, RATING_CLAIM, RED_DEER_HANDLED_LINE, RED_DEER_OPENS_LINE, RED_DEER_PATH, hoursLineFor } from "@/data/proof";
 import { calgaryNeighborhoods, calgarySurrounding, edmontonNeighborhoods, edmontonSurrounding } from "@/data/city-locations";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -45,7 +45,7 @@ export default function AboutUs() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="display-serif text-4xl md:text-5xl mb-6 font-bold text-white lg:text-7xl">About Duty Cleaners</h1>
             <p className="text-xl md:text-2xl mb-8 text-white/85 font-semibold">
-              Duty Cleaners cleans homes from offices in Edmonton, Calgary and Red Deer; the Edmonton and Calgary offices are rated {RATING_CLAIM}.
+              Duty Cleaners cleans homes in Edmonton, Calgary and Red Deer from offices in Edmonton and Calgary, both rated {RATING_CLAIM}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
@@ -73,12 +73,13 @@ export default function AboutUs() {
               </p>
               <p>
                 Duty Cleaners has handled {BOOKINGS} Alberta bookings since 2017.
-                Today, the company serves customers from three offices: Edmonton, Calgary and Red Deer.
-                The newest branch has its own page for{" "}
+                Today, the company has two offices, in Edmonton and Calgary, and also cleans homes in
+                Red Deer, booked online and run by the Edmonton office. {RED_DEER_OPENS_LINE} Red Deer
+                has its own page for{" "}
                 <Link to={RED_DEER_PATH} className="text-primary underline">
                   house cleaning in Red Deer
                 </Link>
-                , including its local phone, address, hours and service details.
+                , with its phone line, prices and service details.
               </p>
               <p>
                 If something gets missed, tell us within {POLICY.guaranteeWindowHours} hours and we come
@@ -94,20 +95,21 @@ export default function AboutUs() {
       {/* Our Journey */}
       <section className="py-20 bg-muted/20">
         <div className="container mx-auto px-4">
-          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Three offices, one company</h2>
+          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Two offices, three cities</h2>
           <p className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto">
-            Each office has its own address, phone number and Google listing, and all three charge the same prices and give the same guarantee.
+            Edmonton and Calgary each have an office, a phone number and a Google listing. Red Deer has its own phone line. All three cities have the same prices and the same guarantee.
           </p>
           <div className="relative max-w-5xl mx-auto">
             <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-brand-gold/40 md:left-0 md:right-0 md:top-[7px] md:bottom-auto md:h-0.5 md:w-auto" aria-hidden="true" />
             <div className="grid gap-10 md:grid-cols-5 md:gap-6">
               {[
-                { title: "Since 2017", text: "Duty Cleaners has cleaned homes in Alberta since 2017. Today, we serve customers from offices in Edmonton, Calgary and Red Deer." },
+                { title: "Since 2017", text: "Duty Cleaners has cleaned homes in Alberta since 2017. Today, we serve customers in Edmonton, Calgary and Red Deer from offices in Edmonton and Calgary." },
                 { title: "Edmonton office", text: `The Edmonton office is at ${CITY_PROOF.edmonton.streetAddress} and answers on ${CITY_PROOF.edmonton.phone}. It covers ${edmontonNeighborhoods.length} Edmonton neighbourhoods and ${edmontonSurrounding.length} communities outside the city, including St. Albert, Sherwood Park and Spruce Grove.` },
                 { title: "Calgary office", text: `The Calgary office is at ${CITY_PROOF.calgary.streetAddress} and answers on ${CITY_PROOF.calgary.phone}. It covers ${calgaryNeighborhoods.length} Calgary neighbourhoods and ${calgarySurrounding.length} communities outside the city, including Airdrie, Cochrane and Okotoks.` },
-                // Red Deer (owner, 2026-09-11): its own office and Google listing. No
-                // surrounding communities are on file for it, so none are named.
-                { title: "Red Deer office", text: `The Red Deer office is at ${CITY_PROOF.reddeer.streetAddress} and answers on ${CITY_PROOF.reddeer.phone}. It covers Red Deer, with no travel fee inside the city, and its Google listing is new.` },
+                // Red Deer: no office until 2027 (owner, 2026-10-06); the Edmonton
+                // office runs its cleans and answers its line. No surrounding
+                // communities are on file for it, so none are named.
+                { title: "Red Deer", text: `${RED_DEER_HANDLED_LINE} The Red Deer line, ${CITY_PROOF.reddeer.phone}, is answered in office hours, and there is no travel fee inside the city. ${RED_DEER_OPENS_LINE}` },
                 { title: RATING_CLAIM, text: `${CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton listing and ${CITY_PROOF.calgary.googleReviewCount} on the Calgary one. Google keeps the two counts separate, and so do we.` },
               ].map((step, index) => (
                 <div key={step.title} className="relative pl-10 md:pl-0 md:pt-10">
@@ -211,8 +213,8 @@ export default function AboutUs() {
               Each visit is booked into an arrival window: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to
               4:00 PM. Changing or cancelling a booking needs {POLICY.cancellationNoticeHours} hours'
               notice, and inside that the fee is {POLICY.cancellationFee}. The Edmonton and Calgary
-              offices are open {hoursLineFor("edmonton")}; the Red Deer office is open{" "}
-              {hoursLineFor("reddeer")}.
+              offices are open {hoursLineFor("edmonton")}, and the Red Deer line is answered in the
+              same hours.
             </p>
             <p className="text-lg text-muted-foreground mb-8">
               Some things are outside every service: outdoor work and exterior windows, anything beyond a

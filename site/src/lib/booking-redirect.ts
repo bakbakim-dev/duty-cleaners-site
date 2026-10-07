@@ -225,8 +225,8 @@ const CITY_BY_PREFIX: Record<string, string> = {
 };
 
 /**
- * Red Deer's FSAs. Red Deer is a branch with its own office (owner,
- * 2026-09-11): no travel fee inside the city, and BookingKoala accepts these
+ * Red Deer's FSAs. Red Deer is a branch (owner, 2026-09-11; no office until
+ * 2027, owner 2026-10-06): no travel fee inside the city, and BookingKoala accepts these
  * codes, so they are priced and booked online like an in-city Edmonton or
  * Calgary code.
  *
@@ -237,7 +237,7 @@ const CITY_BY_PREFIX: Record<string, string> = {
  * 100 m grid:
  *
  *  - T4P and T4R lie entirely inside the city (100% of their land).
- *  - T4N (central Red Deer, including the office at 5212 48 St) is 71.5% inside
+ *  - T4N (central Red Deer) is 71.5% inside
  *    the city; the rest is rural land just south of the city limit. It keeps
  *    the city rule, like the straddling Calgary FSAs above.
  *  - T4S is Sylvan Lake's FSA, with the surrounding Red Deer County: only 11.3%

@@ -1,3 +1,4 @@
+import { INITIAL_CLEAN_LENGTH_ANSWER } from "@/data/policy";
 import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
 import { locationServices, locationWhyUs } from "@/data/location-cards";
 import { WALL_WASHING_DESCRIPTION } from "@/data/service-copy";
@@ -30,7 +31,7 @@ const nearbyAreas = ["Tuscany", "Arbour Lake", "Varsity", "Dalhousie"];
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it.`
+    answer: INITIAL_CLEAN_LENGTH_ANSWER
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Scenic Acres?",
@@ -114,7 +115,7 @@ export default function ScenicAcres() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                    <Link to="/calgary/pricing/">See My Instant Price</Link>
+                    <a href="#quote">See My Instant Price</a>
                   </Button>
                   <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                     <a href="tel:4037681341">
@@ -295,7 +296,7 @@ export default function ScenicAcres() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                  <Link to="/calgary/pricing/">See My Instant Price</Link>
+                  <a href="#quote">See My Instant Price</a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                   <a href="tel:4037681341">

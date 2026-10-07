@@ -15,9 +15,10 @@ import { specialistCtaForLocation } from "@/lib/commercial-context";
 interface NavigationProps {
   city?: "edmonton" | "calgary";
   /**
-   * The branch office whose phone the nav shows, when it is not the city's.
-   * Only the Red Deer page passes it: Red Deer has its own office and phone
-   * but no service pages of its own, so the service links stay Edmonton's.
+   * The branch whose phone the nav shows, when it is not the city's. Only
+   * the Red Deer page passes it: Red Deer has its own phone line (no office
+   * until 2027) but no service pages of its own, so the service links stay
+   * Edmonton's.
    */
   branch?: Branch;
 }
@@ -36,7 +37,7 @@ interface DropdownItem {
   onClick?: () => void;
 }
 
-/** The three offices, in the order the site lists them. */
+/** The three phone lines, in the order the site lists them (Red Deer has no office yet). */
 const OFFICES: ReadonlyArray<Branch> = ["edmonton", "calgary", "reddeer"];
 
 /**
@@ -291,7 +292,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
   const locationsItems: DropdownItem[] = [
     { to: "/", icon: "map-pin", title: "Edmonton", description: "Edmonton neighbourhoods and nearby communities" },
     { to: canonicalForPath("/calgary"), icon: "map-pin", title: "Calgary", description: "Calgary neighbourhoods and nearby communities" },
-    { to: RED_DEER_PATH, icon: "map-pin", title: "Red Deer", description: "The Red Deer office" },
+    { to: RED_DEER_PATH, icon: "map-pin", title: "Red Deer", description: "Red Deer house cleaning, booked online" },
     { to: "/locations/", icon: "earth", title: "All Locations", description: "See everywhere we clean" },
   ];
 

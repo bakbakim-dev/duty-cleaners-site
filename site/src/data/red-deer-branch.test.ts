@@ -11,8 +11,12 @@ import {
   cityProofFor,
   hasGoogleRating,
   hoursLineFor,
+  hasOffice,
+  officeFor,
   openingHoursShortFor,
   openingHoursSpecFor,
+  schemaAddressFor,
+  branchGeoField,
 } from "./proof";
 import { LEGACY_URLS, canonicalForPath } from "./legacy-urls";
 import { postalCodeCityName, postalCodeCityStatus } from "@/lib/booking-redirect";
@@ -23,9 +27,13 @@ import { buildLocationSchema } from "@/lib/location-schema";
 /**
  * The Red Deer branch (owner, 2026-09-11).
  *
- * Red Deer is a third branch with its own office and Google Business Profile.
- * The owner: "a gbp listing is up for it ... no travel charge because it has
- * its own office, and yes bookingkoala does [accept Red Deer postal codes]".
+ * Red Deer is a third branch with its own phone and Google Business Profile.
+ * The owner (2026-09-11): "a gbp listing is up for it ... no travel charge
+ * because it has its own office, and yes bookingkoala does [accept Red Deer
+ * postal codes]". Superseded in part on 2026-10-06: "Red Deer is not open until
+ * next year". There is no Red Deer office until 2027; the Edmonton office runs
+ * Red Deer cleans and answers the Red Deer line. The prices and the no-fee rule
+ * inside Red Deer stand.
  * The profile's Website button links /cleaning-services-red-deer/, which used
  * to 301 to /locations/. The facts below are the listing's own, read the same
  * day, and the listing has no reviews yet.
@@ -59,7 +67,7 @@ describe("the Red Deer page is a real page at the listing's URL", () => {
     expect(BRANCH_IDENTITY.reddeer.url).toBe(`https://dutycleaners.ca${RED_DEER_PATH}`);
   });
 
-  it("the Red Deer URL resolves to the Red Deer office and nothing else moves", () => {
+  it("the Red Deer URL resolves to the Red Deer branch and nothing else moves", () => {
     for (const path of ["/cleaning-services-red-deer/", "/cleaning-services-red-deer", "/locations/red-deer/"]) {
       expect(branchFromPath(path), path).toBe("reddeer");
       expect(cityProofFor(path).city, path).toBe("Red Deer");
@@ -72,26 +80,37 @@ describe("the Red Deer page is a real page at the listing's URL", () => {
   });
 });
 
-describe("proof.ts holds the Red Deer listing's own facts", () => {
-  it("proof.ts Red Deer NAP, pin and hours equal the Google listing", () => {
+describe("proof.ts holds the Red Deer line and no office (owner, 2026-10-06)", () => {
+  it("proof.ts Red Deer has its phone, no office until 2027 and the office's hours", () => {
+    // Owner, 2026-10-06: "Red Deer is not open until next year." The cleans
+    // are run by the Edmonton office, the Red Deer number rings that office and
+    // is answered in its hours, and a Red Deer office opens in 2027.
     const rd = CITY_PROOF.reddeer;
     expect(rd.city).toBe("Red Deer");
-    expect(rd.streetAddress).toBe("5212 48 St");
-    expect(rd.postalCode).toBe("T4N 1S4");
     expect(rd.phone).toBe("(587) 570-6979");
     expect(rd.phoneLink).toBe("tel:5875706979");
     expect(rd.phoneE164).toBe("+1-587-570-6979");
-    expect({ ...rd.geo }).toEqual({ latitude: 52.2673285, longitude: -113.8189323 });
-    expect(openingHoursSpecFor("reddeer")).toEqual([
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        opens: "07:00",
-        closes: "21:00",
-      },
-    ]);
-    expect(openingHoursShortFor("reddeer")).toEqual(["Mo-Sa 07:00-21:00"]);
-    expect(hoursLineFor("reddeer")).toBe("Monday to Saturday 7:00 AM to 9:00 PM, and not on Sunday");
+    expect(rd.office.open).toBe(false);
+    expect(Number(rd.office.opensYear)).toBe(2027);
+    expect(rd.office.handledBy).toBe("edmonton");
+    expect(hasOffice("reddeer")).toBe(false);
+    expect(officeFor("reddeer").key).toBe("edmonton");
+    // No office address or pin is held for Red Deer, so none can render.
+    for (const key of ["address", "streetAddress", "postalCode", "geo"]) {
+      expect(key in rd, `CITY_PROOF.reddeer.${key}`).toBe(false);
+    }
+    expect(schemaAddressFor("reddeer")).toEqual({
+      "@type": "PostalAddress",
+      addressLocality: "Red Deer",
+      addressRegion: "AB",
+      addressCountry: "CA",
+    });
+    expect(branchGeoField("reddeer")).toEqual({});
+    // The line is answered in the Edmonton office's hours, not the listing's
+    // old Monday-to-Saturday 7-to-9.
+    expect(openingHoursSpecFor("reddeer")).toEqual(openingHoursSpecFor("edmonton"));
+    expect(openingHoursShortFor("reddeer")).toEqual(["Mo-Sa 08:00-20:00", "Su 09:00-15:00"]);
+    expect(hoursLineFor("reddeer")).toBe(hoursLineFor("edmonton"));
 
     expect(BRANCH_IDENTITY.reddeer.name).toBe("Duty Cleaners House Cleaning Services Red Deer");
     expect(RED_DEER_LISTING.name).toBe(BRANCH_IDENTITY.reddeer.name);

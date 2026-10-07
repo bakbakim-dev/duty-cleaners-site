@@ -1,3 +1,4 @@
+import { INITIAL_CLEAN_LENGTH_ANSWER } from "@/data/policy";
 import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
 import { locationServices, locationWhyUs } from "@/data/location-cards";
 import { WALL_WASHING_DESCRIPTION } from "@/data/service-copy";
@@ -46,7 +47,7 @@ export default function BoyleStreet() {
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it.`
+      answer: INITIAL_CLEAN_LENGTH_ANSWER
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Boyle Street?",
@@ -58,7 +59,7 @@ export default function BoyleStreet() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Baseboards wiped\n• Doors wiped\n• Light switches fully cleaned\n• Wall outlet covers wiped\n• Vent covers wiped`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Baseboards wiped\n• Doors wiped\n• Light switches fully cleaned\n• Wall outlet covers wiped\n• Vent covers wiped\n• Cobweb removal`
     },
     {
       question: "What happens if something is missed?",

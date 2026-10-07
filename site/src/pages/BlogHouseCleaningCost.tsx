@@ -187,7 +187,7 @@ const SECTIONS = [
     id: "per-hour",
     h2: "What should you compare in flat-rate and hourly quotes?",
     q: "What should you compare in flat-rate and hourly quotes?",
-    a: `At Duty Cleaners, whole-home standard, deep and move-out cleans are priced flat by home size, for the condition you describe; if a home needs much more work than described, any extra time is agreed with you before it is charged. Partial or unusual home-cleaning jobs, such as a few rooms, a one-off task list or a home no size tier fits, are quoted by the hour from ${HOME_HOURLY} per cleaner-hour before 5% GST, with a minimum of 3 hours for one cleaner or 2 hours for two. Airbnb and short-term rental turnovers have a separate rate of ${HOURLY} per cleaner-hour before GST, with the same minimums. Outside Edmonton or Calgary city limits, a home clean also carries a ${TRAVEL_FEE} travel fee.`,
+    a: `At Duty Cleaners, whole-home standard, deep and move-out cleans are priced flat by home size, for the condition you describe; if a home needs much more work than described, the office contacts you as soon as it knows and again about halfway with an estimate of the time and cost, and you decide how to go on. Partial or unusual home-cleaning jobs, such as a few rooms, a one-off task list or a home no size tier fits, are quoted by the hour from ${HOME_HOURLY} per cleaner-hour before 5% GST, with a minimum of 3 hours for one cleaner or 2 hours for two. Airbnb and short-term rental turnovers have a separate rate of ${HOURLY} per cleaner-hour before GST, with the same minimums. Outside Edmonton or Calgary city limits, a home clean also carries a ${TRAVEL_FEE} travel fee.`,
   },
   {
     id: "edmonton",
@@ -399,7 +399,7 @@ export default function BlogHouseCleaningCost() {
                 </div>
 
                 <p className="text-muted-foreground mb-6">
-                  There are two ways a company charges: an <strong>hourly rate</strong> or a <strong>flat rate</strong>. Hourly suits a partial job, a few rooms or a one-off task list. Flat suits a whole home, because the number is fixed before anyone arrives.
+                  There are two ways a company charges: an <strong>hourly rate</strong> or a <strong>flat rate</strong>. Hourly suits a partial job, a few rooms or a one-off task list. Flat suits a whole home, because you see the number for the home you describe before anyone arrives.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">

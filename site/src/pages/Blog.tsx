@@ -78,7 +78,7 @@ const blogPosts: BlogPost[] = [
     id: 10,
     title: "House Cleaning Costs Explained: Rates, Scope and Extras",
     excerpt: "Learn to compare scope, hourly and flat-rate quotes, required extras and GST. Includes an illustrative example and links to our local price lists.",
-    category: "Pricing Guide",
+    category: "Cost Guide",
     image: houseCleaningCostHero,
     slug: "/how-much-does-a-house-cleaning-cost/"
   },

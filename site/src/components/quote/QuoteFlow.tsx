@@ -1831,7 +1831,7 @@ export default function QuoteFlow({
           We&rsquo;ll text you within {RESPONSE_TIME_PROMISE} to set a date and time. Your{" "}
           {serviceName.toLowerCase()}{whereSuffix} is quoted at {priceLabel}
           {ongoingTotal ? `, then ${formatPrice(ongoingTotal)} per visit` : ""}.
-          The {proof.city} office is open {hoursLineFor(proof.key)}.
+          {proof.office.open ? `The ${proof.city} office is open` : `The ${proof.city} line is answered`} {hoursLineFor(proof.key)}.
         </p>
         <RiskReversalRow className="mt-6 justify-center" />
         <div className="mt-8 flex flex-wrap justify-center gap-3">

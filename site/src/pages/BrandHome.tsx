@@ -173,7 +173,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               <span className="text-accent">Across Alberta</span>
             </HeroHeading>
             <p className="text-xl md:text-2xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-              House cleaning from branches in Edmonton, Calgary and Red Deer. You see the flat price for your home size before you book, and the card is charged once the clean is complete.
+              House cleaning in Edmonton, Calgary and Red Deer. You see the flat price for your home size before you book, and the card is charged once the clean is complete.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
@@ -328,8 +328,9 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                 </div>
               </div>
 
-              {/* Red Deer has its own office and booking path, but no Google
-                  reviews yet, so this card deliberately has no star rating. */}
+              {/* Red Deer has no office until 2027 (owner, 2026-10-06): its cleans
+                  are booked online and run by the Edmonton office. It has no
+                  Google reviews yet, so this card deliberately has no star rating. */}
               <div className="group block" style={{ perspective: "1000px" }}>
                 <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-brand-navy text-white transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-xl group-hover:scale-[1.02]" style={{ transformStyle: "preserve-3d" }}>
                   <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
@@ -352,7 +353,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                     <div className="mb-6 space-y-2">
                       <div className="flex items-center gap-2.5 text-white/90">
                         <span className="dc-icon dc-icon-map-pin h-4 w-4 text-accent" aria-hidden="true" />
-                        <span className="text-sm">Red Deer office at {CITY_PROOF.reddeer.streetAddress}</span>
+                        <span className="text-sm">Run by the Edmonton office; a Red Deer office opens in {CITY_PROOF.reddeer.office.opensYear}</span>
                       </div>
                       <div className="flex items-center gap-2.5 text-white/90">
                         <span className="dc-icon dc-icon-clock h-4 w-4 text-accent" aria-hidden="true" />

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { LOCATION_GEO, geoFor } from "./location-geo";
-import { BRANCH_ID, CITY_PROOF, type Branch } from "./proof";
+import { BRANCH_ID, CITY_PROOF, hasOffice, type Branch } from "./proof";
 import { calgarySurrounding, edmontonSurrounding } from "./city-locations";
 
 /**
@@ -224,7 +224,8 @@ describe("location pages emit GeoCoordinates", () => {
         if (!node.geo) continue;
         const branch = (Object.keys(BRANCH_ID) as Branch[]).find((b) => BRANCH_ID[b] === node["@id"]);
         const pin = node.geo as Record<string, unknown>;
-        const office = branch ? CITY_PROOF[branch].geo : null;
+        // A branch with no office (Red Deer until 2027) may carry no pin.
+        const office = branch && hasOffice(branch) ? CITY_PROOF[branch].geo : null;
         if (!office || pin.latitude !== office.latitude || pin.longitude !== office.longitude) {
           onBusiness.push(`${url} (${String(node["@id"] ?? "no @id")}: ${pin.latitude},${pin.longitude})`);
         }

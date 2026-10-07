@@ -1,3 +1,4 @@
+import { INITIAL_CLEAN_LENGTH_ANSWER } from "@/data/policy";
 import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
 import { locationServices, locationWhyUs } from "@/data/location-cards";
 import { WALL_WASHING_DESCRIPTION } from "@/data/service-copy";
@@ -24,7 +25,7 @@ const services = locationServices("Aspen Woods", "calgary", ["standard", "deep",
 const whyUsItems = locationWhyUs("calgary", { icon: Leaf, title: "Clear About Reach", description: "Nothing beyond a two-step stool is included, so the top panes of a two-storey window wall and high great-room fixtures stay outside the clean." });
 
 const faqs = [
-  { question: "How long does an initial cleaning take?", answer: "It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it." },
+  { question: "How long does an initial cleaning take?", answer: INITIAL_CLEAN_LENGTH_ANSWER },
   { question: "What cleaning services does Duty Cleaners offer in Aspen Woods?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
   { question: "Do you offer discounts?", answer: "Yes. A recurring booking is the standard clean on a schedule, and from the second visit it is discounted:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean in Aspen Woods is charged at the one-time rate." },
   { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Baseboards and doors wiped\n• Light switches fully cleaned\n• Vent covers wiped" },

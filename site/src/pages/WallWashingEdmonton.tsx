@@ -166,7 +166,7 @@ const TRAVEL_LINE = formatPrice(travelFee("standard") ?? 0);
 const PROOF = CITY_PROOF.edmonton;
 
 const PAGE_TITLE = "Wall Washing Add-On Edmonton | Duty Cleaners";
-const META_DESCRIPTION = `Wall washing in Edmonton from ${formatPrice(WALL_FROM)} before GST, by home size: handprints and cooking film off painted walls, with a standard or move-out clean.`;
+const META_DESCRIPTION = `Wall spot cleaning in Edmonton from ${formatPrice(WALL_FROM)} and a full wall wash from ${formatPrice(WALL_FULL)} before GST, by home size, with a standard or move-out clean.`;
 
 export default function WallWashingEdmonton() {
 

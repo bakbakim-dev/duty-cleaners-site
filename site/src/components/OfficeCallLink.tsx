@@ -6,7 +6,8 @@
  * phone on About, FAQs, Reviews and the rest. The same rule as the header
  * (Navigation.tsx) applies here: the remembered office after mount, and
  * before that — which is what the prerender and every crawler see — a link to
- * the footer's three offices, labelled honestly.
+ * the footer's office blocks (two offices and the Red Deer line), labelled
+ * honestly.
  *
  * Renders a plain anchor and forwards className and ref, so it can sit inside
  * <Button asChild> exactly where the old <a href="tel:…"> did.

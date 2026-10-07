@@ -55,7 +55,7 @@ const COPY = {
   },
   Calgary: {
     heading: <>Calgary services, from upkeep to <Accent>handover</Accent></>,
-    standard: "The upkeep visit covers the kitchen, bathrooms, bedrooms, floors and dusting, worked from the same list every time. It is the right choice for a home that is already in reasonable shape.",
+    standard: "The upkeep visit covers the kitchen, bathrooms, bedrooms, floors and dusting, worked from the same list every time, for a home that needs regular upkeep.",
     deep: "Deep cleaning is the standard checklist with the deep-clean package added: baseboards, doors, light switches, wall outlets and vent covers. It suits the end of a Calgary winter, after months of chinook thaws have carried sand and de-icer to the door.",
     move: "Move-out cleaning is an empty-home clean for the handover. Tenants, landlords and sellers book it, and so does anyone who needs the rooms ready for listing photos.",
     moveNote: "Book it around the possession date.",

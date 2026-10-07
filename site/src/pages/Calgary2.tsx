@@ -44,7 +44,9 @@ import calgaryHeroRoom from "@/assets/generated/calgary-cleaning-hero-v1.webp?he
    a line promising no stock stand-ins. The three kitchen thumbnails went with
    the "How it works" thumbnails (three photos for four steps). What is left
    is what the services chapter and the coverage strip use. */
-import galleryCalgaryOvenBA from "@/assets/gallery/calgary-oven-ba.webp?card";
+// The Deep card showed an unlabelled oven before/after (calgary-oven-ba.webp), and a
+// deep clean does not include the inside of the oven (owner "ok fix", 2026-10-06).
+import galleryStoveDetail from "@/assets/gallery/dc-stove-detail.webp?card";
 import galleryHappyPlaceCard from "@/assets/gallery/calgary-happy-place.webp?card";
 import galleryCalgaryMoveOut from "@/assets/gallery/calgary-move-out-clean.webp?card";
 import galleryCalgaryWindow from "@/assets/gallery/calgary-window-cleaning.webp?card";
@@ -307,8 +309,8 @@ export default function Calgary2() {
           basePath="/calgary"
           featureImage={gallerySpotlessKitchen}
           featureImageAlt="Kitchen with white shaker cabinets, grey counters and a stainless steel fridge"
-          deepImage={galleryCalgaryOvenBA}
-          deepImageAlt="Four oven-interior panels labelled before and after, heavily soiled on the left and clean on the right"
+          deepImage={galleryStoveDetail}
+          deepImageAlt="Glass-top stove with the oven door open, under a microwave"
         />
 
         {/* The services in prose, with the from-prices, in Calgary's own
@@ -514,8 +516,8 @@ export default function Calgary2() {
               <div className="mb-8 text-center">
                 <h2 className="display-serif text-3xl font-bold leading-tight text-foreground md:text-4xl">See the instant price for your Calgary home.</h2>
                 <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                  The form asks about the home first and shows the figure next, so you can choose the service with the
-                  number in front of you.
+                  The form asks about the home, then your name, email and phone, and then shows the figure, so you can
+                  choose the service with the number in front of you.
                 </p>
               </div>
 

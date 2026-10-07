@@ -23,10 +23,35 @@ export interface OfficeHours {
   closes: string;
 }
 
-export interface CityProof {
+/** A branch with an office a customer can visit: Edmonton and Calgary. */
+export type OfficeBranch = "edmonton" | "calgary";
+
+/**
+ * Whether a branch has an office yet.
+ *
+ * Owner, 2026-10-06: "Red Deer is not open until next year." Red Deer homes are
+ * booked online today (same prices, no travel fee inside Red Deer), the cleans
+ * are run by the Edmonton office, and the Red Deer line rings that office and
+ * is answered in its hours. There is NO Red Deer office until 2027 (no month
+ * given: never invent one). So a branch without an office has no street
+ * address, no postal code and no office pin here, and no surface may present
+ * the Google listing's address as an office a customer can visit.
+ */
+export type BranchOfficeStatus =
+  | { open: true }
+  | {
+      open: false;
+      /** The year the owner said the office opens. */
+      opensYear: Confirmed<number>;
+      /** The office that books and runs this branch's cleans until then. */
+      handledBy: OfficeBranch;
+    };
+
+interface BranchProofBase {
   /** The branch key, e.g. for a ?city= link. */
   key: Branch;
   city: "Edmonton" | "Calgary" | "Red Deer";
+  office: BranchOfficeStatus;
   phone: string;
   phoneLink: string;
   /**
@@ -40,6 +65,23 @@ export interface CityProof {
    * asserted one business with two different phone numbers.
    */
   phoneE164: string;
+  /** The listing's rating, read from Google — never typed from memory. */
+  googleRating: Confirmed<number> | Unconfirmed;
+  /** The listing's review count, same source and date. */
+  googleReviewCount: Confirmed<number> | Unconfirmed;
+  /**
+   * The hours the branch's phone is answered. Edmonton and Calgary share
+   * METRO_HOURS; Red Deer's line is answered by the Edmonton office team, so it
+   * has the same hours (2026-10-06; the Google listing's own Mon-Sat 7-9 no
+   * longer applies).
+   */
+  hours: readonly OfficeHours[];
+}
+
+/** A branch with an office: Edmonton and Calgary. */
+export interface OfficeCityProof extends BranchProofBase {
+  key: OfficeBranch;
+  office: { open: true };
   address: string;
   /**
    * Structured NAP parts, for schema. An AuditSpur build audit found 175 pages
@@ -52,18 +94,22 @@ export interface CityProof {
    */
   streetAddress: string;
   postalCode: string;
-  /** The listing's rating, read from Google — never typed from memory. */
-  googleRating: Confirmed<number> | Unconfirmed;
-  /** The listing's review count, same source and date. */
-  googleReviewCount: Confirmed<number> | Unconfirmed;
   /** The office pin, for the hub's LocalBusiness `geo`. */
   geo: Confirmed<{ latitude: number; longitude: number }>;
-  /**
-   * The office's opening hours. Edmonton and Calgary keep the same hours; Red
-   * Deer's differ, so the hours are per branch rather than one shared line.
-   */
-  hours: readonly OfficeHours[];
 }
+
+/**
+ * A branch with no office yet (Red Deer until 2027). It has a phone, hours and
+ * a Google listing, but deliberately no address fields: the type checker then
+ * refuses `CITY_PROOF[branch].streetAddress` on a generic branch, so every
+ * surface has to decide what a branch without an office shows.
+ */
+export interface NoOfficeCityProof extends BranchProofBase {
+  key: "reddeer";
+  office: Extract<BranchOfficeStatus, { open: false }>;
+}
+
+export type CityProof = OfficeCityProof | NoOfficeCityProof;
 
 /**
  * Edmonton and Calgary's hours: Monday to Saturday 8:00 AM to 8:00 PM, Sunday
@@ -75,10 +121,11 @@ const METRO_HOURS: readonly OfficeHours[] = [
   { days: ["Sunday"], opens: "09:00", closes: "15:00" },
 ];
 
-export const CITY_PROOF: Record<Branch, CityProof> = {
+export const CITY_PROOF: { edmonton: OfficeCityProof; calgary: OfficeCityProof; reddeer: NoOfficeCityProof } = {
   edmonton: {
     key: "edmonton",
     city: "Edmonton",
+    office: { open: true },
     phone: "(780) 913-6565",
     phoneLink: "tel:7809136565",
     phoneE164: "+1-780-913-6565",
@@ -101,6 +148,7 @@ export const CITY_PROOF: Record<Branch, CityProof> = {
   calgary: {
     key: "calgary",
     city: "Calgary",
+    office: { open: true },
     phone: "(403) 768-1341",
     phoneLink: "tel:4037681341",
     phoneE164: "+1-403-768-1341",
@@ -116,11 +164,16 @@ export const CITY_PROOF: Record<Branch, CityProof> = {
     hours: METRO_HOURS,
   },
   /**
-   * The Red Deer branch (owner, 2026-09-11: "a gbp listing is up for it ... no
-   * travel charge because it has its own office"). Name, address, phone, hours
-   * and pin are read from its Google Business Profile on 2026-09-11, reached
-   * through CID 10449244954117051184 ("Duty Cleaners House Cleaning Services
-   * Red Deer", located in Heritage Village).
+   * The Red Deer branch: a city we clean, with no office yet.
+   *
+   * 2026-09-11 the owner set it up as a branch with a Google Business Profile
+   * (CID 10449244954117051184, "Duty Cleaners House Cleaning Services Red
+   * Deer"). 2026-10-06 the owner: "Red Deer is not open until next year." Red
+   * Deer homes are still booked online on the same prices with no travel fee
+   * inside the city; the Edmonton office runs those cleans; the Red Deer number
+   * rings the office and the same team answers it, in METRO_HOURS. A Red Deer
+   * office opens in 2027. The listing's street address and pin are therefore
+   * not held here: no page or schema may present them as an office.
    *
    * The listing has NO reviews yet, so the rating and count are null: the site
    * renders no rating for Red Deer, and RATING_CLAIM (the Edmonton and Calgary
@@ -129,21 +182,41 @@ export const CITY_PROOF: Record<Branch, CityProof> = {
   reddeer: {
     key: "reddeer",
     city: "Red Deer",
+    office: {
+      open: false,
+      opensYear: confirm(2027, { by: "owner", on: "2026-10-06", note: "Red Deer is not open until next year; Edmonton office handles Red Deer cleans" }),
+      handledBy: "edmonton",
+    },
     phone: "(587) 570-6979",
     phoneLink: "tel:5875706979",
     phoneE164: "+1-587-570-6979",
-    address: "5212 48 St, Red Deer, AB",
-    streetAddress: "5212 48 St",
-    postalCode: "T4N 1S4",
     googleRating: null,
     googleReviewCount: null,
-    geo: confirm({ latitude: 52.2673285, longitude: -113.8189323 }, { by: "owner", on: "2026-09-11", note: "Google listing pin, CID 10449244954117051184" }),
-    // Monday to Saturday 7:00 AM to 9:00 PM; closed Sunday (the listing, 2026-09-11).
-    hours: [{ days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "07:00", closes: "21:00" }],
+    // Answered by the Edmonton office team, in its hours (owner, 2026-10-06).
+    hours: METRO_HOURS,
   },
 };
 
-/** "07:00" -> "7:00 AM", "21:00" -> "9:00 PM". */
+/** Whether this branch has an office a customer can visit. */
+export const hasOffice = (branch: Branch): branch is OfficeBranch => CITY_PROOF[branch].office.open;
+
+/**
+ * The office that runs this branch's cleans: the branch itself, or for a branch
+ * with no office yet, the office that handles it (Red Deer: Edmonton).
+ */
+export const officeFor = (branch: Branch): OfficeCityProof => {
+  if (hasOffice(branch)) return CITY_PROOF[branch];
+  const status = CITY_PROOF[branch].office;
+  return CITY_PROOF[status.open ? "edmonton" : status.handledBy];
+};
+
+/** Red Deer's office status, for copy: "A Red Deer office opens in 2027." */
+export const RED_DEER_OFFICE = CITY_PROOF.reddeer.office;
+export const RED_DEER_OPENS_LINE = `A Red Deer office opens in ${RED_DEER_OFFICE.opensYear}.`;
+/** "Red Deer cleans are booked online and run by the Edmonton office." */
+export const RED_DEER_HANDLED_LINE = `Red Deer cleans are booked online and run by the ${CITY_PROOF[RED_DEER_OFFICE.handledBy].city} office.`;
+
+/** "08:00" -> "8:00 AM", "20:00" -> "8:00 PM". */
 const clock = (hhmm: string) => {
   const [h, m] = hhmm.split(":").map(Number);
   const suffix = h >= 12 ? "PM" : "AM";
@@ -157,8 +230,8 @@ const dayRange = (days: readonly Weekday[]) =>
 
 /**
  * The branch's hours as a sentence fragment, e.g. "Monday to Saturday 8:00 AM
- * to 8:00 PM, and Sunday 9:00 AM to 3:00 PM", or "Monday to Saturday 7:00 AM
- * to 9:00 PM, and not on Sunday". It reads after "is open" or "answers".
+ * to 8:00 PM, and Sunday 9:00 AM to 3:00 PM"; a closed day reads "and not on
+ * Sunday". It reads after "is open" or "answers".
  */
 export function hoursLineFor(branch: Branch): string {
   const runs = CITY_PROOF[branch].hours.map((h) => `${dayRange(h.days)} ${clock(h.opens)} to ${clock(h.closes)}`);
@@ -168,7 +241,7 @@ export function hoursLineFor(branch: Branch): string {
   return parts.length > 1 ? `${parts.slice(0, -1).join(", ")}, and ${parts[parts.length - 1]}` : parts[0];
 }
 
-/** Per-run display rows for an hours table: ["Mon to Sat", "7:00 AM to 9:00 PM"], plus closed days. */
+/** Per-run display rows for an hours table: ["Mon to Sat", "8:00 AM to 8:00 PM"], plus closed days. */
 export function hoursRowsFor(branch: Branch): Array<[string, string]> {
   const short = (d: Weekday) => d.slice(0, 3);
   const rows: Array<[string, string]> = CITY_PROOF[branch].hours.map((h) => [
@@ -251,7 +324,7 @@ export const cityProofFor = (pathname: string) =>
   // Canonical-aware. A bare startsWith("/calgary") missed every preserved
   // legacy Calgary URL (/cleaning-services-calgary/ chief among them), so the
   // quote flow showed Edmonton's phone and address on Calgary's biggest page.
-  // The Red Deer page resolves to the Red Deer office.
+  // The Red Deer page resolves to the Red Deer branch (phone, hours, no office).
   CITY_PROOF[branchFromPath(pathname)];
 
 /** Company-wide facts. Operating since 2017 — never "10+ years". */
@@ -443,9 +516,18 @@ export const BRANCH_IDENTITY = {
  * Built field by field rather than spread, so the confirm() brand never rides
  * into the JSON and the node is exactly the three keys the hubs publish.
  */
-export function branchGeoFor(branch: Branch) {
+export function branchGeoFor(branch: OfficeBranch) {
   const pin = CITY_PROOF[branch].geo;
   return { "@type": "GeoCoordinates", latitude: pin.latitude, longitude: pin.longitude } as const;
+}
+
+/**
+ * `{ geo }` for a branch with an office, `{}` for one without (Red Deer until
+ * 2027): a service-area business carries no office pin. Spread it into a
+ * branch node built for any Branch.
+ */
+export function branchGeoField(branch: Branch): { geo?: ReturnType<typeof branchGeoFor> } {
+  return hasOffice(branch) ? { geo: branchGeoFor(branch) } : {};
 }
 
 /** The Red Deer page's canonical path: the preserved legacy URL. */
@@ -492,14 +574,32 @@ export const CLEANER_JOB_POSTING: {
  * pages whose LocalBusiness carried no address because three emitters each
  * built their own.
  */
-export const schemaAddressFor = (city: Branch) => {
+export function schemaAddressFor(city: OfficeBranch): {
+  "@type": "PostalAddress"; streetAddress: string; addressLocality: string; addressRegion: "AB"; postalCode: string; addressCountry: "CA";
+};
+export function schemaAddressFor(city: Branch): {
+  "@type": "PostalAddress"; streetAddress?: string; addressLocality: string; addressRegion: "AB"; postalCode?: string; addressCountry: "CA";
+};
+/**
+ * A branch with no office yet (Red Deer until 2027, owner 2026-10-06) is a
+ * service-area business: its address is the city only, with no street and no
+ * postal code, so the schema never names the Google listing's street address as
+ * an office.
+ */
+export function schemaAddressFor(city: Branch): {
+  "@type": "PostalAddress"; streetAddress?: string; addressLocality: string; addressRegion: "AB"; postalCode?: string; addressCountry: "CA";
+} {
   const p = CITY_PROOF[city];
+  if (!p.office.open) {
+    return { "@type": "PostalAddress", addressLocality: p.city, addressRegion: "AB", addressCountry: "CA" } as const;
+  }
+  const o = p as OfficeCityProof;
   return {
     "@type": "PostalAddress",
-    streetAddress: p.streetAddress,
-    addressLocality: p.city,
+    streetAddress: o.streetAddress,
+    addressLocality: o.city,
     addressRegion: "AB",
-    postalCode: p.postalCode,
+    postalCode: o.postalCode,
     addressCountry: "CA",
   } as const;
-};
+}

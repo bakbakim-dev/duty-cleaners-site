@@ -123,7 +123,7 @@ const faqs: Faq[] = [
   },
   {
     q: "How long does a post-construction cleaning take?",
-    a: "It depends on the square footage and how much dust the trades left. The price is set by the square-footage band before you book, for the condition you describe; if the site needs much more work than that, we agree any extra charge with you before doing it. The booking gives an arrival window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than an exact start time.",
+    a: "It depends on the square footage and how much dust the trades left. The price is set by the square-footage band before you book, for the condition you describe; if the site needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on. The booking gives an arrival window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than an exact start time.",
     more: { lead: "Once the dust stops resurfacing, the home moves onto", to: "/edmonton/regular-cleaning/", anchor: "a standard house clean in Edmonton" },
   },
   {

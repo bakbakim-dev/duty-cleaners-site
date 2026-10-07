@@ -625,7 +625,9 @@ const App = () => (
         <meta property="og:image" content={`${SITE_ORIGIN}/og-image.jpg`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Duty Cleaners — house cleaning in Edmonton and Calgary, made simple" />
+        {/* The card's text was re-drawn 2026-10-06: it said "Five-star rated on Google"
+            (the real figure is 4.9, and Red Deer has no reviews) and left out Red Deer. */}
+        <meta property="og:image:alt" content="Duty Cleaners: house cleaning in Edmonton, Calgary and Red Deer, rated 4.9 on Google in Edmonton and Calgary, pay after your clean" />
         <meta name="twitter:image" content={`${SITE_ORIGIN}/og-image.jpg`} />
       </Helmet>
       {/* Toaster, Sonner and TooltipProvider were mounted here and rendered

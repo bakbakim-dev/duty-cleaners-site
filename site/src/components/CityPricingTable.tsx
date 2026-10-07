@@ -20,15 +20,19 @@ import { deepCleanTierRows, moveInOutTierRows, standardTierRows } from "@/data/p
  * quote a price the booking form disagrees with.
  */
 
-/** The three published columns, each anchored on its smallest home size. */
+/**
+ * One column per published home size, 1 to 5 bedrooms (the tables stop at five;
+ * six and seven are priced by the instant quote). The columns used to read
+ * "1-2 Bedroom / 3 Bedroom / 4+ Bedroom" over the 1-, 3- and 4-bedroom prices,
+ * which showed a 2-bedroom reader a figure $40-$77 under its real price
+ * (AuditSpur hands check, 2026-10-06).
+ */
 const priceAt = (rows: { beds: string; price: string }[], label: string) =>
   rows.find((row) => row.beds === label)?.price ?? "";
 
-const columnPrices = (rows: { beds: string; price: string }[]) => [
-  priceAt(rows, "1 Bedroom"),
-  priceAt(rows, "3 Bedroom"),
-  priceAt(rows, "4 Bedroom"),
-];
+const COLUMNS = ["1 Bedroom", "2 Bedroom", "3 Bedroom", "4 Bedroom", "5 Bedroom"];
+
+const columnPrices = (rows: { beds: string; price: string }[]) => COLUMNS.map((label) => priceAt(rows, label));
 
 const ROWS = [
   {
@@ -46,7 +50,6 @@ const ROWS = [
   },
 ];
 
-const COLUMNS = ["1-2 Bedroom", "3 Bedroom", "4+ Bedroom"];
 
 
 /** Discounts read from bk-config, so this line cannot quote a stale rate. */
@@ -104,9 +107,9 @@ const CityPricingTable = () => {
           <table className="w-full">
             <thead className="bg-brand-navy text-brand-navy-foreground">
               <tr>
-                <th className="py-4 px-6 text-left text-base">Service Type</th>
+                <th className="py-4 px-4 text-left text-base">Service Type</th>
                 {COLUMNS.map((c) => (
-                  <th key={c} className="py-4 px-6 text-center text-base">
+                  <th key={c} className="py-4 px-3 text-center text-base">
                     {c}
                   </th>
                 ))}
@@ -118,13 +121,13 @@ const CityPricingTable = () => {
                   key={row.service}
                   className="border-b border-border last:border-0"
                 >
-                  <td className="py-5 px-6 font-semibold text-foreground">
+                  <td className="py-5 px-4 font-semibold text-foreground">
                     <div className="flex items-center gap-2">
                       {row.service}
                     </div>
                   </td>
                   {row.prices.map((p, i) => (
-                    <td key={`${row.service}-${COLUMNS[i]}`} className="py-5 px-6 text-center font-bold text-xl text-foreground">
+                    <td key={`${row.service}-${COLUMNS[i]}`} className="py-5 px-3 text-center font-bold text-xl text-foreground">
                       <span className="mr-1 text-sm font-semibold text-muted-foreground">from</span>
                       {p}
                     </td>

@@ -245,8 +245,8 @@ export default function Reviews() {
               Duty Cleaners Reviews
             </h1>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Every review on this page is copied from our Google profiles in Edmonton and
-              Calgary without a word changed, and each profile is linked below so you can check.
+              Every review on this page is copied word for word from our Google profiles in Edmonton and
+              Calgary; a long one is cut only at the end of a sentence, marked […]. Each profile is linked below so you can check.
             </p>
 
             <div className="flex items-center justify-center gap-2 mb-2">

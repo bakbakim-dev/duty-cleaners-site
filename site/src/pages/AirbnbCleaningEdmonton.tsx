@@ -33,7 +33,9 @@ import gal1 from "@/assets/gallery/family-clean-home-edmonton.webp?card";
 import gal2 from "@/assets/gallery/bathroom-clean.webp?card";
 import gal3 from "@/assets/gallery/kitchen-deep-clean.webp?card";
 import gal4 from "@/assets/gallery/living-room-clean.webp?card";
-import gal5 from "@/assets/gallery/before-after.webp?card";
+// Was before-after.webp, a generated "before / after" of two different kitchens
+// (AuditSpur hands check; owner "ok fix", 2026-10-06).
+import gal5 from "@/assets/gallery/dc-modern-kitchen.webp?card";
 import gal6 from "@/assets/hero-family-bedroom.webp?card";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
@@ -212,7 +214,7 @@ const AirbnbCleaningEdmonton = () => {
     { src: gal2, alt: "A cleaner wiping a bathroom mirror" },
     { src: gal3, alt: "A kitchen with a sink, a microwave and a range hood" },
     { src: gal4, alt: "A dog lying on a living-room rug beside a vacuum" },
-    { src: gal5, alt: "A kitchen labelled before and after, with different cabinets and tile in each half" },
+    { src: gal5, alt: "A condo kitchen with dark cabinets, a white island and stainless appliances" },
     { src: gal6, alt: "A family laughing together in a bed with white sheets" },
   ];
 

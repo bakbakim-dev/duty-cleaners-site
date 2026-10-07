@@ -151,8 +151,8 @@ export default function GiftCard() {
               <h1 className="mb-5 text-3xl font-bold text-white md:text-5xl">House Cleaning Gift Cards for Edmonton, Calgary and Red Deer</h1>
               <p className="text-lg leading-relaxed text-white/85 md:text-xl">
                 Choose any amount, add a message, and the card arrives by email, right away or on a
-                date you pick. The recipient can use it on any clean from the Edmonton, Calgary or Red Deer
-                office; Edmonton and Calgary are both rated {RATING_CLAIM}.
+                date you pick. The recipient can use it on any clean in Edmonton, Calgary or Red Deer;
+                the Edmonton and Calgary offices are both rated {RATING_CLAIM}.
               </p>
 
               <ul className="mt-8 grid gap-3 sm:grid-cols-3">

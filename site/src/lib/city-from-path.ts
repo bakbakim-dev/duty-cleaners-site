@@ -134,8 +134,9 @@ export function explicitBranchFromPath(pathname: string): Branch | null {
 }
 
 /**
- * The three branches. Red Deer is a branch with its own office, phone, hours
- * and Google listing (owner, 2026-09-11), but it has ONE page and no service,
+ * The three branches. Red Deer is a branch with its own phone and Google
+ * listing (owner, 2026-09-11) and no office until 2027 (owner, 2026-10-06:
+ * its cleans are run by the Edmonton office), and it has ONE page and no service,
  * pricing or neighbourhood pages of its own. So `City` stays the two cities
  * that own a hub, a price list and a set of service pages, and `Branch` adds
  * Red Deer for the things that follow the office rather than the page family:

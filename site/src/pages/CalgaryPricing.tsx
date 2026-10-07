@@ -118,7 +118,7 @@ const standardIncludes = [
 ];
 
 const standardAddOns = [
-  "Baseboards, doors, light switches, wall outlets, and vent covers",
+  "The Deep Cleaning package: baseboards, doors, light switches, wall outlets and vent covers (sold only as the package)",
   "Inside appliances",
   "Inside cabinets",
   "Interior windows",

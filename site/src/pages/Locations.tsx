@@ -1,4 +1,4 @@
-import { CITY_PROOF, RED_DEER_PATH, hoursRowsFor } from "@/data/proof";
+import { CITY_PROOF, RED_DEER_HANDLED_LINE, RED_DEER_OPENS_LINE, RED_DEER_PATH } from "@/data/proof";
 import { COMPANY, RATING_CLAIM, EDMONTON_RATING_CLAIM, CALGARY_RATING_CLAIM } from "@/data/proof";
 import { formatPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
@@ -399,18 +399,20 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
   );
 }
 
-/** The Red Deer office, read from proof.ts. It has one page and no neighbourhood list. */
-function RedDeerOfficeCard() {
+/**
+ * Red Deer, read from proof.ts. It has one page and no neighbourhood list, and
+ * no office until 2027 (owner, 2026-10-06): no address, no hours of its own.
+ */
+function RedDeerCard() {
   const office = CITY_PROOF.reddeer;
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${office.streetAddress}, Red Deer, AB ${office.postalCode}`)}`;
   return (
     <div className="mx-auto mt-8 max-w-5xl rounded-2xl border border-white/10 bg-brand-navy p-8 text-white shadow-lg">
       <div className="grid gap-8 md:grid-cols-2">
         <div>
           <h2 className="mb-3 text-3xl font-bold text-white">Red Deer</h2>
           <p className="mb-6 text-white/85">
-            The Red Deer office books house cleaning in Red Deer on the same price list as Edmonton
-            and Calgary, and there is no travel fee inside Red Deer city limits.
+            {RED_DEER_HANDLED_LINE} Red Deer homes are on the same price list as Edmonton and
+            Calgary, and there is no travel fee inside Red Deer city limits.
           </p>
           <div className="space-y-4">
             <div className="flex items-center gap-4">
@@ -421,29 +423,17 @@ function RedDeerOfficeCard() {
                 {office.phone}
               </a>
             </div>
-            <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
-                <span className="dc-icon dc-icon-map-pin h-5 w-5 text-accent" aria-hidden="true" />
-              </div>
-              <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="decoration-accent/60 underline-offset-4 hover:underline">
-                <div className="font-semibold text-white">{office.streetAddress}</div>
-                <div className="text-white/90">Red Deer, AB {office.postalCode}</div>
-              </a>
-            </div>
           </div>
         </div>
         <div>
           <div className="mb-6 rounded-xl border border-white/10 bg-white/5 p-5">
             <div className="mb-2 flex items-center gap-2 font-semibold text-white">
               <span className="dc-icon dc-icon-clock h-5 w-5 text-accent" aria-hidden="true" />
-              Red Deer office hours
+              The Red Deer line
             </div>
-            {hoursRowsFor("reddeer").map(([days, time]) => (
-              <div key={days} className="flex justify-between gap-3 text-sm text-white/90">
-                <span>{days}</span>
-                <span>{time}</span>
-              </div>
-            ))}
+            <p className="text-sm text-white/90">
+              Answered by the Edmonton office team in its hours. {RED_DEER_OPENS_LINE}
+            </p>
           </div>
           <p className="mb-6 text-sm text-white/80">
             An address outside Red Deer city limits books online and pays the standard travel fee, shown on the quote.
@@ -557,9 +547,10 @@ export default function Locations() {
             </h1>
 
             <p className="text-xl text-white/80 leading-relaxed mb-10">
-              Each city has its own office, and a travel fee applies only outside city limits.
-              Every neighbourhood and town the Edmonton and Calgary offices cover is listed by city,
-              each linked to its own page, and the Red Deer office has a page of its own.
+              Edmonton and Calgary each have an office, Red Deer cleans are run by the Edmonton
+              office, and a travel fee applies only outside city limits. Every neighbourhood and
+              town the Edmonton and Calgary offices cover is listed by city, each linked to its own
+              page, and Red Deer has a page of its own.
             </p>
 
             {/* Trust Badges */}
@@ -598,9 +589,9 @@ export default function Locations() {
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Three offices: Edmonton, Calgary and Red Deer</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Edmonton, Calgary and Red Deer</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Call the office for your city, or see your price online in about a minute. Nothing is
+              Call the number for your city, or see your price online in about a minute. Nothing is
               charged until the clean is done.
             </p>
           </div>
@@ -611,10 +602,10 @@ export default function Locations() {
             ))}
           </div>
 
-          {/* The Red Deer branch (owner, 2026-09-11): its own office, phone and
-              hours, the same price list, and no travel fee inside Red Deer. No
-              rating: its Google listing has no reviews yet. */}
-          <RedDeerOfficeCard />
+          {/* Red Deer (owner, 2026-09-11; no office until 2027, owner
+              2026-10-06): its own phone line, the same price list, and no travel
+              fee inside Red Deer. No rating: its Google listing has no reviews yet. */}
+          <RedDeerCard />
         </div>
       </section>
 
@@ -782,9 +773,9 @@ export default function Locations() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Where the Edmonton and Calgary offices clean</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              The map shows both cities and the communities around each. Red Deer has its own
-              office, on {CITY_PROOF.reddeer.phone}, with no travel fee inside Red Deer city limits.
-              For any other address that is not listed, call the Edmonton, Calgary or Red Deer office
+              The map shows both cities and the communities around each. Red Deer cleans are run
+              by the Edmonton office, with a Red Deer line on {CITY_PROOF.reddeer.phone} and no travel fee inside Red Deer city limits.
+              For any other address that is not listed, call the Edmonton, Calgary or Red Deer line
               and ask.
             </p>
           </div>

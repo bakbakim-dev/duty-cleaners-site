@@ -77,7 +77,7 @@ export default function CalgaryRegularCleaning() {
                 bedrooms and floors. This is a flat-rate cleaning visit, not live-in help; laundry and dishes are excluded.
               </p>
               <p>
-                The price is fixed before the team arrives: {FROM} for a one-bedroom apartment and {THREE_BED} for three
+                The price is set by home size before the team arrives: {FROM} for a one-bedroom apartment and {THREE_BED} for three
                 bedrooms, before GST. A townhouse or a two-storey house adds a home-type charge that the quote shows
                 before you commit, and add-ons such as the inside of the oven are priced per item.
                 {PET_FEE !== null ? ` Pets add ${formatPrice(PET_FEE)} to each visit, also on the quote.` : ""}
