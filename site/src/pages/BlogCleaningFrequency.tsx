@@ -199,13 +199,13 @@ export default function BlogCleaningFrequency() {
               <div className="grid md:grid-cols-2 gap-6 mb-12">
                 <div className="p-6 bg-primary/10 rounded-xl border border-primary/20">
                   <h2 className="font-bold text-foreground mb-2">When weekly visits may suit</h2>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-foreground text-sm">
                     A large house with a dog that sheds and young children, in a family with no time for even basic cleaning, is the clearest case for a weekly visit.
                   </p>
                 </div>
                 <div className="p-6 bg-secondary/30 rounded-xl border border-secondary/30">
                   <h2 className="font-bold text-foreground mb-2">When less frequent visits may suit</h2>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-foreground text-sm">
                     One person in a one-bedroom, one-bathroom apartment who tidies regularly can do well on a monthly schedule.
                   </p>
                 </div>
@@ -267,10 +267,10 @@ export default function BlogCleaningFrequency() {
               {/* Weekly Cleaning Issues */}
               <div className="mb-12 p-6 bg-muted/30 rounded-xl">
                 <h3 className="font-bold text-foreground mb-4">When Weekly Cleaning May Not Be Right</h3>
-                <p className="text-muted-foreground mb-4">
+                <p className="text-foreground mb-4">
                   If you already keep a regular cleaning routine, a weekly service has two drawbacks:
                 </p>
-                <ul className="space-y-2 text-muted-foreground">
+                <ul className="space-y-2 text-foreground">
                   <li className="flex items-start gap-2">
                     <span className="text-primary font-bold">1.</span>
                     Each visit has less to do, so you pay for more visits than the home needs.
@@ -285,7 +285,7 @@ export default function BlogCleaningFrequency() {
               {/* Kitchen Warning */}
               <div className="mb-12 p-6 bg-destructive/10 rounded-xl border border-destructive/20">
                 <h3 className="font-bold text-foreground mb-2">The Rooms That Set the Schedule</h3>
-                <p className="text-muted-foreground">
+                <p className="text-foreground">
                   Kitchens and bathrooms decide most cleaning schedules. Grease and food spills build up in a kitchen that is cooked in every day, and hard Alberta water leaves mineral scale on taps, shower glass and kettles between visits. If either room is hard to keep up with on your own, a weekly or bi-weekly visit usually helps more than a monthly one.
                 </p>
               </div>
@@ -318,7 +318,7 @@ export default function BlogCleaningFrequency() {
                         <p className="text-sm text-primary font-medium mb-3">Ideal for: {option.ideal}</p>
                         <p className="text-muted-foreground text-sm mb-4"><LinkedText text={option.description} links={option.links} /></p>
                         <div className="p-3 bg-muted/50 rounded-lg">
-                          <p className="text-sm text-muted-foreground italic">{option.benefit}</p>
+                          <p className="text-sm text-foreground italic">{option.benefit}</p>
                         </div>
                       </CardContent>
                     </Card>

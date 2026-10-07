@@ -293,7 +293,7 @@ export default function Reviews() {
               <div key={group.id}>
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{group.heading}</h2>
                 <p className="text-muted-foreground mb-8 max-w-3xl">
-                  {group.intro} Prices by home size are on{" "}
+                  {group.intro} Prices are on{" "}
                   {group.links.map((link, index) => (
                     <span key={link.to}>
                       <Link to={link.to} className="text-primary underline underline-offset-2">

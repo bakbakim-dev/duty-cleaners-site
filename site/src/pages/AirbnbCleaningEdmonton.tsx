@@ -1,7 +1,7 @@
 import { HOURLY_RATE, GST_RATE, formatPrice, withGst, FREQUENCIES, standardTierRows, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
-import { CITY_PROOF, EDMONTON_RATING_CLAIM, COMPANY } from "@/data/proof";
+import { CITY_PROOF, EDMONTON_RATING_CLAIM, COMPANY, hoursLineFor } from "@/data/proof";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { Star, Shield, Calendar, Home, ClipboardCheck, KeyRound, Wand2, DoorOpen, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -194,7 +194,7 @@ const AirbnbCleaningEdmonton = () => {
   ];
 
   const howItWorks = [
-    { icon: ClipboardCheck, title: "Send the checkout time", description: "Book online or by phone with the checkout and the next check-in. Those two times set the window we work in." },
+    { icon: ClipboardCheck, title: "Send the checkout time", description: "Request a turnover quote online or by phone with the checkout and the next check-in. Those two times set the window we work in." },
     { icon: KeyRound, title: "Tell us how to get in", description: "Lockbox code, smart lock or a key on site. You do not need to be there, and the booking form asks for access and parking." },
     { icon: Wand2, title: "The turnover runs to a checklist", description: "The same list every visit, in the same order, so the third turnover covers what the first one did." },
     { icon: DoorOpen, title: "Locked up behind the team", description: "Beds made, supplies restocked, bins emptied, door locked. The next guest walks into the unit as the checklist left it." },
@@ -654,7 +654,7 @@ const AirbnbCleaningEdmonton = () => {
                     <strong>Address:</strong> {proof.address}
                   </p>
                   <p className="text-muted-foreground text-sm">
-                    <strong>Hours:</strong> Mon-Sat 8am–8pm | Sun 9am–3pm
+                    <strong>Hours:</strong> {hoursLineFor("edmonton")}
                   </p>
                 </div>
               </div>

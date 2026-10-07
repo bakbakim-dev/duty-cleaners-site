@@ -148,7 +148,7 @@ const pricingFactors = [
   {
     icon: Package,
     title: "Pets and condition",
-    description: `Hair, paw prints and nose marks add time in every room, so homes with pets are charged more. Ours is ${PET_FEE} per visit; it is compulsory, and it shows on the quote before you book. A home that has not been cleaned in months is a deep-clean job rather than a standard one.`
+    description: `Hair, paw prints and nose marks add time in every room, so homes with pets are charged more. Ours is ${PET_FEE} per visit; it is compulsory, and it shows on the quote before you book. A home that has not been cleaned in months often needs a deep clean; choose the service by the build-up and the tasks it needs.`
   },
   {
     icon: Sparkles,
@@ -205,7 +205,7 @@ const SECTIONS = [
     id: "move-out",
     h2: "Why do move-out and standard cleaning quotes differ?",
     q: "Why do move-out and standard cleaning quotes differ?",
-    a: `A move-in or move-out clean is ${MOVE[0].price} for a 1-bedroom apartment or condo and ${last(MOVE).price} for five bedrooms, before GST, in Edmonton or Calgary. That includes the inside of the oven, fridge, cabinets, drawers and closets, which are add-ons on a standard clean. ${EXTRAS_SHORT}`,
+    a: `A move-in or move-out clean is ${MOVE[0].price} for a 1-bedroom apartment or condo and ${last(MOVE).price} for five bedrooms, before GST, in Edmonton or Calgary. That includes the inside of the oven, fridge, cabinets, drawers and closets. On a standard clean, the inside of the oven, the inside of the fridge and the inside of kitchen and bathroom cabinets are paid add-ons. ${EXTRAS_SHORT}`,
   },
   {
     id: "deep",

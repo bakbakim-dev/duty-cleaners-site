@@ -1205,3 +1205,11 @@ html:not([data-motion="on"]) .opacity-0.translate-y-8 {
   60% { transform: scale(1.04); }
   100% { transform: scale(1); }
 }
+
+/* Below md the fixed "Quick contact and quote actions" bar covers the bottom of the
+   screen; keep focused and scrolled-to elements above it (AuditSpur #163, WCAG 2.4.11). */
+@media (max-width: 767px) {
+  html {
+    scroll-padding-bottom: 6rem;
+  }
+}

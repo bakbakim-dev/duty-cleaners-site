@@ -284,6 +284,24 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/wp-content/uploads/2024/08/10.png", target: "/", mode: "redirect", impressions: 0 },
   { legacy: "/wp-content/uploads/2024/08/11.jpg", target: "/", mode: "redirect", impressions: 0 },
   { legacy: "/wp-content/uploads/2024/08/12.png", target: "/", mode: "redirect", impressions: 0 },
+  // WordPress-era addresses the Internet Archive caught answering 200 in
+  // 2023-2024 that 404'd with no redirect (AuditSpur #170, #171, 2026-10-07).
+  // Each goes to its closest live page; none was in the 2026-09-05 Coverage exports.
+  { legacy: "/cleaning-services-for-beaumont-ab", target: "/cleaning-services-beaumont", mode: "redirect", impressions: 0 },
+  { legacy: "/cleaning-services-for-windermere-ab", target: "/cleaning-services-windermere", mode: "redirect", impressions: 0 },
+  { legacy: "/cleaning-services-for-edmonton", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/cleaning-professionals-edmonton", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/move-in-and-move-out-cleaning-calgary", target: "/move-out-cleaning-calgary", mode: "redirect", impressions: 0 },
+  { legacy: "/services/deep-cleaning-services-edmonton", target: "/edmonton/deep-cleaning", mode: "redirect", impressions: 0 },
+  { legacy: "/cleaning-jobs-in-edmonton", target: "/join-the-team", mode: "redirect", impressions: 0 },
+  { legacy: "/office-cleaning-company", target: "/commercial-cleaning", mode: "redirect", impressions: 0 },
+  { legacy: "/end-tenancy-cleaning", target: "/move-out-cleaning-edmonton", mode: "redirect", impressions: 0 },
+  { legacy: "/how-to-choose-the-best-cleaning-professionals-for-your-home", target: "/blog/choosing-cleaning-company", mode: "redirect", impressions: 0 },
+  { legacy: "/how-to-prepare-your-home-for-a-house-cleaning-service", target: "/prepare", mode: "redirect", impressions: 0 },
+  { legacy: "/cleaning-checklist", target: "/whats-included", mode: "redirect", impressions: 0 },
+  { legacy: "/how-to-clean-and-disinfect-your-home-from-germs-viruses-and-prevention-methods", target: "/blog", mode: "redirect", impressions: 0 },
+  { legacy: "/6-things-professional-cleaners-do-that-homeowners-dont", target: "/blog", mode: "redirect", impressions: 0 },
+  { legacy: "/wp-content/uploads/2022/06/DutyCleaners.mp4", target: "/", mode: "redirect", impressions: 0 },
 ];
 
 /** legacy path -> modern route, for the routes we serve at the old URL. */

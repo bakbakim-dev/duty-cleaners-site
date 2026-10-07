@@ -216,6 +216,10 @@ export default function Calgary2() {
     question: "Do I have to be there while you clean?",
     answer: "No. A key, a lockbox code or a smart-lock code is how most Calgary customers handle it, and the team locks the door behind them. The water has to be on, and without electricity the vacuuming may not be possible."
   }, {
+    // The Calgary hub never stated the $50 late-change fee its Edmonton twin does (AuditSpur #318).
+    question: "Can I cancel or move a Calgary booking?",
+    answer: `Yes, with ${POLICY.cancellationNoticeHours} hours' notice; inside ${POLICY.cancellationNoticeHours} hours the fee is ${POLICY.cancellationFee}. If we have to move a booking because a cleaner is ill, a vehicle will not start or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have. Nobody pays for a visit we did not do, and cancelling a booking we moved costs nothing.`,
+  }, {
     question: "Whose products and equipment are used?",
     answer: `The products are ours: the team brings every supply and every piece of equipment. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
   }, {
@@ -516,8 +520,8 @@ export default function Calgary2() {
               <div className="mb-8 text-center">
                 <h2 className="display-serif text-3xl font-bold leading-tight text-foreground md:text-4xl">See the instant price for your Calgary home.</h2>
                 <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                  The form asks about the home, then your name, email and phone, and then shows the figure, so you can
-                  choose the service with the number in front of you.
+                  The form asks about the home, then your name, email and phone, and then shows the figure, with the
+                  plan and the extras chosen in front of it.
                 </p>
               </div>
 

@@ -2,7 +2,7 @@ import { Calendar } from "lucide-react";
 import { modifiedOr, publishedFor } from "@/data/post-published";
 
 /** "2026-09-05" -> "September 5, 2026", without a timezone shifting the day. */
-const readableDate = (iso: string) => {
+export const readableDate = (iso: string) => {
   const [y, m, d] = iso.split("-").map(Number);
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   return months[m - 1] && d ? `${months[m - 1]} ${d}, ${y}` : iso;

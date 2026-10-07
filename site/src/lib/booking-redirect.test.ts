@@ -144,9 +144,9 @@ describe("buildBookingUrl", () => {
 
   it.each([
     [1, "1"],
-    [2, "3"],
+    [3, "3"],
     [4, "4"],
-    [3, "64"],
+    [2, "64"],
   ])("frequency bk id %i → %s", (frequencyBkId, id) => {
     expect(query({ frequencyBkId }).get("frequency_id")).toBe(id);
   });
@@ -334,7 +334,7 @@ describe("deep cleaning extras prefill", () => {
   });
 
   it("keeps the package on a recurring frequency", () => {
-    const params = query({ deepClean: true, frequencyBkId: 2 });
+    const params = query({ deepClean: true, frequencyBkId: 3 });
     expect(params.get("frequency_id")).toBe("3");
     expect(params.get("extras[148]")).toBe("1");
   });

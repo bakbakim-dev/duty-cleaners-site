@@ -508,6 +508,16 @@ export const FREQUENCIES: Frequency[] = HOME_FREQUENCY_IDS.map((bkId) => {
   .sort((a, b) => a.discount - b.discount);
 
 /**
+ * Visits a year on each plan, keyed by the bk-config frequency id: 3 is Weekly,
+ * 4 Bi-Weekly, 2 Every 4 Weeks (bk-config.json industries[0].frequencies).
+ * It was keyed the other way round (2 = Weekly) from 2026-09-22 until
+ * 2026-10-07, so the funnel told an Every 4 Weeks customer they would save
+ * about four times the real figure (AuditSpur #246). frequency-ids.test.ts
+ * checks it against the plan names.
+ */
+export const VISITS_PER_YEAR: Record<number, number> = { 1: 1, 3: 52, 4: 26, 2: 13 };
+
+/**
  * The funnel opens on the most-chosen plan (Bi-Weekly, the one carrying the
  * "Popular" badge) so the badge and the default agree. One-Time is always one
  * tap away and every chip prints its own discount.

@@ -161,7 +161,7 @@ export default function MountRoyal() {
         heading="Above and below the escarpment"
         paragraphs={[
           "An escarpment running east to west along Cameron and Royal Avenues splits this community in two. Upper Mount Royal, on the high side, goes back to 1904, and pre-war construction sets the method: lath-and-plaster walls that dent under pressure, deep milled trim holding a century of paint in its profiles, and, in the houses still on radiators, fins packing dust no vacuum head reaches. All three want time and a dry cloth rather than a stronger product.",
-          "Below the escarpment the pattern flips. Lower Mount Royal is built as low-rise apartment blocks rather than houses, and its northern edge is 17 Avenue SW itself, not a few streets short of it. A suite fronting that strip and a pre-war house four blocks uphill share a community name and almost nothing about the work; we scope them separately.",
+          "Below the escarpment the pattern flips. Lower Mount Royal is mostly apartment blocks, with some older character houses still between them, and its northern edge is 17 Avenue SW itself, not a few streets short of it. A suite fronting that strip and a pre-war house four blocks uphill share a community name and almost nothing about the work; we scope them separately.",
         ]}
         accent="calgary"
       />

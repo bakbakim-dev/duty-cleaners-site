@@ -59,7 +59,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "How long does a house cleaning take?",
-        answer: `For a two-bedroom, one-bathroom apartment, a standard clean usually takes ${POLICY.typicalVisitLength?.standard} and a deep clean ${POLICY.typicalVisitLength?.deep}. Size, condition and the service booked all change that, so a bigger home takes longer. A clean is booked as one visit. The price is set by home size for the condition you describe; if the home needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on, and anything beyond the booked visit is quoted and scheduled separately, by phone or email.`,
+        answer: `For a two-bedroom, one-bathroom apartment, a standard clean usually takes ${POLICY.typicalVisitLength?.standard} and a deep clean ${POLICY.typicalVisitLength?.deep}. Size, condition and the service booked all change that, so a bigger home takes longer. A clean is booked as one visit. The price is set by home size for the condition you describe; if the home needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on. Work that needs more than the booked visit is quoted and scheduled separately, by phone or email.`,
       },
       {
         question: "Should I tip the cleaners?",
@@ -525,8 +525,8 @@ export default function FAQ() {
                 Call Edmonton, Calgary or Red Deer
               </h2>
               <p className="text-lg text-white/80 mb-3 max-w-2xl mx-auto">
-                The Edmonton and Calgary offices answer the phone seven days a week, the Red Deer line
-                included, or you can see your price online in about a minute.
+                The Edmonton and Calgary offices answer the phone seven days a week, and so does the Red Deer
+                line. Or see your price online in about a minute.
               </p>
               <p className="text-sm text-white/90 mb-8">All three lines: {hoursLineFor("edmonton")}.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

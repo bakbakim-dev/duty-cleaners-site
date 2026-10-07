@@ -77,22 +77,22 @@ export default function OldStrathcona() {
     <>
       <Helmet>
         <title>House Cleaning Old Strathcona Edmonton | Duty Cleaners</title>
-        <meta name="description" content="House cleaning for the pre-1913 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down." />
+        <meta name="description" content="House cleaning for the pre-1912 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Old Strathcona, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/old-strathcona",
   areaServed: "Old Strathcona, Edmonton, AB",
-  description: "House cleaning for the pre-1913 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down.",
+  description: "House cleaning for the pre-1912 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down.",
 }))}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/old-strathcona/" />
         <meta property="og:title" content="House Cleaning Old Strathcona Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning for the pre-1913 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down." />
+        <meta property="og:description" content="House cleaning for the pre-1912 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/old-strathcona/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Old Strathcona Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning for the pre-1913 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down." />
+        <meta name="twitter:description" content="House cleaning for the pre-1912 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -220,7 +220,7 @@ export default function OldStrathcona() {
 
       <LocalMarketNote
         eyebrow="Ground truth"
-        heading="Pre-1913 houses off Whyte Avenue"
+        heading="Pre-1912 houses off Whyte Avenue"
         paragraphs={[
           "The oldest houses on the blocks off Whyte Avenue went up before Strathcona amalgamated with Edmonton in 1912, in the boom that began when the Calgary and Edmonton Railway arrived in 1891. Plaster walls and softwood floors do not behave like drywall and engineered plank. Plaster takes a damp cloth rather than a wet one, and a floor that soft is scratched by whatever gets tracked across it, not by the mop.",
           "The Fringe festival is staged in and around these blocks each August. Residents near the venues spend that stretch with visitors coming and going off the street, and a hundred-year-old floor registers every bit of it. Mats at each door and a dry sweep before anything wet goes down are worth more here than any product.",

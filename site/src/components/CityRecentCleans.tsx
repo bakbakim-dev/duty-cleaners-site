@@ -105,7 +105,7 @@ function CleanCard({ review, index, city }: { review: RecentCleanReview; index: 
         <ReviewStars rating={review.rating} size={1} />
       </div>
 
-      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+      <p className="text-sm text-muted-foreground leading-relaxed">
         &ldquo;{review.text}&rdquo;
       </p>
 

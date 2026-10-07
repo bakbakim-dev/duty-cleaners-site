@@ -236,8 +236,8 @@ export default function ElbowPark() {
         eyebrow="Local knowledge"
         heading="Elbow Park's heritage scale"
         paragraphs={[
-          "Elbow Park's 1910s-30s estate homes are heritage-scale work: original mill-work and panel doors by the dozen, leaded glass that wants soft cloths, radiators whose fins need brush-dusting, and staircases that are furniture in their own right. Square footage here understates effort by half.",
-          "The Elbow River borders the district, and the district's flood-aware basements were rebuilt after 2013 with sumps and monitored humidity. River-path traffic keeps front entries in gentle constant use; mature elms overhead run the full pollen-to-leaf calendar.",
+          "Elbow Park's 1910s-30s estate homes are heritage-scale work: original mill-work and panel doors by the dozen, leaded glass that wants soft cloths, radiators whose fins need brush-dusting, and staircases that are furniture in their own right. These homes carry more hand-detail per room than a newer house, so describe the layout when you book.",
+          "The Elbow River borders the district, and many basements here were rebuilt after the 2013 flood. River-path traffic keeps front entries in gentle constant use; mature elms overhead run the full pollen-to-leaf calendar.",
         ]}
       />
 

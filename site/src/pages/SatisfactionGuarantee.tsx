@@ -55,7 +55,7 @@ export default function SatisfactionGuarantee() {
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <h2 className="text-2xl font-bold mb-4 text-foreground">How the re-clean guarantee works</h2>
               <p className="mb-6">
-                The guarantee applies to every clean in Edmonton, Calgary and Red Deer, whichever
+                The guarantee applies to every clean we do in Edmonton, Calgary, Red Deer and the surrounding communities, whichever
                 service you booked, including a clean paid for with a gift card.
               </p>
 

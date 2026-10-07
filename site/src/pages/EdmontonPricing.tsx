@@ -1,7 +1,7 @@
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { addOnFromPrice } from "@/data/pricing";
 import { TRAVEL_FEE_KEY, travelFee } from "@/data/addon-table";
-import { EXTRA_WORK_TERM, POLICY, PRICING_TERMS } from "@/data/policy";
+import { EXTRA_WORK_TERM, INITIAL_CLEAN_LENGTH_ANSWER, POLICY, PRICING_TERMS } from "@/data/policy";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import LocalMarketNote from "@/components/LocalMarketNote";
@@ -178,7 +178,7 @@ const EDMONTON_TOWNS: { anchor: string; to: string }[] = [
 const faqItems = [
   { value: "trust", question: "Can I trust my house cleaners?", answer: "Every cleaner is reference-checked before their first job, and every visit is rated by the customer afterwards. Those ratings decide who we send back." },
   { value: "included", question: "What is included in maid service in Edmonton?", answer: "A standard clean covers dusting all surfaces, vacuuming carpets, mopping floors, mirrors, window sills, the kitchen (sink, stovetop, countertops, inside and outside the microwave, the outside of the other appliances) and the bathrooms (toilets, showers, tubs, sinks). Inside the fridge, the oven and the cabinets are add-ons on a standard clean and included on a move-in/out clean. Baseboards come with the Deep Cleaning package." },
-  { value: "duration", question: "How long does a typical house cleaning take?", answer: "It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on. Deep cleaning and move-in/out services cover more tasks than a standard clean, so they take longer." },
+  { value: "duration", question: "How long does a typical house cleaning take?", answer: `${INITIAL_CLEAN_LENGTH_ANSWER} Move-in/out cleans cover more tasks again, so they take longer.` },
   { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: `No. We bring all cleaning supplies and equipment, and the rate already assumes that. Eco-friendly products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
   { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes: 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks. Every 4 weeks comes to 13 visits a year rather than 12. The discount starts from your second visit; the first is at the one-time rate. If you start with a deep clean, the deep-cleaning package is charged once on that first visit and is not discounted, and the visits after it are standard cleans at the discounted rate." },
   { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `A flat rate is set by home size and service type, for a home in the condition you describe. Hourly Cleaning (from ${formatPrice(HOME_HOURLY_RATE)} per hour per cleaner, before GST) is for partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. The minimum hourly booking is 3 hours for 1 cleaner or 2 hours for 2 cleaners.` },

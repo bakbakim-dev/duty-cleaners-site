@@ -1606,8 +1606,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0911.test.ts",
     target: "src/data/proof.ts",
-    find: "confirm(4.9, { by: \"google-listing\", on: \"2026-09-17\", note: \"CID 6193344199307583189\" })",
-    replace: "confirm(4.8, { by: \"google-listing\", on: \"2026-09-17\", note: \"CID 6193344199307583189\" })",
+    find: "confirm(4.9, { by: \"google-listing\", on: \"2026-10-07\", note: \"CID 6193344199307583189\" })",
+    replace: "confirm(4.8, { by: \"google-listing\", on: \"2026-10-07\", note: \"CID 6193344199307583189\" })",
     failing: "company-wide lines hold only while the Edmonton and Calgary listings agree",
     why: "Lets the Calgary listing's rating differ from Edmonton's while company-wide lines still state one figure for both.",
   },
@@ -1815,7 +1815,7 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/llms-txt.test.ts",
     target: "public/llms.txt",
-    find: "read from the listings themselves on 2026-09-17",
+    find: "read from the listings themselves on 2026-10-07",
     replace: "read from the listings themselves on 2026-09-01",
     failing: "llms.txt states the date the counts were read",
     why: "Leaves the counts right and the read date stale, the gap the numbers-only guard cannot see.",
@@ -1823,8 +1823,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/policy.test.ts",
     target: "src/data/proof.ts",
-    find: 'googleReviewCount: confirm(238, { by: "google-listing", on: "2026-09-17"',
-    replace: 'googleReviewCount: confirm(238, { by: "google-listing", on: "2026-01-17"',
+    find: 'googleReviewCount: confirm(243, { by: "google-listing", on: "2026-10-07"',
+    replace: 'googleReviewCount: confirm(243, { by: "google-listing", on: "2026-01-17"',
     failing: "the Google figures were re-read within the last 90 days",
     why: "Backdates one read past the quarterly window.",
   },
@@ -2167,8 +2167,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0922.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
-    find: 'city: area?.general ? "" : proof.key,',
-    replace: "city: proof.key,",
+    find: '// A general page (homepage, FAQ...) claims no branch: no tag.\n    city: area?.general ? "" : proof.key,',
+    replace: '// A general page (homepage, FAQ...) claims no branch: no tag.\n    city: proof.key,',
     failing: "step 1 asks no location question, and a general page claims no branch for the lead",
     why: "Tags every homepage lead Edmonton, a branch the visitor never chose.",
   },
@@ -2475,11 +2475,28 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "every proof's find string occurs exactly once in its target",
     why: "A proof whose find string no longer exists would restore nothing and prove nothing.",
   },
+  // ---- 2026-10-07: frequency ids follow bk-config (AuditSpur #246) ----
+  {
+    guard: "src/data/frequency-ids.test.ts",
+    target: "src/lib/booking-redirect.ts",
+    find: "  3: 3, // Weekly\n  4: 4, // Bi-Weekly\n  2: 64, // Every 4 Weeks",
+    replace: "  2: 3, // Weekly\n  4: 4, // Bi-Weekly\n  3: 64, // Every 4 Weeks",
+    failing: "visits a year, the GoHighLevel label and the booking-page id match each plan",
+    why: "Puts back the swap that opened the booking page on Weekly for an Every 4 Weeks customer.",
+  },
+  {
+    guard: "src/data/frequency-ids.test.ts",
+    target: "src/data/pricing.ts",
+    find: "export const VISITS_PER_YEAR: Record<number, number> = { 1: 1, 3: 52, 4: 26, 2: 13 };",
+    replace: "export const VISITS_PER_YEAR: Record<number, number> = { 1: 1, 2: 52, 4: 26, 3: 13 };",
+    failing: "visits a year, the GoHighLevel label and the booking-page id match each plan",
+    why: "Brings back the yearly saving that told an Every 4 Weeks customer about four times the real figure.",
+  },
   // ---- Red Deer has no office yet; footer order and e-transfer badge (owner, 2026-10-06) ----
   {
     guard: "src/data/red-deer-no-office.test.ts",
     target: "src/pages/SatisfactionGuarantee.tsx",
-    find: "The guarantee applies to every clean in Edmonton, Calgary and Red Deer, whichever",
+    find: "The guarantee applies to every clean we do in Edmonton, Calgary, Red Deer and the surrounding communities, whichever",
     replace: "The guarantee applies to every clean from the Edmonton, Calgary and Red Deer offices, whichever",
     failing: "no source or llms file calls Red Deer an office or counts three offices",
     why: "Brings back a Red Deer office that does not open until 2027.",

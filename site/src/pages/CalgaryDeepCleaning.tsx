@@ -80,8 +80,8 @@ export default function CalgaryDeepCleaning() {
                 charge on each visit.
               </p>
               <p>
-                The package is what buys the hours on trim, doors, switch plates, vents and the kitchen
-                degrease, so it rises with the bedroom count. The oven interior, the fridge interior and the insides of
+                The package is what buys the hours on baseboards, doors, light switches, wall outlets and vent
+                covers, plus cobwebs, so it rises with the bedroom count. The oven interior, the fridge interior and the insides of
                 cabinets are not in it: inside the oven is {addOnLabel("inside-oven")}, inside the fridge{" "}
                 {addOnLabel("inside-fridge")}, and inside the cabinets from{" "}
                 {addOnLabel("inside-cabinets-kitchen-bathroom-only")}, each before GST. The standard

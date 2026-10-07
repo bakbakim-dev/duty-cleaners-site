@@ -115,7 +115,9 @@ export default function PrivacyPolicy() {
                 </li>
                 <li>
                   Then, if you haven&rsquo;t booked: an email the next day, a text on day 2, an email on day 4 and a
-                  text on day 6 asking whether to keep the quote open, and then we stop.
+                  text on day 6 asking whether to keep the quote open, and then that sequence stops. For up to six
+                  months after a quote or enquiry we may send an occasional offer or reminder, which you can stop
+                  at any time.
                 </li>
               </ul>
               <p className="mb-8">
@@ -145,7 +147,7 @@ export default function PrivacyPolicy() {
               </p>
               <p className="mb-8">
                 <strong>Phone calls.</strong> Calls with our offices are recorded for training and quality,
-                and to keep an accurate record of what was agreed. If you'd rather not be recorded, say so at
+                and to keep an accurate record of what was agreed. Our phone system, Dialpad, keeps the recordings. If you'd rather not be recorded, say so at
                 the start of the call and we'll continue by email or text.
               </p>
 
@@ -186,8 +188,9 @@ export default function PrivacyPolicy() {
               </p>
               <ul className="list-disc pl-6 mb-4">
                 <li>
-                  Any <strong>gclid or UTM parameters</strong> in the link you arrived through, so that if you
-                  book we can tell which ad or campaign brought you here
+                  Any <strong>gclid or UTM parameters</strong> in the link you arrived through, so that when you
+                  ask for a price or book we can tell which ad or campaign brought you here (they go to our CRM
+                  with your quote)
                 </li>
                 <li>Whether you have dismissed the announcement bar, so it stays dismissed</li>
                 <li>A flag noting that you have been sent to our booking system, so the page can restore correctly if you come back</li>
@@ -215,7 +218,7 @@ export default function PrivacyPolicy() {
               <p className="mb-4">
                 We may use Google Analytics to count visits to this website and to see how far visitors get
                 through the instant-price steps: which city and type of clean a quote was started for, which
-                step was reached, whether a price was shown, and whether someone went on to book or tapped a
+                step was reached, whether a price was shown, and whether someone went on to our booking page or tapped a
                 phone number or email link. When it is on, Google Analytics sets its own cookies (named _ga)
                 in your browser so it can tell a returning browser from a new one, and Google receives your
                 IP address and technical details about your browser. We have switched off Google signals and
@@ -257,7 +260,9 @@ export default function PrivacyPolicy() {
               <ul className="list-disc pl-6 mb-8">
                 <li>
                   <strong>BookingKoala</strong> — our online booking system. When you choose a time, we send
-                  you to their booking form. See the section below on what travels with you.
+                  you to their booking form. See the section below on what travels with you. The gift card form
+                  on our gift card page is theirs too and loads with that page; the recipient&rsquo;s name and email
+                  you enter there are used only to deliver the card.
                 </li>
                 <li>
                   <strong>SiteGround</strong> — our web host. Our own quote relay runs on their servers: everything
@@ -301,8 +306,9 @@ export default function PrivacyPolicy() {
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">Where Your Information Is Stored</h2>
               <p className="mb-8">
-                Duty Cleaners operates in Alberta, but two of the services we rely on are based in the
-                United States: BookingKoala, which runs our booking system, and HighLevel, which is our CRM.
+                Duty Cleaners operates in Alberta, but three of the services we rely on are based in the
+                United States: BookingKoala, which runs our booking system, HighLevel, which is our CRM, and
+                Dialpad, our phone system, which keeps call recordings.
                 Our own quote relay stores enquiries, encrypted, on our web host&rsquo;s servers before passing them on. When you book or request a quote, the details you enter (including your
                 name, address, phone number, email and any access instructions) are stored and processed
                 on servers outside Canada. While your information is in another country it is subject to

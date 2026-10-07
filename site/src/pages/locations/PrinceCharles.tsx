@@ -268,7 +268,7 @@ export default function PrinceCharles() {
         eyebrow="Local knowledge"
         heading="Prince Charles by the airfield"
         paragraphs={[
-          "Prince Charles borders the old municipal airport lands, and Blatchford's decade-long build-out next door is the neighbourhood's defining dust source — cut earth and construction fines drifting over the fence line in every dry week. East-facing window tracks tell the story at a glance.",
+          "Prince Charles borders the old municipal airport lands, and Blatchford's build-out next door, still under way in 2026, is the neighbourhood's defining dust source — cut earth and construction fines drifting over the fence line in every dry week. East-facing window tracks tell the story at a glance.",
           "The homes are wartime and 1950s stock, with more than half built in 1960 or earlier (2016 census). They are compact, with original trim and small dense rooms that take longer per square foot than their footprint suggests. 118 Avenue runs the whole south edge, bending into Kingsway at the neighbourhood's southeast corner, and adds the usual arterial grit to the blocks that front it.",
         ]}
       />

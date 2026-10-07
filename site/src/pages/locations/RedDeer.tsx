@@ -421,7 +421,7 @@ export default function RedDeer() {
                   apartment or condo, before 5% GST, and inside Red Deer city limits there is no travel fee. Six and seven bedrooms
                   cost more than the five-bedroom row, and the instant price shows the exact figure for them.
                 </p>
-                <div className="overflow-x-auto rounded-2xl border border-border bg-white">
+                <div className="overflow-x-auto rounded-2xl border border-border bg-white" tabIndex={0} role="region" aria-label="Red Deer prices by home size (scrolls sideways)">
                   <table className="w-full min-w-[520px] text-sm">
                     <caption className="sr-only">Red Deer house cleaning prices by home size, before GST</caption>
                     <thead>
@@ -473,7 +473,7 @@ export default function RedDeer() {
                 <span className="text-sm font-semibold uppercase tracking-wider text-primary">Services</span>
                 <h2 className="mb-4 mt-2 text-3xl font-bold text-foreground">Cleaning services in Red Deer</h2>
                 <p className="mb-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-                  Red Deer gets the same services as Edmonton and Calgary, on the same checklists and prices. Home
+                  Red Deer gets the same services as Edmonton and Calgary, apart from march-out cleaning, on the same checklists and prices. Home
                   cleaning and post-construction are priced instantly online; Airbnb turnovers and office cleaning are quoted by
                   the office. The service pages linked below are written for Edmonton; their prices are the Red Deer prices too.
                   Questions go to the Red Deer line at{" "}
@@ -514,8 +514,8 @@ export default function RedDeer() {
                 <h2 className="mb-6 mt-2 text-3xl font-bold text-foreground">How booking a Red Deer clean works</h2>
                 <div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
                   <p>
-                    The instant price asks for the home's size and type, whether there are pets, and the add-ons you want, then shows
-                    the figure before you choose a date. A Red Deer postal code carries no travel fee, and the booking goes through
+                    The instant price asks for the home's size and type, then your name, email and phone, then shows the figure
+                    with the pets question and the add-ons, before you choose a date. A Red Deer postal code carries no travel fee, and the booking goes through
                     the same online booking page as an Edmonton or Calgary clean. Online bookings need at least 24 hours' notice; for
                     anything sooner, call the Red Deer line and ask what is open.
                   </p>

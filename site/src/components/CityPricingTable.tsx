@@ -82,7 +82,7 @@ const COPY = {
       "Calgary prices are the same as Edmonton's: flat by home size for the condition you describe, with GST on top. Where a flat rate is the wrong shape for the job, we can quote it by the hour.",
     note: "Six or seven bedrooms, home type, pets, an address outside city limits and add-ons move the number, and the quote lists each one before you book.",
     recurring: `Book on a schedule and the discount starts on the second visit: ${RECURRING_SAVINGS}. The first clean is billed at the one-time rate.`,
-    after: "A few questions, then the exact figure for your home. Nobody needs to phone you.",
+    after: "A few questions about the home and your contact details, then the exact figure. Nobody needs to phone you.",
   },
 } as const;
 

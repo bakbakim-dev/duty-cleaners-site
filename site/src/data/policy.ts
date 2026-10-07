@@ -311,7 +311,7 @@ export const PRICING_TERMS = [
   EXTRA_WORK_TERM,
   EXTRA_TIME_RATE_TERM,
   "If you don't answer our halfway message, the team finishes your booked time and there is no extra charge. Work that needs more than the booked visit is quoted and scheduled separately, by phone or email.",
-  `Recurring discounts of ${recurringDiscounts()} apply to flat-rate cleans from your second visit. The first clean is charged at the standard one-time rate. Hourly cleans are charged at the hourly rate every visit.`,
+  `Recurring discounts of ${recurringDiscounts()} apply to recurring standard cleans from your second visit. The first clean is charged at the standard one-time rate. Hourly cleans are charged at the hourly rate every visit.`,
   "Hourly service has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners. The team works through your priority list from the top, for the time booked, and any extra time is confirmed with you first.",
   // Owner, 2026-09-26 (decide-09): from $75; a badly smoked-in home has cost double the booking.
   `If anyone has smoked inside the home, tell us when you book. Smoke film takes extra time to wash off, so a smoke surcharge from ${POLICY.smokeSurchargeFrom} is added, depending on the size of the home and how heavy the residue is; a heavily smoked-in home can cost much more. We quote it before you book and the team confirms it on arrival; if it's heavier than described, we ask before charging more. Washing reduces smoke film and odour, but we can't promise to remove it completely.`,

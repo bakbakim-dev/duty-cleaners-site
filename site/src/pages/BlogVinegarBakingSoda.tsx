@@ -179,7 +179,7 @@ export default function BlogVinegarBakingSoda() {
                   Vinegar and baking soda are inexpensive household ingredients, but natural does not mean harmless or suitable for every surface. Keep cleaning supplies away from children and pets, follow labels and provide the ventilation the instructions require.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  <strong>Vinegar and baking soda</strong> cover a lot of that ground between them, and both are cheap enough to be worth trying. What follows is where each one works, where it does not, and what happens when you combine them, which is the part many guides get wrong.
+                  Used with that care, <strong>vinegar and baking soda</strong> handle a good share of everyday kitchen, bathroom and laundry jobs between them, and both are cheap enough to be worth trying. What follows is where each one works, where it does not, and what happens when you combine them, which is the part many guides get wrong.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
                   Neither one cleans everything. Vinegar can damage natural stone, wood finishes, the backing of a mirror and the inside of a clothes iron, and neither replaces a purpose-made disinfectant.
@@ -204,29 +204,29 @@ export default function BlogVinegarBakingSoda() {
                 </p>
 
                 <p className="text-muted-foreground mb-6">
-                  That fizzing reaction is still useful, but for a mechanical reason rather than a chemical one — the carbon dioxide bubbles lift loose debris, which is why the combination works in a slow drain. For everything else, you will get better results using them separately, one after the other, than mixed together in a bowl.
+                  The fizzing is carbon dioxide escaping as the two neutralise each other. It looks busy, but it adds no cleaning power, so do not count on it to clear a slow or blocked drain either. You will get better results using one or the other on a surface that suits it than mixing them in a bowl.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                   <div className="p-6 bg-primary/10 rounded-xl border border-primary/20">
                     <h3 className="font-bold text-foreground mb-2">🧂 Baking Soda (Base)</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-foreground text-sm">
                       Baking soda (sodium bicarbonate) is a mild alkali that loosens grease and dirt, and a fine abrasive that scrubs without much force. Test it on a hidden patch of a glossy or soft finish first, because it can scratch.
                     </p>
                   </div>
                   <div className="p-6 bg-secondary/10 rounded-xl border border-secondary/20">
                     <h3 className="font-bold text-foreground mb-2">🍶 Vinegar (Acid)</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-foreground text-sm">
                       Vinegar is a weak acid, so it dissolves the mineral scale that hard Alberta water leaves on taps, shower glass and kettles. Use it on its own and rinse afterwards — it does that job better alone than neutralised by baking soda.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* How to Mix Section */}
+              {/* Using them safely */}
               <div className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
-                  How to Mix Vinegar and Baking Soda to Clean
+                  Use Vinegar and Baking Soda One at a Time
                 </h2>
 
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
@@ -248,7 +248,7 @@ export default function BlogVinegarBakingSoda() {
                     <AlertTriangle className="h-6 w-6 text-accent-foreground flex-shrink-0 mt-0.5" />
                     <div>
                       <h3 className="font-bold text-foreground mb-2">Fizzing is not proof of a better clean</h3>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-foreground text-sm">
                         Bubbles show that a reaction is occurring, not that a surface is disinfected or a drain is cleared. Use an appropriate product as directed instead of treating the reaction as a cleaning-performance test.
                       </p>
                     </div>
@@ -258,16 +258,17 @@ export default function BlogVinegarBakingSoda() {
                 {/* This article recommends a baking soda + hydrogen peroxide toilet
                     mixture. Published in a piece that is otherwise about vinegar, with
                     no warning, that is a genuine hazard: a reader combining the two
-                    makes peracetic acid. Never-mix guidance belongs in any article that
+                    makes peroxyacetic (peracetic) acid, which CANUTEC calls corrosive and
+                    toxic. Never-mix guidance belongs in any article that
                     tells people to combine household chemicals. */}
                 <div className="p-6 bg-destructive/10 rounded-xl border-2 border-destructive/40 mb-6">
                   <div className="flex items-start gap-3">
                     <AlertTriangle className="h-6 w-6 text-destructive flex-shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-bold text-foreground mb-2">Never mix these, whatever you read online</h4>
-                      <ul className="text-muted-foreground text-sm list-disc pl-5 space-y-1.5">
+                      <ul className="text-foreground text-sm list-disc pl-5 space-y-1.5">
                         <li>
-                          <strong>Vinegar and hydrogen peroxide.</strong> Combining them can form irritating peracetic acid. Do not mix them or improvise a sequence of different cleaners.
+                          <strong>Vinegar and hydrogen peroxide.</strong> Together they form peroxyacetic (peracetic) acid, which Transport Canada's CANUTEC describes as corrosive and toxic. Do not mix them or improvise a sequence of different cleaners.
                         </li>
                         <li>
                           <strong>Vinegar and bleach.</strong> This <a href="https://tc.canada.ca/en/dangerous-goods/canutec/articles/improper-mixing-common-household-cleaning-products" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">releases chlorine gas</a>. This combination is genuinely dangerous, not merely ineffective.
@@ -275,9 +276,12 @@ export default function BlogVinegarBakingSoda() {
                         <li>
                           <strong>Bleach and ammonia</strong> (including many glass cleaners). Releases chloramine vapour.
                         </li>
+                        <li>
+                          <strong>Bleach and alcohol</strong> (rubbing alcohol and some glass cleaners). Forms chloroform, a toxic liquid.
+                        </li>
                       </ul>
-                      <p className="text-muted-foreground text-sm mt-3">
-                        Follow <a href="https://www.canada.ca/en/health-canada/services/home-safety/household-chemical-safety.html" target="_blank" rel="noopener noreferrer" className="text-primary underline">Health Canada's household chemical safety guidance</a> and the product label. If you suspect harmful exposure, move away from the source and contact your poison centre or emergency services as appropriate; do not stay in the room to troubleshoot.
+                      <p className="text-foreground text-sm mt-3">
+                        Follow <a href="https://www.canada.ca/en/health-canada/services/home-safety/household-chemical-safety.html" target="_blank" rel="noopener noreferrer" className="text-primary underline">Health Canada's household chemical safety guidance</a> and the product label. If you suspect harmful exposure, move away from the source and do not stay in the room to troubleshoot. In Alberta, call the <a href="https://www.infopoison.ca/" target="_blank" rel="noopener noreferrer" className="text-primary underline">poison centre (PADIS)</a> at <span className="whitespace-nowrap">1-844-POISON-X</span> (<span className="whitespace-nowrap">1-844-764-7669</span>). If someone is unconscious, not breathing or having a seizure, call 911.
                       </p>
                     </div>
                   </div>
@@ -300,7 +304,7 @@ export default function BlogVinegarBakingSoda() {
                       <span className="dc-icon dc-icon-circle-check h-6 w-6 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                        <p className="text-muted-foreground text-sm">{item.description}</p>
+                        <p className="text-foreground text-sm">{item.description}</p>
                       </div>
                     </div>
                   ))}
@@ -344,7 +348,7 @@ export default function BlogVinegarBakingSoda() {
                       <span className="dc-icon dc-icon-circle-x h-6 w-6 text-destructive flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                        <p className="text-muted-foreground text-sm">{item.description}</p>
+                        <p className="text-foreground text-sm">{item.description}</p>
                       </div>
                     </div>
                   ))}

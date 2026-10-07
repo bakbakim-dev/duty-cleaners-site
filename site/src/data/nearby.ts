@@ -23,6 +23,11 @@
  * the same entry.
  *
  * Regenerate rather than edit by hand if the coordinate set changes.
+ *
+ * Hand correction (2026-10-07): the North Saskatchewan splits Capilano, Holyrood
+ * and Ottewell (south bank) from Beacon Heights and Bellevue (north bank). Straight-
+ * line distance paired them, but no one drives that way, so those cross-river links
+ * were replaced with same-bank neighbours. Keep this when regenerating.
  */
 export interface NearbyPlace {
   readonly name: string;
@@ -147,18 +152,18 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Belmont", to: "/locations/belmont-edmonton/" },
   ],
   "/locations/beacon-heights-edmonton/": [
-    { name: "Capilano", to: "/locations/capilano-edmonton/" },
     { name: "Bellevue", to: "/locations/bellevue-edmonton/" },
     { name: "Abbottsfield", to: "/locations/abbottsfield-edmonton/" },
     { name: "Montrose", to: "/locations/montrose/" },
     { name: "Belvedere", to: "/locations/belvedere-edmonton/" },
+    { name: "Eastwood", to: "/locations/eastwood-edmonton/" },
   ],
   "/locations/bellevue-edmonton/": [
     { name: "Montrose", to: "/locations/montrose/" },
     { name: "Eastwood", to: "/locations/eastwood-edmonton/" },
     { name: "Beacon Heights", to: "/locations/beacon-heights-edmonton/" },
     { name: "Riverdale", to: "/locations/riverdale-edmonton/" },
-    { name: "Capilano", to: "/locations/capilano-edmonton/" },
+    { name: "Abbottsfield", to: "/locations/abbottsfield-edmonton/" },
   ],
   "/locations/belmont-edmonton/": [
     { name: "Hermitage", to: "/locations/hermitage-edmonton/" },
@@ -242,11 +247,10 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Inglewood", to: "/locations/inglewood/" },
   ],
   "/locations/capilano-edmonton/": [
-    { name: "Beacon Heights", to: "/locations/beacon-heights-edmonton/" },
-    { name: "Bellevue", to: "/locations/bellevue-edmonton/" },
-    { name: "Abbottsfield", to: "/locations/abbottsfield-edmonton/" },
-    { name: "Montrose", to: "/locations/montrose/" },
     { name: "Ottewell", to: "/locations/ottewell-edmonton/" },
+    { name: "Holyrood", to: "/locations/holyrood-edmonton/" },
+    { name: "Bonnie Doon", to: "/locations/bonnie-doon-edmonton/" },
+    { name: "Avonmore", to: "/locations/avonmore-edmonton/" },
   ],
   "/locations/capitol-hill-calgary/": [
     { name: "Mount Pleasant", to: "/locations/mount-pleasant-calgary/" },
@@ -523,7 +527,7 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Bonnie Doon", to: "/locations/bonnie-doon-edmonton/" },
     { name: "Avonmore", to: "/locations/avonmore-edmonton/" },
     { name: "Capilano", to: "/locations/capilano-edmonton/" },
-    { name: "Beacon Heights", to: "/locations/beacon-heights-edmonton/" },
+    { name: "Old Strathcona", to: "/locations/old-strathcona/" },
   ],
   "/locations/huntington-hills-calgary/": [
     { name: "Thorncliffe", to: "/locations/thorncliffe-calgary/" },
@@ -781,7 +785,7 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Bonnie Doon", to: "/locations/bonnie-doon-edmonton/" },
     { name: "Avonmore", to: "/locations/avonmore-edmonton/" },
     { name: "Capilano", to: "/locations/capilano-edmonton/" },
-    { name: "Beacon Heights", to: "/locations/beacon-heights-edmonton/" },
+    { name: "Old Strathcona", to: "/locations/old-strathcona/" },
   ],
   "/locations/ozerna-edmonton/": [
     { name: "Matt Berry", to: "/locations/matt-berry-edmonton/" },

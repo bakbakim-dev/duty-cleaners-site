@@ -230,10 +230,6 @@ export default function BlogCleaningSchedule() {
                     />
                 </div>
 
-                <p className="text-muted-foreground mb-6">
-                  Before we begin, it's important to understand that personal schedules differ from person to person; therefore, a daily cleaning schedule that suits your day-to-day routine may not necessarily fit into someone else's. In other words, you need to find what works for you and your everyday schedule.
-                </p>
-
                 <p className="font-semibold text-foreground mb-4">
                   Use this daily cleaning checklist to build a realistic cleaning schedule for yourself:
                 </p>
@@ -355,7 +351,8 @@ export default function BlogCleaningSchedule() {
                   Expect to revise it. The first draft is usually too ambitious, and the fix is
                   to cut tasks rather than to try harder — a short list you follow beats a
                   complete one you abandon in February. If the weekly tier is the part that
-                  keeps slipping, that is the part a cleaning company can take over. Duty
+                  keeps slipping, a cleaning company can take over most of it, though not
+                  the laundry or the upholstery, and interior windows are a paid add-on. Duty
                   Cleaners'{" "}
                   <Link to={canonicalForPath("/edmonton/recurring-cleaning")} className="text-accent underline underline-offset-2">
                     recurring cleaning in Edmonton

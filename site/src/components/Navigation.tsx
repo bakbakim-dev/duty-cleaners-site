@@ -1,6 +1,5 @@
 import { CITY_PROOF, RED_DEER_PATH, type Branch } from "@/data/proof";
 import { OFFICES_ANCHOR } from "@/components/OfficeCallLink";
-import { quoteHrefFor } from "@/lib/quote-link";
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
@@ -351,7 +350,9 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
 
   return (
     <>
-      <AnnouncementBar />
+      {/* The bar takes the header's own quote target: on the Calgary blog post it
+          opened the Edmonton quote while every other CTA opened Calgary's (AuditSpur #205). */}
+      <AnnouncementBar quoteHref={quoteTarget} />
       <nav
         className={`nav-glass sticky top-0 z-40 bg-background/95 backdrop-blur-md transition-shadow duration-300 ${
           scrolled ? "shadow-lg shadow-primary/10" : "shadow-md"
@@ -473,7 +474,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
           <div id="mobile-menu" role="dialog" aria-modal="false" aria-label="Site menu" className="lg:hidden py-4 space-y-1 border-t animate-in fade-in-0 slide-in-from-top-2 duration-200">
             {/* The primary action belongs inside the menu, not only in the bar. */}
             <a
-              href={specialistCta ? quoteTarget : quoteHrefFor(location.pathname)}
+              href={quoteTarget}
               onClick={() => setMobileMenuOpen(false)}
               className="mb-3 flex min-h-[52px] items-center justify-center rounded-lg bg-accent px-5 text-base font-bold text-accent-foreground shadow-lg transition-colors hover:bg-accent/90"
             >

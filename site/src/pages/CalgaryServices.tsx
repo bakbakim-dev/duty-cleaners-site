@@ -1,5 +1,5 @@
 import { GST_RATE } from "@/data/pricing";
-import { CALGARY_RATING_CLAIM, CITY_PROOF, COMPANY } from "@/data/proof";
+import { CALGARY_RATING_CLAIM, CITY_PROOF, COMPANY, hoursLineFor } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { canonicalForPath } from "@/data/legacy-urls";
@@ -112,8 +112,9 @@ const PRICING = canonicalForPath("/calgary/pricing");
 const TITLE = "Compare Cleaning Services in Calgary | Duty Cleaners";
 const DESCRIPTION = "Compare cleaning services in Calgary, from one-time visits to recurring and move-out cleaning. Find the scope and pricing basis that fit your job.";
 
-/** Spot wall cleaning, the cheapest wall add-on, from bk-config. */
+/** Spot wall cleaning and the full wash, from bk-config. */
 const WALL_SPOT = addOnFromPrice("standard", "spot-cleaning-inside-walls");
+const WALL_FULL = addOnFromPrice("standard", "complete-inside-wall-washing");
 
 /* The opening paragraph of the choosing guide. It sits above the cards; the
    rest of the guide sits below them. */
@@ -237,7 +238,10 @@ const services: Service[] = [
       "Smoke film washed back, with no promise it goes completely",
       "Walls ready for paint or a listing photo"
     ],
-    price: WALL_SPOT === null ? "Priced by home size" : `from ${formatPrice(WALL_SPOT)} with a clean`,
+    price:
+      WALL_SPOT === null || WALL_FULL === null
+        ? "Priced by home size"
+        : `Spot cleaning from ${formatPrice(WALL_SPOT)}, full wash from ${formatPrice(WALL_FULL)}, with a clean`,
     link: "/wall-washing-wall-cleaning-calgary/",
     linkText: "See Wall Washing & Cleaning",
     icon: PaintRoller,
@@ -607,7 +611,7 @@ export default function CalgaryServices() {
                   </div>
                   <div>
                     <p className="text-sm text-white/80">Hours</p>
-                    <p className="font-semibold text-white">Mon-Sat: 8AM-8PM, Sun: 9AM-3PM</p>
+                    <p className="font-semibold text-white">{hoursLineFor("calgary")}</p>
                   </div>
                 </div>
               </div>

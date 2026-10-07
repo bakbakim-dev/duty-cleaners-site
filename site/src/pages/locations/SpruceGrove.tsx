@@ -333,7 +333,7 @@ export default function SpruceGrove() {
         eyebrow="Ground truth"
         heading="What Parkland County blows in"
         paragraphs={[
-          "Parkland County wraps the city on every side, and Stony Plain is its only urban neighbour. North and south of the limits that county land is prime cropland, worked at both ends of the season: seeding in May, combines from late August. Both put fine mineral soil in the air, and it settles along sills, in screen mesh and on top of door frames. Grit like that scratches if you wet it first, so it comes off dry, vacuum then cloth.",
+          "Parkland County wraps the city except along its west edge, which it shares with the Town of Stony Plain. North and south of the limits that county land is prime cropland, worked at both ends of the season: seeding in May, combines from late August. Both put fine mineral soil in the air, and it settles along sills, in screen mesh and on top of door frames. Grit like that scratches if you wet it first, so it comes off dry, vacuum then cloth.",
           "The 2021 census found more people here than the 2016 count did, and that kind of growth arrives in Spruce Grove as new houses. Freshly finished homes hold drywall fines in return-air grilles long after possession day, so a first deep clean wipes the vent covers before any general surface. Do the room first and the furnace puts the whole lot back through it.",
         ]}
       />

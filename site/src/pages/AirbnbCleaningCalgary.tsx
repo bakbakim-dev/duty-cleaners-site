@@ -1,7 +1,7 @@
-import { HOURLY_RATE, GST_RATE, formatPrice, withGst, FREQUENCIES, standardTierRows } from "@/data/pricing";
+import { HOURLY_RATE, GST_RATE, formatPrice, withGst, FREQUENCIES, standardTierRows, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
-import { CITY_PROOF, CALGARY_RATING_CLAIM, COMPANY } from "@/data/proof";
+import { CITY_PROOF, CALGARY_RATING_CLAIM, COMPANY, hoursLineFor } from "@/data/proof";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { Star, Shield, Calendar, Home, ClipboardCheck, KeyRound, Wand2, DoorOpen, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -59,6 +59,9 @@ const STANDARD_FROM = standardTierRows()[0]?.price ?? "";
 const GST_PCT = `${Math.round(GST_RATE * 100)}%`;
 const TRAVEL = travelFee("airbnb");
 const TRAVEL_LINE = TRAVEL === null ? "a travel fee we quote when you book" : `${formatPrice(TRAVEL)} in travel per visit`;
+/* The Airbnb booking form carries its own pet fee at the home-form figure (content prompt P10). */
+const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
+const PET_LINE = PET_FEE === null ? "a pet charge" : `a ${formatPrice(PET_FEE)} pet charge per visit`;
 const BIWEEKLY = FREQUENCIES.find((f) => f.id === "bi-weekly-every-2-weeks");
 const BIWEEKLY_PCT = BIWEEKLY ? `${Math.round(BIWEEKLY.discount * 100)}%` : "a";
 const GUARANTEE_HOURS = POLICY.guaranteeWindowHours;
@@ -183,7 +186,7 @@ const AirbnbCleaningCalgary = () => {
   ];
 
   const howItWorks = [
-    { icon: ClipboardCheck, title: "Give us the two times", description: "Checkout and next check-in. Book online or ring the Calgary line. On Stampede days, book the moment the platform confirms the stay." },
+    { icon: ClipboardCheck, title: "Give us the two times", description: "Checkout and next check-in. Request a turnover quote online or ring the Calgary line. On Stampede days, ask the moment the platform confirms the stay." },
     { icon: KeyRound, title: "Access and parking", description: "Lockbox, smart lock or a key with the concierge. In a downtown tower the visitor-parking rules matter as much as the door code, so note both." },
     { icon: Wand2, title: "The same checklist every time", description: "Beds, bathrooms, kitchen, living room and entry, then restocking and rubbish, in the same order on every turnover. Anything a guest left behind is set aside for you." },
     { icon: DoorOpen, title: "Locked up behind the team", description: "The team locks the unit when the turnover is done. Ask afterwards and we can tell you exactly what was covered on that turnover." },
@@ -208,7 +211,7 @@ const AirbnbCleaningCalgary = () => {
   const faqs = [
     {
       q: "What does a Calgary Airbnb turnover cost?",
-      a: `A turnover is ${RATE} per cleaner per hour before ${GST_PCT} GST. The minimum booking is 3 hours with one cleaner (${MIN_ONE}) or 2 hours with two (${MIN_TWO}). The invoice is the cleaner-hours the turnover took, charged after it is done, so it moves with the guest count and the state the last party left. A unit outside Calgary city limits adds ${TRAVEL_LINE}, also before GST.`,
+      a: `A turnover is ${RATE} per cleaner per hour before ${GST_PCT} GST. The minimum booking is 3 hours with one cleaner (${MIN_ONE}) or 2 hours with two (${MIN_TWO}). The invoice is the cleaner-hours the turnover took, charged after it is done, so it moves with the guest count and the state the last party left. A listing with pets adds ${PET_LINE}, and a unit outside Calgary city limits adds ${TRAVEL_LINE}, also before GST.`,
     },
     {
       q: "Can I get a flat rate instead of hourly?",
@@ -532,11 +535,11 @@ const AirbnbCleaningCalgary = () => {
               covers your own months.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              The Calgary listing is rated {CALGARY_RATING_CLAIM} across{" "}
+              The Calgary listing is rated {CALGARY_RATING_CLAIM} across {proof.googleReviewCount} Google reviews, and{" "}
               <Link to="/reviews/" className="text-accent underline underline-offset-2">
-                {proof.googleReviewCount} Google reviews
-              </Link>
-              , and you can read them before you book.
+                our reviews page
+              </Link>{" "}
+              has a selection, with a link to the listing, to read before you book.
             </p>
           </div>
         </AnimatedSection>
@@ -646,7 +649,7 @@ const AirbnbCleaningCalgary = () => {
                     <strong>Address:</strong> {proof.address}
                   </p>
                   <p className="text-muted-foreground text-sm">
-                    <strong>Hours:</strong> Mon-Sat 8am–8pm | Sun 9am–3pm
+                    <strong>Hours:</strong> {hoursLineFor("calgary")}
                   </p>
                 </div>
               </div>

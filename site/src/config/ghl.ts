@@ -48,10 +48,14 @@ export const ghlBathroomLabel = (count: number) =>
 export const ghlHalfBathLabel = (count: number) =>
   `${count} Half Baths (With only a Toilet and Sink)`;
 
-/** Keyed by BookingKoala frequency id. */
+/**
+ * Keyed by the bk-config frequency id: 3 is Weekly and 2 is Every 4 Weeks.
+ * Until 2026-10-07 the two were swapped here, so a Weekly quote reached
+ * GoHighLevel as "Every 4 Weeks (10% off)" and the reverse (AuditSpur #246).
+ */
 export const GHL_FREQUENCY_LABELS: Record<number, string> = {
   1: "One Time",
-  2: "Every Week (20% off)",
+  3: "Every Week (20% off)",
   4: "Every 2 Weeks (Most Popular Option 15% off )",
-  3: "Every 4 Weeks (10% off)",
+  2: "Every 4 Weeks (10% off)",
 };

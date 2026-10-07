@@ -13,7 +13,6 @@ const DC_HANDOFF_KEYS = [
 $websiteOrigins = [
     'https://dutycleaners.ca',
     'https://www.dutycleaners.ca',
-    'https://duty-cleaners-preview.netlify.app',
     'https://mikaily131.sg-host.com',
     'http://127.0.0.1:5173',
     'http://localhost:5173',

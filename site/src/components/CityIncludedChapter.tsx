@@ -90,7 +90,7 @@ export default function CityIncludedChapter({ city }: CityIncludedChapterProps) 
               to="/whats-included/"
               className="mt-6 inline-flex min-h-[44px] items-center font-semibold text-primary hover:underline"
             >
-              The full standard cleaning checklist <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
+              The full standard cleaning checklist <span className="dc-icon dc-icon-arrow-right ml-1 h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
 

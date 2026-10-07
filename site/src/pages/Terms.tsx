@@ -17,7 +17,7 @@ import {
 /**
  * Bump when the terms below change. Same convention as PrivacyPolicy.tsx.
  */
-const LAST_UPDATED = "September 2026";
+const LAST_UPDATED = "October 2026";
 
 /**
  * Every clause here is drawn from copy already published elsewhere on the site

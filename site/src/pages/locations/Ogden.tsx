@@ -235,7 +235,7 @@ export default function Ogden() {
         heading="Ogden Road is moving"
         paragraphs={[
           "This southeast community has the railway's Ogden Shops along its northern and eastern edges. A working yard produces a particular dirt: fine, dark grit rather than household lint. It shows up first in window tracks, on screens and along the sills of whichever side of the house faces the rail land.",
-          "A second dust source arrived in September 2025, when Calgary began realigning Ogden Road SE between the rail bridge and 69 Avenue SE to make room for the Green Line. Completion is anticipated in October 2026, and until then the detours move week to week, so where the dust lands moves with them. Vents and door tracks are worth a second pass for as long as that work runs.",
+          "A second dust source arrived in September 2025, when Calgary began realigning Ogden Road SE between the rail bridge and 69 Avenue SE to make room for the Green Line. As of September 2026 the City still expected completion in October 2026, and while the work runs the detours shift, so where the dust lands moves with them. Vents and door tracks are worth a second pass for as long as that work runs.",
         ]}
         accent="calgary"
       />

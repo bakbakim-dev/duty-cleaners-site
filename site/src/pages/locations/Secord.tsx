@@ -269,7 +269,7 @@ export default function Secord() {
         heading="Parkland County starts across the road"
         paragraphs={[
           "Drive west far enough here and you reach 231 Street, which is the City of Edmonton boundary. Parkland County begins on the far side and wraps the southwest and northwest corners too. Houses along that edge face open land rather than another row of rooftops, so wind arrives unbroken. On the western streets the inside sills of the windows facing that land are what show it first, and they set the order of the visit.",
-          "The north edge is Stony Plain Road carrying Highway 16A, a through route to Stony Plain rather than a residential street. Winterburn Industrial Area West sits directly across that road. Winterburn Road, 215 Street, closes the east side. Secord's structure plan was adopted in 2007 and building has not finished, so lots on the newer streets still meet gravel and clay. Most of the work is at the doors and on the inside sills of the windows that face the open side.",
+          "The north edge is Stony Plain Road carrying Highway 16A, a through route to Stony Plain rather than a residential street. Winterburn Industrial Area West sits directly across that road. Winterburn Road, 215 Street, closes the east side. Secord's structure plan was adopted in 2007 and, as of 2026, building has not finished, so lots on the newer streets still meet gravel and clay. Most of the work is at the doors and on the inside sills of the windows that face the open side.",
         ]}
       />
 

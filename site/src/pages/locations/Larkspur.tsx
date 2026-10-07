@@ -6,14 +6,14 @@ export default function Larkspur() {
       city="Larkspur"
       region="edmonton"
       title="House Cleaning Services Larkspur Edmonton | Duty Cleaners"
-      description="Larkspur is still filling in, so dust from lots under construction reaches finished homes on the wind and on shoes, and the newest homes keep shedding their own for a year or two."
-      seoDescription="House cleaning in Larkspur, Edmonton, where building lots send dust to finished homes and new builds shed their own for a year or two."
+      description="Most Larkspur homes went up between 1985 and 2005, so twenty to forty years of wear on builder carpet, vinyl seams and tub caulk sets the pace of the clean, along with grit off Whitemud Drive."
+      seoDescription="House cleaning in Larkspur, Edmonton, where homes built from 1985 to 2005 show worn builder finishes and road grit comes in off Whitemud Drive."
       localNote={{
         heading: "What a Larkspur home needs",
         paragraphs: [
-          "Larkspur is still filling in, and that changes the job in a way finished neighbourhoods do not have to think about. When lots on your street are actively under construction, dust does not stay on the site — it travels, and it arrives at your door on the wind and on everyone's shoes. Homes here often get cleaned and then look dusty again within days, which is frustrating and is nobody's fault. If your street is still building out, cleaning slightly more often through the dry months usually costs less than repeatedly booking a deep clean to catch up.",
-          "The homes themselves are new enough that they are still shedding their own construction dust from vents, closet shelves and the tops of doors. That comes out over roughly the first year or two, and it is worth a single thorough deep clean early rather than fighting it with standard visits.",
-          "The wetlands nearby and the Ellerslie Road and Anthony Henday corridors round it out: wet plant matter and mud in spring and autumn, road grit through the winter, both concentrated at entryways.",
+          "Most of Larkspur went up between 1985 and 2005, and almost nine in ten of its homes are single-family houses, the rest duplexes. That puts most of them twenty to forty years past possession, an age when the original builder finishes show it: carpet with a worn lane down the hall, vinyl and laminate with dirt packed into the seams, and tub caulk that has started to darken. A standard visit keeps those surfaces where they are. Bringing them back is deep-clean work, so one deep clean before a regular schedule usually costs less than trying to catch up a little on every visit.",
+          "Houses of this age have also had decades to load the places nobody looks at: the tops of door frames, closet shelves, vent covers and the ledge above the washer. None of it shows from the doorway, and all of it drops dust back onto clean floors if it is skipped, so the team works from the top down.",
+          "The industrial land north across Whitemud Drive and the traffic on 17 Street and 34 Street round it out: fine grit on the sills that face them, and road sand through the winter, concentrated at entryways.",
         ],
       }}
       phone="(780) 913-6565"

@@ -106,8 +106,8 @@ export default function CalgaryRecurringCleaning() {
               <p>
                 The two-bedroom figures are the apartment rate. A townhouse or a two-storey house adds a home-type
                 charge to each visit, and a home with pets adds the pet charge
-                {PET_FEE !== null ? `, ${formatPrice(PET_FEE)} a visit` : ""}. Both are compulsory, and both show
-                on the quote before the first visit is booked.
+                {PET_FEE !== null ? `, ${formatPrice(PET_FEE)} on a one-time visit` : ""}. Both are compulsory, the plan discount
+                applies to them too, and both show on the quote before the first visit is booked.
               </p>
             </>
           ),

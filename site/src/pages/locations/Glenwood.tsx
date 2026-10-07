@@ -51,7 +51,7 @@ export default function Glenwood() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Glenwood?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `You can book any of these house cleans here:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -269,7 +269,7 @@ export default function Glenwood() {
         heading="Glenwood's west-end vintage"
         paragraphs={[
           "Glenwood's 1950s bungalows west of 156 Street keep original oak floors and plaster coves in many homes, and their small square footage packs a full complement of trim, doors and built-ins into few rooms — slow, satisfying hand-work rather than open-floor speed. Garden suites are appearing on the deep lots, adding second small kitchens to the job.",
-          "Stony Plain Road defines the north edge and 156 Street the east, and the Valley Line West LRT is being built down that 156 Street edge to the Glenwood/Sherwood stop: construction seasons have left dust in older homes' ducts, and the corridor's bus traffic keeps a steady fine grit on east-facing sills.",
+          "Stony Plain Road defines the north edge and 156 Street the east, and as of 2026 the Valley Line West LRT is still being built down that 156 Street edge to the Glenwood/Sherwood stop: construction seasons have left dust in older homes' ducts, and the corridor's bus traffic keeps a steady fine grit on east-facing sills.",
         ]}
       />
 

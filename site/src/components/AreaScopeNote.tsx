@@ -26,42 +26,42 @@ const SCOPES: Record<string, Scope> = {
   },
   "/locations/west-calgary/": {
     heading: "Browse west Calgary coverage",
-    text: "West Calgary is a broad coverage label on this site, not a single neighbourhood or the Downtown West End. Start with an existing neighbourhood page below, or ask the Calgary office to confirm your address.",
+    text: "West Calgary is a broad area, not a single neighbourhood or the Downtown West End. Start with a neighbourhood page below, or ask the Calgary office to confirm your address.",
     links: [["Aspen Woods", "/locations/aspen-woods/"], ["Spruce Cliff", "/locations/spruce-cliff-calgary/"], ["Wildwood", "/locations/wildwood-calgary/"], ["Downtown West End — a different area", "/locations/downtown-west-end-calgary/"]],
   },
   "/locations/sunalta-west-calgary/": {
     heading: "Scarboro / Sunalta West naming",
-    text: "The City of Calgary calls this community Scarboro/Sunalta West. It is not the same community as Sunalta or Scarboro. This existing Sunalta West URL stays in place; use the other pages when they match your address.",
+    text: "The City of Calgary calls this community Scarboro/Sunalta West. It is not the same community as Sunalta or Scarboro, so if your address is in one of those, their pages below describe it better.",
     links: [["Sunalta house cleaning", "/locations/sunalta-calgary/"], ["Scarboro house cleaning", "/locations/scarboro-calgary/"]],
   },
   "/locations/mount-royal/": {
     heading: "Upper and Lower Mount Royal",
-    text: "Upper Mount Royal and Lower Mount Royal are separately named Calgary communities. This Mount Royal overview currently discusses both; the Lower Mount Royal page gives the more specific destination for an address there.",
+    text: "Upper Mount Royal and Lower Mount Royal are separately named Calgary communities. This page covers both; if your home is in Lower Mount Royal, its own page below says more about it.",
     links: [["Lower Mount Royal house cleaning", "/locations/lower-mount-royal-calgary/"]],
   },
   "/locations/black-diamond/": {
     heading: "Black Diamond area of Diamond Valley",
-    text: "Black Diamond and Turner Valley now form the Town of Diamond Valley. This page serves customers looking for the historical Black Diamond area; the Turner Valley area has its own existing page. Both are served by the Calgary branch, with the applicable travel fee shown below.",
+    text: "Black Diamond and Turner Valley now form the Town of Diamond Valley. This page is about the Black Diamond side of Diamond Valley; the Turner Valley side has its own page. The Calgary branch cleans both, with the travel fee shown below.",
     links: [["Turner Valley area, Diamond Valley", "/locations/turner-valley/"]],
   },
   "/locations/turner-valley/": {
     heading: "Turner Valley area of Diamond Valley",
-    text: "This page is for the historical Turner Valley area of the Town of Diamond Valley. For a home in the Black Diamond area, use that area page. These are coverage pages for the Calgary branch, not two additional branch offices.",
+    text: "This page is about the Turner Valley side of the Town of Diamond Valley; the Black Diamond side has its own page. The Calgary branch cleans both; neither has an office of its own.",
     links: [["Black Diamond area, Diamond Valley", "/locations/black-diamond/"]],
   },
   "/locations/castle-downs/": {
     heading: "Using the Castle Downs coverage page",
-    text: "Castle Downs is used here as an area-wide coverage name, not a claim that every home belongs to one neighbourhood. Give the Edmonton office your address and the name of your neighbourhood; the city coverage directory helps you find a more specific page where one exists.",
+    text: "Castle Downs is the name of a wider area made up of several neighbourhoods. Give the Edmonton office your address and your neighbourhood; the list of areas we clean may have a page for it.",
     links: [["Browse Edmonton neighbourhood coverage", "/locations/"]],
   },
   "/locations/clareview/": {
     heading: "Clareview area coverage",
-    text: "This is the broader Clareview coverage page, not a separate page for every neighbourhood around the town centre. Use your actual address when booking. A nearby station or district name alone does not identify the building's access arrangements.",
+    text: "Clareview is a wider area with several neighbourhoods around the town centre. Give your own address when booking: a nearby station or district name does not tell the team how to get into your building.",
     links: [["Browse Edmonton neighbourhood coverage", "/locations/"]],
   },
   "/locations/hermitage-edmonton/": {
     heading: "Hermitage coverage and your address",
-    text: "Hermitage is an area label on this site. It is not a claim that all homes around the park share one layout or cleaning need. Use the Edmonton coverage directory for more specific neighbourhood pages and describe your own home when requesting a quote.",
+    text: "Hermitage is the name of an area of three neighbourhoods around the park, and the homes vary. The list of areas we clean has the individual neighbourhoods; describe your own home when you ask for a quote.",
     links: [["Browse Edmonton neighbourhood coverage", "/locations/"]],
   },
 };
@@ -77,7 +77,7 @@ export default function AreaScopeNote() {
       <ul className="mt-4 space-y-2">
         {scope.links.map(([label, to]) => <li key={to}><Link className="text-primary underline underline-offset-2" to={to}>{label}</Link></li>)}
       </ul>
-      <p className="mt-4 text-sm text-muted-foreground">Service-area pages describe where our branch travels, not additional staffed offices.</p>
+      <p className="mt-4 text-sm text-muted-foreground">These pages describe where our team travels to clean; there is no office in each area.</p>
     </aside>
   );
 }

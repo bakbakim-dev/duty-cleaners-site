@@ -148,18 +148,30 @@ export default function BlogChoosingCalgaryCleaner() {
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Hiring a cleaning service should save you time and stress, not add a new source of
-                  it. Most of the bad experiences people report, such as no-shows, surprise charges
-                  and uneven quality, trace back to the same handful of gaps in how a company
-                  operates. None of them are hard to check for before you book.
+                  it. Many first-visit problems in Calgary, such as a team that cannot get into the
+                  building, a travel charge nobody expected or a quote for the wrong home type, come
+                  from a detail nobody confirmed. Three checks before you book cover most of them.
                 </p>
               </div>
 
-              {/* What to check */}
+              {/* What to check: three booking checks, then how we handle them */}
               <div className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">
-                  Four things that separate a reliable company from a risky one
+                  Three things to check before you book a Calgary cleaner
                 </h2>
-                <div className="mb-16"><h2 className="text-2xl md:text-3xl font-bold mb-6">Check access with your condo building</h2><p className="text-muted-foreground mb-4">For a condo in <Link className="text-primary underline" to="/locations/beltline-calgary/">Beltline</Link>, <Link className="text-primary underline" to="/locations/mission/">Mission</Link> or <Link className="text-primary underline" to="/locations/eau-claire-calgary/">Eau Claire</Link>, ask your building whether cleaners need visitor registration, an elevator reservation or a particular entry point. These are questions to confirm with the building, not requirements shared by every Calgary condo.</p><p className="text-muted-foreground">Give the office the approved entry instructions and parking information before the visit. Do not put a private access code in a public review or photograph. If the building changes its arrangements, update the booking instructions.</p></div>
+                <div className="mb-10"><h3 className="text-xl md:text-2xl font-bold mb-4 text-foreground">Check access with your condo building</h3><p className="text-muted-foreground mb-4">For a condo in <Link className="text-primary underline" to="/locations/beltline-calgary/">Beltline</Link>, <Link className="text-primary underline" to="/locations/mission/">Mission</Link> or <Link className="text-primary underline" to="/locations/eau-claire-calgary/">Eau Claire</Link>, ask your building whether cleaners need visitor registration, an elevator reservation or a particular entry point. These are questions to confirm with the building, not requirements shared by every Calgary condo.</p><p className="text-muted-foreground">Give the office the approved entry instructions and parking information before the visit. Do not put a private access code in a public review or photograph. If the building changes its arrangements, update the booking instructions.</p></div>
+
+                {/*
+                  At 566 words this was the thinnest article on the site against
+                  867-1,481 for the rest, and it is the destination of two
+                  preserved legacy URLs — so it earns its traffic on hiring
+                  intent and had almost nothing to say once someone arrived. The
+                  two sections below answer what a reader at that moment actually
+                  still has to decide.
+                */}
+                <div className="mb-10"><h3 className="text-xl md:text-2xl font-bold mb-4 text-foreground">Confirm the Calgary branch and service coverage</h3><p className="text-muted-foreground mb-4">Duty Cleaners' Calgary office is at {CITY_PROOF.calgary.address}. Call <a className="text-primary underline" href={CITY_PROOF.calgary.phoneLink}>{CITY_PROOF.calgary.phone}</a> to discuss an address or access arrangement. Read the Calgary branch's feedback on our <Link className="text-primary underline" to="/reviews/">reviews page</Link>; another branch's reviews are not a substitute.</p><p className="text-muted-foreground">There is no trip fee inside Calgary city limits. A booking in <Link className="text-primary underline" to="/cleaning-services-airdrie/">Airdrie</Link> or <Link className="text-primary underline" to="/cleaning-services-cochrane/">Cochrane</Link> carries a travel charge. Check the <Link className="text-primary underline" to="/calgary/pricing/">Calgary price list and regional fees</Link> and ask the office about an address not listed in our coverage.</p></div>
+
+                <div className="mb-10"><h3 className="text-xl md:text-2xl font-bold mb-4 text-foreground">Compare the quote for your actual home</h3><p className="text-muted-foreground mb-4">A condo and a two-storey house with the same bedroom count have different home-type pricing. Include bathrooms, pets and any appliance interiors you want cleaned. Describe renovation dust rather than assuming it is included in routine upkeep; compare <Link className="text-primary underline" to="/post-construction-cleaning-calgary/">post-construction cleaning in Calgary</Link> for a renovation job.</p><p className="text-muted-foreground mb-4">For an occupied home, compare the <Link className="text-primary underline" to="/calgary/regular-cleaning/">one-time standard checklist</Link> with <Link className="text-primary underline" to="/calgary/deep-cleaning/">Calgary deep cleaning</Link>. For an empty property handover, review <Link className="text-primary underline" to="/move-out-cleaning-calgary/">Calgary move-out cleaning</Link>, including the exclusions.</p><h4 className="text-lg font-bold mb-3">Before confirming the booking</h4><ul className="list-disc pl-5 text-muted-foreground space-y-2"><li>Confirm the service, property address and home type.</li><li>Check all required charges, add-ons and GST.</li><li>Arrange entry, building access and parking.</li><li>Read the <Link className="text-primary underline" to="/terms/">cancellation and access terms</Link>.</li><li>Choose the appropriate <Link className="text-primary underline" to="/cleaning-services-calgary/">Calgary house cleaning booking</Link>.</li></ul></div>
               </div>
 
               {/* Local team */}
@@ -185,18 +197,6 @@ export default function BlogChoosingCalgaryCleaner() {
                   at no charge. Photos help but are not required.
                 </p>
               </div>
-
-              {/*
-                At 566 words this was the thinnest article on the site against
-                867-1,481 for the rest, and it is the destination of two
-                preserved legacy URLs — so it earns its traffic on hiring
-                intent and had almost nothing to say once someone arrived. The
-                two sections below answer what a reader at that moment actually
-                still has to decide.
-              */}
-              <div className="mb-16"><h2 className="text-2xl md:text-3xl font-bold mb-4">Confirm the Calgary branch and service coverage</h2><p className="text-muted-foreground mb-4">Duty Cleaners' Calgary office is at {CITY_PROOF.calgary.address}. Call <a className="text-primary underline" href={CITY_PROOF.calgary.phoneLink}>{CITY_PROOF.calgary.phone}</a> to discuss an address or access arrangement. Read the Calgary branch's feedback on our <Link className="text-primary underline" to="/reviews/">reviews page</Link>; another branch's reviews are not a substitute.</p><p className="text-muted-foreground">There is no trip fee inside Calgary city limits. A booking in <Link className="text-primary underline" to="/cleaning-services-airdrie/">Airdrie</Link> or <Link className="text-primary underline" to="/cleaning-services-cochrane/">Cochrane</Link> carries a travel charge. Check the <Link className="text-primary underline" to="/calgary/pricing/">Calgary price list and regional fees</Link> and ask the office about an address not listed in our coverage.</p></div>
-
-              <div className="mb-16"><h2 className="text-2xl md:text-3xl font-bold mb-4">Compare the quote for your actual home</h2><p className="text-muted-foreground mb-4">A condo and a two-storey house with the same bedroom count have different home-type pricing. Include bathrooms, pets and any appliance interiors you want cleaned. Describe renovation dust rather than assuming it is included in routine upkeep; compare <Link className="text-primary underline" to="/post-construction-cleaning-calgary/">post-construction cleaning in Calgary</Link> for a renovation job.</p><p className="text-muted-foreground mb-4">For an occupied home, compare the <Link className="text-primary underline" to="/calgary/regular-cleaning/">one-time standard checklist</Link> with <Link className="text-primary underline" to="/calgary/deep-cleaning/">Calgary deep cleaning</Link>. For an empty property handover, review <Link className="text-primary underline" to="/move-out-cleaning-calgary/">Calgary move-out cleaning</Link>, including the exclusions.</p><h3 className="text-xl font-bold mb-3">Before confirming the booking</h3><ul className="list-disc pl-5 text-muted-foreground space-y-2"><li>Confirm the service, property address and home type.</li><li>Check all required charges, add-ons and GST.</li><li>Arrange entry, building access and parking.</li><li>Read the <Link className="text-primary underline" to="/terms/">cancellation and access terms</Link>.</li><li>Choose the appropriate <Link className="text-primary underline" to="/cleaning-services-calgary/">Calgary house cleaning booking</Link>.</li></ul></div>
 
               {/* FAQ */}
               <div className="mb-16">

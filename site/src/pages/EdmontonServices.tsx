@@ -1,5 +1,5 @@
 import { GST_RATE } from "@/data/pricing";
-import { EDMONTON_RATING_CLAIM, CITY_PROOF, COMPANY } from "@/data/proof";
+import { EDMONTON_RATING_CLAIM, CITY_PROOF, COMPANY, hoursLineFor } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { canonicalForPath } from "@/data/legacy-urls";
@@ -148,7 +148,7 @@ const services: Service[] = [
     features: [
       "All rooms dusted and vacuumed",
       "Bathrooms scrubbed and wiped down",
-      "Kitchen cleaned (counters, sink, appliance and cabinet exteriors only)",
+      "Kitchen cleaned (counters, sink, appliance and cabinet exteriors, microwave inside and out)",
       "Floors mopped and vacuumed"
     ],
     price: STANDARD_FROM,
@@ -540,7 +540,7 @@ export default function EdmontonServices() {
                 </Link>{" "}
                 by home size, and {proof.googleReviewCount} Google reviews sit behind the rating; you can{" "}
                 <Link to="/reviews/" className="text-accent underline underline-offset-2">
-                  read before you decide
+                  read a selection before you decide
                 </Link>
                 . If the clean is for someone else, a parent after surgery or a friend with a newborn, you can{" "}
                 <Link to="/gift-card/" className="text-accent underline underline-offset-2">
@@ -647,7 +647,7 @@ export default function EdmontonServices() {
                   </div>
                   <div>
                     <p className="text-sm text-white/80">Hours</p>
-                    <p className="font-semibold text-white">Mon-Sat: 8AM-8PM, Sun: 9AM-3PM</p>
+                    <p className="font-semibold text-white">{hoursLineFor("edmonton")}</p>
                   </div>
                 </div>
               </div>

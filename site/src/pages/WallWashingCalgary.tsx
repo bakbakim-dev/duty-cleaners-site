@@ -74,7 +74,7 @@ const wallProblems = [
   { title: "Hard-water haze", description: "The mineral film around the shower and behind the sink that wiping does not shift." },
   { title: "Cooking film", description: "Grease and hard-water residue combined into a film on the backsplash surround." },
   { title: "Handprints & scuffs", description: "Around switches, along hallways and entry walls, where hands and bags touch the wall." },
-  { title: "Nicotine & smoke residue", description: "Yellow tar film that dulls the paint. It fades with washing; full removal is not promised." },
+  { title: "Nicotine & smoke residue", description: `Yellow tar film that dulls the paint. It fades with washing; full removal is not promised. A smoked-in home adds a smoke surcharge from ${POLICY.smokeSurchargeFrom}, quoted before you book.` },
 ];
 
 const includedItems = [
@@ -102,7 +102,7 @@ const whyUs = [
 ];
 
 const faqs = [
-  { q: "What does wall washing cost in Calgary?", a: `Spot cleaning is ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0)} and the full wash ${formatPrice(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0)}, set by home size and before 5% GST. Either one is added to a standard, deep or move-out clean, and that clean is priced on its own, from ${standardTierRows()[0]?.price ?? ""} for a one-bedroom apartment or condo. The clean can also carry the ${formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0)} pet charge, a home-type charge for a bungalow, basement suite, townhouse or two-storey house, and a ${formatPrice(travelFee("standard") ?? 0)} travel fee outside Calgary city limits. Every one of those lines is on the quote before you book.` },
+  { q: "What does wall washing cost in Calgary?", a: `Spot cleaning is ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0)} and the full wash ${formatPrice(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0)}, set by home size and before 5% GST. Either one is added to a standard, deep or move-out clean, and that clean is priced on its own, from ${standardTierRows()[0]?.price ?? ""} for a one-bedroom apartment or condo. The clean can also carry the ${formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0)} pet charge, a home-type charge for a bungalow, basement suite, townhouse or two-storey house, and a ${formatPrice(travelFee("standard") ?? 0)} travel fee outside Calgary city limits. Every one of those lines is on the quote before you book. If anyone has smoked in the home, a smoke surcharge from ${POLICY.smokeSurchargeFrom} is added, depending on the size of the home and how heavy the residue is, and a heavily smoked-in home can cost much more; tell us when you book and we quote it first.` },
   { q: "Can all wall stains be removed?", a: "No. Handprints, scuffs and surface film may lighten or come off, but stains and odours held in paint or drywall can remain. The result depends on the finish and condition. We assess the walls first and explain the limits; the add-on does not include painting or repairs." },
   { q: "Do you clean all types of painted walls?", a: "Not every finish is suitable. We assess the paint first; flat, fragile or damaged finishes may need limited treatment or may not be washable. Tell us about the finish and any care instructions before you book." },
   { q: "Do you remove mould from walls?", a: "Light surface mildew on a painted bathroom wall, yes, where it is safe to wipe it. Mould that has grown into the drywall or the wall behind it, no; that is a remediation job, and washing the face of it hides the problem without fixing it. If we find that, we tell you and leave it alone." },
@@ -378,7 +378,7 @@ export default function WallWashingCalgary() {
                   on the full wash, because that is the number that reaches the card.
                 </p>
               </div>
-              <div className="overflow-x-auto border border-border rounded-xl">
+              <div className="overflow-x-auto border border-border rounded-xl" tabIndex={0} role="region" aria-label="Calgary wall washing prices by home size (scrolls sideways)">
                 <table className="w-full">
                   <thead className="bg-brand-navy text-brand-navy-foreground">
                     <tr>

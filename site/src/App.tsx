@@ -60,7 +60,6 @@ const BlogChoosingCalgaryCleaner = lazyWithPreload(() => import("./pages/BlogCho
 const SatisfactionGuarantee = lazyWithPreload(() => import("./pages/SatisfactionGuarantee"));
 const PrivacyPolicy = lazyWithPreload(() => import("./pages/PrivacyPolicy"));
 const Terms = lazyWithPreload(() => import("./pages/Terms"));
-const GiftCards = lazyWithPreload(() => import("./pages/GiftCards"));
 const GiftCard = lazyWithPreload(() => import("./pages/GiftCard"));
 const Prepare = lazyWithPreload(() => import("./pages/Prepare"));
 const Book = lazyWithPreload(() => import("./pages/Book"));
@@ -298,10 +297,12 @@ export const routeTree = (
     <Route path="/blog/spotless-home-tips" element={<BlogSpotlessHomeTips />} />
     <Route path="/blog/cleaning-services-calgary" element={<BlogChoosingCalgaryCleaner />} />
     <Route path="/satisfaction-guarantee" element={<SatisfactionGuarantee />} />
-    <Route path="/insurance-liability" element={<Navigate to="/satisfaction-guarantee/" replace />} />
+    <Route path="/insurance-liability" element={<Navigate to="/faqs/" replace />} />
     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
     <Route path="/terms" element={<Terms />} />
-    <Route path="/gift-cards" element={<GiftCards />} />
+    {/* /gift-cards/ was an orphan copy (Edmonton and Calgary only, a design picker that sent buyers to
+        the contact form); it now redirects to the one gift-card page (AuditSpur #230). */}
+    <Route path="/gift-cards" element={<Navigate to="/gift-card/" replace />} />
     <Route path="/gift-card" element={<GiftCard />} />
     <Route path="/prepare" element={<Prepare />} />
     <Route path="/book" element={<Book />} />

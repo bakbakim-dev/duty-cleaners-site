@@ -25,6 +25,7 @@ import {
   homeTypeOptions,
   type FrequencyId,
   type ServiceId,
+  VISITS_PER_YEAR,
 } from "@/data/pricing";
 import {
   GHL_FREQUENCY_LABELS,
@@ -251,7 +252,9 @@ function NumberChips({
               onClick={() => onChange(option.value)}
               onKeyDown={onKeyDown}
               tabIndex={index === focusIndex ? 0 : -1}
-              aria-label={option.label}
+              // The name holds the words shown ("3 under 1,700 sq ft"), not
+              // BookingKoala's raw "3 Bedrooms (Under 1700sqft)" (WCAG 2.5.3, AuditSpur #314).
+              aria-label={sub ? `${head} ${sub}` : option.label}
               className={`min-h-[48px] ${sub ? "min-w-[108px]" : "min-w-[56px]"} rounded-md border px-3 py-1.5 text-lg transition-colors ${
                 active
                   ? "funnel-pick border-brand-navy bg-brand-navy font-bold text-brand-navy-foreground"
@@ -1104,7 +1107,6 @@ export default function QuoteFlow({
    * after the first (the first is at the one-time price). Shown as "about",
    * and only beside "no contract", because it assumes the plan is kept.
    */
-  const VISITS_PER_YEAR: Record<number, number> = { 2: 52, 4: 26, 3: 13 };
   const yearSavings =
     quote.ongoing === null ? 0 : Math.round(ongoingSavings * ((VISITS_PER_YEAR[getFrequency(effectiveFrequency).bkId] ?? 1) - 1));
 
@@ -1405,7 +1407,10 @@ export default function QuoteFlow({
   /** The step-3 payload: same contact, now carrying the quoted prices. */
   const confirmFields = () => ({
     ...homeFields(),
-    city: proof.key,
+    // A branch-less page claims no branch here either (owner, 2026-09-22): the
+    // confirm step used to send proof.key, which falls back to Edmonton, so a
+    // homepage quote was tagged "edmonton" (AuditSpur #249).
+    city: area?.general ? "" : proof.key,
     // With deep intent the quoted first clean is Standard + the package, and
     // any add-on chip is included too, so the office's quote-vs-booking check
     // compares like with like.
@@ -1425,6 +1430,14 @@ export default function QuoteFlow({
   }) as Partial<QuotePayload>;
 
   const bookingUrl = bookingQuery === null ? null : publicBookingUrl(bookingQuery);
+  /**
+   * Whether the quote ends on the booking page. Post-construction and the other
+   * quote-only services end in a call-back ("Request my booking"), so the copy
+   * must not promise an exact price, a date picker or a next page (AuditSpur #248).
+   */
+  const bookableOnline = bookingUrl !== null;
+  /** Bathrooms are asked only where the service has bathroom options. */
+  const homeSizeText = baths.length > 0 ? `${bedrooms} bed, ${bathrooms} bath` : `${bedrooms} bed`;
 
   /**
    * There used to be a Speculation Rules prefetch of `bookingUrl` here with
@@ -1768,6 +1781,9 @@ export default function QuoteFlow({
     });
     setSubmitting(false);
     if (result.ok) {
+      // GA4 saw nothing for a call-back, so "asked for a call" looked like
+      // "left at the price" (AuditSpur #316).
+      track("callback_requested", funnelProps());
       setSubmitted(true);
       return;
     }
@@ -1828,10 +1844,16 @@ export default function QuoteFlow({
           Request received.
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          We&rsquo;ll text you within {RESPONSE_TIME_PROMISE} to set a date and time. Your{" "}
+          {/* The button promised a call; this said only "We'll text you" (AuditSpur
+              #291). The office gets a call-back task and the customer an
+              office-hours text (owner, 2026-09-23 and 2026-10-06). */}
+          The office will call you, and we&rsquo;ll text you within {RESPONSE_TIME_PROMISE} to set a date and
+          time. Your{" "}
           {serviceName.toLowerCase()}{whereSuffix} is quoted at {priceLabel}
-          {ongoingTotal ? `, then ${formatPrice(ongoingTotal)} per visit` : ""}.
-          {proof.office.open ? `The ${proof.city} office is open` : `The ${proof.city} line is answered`} {hoursLineFor(proof.key)}.
+          {ongoingTotal ? `, then ${formatPrice(ongoingTotal)} per visit` : ""}.{" "}
+          {area?.general
+            ? `The Edmonton and Calgary offices are open ${hoursLineFor("edmonton")}.`
+            : `${proof.office.open ? `The ${proof.city} office is open` : `The ${proof.city} line is answered`} ${hoursLineFor(proof.key)}.`}
         </p>
         <RiskReversalRow className="mt-6 justify-center" />
         <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -1876,7 +1898,7 @@ export default function QuoteFlow({
             <span className="font-semibold text-foreground">
               {" · "}
               {step === 2 && pricePane === "details"
-                ? "then pick your time"
+                ? bookableOnline ? "then pick your time" : "then the office calls you"
                 : `${TOTAL_STEPS - step - 1} quick step${TOTAL_STEPS - step - 1 === 1 ? "" : "s"} left`}
             </span>
           </span>
@@ -2174,8 +2196,8 @@ export default function QuoteFlow({
                 title="Where should we send your price?"
               >
                 <p className="mt-3 text-muted-foreground">
-                  The next screen shows the exact price for your {serviceName.toLowerCase()}
-                  {selected.asksHomeSize ? ` (${bedrooms} bed, ${bathrooms} bath)` : ""}{whereSuffix}.
+                  The next screen shows {quote.quoteOnly || quote.rangeHigh > quote.firstClean ? "the price range" : "the exact price"} for your {serviceName.toLowerCase()}
+                  {selected.asksHomeSize ? ` (${homeSizeText})` : ""}{whereSuffix}.
                   Nothing is booked yet. All four fields are needed to show it.
                 </p>
               </StepHeader>
@@ -2389,7 +2411,7 @@ export default function QuoteFlow({
                    reads as worked out for this home, not pulled from a table. */
                 companion={
                   pricePane === "price" && selected.asksHomeSize
-                    ? `${serviceName} for your ${bedrooms}-bedroom, ${bathrooms}-bathroom home${whereSuffix}.`
+                    ? `${serviceName} for your ${bedrooms}-bedroom${baths.length > 0 ? `, ${bathrooms}-bathroom` : ""} home${whereSuffix}.`
                     : undefined
                 }
               >
@@ -2744,10 +2766,13 @@ export default function QuoteFlow({
                   </div>
                   {/* Owner, 2026-09-26 (tracker decide-07, option C): homes more than
                       40 minutes' drive from Edmonton, beyond its surrounding cities,
-                      pay $75 and book by phone, so the fee is quoted before booking. */}
-                  {area.outside === true && area.branch !== "calgary" && (
+                      pay $75 and book by phone, so the fee is quoted before booking.
+                      Edmonton-area answers only: towns around Red Deer pay the
+                      standard fee and book online (owner, 2026-09-11), and on a
+                      branch-less page the note names Edmonton itself (AuditSpur #247). */}
+                  {area.outside === true && area.branch === "edmonton" && (
                     <p className="mt-3 text-sm text-fine-print">
-                      More than 40 minutes&rsquo; drive from Edmonton, past the surrounding cities?
+                      {area.general ? "Near Edmonton, but more" : "More"} than 40 minutes&rsquo; drive from Edmonton, past the surrounding cities?
                       Please call us on {CITY_PROOF.edmonton.phone} to book: the travel fee there is
                       higher, and we quote it before you book.
                     </p>
@@ -3002,7 +3027,7 @@ export default function QuoteFlow({
                     onClick={goToDetailsPane}
                     className={`h-auto min-h-[56px] w-full whitespace-normal rounded-full bg-accent px-8 py-3 text-center text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto${readyPulse ? " funnel-ready" : ""}`}
                   >
-                    Almost there: a few details, then pick your date
+                    {bookableOnline ? "Almost there: a few details, then pick your date" : "Almost there: a few details for the office"}
                     <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                   </Button>
                 </div>
@@ -3025,7 +3050,7 @@ export default function QuoteFlow({
                   <p className="flex items-center justify-between gap-3 text-sm font-bold text-foreground">
                     <span>
                       {detailAnswers.every((answer) => answer.done)
-                        ? "All set: choose your time next"
+                        ? bookableOnline ? "All set: choose your time next" : "All set: the office calls you to set the date"
                         : `${detailAnswers.filter((answer) => answer.done).length} of ${detailAnswers.length} answered`}
                     </span>
                     {detailAnswers.every((answer) => answer.done) && (
@@ -3239,7 +3264,9 @@ export default function QuoteFlow({
                   {detailErrors.flexibility && <span key={`flag-flexibility-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <Label htmlFor="dc-flexibility" className="text-lg font-bold">If your slot fills up, how much can we move it? <span className="text-brand-navy" aria-hidden="true">*</span></Label>
                   <p id="dc-flexibility-hint" className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    You pick your date and time on the next page. This just tells the office what it can offer if that slot is taken.
+                    {bookableOnline
+                      ? "You pick your date and time on the next page. This just tells the office what it can offer if that slot is taken."
+                      : "The office calls you to set the date. This tells it how far it can move the time you ask for."}
                   </p>
                   <div id="dc-flexibility" role="radiogroup" aria-label="If your slot fills up, how much can we move it?" aria-describedby="dc-flexibility-hint" className="mt-3 grid gap-2">
                     {FLEXIBILITY_OPTIONS.map((option, index) => {
@@ -3406,7 +3433,7 @@ export default function QuoteFlow({
               <PricePanel
                 quote={quote}
                 variant="compact"
-                serviceLabel={`${serviceName} · ${proof.city}`}
+                serviceLabel={area?.general ? serviceName : `${serviceName} · ${proof.city}`}
                 firstCleanOverride={panelFirstClean}
                 ongoingOverride={ongoingTotal}
                 savingsOverride={ongoingSavings}

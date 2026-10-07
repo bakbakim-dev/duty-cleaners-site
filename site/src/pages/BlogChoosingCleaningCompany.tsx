@@ -93,6 +93,15 @@ const customerSupportPoints = [
   }
 ];
 
+/**
+ * Words in the built <article> at 220 words a minute, the cost guide's rate.
+ * The header said "14 min read" over about 1,400 words (AuditSpur hands
+ * check #77, 2026-10-07). Counted from dist on 2026-10-07; update it when the
+ * prose changes materially.
+ */
+const WORD_COUNT = 1414;
+const READ_MINUTES = Math.max(1, Math.round(WORD_COUNT / 220));
+
 export default function BlogChoosingCleaningCompany() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -170,7 +179,7 @@ export default function BlogChoosingCleaningCompany() {
                 <PostDateline path="/blog/choosing-cleaning-company" />
                 <span className="flex items-center gap-2">
                   <span className="dc-icon dc-icon-clock h-4 w-4" aria-hidden="true" />
-                  14 min read
+                  {READ_MINUTES} min read
                 </span>
               </div>
             </div>

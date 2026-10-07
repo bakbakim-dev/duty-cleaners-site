@@ -201,7 +201,7 @@ export default function Cochrane() {
         eyebrow="From the route"
         heading="At the base of Big Hill"
         paragraphs={[
-          "The town sits at the base of Big Hill, downtown low on the Bow River valley floor, with most of the newer streets up on the higher ground either side of it. Those upper communities lose the shelter the valley gives. Wind comes off the foothills to the west over open ranch country, and screens and window tracks up there load with dry grit far faster than they do downtown. Brushing tracks out is a standing item here, not a deep-clean extra.",
+          "The town sits at the base of Big Hill, downtown low on the Bow River valley floor, with most of the newer streets up on the higher ground either side of it. Those upper communities lose the shelter the valley gives. Wind comes off the foothills to the west over open ranch country, and screens and window tracks up there load with dry grit far faster than they do downtown. Window tracks are wiped in a move-out clean; on a standard or deep visit, ask the office when you book.",
           "Construction continues around Sunset Ridge and Fireside, so the service choice depends on what is actually left in the home. Fine building dust and trade residue call for post-construction cleaning; an empty, dust-free home after the builder's final clean can use the move-in checklist.",
         ]}
         accent="calgary"

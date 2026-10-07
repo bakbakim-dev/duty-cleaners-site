@@ -28,7 +28,7 @@ const DAILY_HABITS = [
   { title: "Make the bed", body: "It takes thirty seconds, and it changes how the whole room looks for the rest of the day." },
   { title: "Wipe counters and the sink", body: "Wipe the kitchen counters and the bathroom sink right after you use them. That stops grime from building up far better than a weekly scrub does." },
   { title: "Run a quick sweep or vacuum", body: "Do just the high-traffic strip: the entryway, the kitchen floor and the patch in front of the couch. It takes a couple of minutes." },
-  { title: "Put things back where they live", body: "Spend five minutes resetting the house before bed. If an item has no \"home\", that is a sign it needs one, or needs to go." },
+  { title: "Put things back where they live", body: "Spend a couple of minutes putting things back before bed. If an item has no \"home\", that is a sign it needs one, or needs to go." },
   { title: "Deal with spills immediately", body: "A spill is easiest to clean while it is still wet and hardest once it dries. This one habit prevents more staining than any product." },
 ];
 
@@ -70,7 +70,7 @@ const FAQS = [
   },
   {
     q: "What is the fastest way to build a cleaning schedule that sticks?",
-    a: "Split household tasks into three tiers: daily habits of a couple of minutes, weekly jobs of thirty to sixty minutes, and monthly jobs such as baseboards, behind appliances and window tracks. A schedule that tries to fit the monthly jobs into every week is the one that gets abandoned.",
+    a: "Split household tasks into three tiers: daily habits of a couple of minutes, weekly jobs of thirty to sixty minutes, and monthly jobs such as dusting the ceiling fan, washing the curtains and cleaning the kitchen appliances inside and out. A schedule that tries to fit the monthly jobs into every week is the one that gets abandoned.",
   },
   {
     q: "Are natural ingredients like vinegar and baking soda enough on their own?",
@@ -250,7 +250,16 @@ export default function BlogSpotlessHomeTips() {
                   <Link to="/blog/cleaning-schedule/" className="text-primary underline underline-offset-2 font-medium">
                     DIY cleaning schedule
                   </Link>{" "}
-                  rather than turning every small touch-up into a full clean.
+                  rather than turning every small touch-up into a full clean. If the weekly floors,
+                  bathrooms and kitchen are what keep slipping, Duty Cleaners books{" "}
+                  <Link to="/edmonton/recurring-cleaning/" className="text-primary underline underline-offset-2 font-medium">
+                    recurring cleaning in Edmonton
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/calgary/recurring-cleaning/" className="text-primary underline underline-offset-2 font-medium">
+                    recurring cleaning in Calgary
+                  </Link>
+                  , and the daily habits stay yours.
                 </p>
               </div>
 
@@ -297,13 +306,15 @@ export default function BlogSpotlessHomeTips() {
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Speed matters more than product for most stains. Blot coffee and wine spills straight
-                  away, rather than rubbing them, to lift the excess liquid before it sets. For grease,
-                  baking soda left to sit for a few minutes before wiping or vacuuming does most of the
-                  work. Test any cleaning solution on a hidden patch first if the surface is delicate;
-                  the full method is in{" "}
+                  away, rather than rubbing them, to lift the excess liquid before it sets. For a light,
+                  fresh grease mark, baking soda left to sit for a few minutes before wiping or
+                  vacuuming does most of the work; heavy or baked-on grease needs a purpose-made
+                  degreaser. Test any cleaning solution on a hidden patch first if the surface is
+                  delicate, and check{" "}
                   <Link to="/cleaning-with-vinegar-and-baking-soda/" className="text-primary underline underline-offset-2 font-medium">
-                    Cleaning with Vinegar and Baking Soda
-                  </Link>.
+                    which surfaces vinegar and baking soda can damage
+                  </Link>{" "}
+                  before you use either.
                 </p>
               </div>
 
@@ -334,11 +345,11 @@ export default function BlogSpotlessHomeTips() {
                         to="/the-top-5-must-have-cleaning-products-for-a-spotless-home/"
                         className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                       >
-                        The Top 5 Must-Have Cleaning Products
+                        5 Cleaning Product Types and Their Surface Limits
                       </Link>
                     </h3>
                     <p className="text-muted-foreground text-sm mt-1">
-                      The five cleaning products worth keeping, and what you can stop buying.
+                      Five product categories, what each one is for and which surfaces to keep it off.
                     </p>
                   </div>
                   <div

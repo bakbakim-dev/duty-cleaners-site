@@ -270,7 +270,7 @@ export default function EdmontonPostConstruction() {
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="display-serif text-3xl md:text-4xl font-bold mb-6">What is left behind after the trades leave</h2>
               <p className="text-lg text-muted-foreground mb-4">
-                Drywall dust settles on baseboards, vents, counters, window ledges and floors. Fine particles work their way into cabinets and drawers, while fingerprints and ordinary smudges mark windows, mirrors and new fixtures. Painted walls hold a film of the same dust. Wall washing is a separate add-on for washable surface soil, not paint or trade-residue removal:{" "}
+                Drywall dust settles on baseboards, vents, counters, window ledges and floors. Fine particles work their way into cabinets and drawers, while fingerprints and ordinary smudges mark windows, mirrors and new fixtures. Painted walls hold a film of the same dust. Washing the walls is for washable surface soil, not paint or trade-residue removal:{" "}
                 <Link to="/wall-washing-wall-cleaning/" className="text-primary underline underline-offset-4">wall washing in Edmonton</Link>{" "}
                 is a separate add-on, priced by the size of the home.
               </p>
@@ -359,8 +359,8 @@ export default function EdmontonPostConstruction() {
               <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">What post-construction cleaning costs in Edmonton</h2>
               <p className="text-muted-foreground leading-relaxed">
                 This is the one clean we price by square footage rather than by bedrooms, because the dust
-                does not care how the rooms are divided. Pick the band the finished space falls in and that
-                is the rate, before 5% GST. It is for the condition you describe; if it needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.
+                does not care how the rooms are divided. Find the band the finished space falls in for the
+                price, before 5% GST; the office confirms the band when it calls to book. It is for the condition you describe; if it needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.
               </p>
             </div>
             <div className="mx-auto mt-10 max-w-2xl overflow-x-auto border border-border rounded-xl">
@@ -556,8 +556,8 @@ export default function EdmontonPostConstruction() {
                 <Link to="/about-us/" className="text-white underline underline-offset-4">About Duty Cleaners</Link>.
               </p>
               <p className="text-base text-white/90 mb-8">
-                The form quotes by square footage. Pick the band the finished space falls in and the price is
-                on screen before you book; nothing is charged until the clean is done. The other cleans, with
+                The instant quote shows an estimate range from the size of the home, and the office calls to
+                confirm the square-footage band and the date; nothing is charged until the clean is done. The other cleans, with
                 their starting prices, are listed under{" "}
                 <Link to="/services/" className="text-white underline underline-offset-4">all Edmonton cleaning services and prices</Link>.
               </p>

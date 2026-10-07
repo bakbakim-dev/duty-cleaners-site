@@ -52,7 +52,7 @@ describe("booking handoff data contract", () => {
 describe("all supported property and frequency combinations", () => {
   it("preserves every mapped room, home and frequency selection", () => {
     const homes: Record<number, number> = { 90: 90, 89: 89, 54: 54, 56: 56, 55: 55 };
-    const frequencies: Record<number, number> = { 1: 1, 2: 3, 4: 4, 3: 64 };
+    const frequencies: Record<number, number> = { 1: 1, 3: 3, 4: 4, 2: 64 };
     for (const service of ["standard", "move-in-out"]) {
       const move = service === "move-in-out";
       const beds = move ? [74,75,76,77,78,79,80] : [87,81,82,83,84,85,86];

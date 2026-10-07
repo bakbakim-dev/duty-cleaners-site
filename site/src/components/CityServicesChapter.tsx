@@ -156,7 +156,7 @@ export default function CityServicesChapter({
                   to={canonicalForPath(`${basePath}/deep-cleaning`)}
                   className="mt-3 inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                  Deep cleaning in {city} <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
+                  Deep cleaning in {city} <span className="dc-icon dc-icon-arrow-right ml-1 h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -193,7 +193,7 @@ export default function CityServicesChapter({
           discounts, because the discount is the whole proposition.
         */}
         <div
-          className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
+          className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group mt-6 flex flex-col items-start gap-4 border bg-white p-5 sm:flex-row sm:items-center md:p-6 relative"
         >
           <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-sm bg-accent/10">
             <Repeat className="h-6 w-6 text-accent" aria-hidden="true" />
@@ -206,13 +206,13 @@ export default function CityServicesChapter({
               to={canonicalForPath(`${basePath}/recurring-cleaning`)}
               className="inline-flex items-center text-sm font-semibold text-accent transition-transform duration-300 motion-safe:group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              {city} recurring cleaning <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
+              {city} recurring cleaning <span className="dc-icon dc-icon-arrow-right ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
         {/* Slim paper card */}
         <div
-          className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
+          className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group mt-6 flex flex-col items-start gap-4 border bg-white p-5 sm:flex-row sm:items-center md:p-6 relative"
         >
           <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-sm bg-primary/10">
             <HardHat className="h-6 w-6 text-primary" aria-hidden="true" />
@@ -225,7 +225,7 @@ export default function CityServicesChapter({
               to={canonicalForPath(`${basePath}/post-construction-cleaning`)}
               className="inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              {city} post-construction cleaning <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
+              {city} post-construction cleaning <span className="dc-icon dc-icon-arrow-right ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
@@ -237,7 +237,7 @@ export default function CityServicesChapter({
             /wall-washing-wall-cleaning/, Calgary's the -calgary twin; both come
             out of canonicalForPath from the route path. */}
         <div
-          className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
+          className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group mt-6 flex flex-col items-start gap-4 border bg-white p-5 sm:flex-row sm:items-center md:p-6 relative"
         >
           <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-sm bg-primary/10">
             <PaintRoller className="h-6 w-6 text-primary" aria-hidden="true" />
@@ -250,7 +250,7 @@ export default function CityServicesChapter({
             to={canonicalForPath(`${basePath}/wall-washing`)}
             className="inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            {city} wall washing <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
+            {city} wall washing <span className="dc-icon dc-icon-arrow-right ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
@@ -263,7 +263,7 @@ export default function CityServicesChapter({
             to={canonicalForPath(`${basePath}/services`)}
             className="inline-flex min-h-[44px] items-center font-semibold text-primary hover:underline"
           >
-            Compare cleaning services in {city} <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
+            Compare cleaning services in {city} <span className="dc-icon dc-icon-arrow-right ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
       </div>

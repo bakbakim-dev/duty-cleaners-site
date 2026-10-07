@@ -67,18 +67,18 @@ const THE_FIVE = [
   {
     n: "04",
     name: "A dedicated glass cleaner",
-    role: "Compatible windows, mirrors and shower glass",
+    role: "Windows and shower glass; mirrors with care",
     body:
       "Glass is the one surface where streaks are the whole result, so it earns its own bottle. Technique matters more than brand: spray the cloth rather than the glass, work top to bottom, then buff dry with a second clean cloth.",
-    look: "Fast-evaporating and residue-free. A vinegar-and-water mix works on plain glass if you prefer to make it yourself.",
-    watch: "Do not use vinegar-based cleaners on mirrors repeatedly, because acid can creep under the edge and damage the silvered backing.",
+    look: "Fast-evaporating and residue-free. A vinegar-and-water mix works on window and shower glass if you prefer to make it yourself, but never on mirrors.",
+    watch: "Keep vinegar and vinegar-based cleaners off mirrors: acid can creep under the edge and damage the silvered backing. Use a plain glass cleaner, or warm water and a drop of dish soap.",
   },
   {
     n: "05",
     name: "Baking soda",
     role: "An optional abrasive for compatible surfaces",
     body:
-      "Baking soda can act as an abrasive, which also means it can scratch or dull some finishes. Check the pan, appliance or surface care instructions before using it; do not assume it is suitable for an oven lining, grout or a coated surface. Remove the source of a smell instead of relying on a deodorizer.",
+      "Baking soda can act as an abrasive, which also means it can scratch or dull some finishes. Check the pan, appliance or surface care instructions before using it; do not assume it is suitable for an oven lining, grout or a coated surface. Remove the source of a smell instead of relying on a deodoriser.",
     look: "The plain grocery box. There is no premium version worth paying for.",
     watch: "Do not mix cleaning products or store vinegar and baking soda together in a closed container. Choose one suitable cleaning method and follow its instructions.",
   },
@@ -206,12 +206,12 @@ export default function BlogCleaningProducts() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
-                The Top 5 Must-Have Cleaning Products for a Spotless Home
+                5 Cleaning Product Types and Their Surface Limits
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8">
-                Five products cover almost every surface in a home. Here is what each one is for,
-                what to look for on the label, and what you can stop buying.
+                Five product categories to check against the surfaces in your home: what each one
+                is for, what to look for on the label, and where it does damage.
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
@@ -278,7 +278,7 @@ export default function BlogCleaningProducts() {
                                 <h4 className="font-semibold text-foreground text-sm mb-1">
                                   What to look for
                                 </h4>
-                                <p className="text-muted-foreground text-sm">{item.look}</p>
+                                <p className="text-foreground text-sm">{item.look}</p>
                               </div>
                             </div>
                             <div className="flex gap-3 p-4 bg-destructive/10 rounded-lg border border-destructive/20">
@@ -287,7 +287,7 @@ export default function BlogCleaningProducts() {
                                 <h4 className="font-semibold text-foreground text-sm mb-1">
                                   Common mistake
                                 </h4>
-                                <p className="text-muted-foreground text-sm">{item.watch}</p>
+                                <p className="text-foreground text-sm">{item.watch}</p>
                               </div>
                             </div>
                           </div>
@@ -343,7 +343,7 @@ export default function BlogCleaningProducts() {
 
                 <div className="p-6 bg-secondary/10 rounded-xl border border-secondary/20">
                   <h3 className="font-bold text-foreground mb-2">Bedrooms, living areas and floors</h3>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-foreground text-sm">
                     Dust before you vacuum and work from higher surfaces to lower ones.
                     Use a floor cleaner and moisture level approved by the flooring manufacturer;
                     an all-purpose label is not permission to use a product on every finish.
@@ -369,7 +369,7 @@ export default function BlogCleaningProducts() {
                       <span className="dc-icon dc-icon-circle-x h-6 w-6 text-destructive flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                        <p className="text-muted-foreground text-sm">{item.why}</p>
+                        <p className="text-foreground text-sm">{item.why}</p>
                       </div>
                     </div>
                   ))}
@@ -397,14 +397,14 @@ export default function BlogCleaningProducts() {
                       <h3 className="font-bold text-foreground mb-3">
                         Categories to check against your surfaces
                       </h3>
-                      <ul className="space-y-2 text-muted-foreground text-sm">
+                      <ul className="space-y-2 text-foreground text-sm">
                         <li>• A compatible all-purpose cleaner</li>
                         <li>• A dozen or more microfibre cloths, in at least three colours</li>
                         <li>• Acidic bathroom / descaling cleaner</li>
                         <li>• Glass cleaner, plus one flat-weave cloth kept only for glass</li>
                         <li>• A box of baking soda</li>
                       </ul>
-                      <p className="mt-4 text-sm text-muted-foreground">
+                      <p className="mt-4 text-sm text-foreground">
                         All five are sold at most Canadian grocery and hardware stores.
                       </p>
                     </div>

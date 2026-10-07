@@ -44,7 +44,7 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: 14,
-    title: "House Cleaning Tips: Keep Up Between Cleans",
+    title: "House Cleaning Tips for a Spotless Home",
     excerpt: "Practical upkeep for tracked-in dirt, clutter, kitchen splashes and bathroom buildup between cleaning visits.",
     category: "Cleaning Tips",
     image: spotlessHomeTipsHero,
@@ -52,7 +52,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 13,
-    title: "Hiring a Calgary Cleaner: Condo Access, Quotes & Coverage",
+    title: "What to Check Before Hiring a Cleaner in Calgary",
     excerpt: "Check building access, the Calgary branch, regional coverage and the quote for your actual home before confirming a cleaning visit.",
     category: "Hiring Guide",
     image: calgaryCleanerHero,
@@ -60,7 +60,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 12,
-    title: "5 Cleaning Product Types & Surface Limits",
+    title: "5 Cleaning Product Types and Their Surface Limits",
     excerpt: "Compare five product categories and check labels and manufacturer care instructions. A practical guide to suitable uses, not a tested brand ranking.",
     category: "Cleaning Supplies",
     image: cleaningProductsHero,
@@ -92,7 +92,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 8,
-    title: "How Often Should You Hire a House Cleaner?",
+    title: "How Often Should You Book Professional House Cleaning?",
     excerpt: "Weekly, bi-weekly and monthly house cleaning each suit a different home. Household size, pets, how you use the home and your budget decide which one fits.",
     category: "Home Care",
     image: cleaningFrequencyHero,
@@ -100,7 +100,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 7,
-    title: "DIY House Cleaning Schedule: Daily, Weekly & Monthly",
+    title: "A Daily, Weekly and Monthly DIY Cleaning Schedule",
     excerpt: "A realistic schedule splits the cleaning into daily, weekly and monthly tasks, so no single day has to carry the whole house.",
     category: "Cleaning Tips",
     image: cleaningScheduleHero,

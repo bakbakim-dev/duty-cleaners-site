@@ -119,7 +119,7 @@ export default function Pleasantview() {
                   Professional House Cleaning in Pleasantview
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Pleasantview mixes single-family houses with apartment towers and low-rise walk-ups, and the 1960s were its main building decade. In a house, most of the hours go to floors and baseboards; in an apartment, they go to the galley kitchen, the bathroom fan and the balcony door track.
+                  Pleasantview mixes single-family houses with apartment towers and low-rise walk-ups, and most of its homes date from 1961 to 1980. In a house, most of the hours go to floors and baseboards; in an apartment, they go to the galley kitchen, the bathroom fan and the balcony door track.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

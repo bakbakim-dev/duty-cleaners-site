@@ -1,5 +1,5 @@
 import { BUSINESS_TRADE_TYPE } from "@/data/proof";
-import { CITY_PROOF, EDMONTON_RATING_CLAIM, COMPANY } from "@/data/proof";
+import { CITY_PROOF, EDMONTON_RATING_CLAIM, COMPANY, hoursLineFor } from "@/data/proof";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import {
   BRANCH_ID,
@@ -515,7 +515,7 @@ export default function EdmontonMarchOut() {
             </div>
             <p className="mt-8 text-sm text-muted-foreground inline-flex items-center gap-2 justify-center">
               <span className="dc-icon dc-icon-map-pin w-4 h-4 text-primary" aria-hidden="true" />
-              18615 71 Ave NW, Edmonton · Mon–Sat 8am–8pm · Sun 9am–3pm
+              {CITY_PROOF.edmonton.streetAddress}, Edmonton · open {hoursLineFor("edmonton")}
             </p>
           </div>
         </AnimatedSection>

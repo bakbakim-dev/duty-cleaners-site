@@ -70,7 +70,7 @@ const wallProblems = [
   { title: "Cooking film", description: "The sticky layer that spreads past the backsplash onto the surrounding wall and holds whatever lands on it." },
   { title: "Handprints & scuffs", description: "Around switches, along hallways and up the stairwell, where hands and bags touch the wall." },
   { title: "Salt & grit at the entry", description: "Grit and salt marks on the wall beside the door and along the stairwell." },
-  { title: "Nicotine & smoke residue", description: "Yellow tar film that dulls the paint. It fades with washing; full removal is not promised." },
+  { title: "Nicotine & smoke residue", description: `Yellow tar film that dulls the paint. It fades with washing; full removal is not promised. A smoked-in home adds a smoke surcharge from ${POLICY.smokeSurchargeFrom}, quoted before you book.` },
   { title: "Light surface mildew", description: "Wiped off painted bathroom walls where it is safe to. Mould that has gone into the drywall is remediation work, which the team does not do." },
 ];
 
@@ -119,7 +119,7 @@ const faqs = [
      visit" and to say a smoke-stained ceiling "is normally replaced". Neither
      is on file; the ladder limit is (content prompt T7). */
   { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: `Ceilings are not part of wall washing, and the team works from nothing higher than a two-step stool. Smoke stain and smell can both survive a wash on the walls, so call the Edmonton office at ${CITY_PROOF.edmonton.phone} before booking to talk through a particular room.` },
-  { q: "How much does wall washing cost in Edmonton?", a: `Spot cleaning runs ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0)} and a full wash ${formatPrice(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0)}, by home size and before 5% GST. Wall washing is booked together with a clean, so the bill also carries that clean, from ${standardTierRows()[0]?.price ?? ""} for a one-bedroom apartment. A home with pets adds a compulsory ${formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0)} a visit, a bungalow, basement suite, townhouse or two-storey house costs more than an apartment, and an address outside Edmonton city limits adds a ${formatPrice(travelFee("standard") ?? 0)} travel fee; each shows on the quote before you book.` },
+  { q: "How much does wall washing cost in Edmonton?", a: `Spot cleaning runs ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0)} and a full wash ${formatPrice(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0)}, by home size and before 5% GST. Wall washing is booked together with a clean, so the bill also carries that clean, from ${standardTierRows()[0]?.price ?? ""} for a one-bedroom apartment. A home with pets adds a compulsory ${formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0)} a visit, a bungalow, basement suite, townhouse or two-storey house costs more than an apartment, and an address outside Edmonton city limits adds a ${formatPrice(travelFee("standard") ?? 0)} travel fee; each shows on the quote before you book. If anyone has smoked in the home, a smoke surcharge from ${POLICY.smokeSurchargeFrom} is added, depending on the size of the home and how heavy the residue is, and a heavily smoked-in home can cost much more; tell us when you book and we quote it first.` },
 ];
 
 /** Cheapest bookable wall service, derived from bk-config — never typed. */
@@ -166,7 +166,7 @@ const TRAVEL_LINE = formatPrice(travelFee("standard") ?? 0);
 const PROOF = CITY_PROOF.edmonton;
 
 const PAGE_TITLE = "Wall Washing Add-On Edmonton | Duty Cleaners";
-const META_DESCRIPTION = `Wall spot cleaning in Edmonton from ${formatPrice(WALL_FROM)} and a full wall wash from ${formatPrice(WALL_FULL)} before GST, by home size, with a standard or move-out clean.`;
+const META_DESCRIPTION = `Wall spot cleaning in Edmonton from ${formatPrice(WALL_FROM)} and a full wall wash from ${formatPrice(WALL_FULL)} before GST, by home size, with a standard, deep or move-out clean.`;
 
 export default function WallWashingEdmonton() {
 

@@ -328,7 +328,12 @@ server.close();
 // renders NotFound, so the visitor gets the real site and the crawler gets the right
 // status. Nothing generated this before — the comment above said "deploy scripts use
 // it" and no script did, so dist/404.html was whatever an earlier deploy left behind.
-writeFileSync(join(DIST, "404.html"), readFileSync(join(DIST, "spa-shell.html"), "utf-8"));
+// The startup page_view is sent before React renders, so it carried the shell's
+// home title and GA4 never saw "Page not found" (AuditSpur #322).
+writeFileSync(
+  join(DIST, "404.html"),
+  readFileSync(join(DIST, "spa-shell.html"), "utf-8").replace(/<title>[^<]*<\/title>/, "<title>Page not found | Duty Cleaners</title>"),
+);
 console.log("wrote 404.html from the SPA shell");
 for (const f of ["spa-shell.html", "404.html"]) {
   writeFileSync(join(DIST, f), noindexShell(readFileSync(join(DIST, f), "utf-8")));

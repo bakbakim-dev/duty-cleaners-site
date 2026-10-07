@@ -49,7 +49,7 @@ export default function Windermere() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Windermere?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `You can book any of these house cleans here:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -230,7 +230,7 @@ export default function Windermere() {
         eyebrow="From the route"
         heading="Everything young except the valley"
         paragraphs={[
-          "The 2005 municipal census found 84 single-family houses in the whole neighbourhood. Almost every home here went up inside the last twenty years, so nothing dates from the era of enamel fixtures and waxed hardwood floors. What that leaves is modern surface, and engineered stone and engineered wood are permanently dulled by abrasives and high-pH cleaner. Neutral-pH product and a dry cloth is the default.",
+          "Building had barely started when the 2005 municipal census counted 84 houses here; by 2012 there were about 1,500 homes. Almost every home here went up inside the last twenty years, so nothing dates from the era of enamel fixtures and waxed hardwood floors. What that leaves is modern surface, and engineered stone and engineered wood are permanently dulled by abrasives and high-pH cleaner. Neutral-pH product and a dry cloth is the default.",
           "The west and northwest edge is the North Saskatchewan valley, so a good number of lots face open sky rather than another house. At Edmonton's latitude the afternoon sun comes in low across that opening, and at that angle a single wet pass dries into visible lines, so west glass gets a dry buff after the wash. The city's spring sweep does not start until April, so March road sand is still on the streets and gets tracked indoors.",
         ]}
       />

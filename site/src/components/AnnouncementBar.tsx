@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 
 const DISMISS_KEY = "dc-announcement-dismissed";
 
-export default function AnnouncementBar() {
+export default function AnnouncementBar({ quoteHref }: { quoteHref?: string } = {}) {
   const location = useLocation();
   const { pathname } = location;
   const specialistCta = specialistCtaForLocation(pathname, location.search, location.hash);
@@ -45,7 +45,7 @@ export default function AnnouncementBar() {
             ? specialistCta.announcement
             : "Nothing is charged at booking, and you pay once the clean is complete."}
           <a
-            href={specialistCta ? specialistCta.href : quoteHrefFor(pathname)}
+            href={specialistCta ? specialistCta.href : quoteHref ?? quoteHrefFor(pathname)}
             className="ml-2 inline-flex min-h-[44px] items-center font-semibold text-accent-on-dark underline-offset-2 transition-colors hover:underline"
           >
             {specialistCta ? specialistCta.label : "See My Instant Price"}

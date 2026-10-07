@@ -5,6 +5,7 @@ import { Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Picture } from "vite-imagetools";
 import ResponsiveImage from "@/components/ResponsiveImage";
+import { readableDate } from "./PostDateline";
 
 interface BlogPostCardProps {
   title: string;
@@ -50,7 +51,8 @@ export default function BlogPostCard({ title, excerpt, category, date, image, sl
             <ResponsiveImage
               picture={image}
               sizes="(min-width: 1024px) 30vw, (min-width: 768px) 50vw, 100vw"
-              alt={title}
+              alt=""
+              aria-hidden="true"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               /* Nine of these render on /blog/, and the page has its own hero
                  image above the grid which is already eager and high priority.
@@ -86,7 +88,7 @@ export default function BlogPostCard({ title, excerpt, category, date, image, sl
             <div className="flex items-center justify-between text-xs text-muted-foreground mb-4 pt-3 border-t border-primary/10">
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-3.5 w-3.5 text-primary/60" />
-                {date ? <>Updated <time data-content-revision dateTime={date}>{date}</time></> : "Cleaning guide"}
+                {date ? <>Updated <time data-content-revision dateTime={date}>{readableDate(date)}</time></> : "Cleaning guide"}
               </span>
             </div>
             <span

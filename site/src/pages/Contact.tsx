@@ -94,7 +94,7 @@ const CONTACT_FAQS: { q: string; a: string; more: { to: string; label: string } 
   },
   {
     q: "Are you hiring?",
-    a: "Duty Cleaners takes cleaner applications for both cities through the join-the-team page, not the contact form, which routes to booking. Cleaners work as independent contractors with their own vehicle and equipment.",
+    a: "Duty Cleaners takes cleaner applications for Edmonton, Calgary and Red Deer through the join-the-team page, not the contact form, which routes to booking. Cleaners work as independent contractors with their own vehicle and equipment.",
     more: { to: "/join-the-team", label: "Join the team" },
   },
 ];

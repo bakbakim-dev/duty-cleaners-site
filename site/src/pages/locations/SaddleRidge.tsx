@@ -162,7 +162,7 @@ export default function SaddleRidge() {
         heading="Saddle Ridge at family scale"
         paragraphs={[
           "Saddle Ridge runs to large family households, and its 2000s homes are built for them — double-primary layouts, spice kitchens whose cooking films need degreasing on a schedule regular kitchens never demand, and main-floor bedrooms that add an extra full bath to the count. A Saddle Ridge clean is bigger than its bedroom number implies.",
-          "The northeast's wind carries fine dust off Métis Trail and the airport lands to west-facing sills. Ongoing construction on the community's growing edges keeps site grit in rotation — window tracks tell you which phase is building.",
+          "The northeast's wind carries fine dust off Métis Trail and the airport lands to west-facing sills. As of 2026, construction on the community's growing edges keeps site grit in rotation — window tracks tell you which phase is building.",
         ]}
       />
 

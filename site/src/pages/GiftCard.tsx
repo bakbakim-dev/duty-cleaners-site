@@ -64,7 +64,7 @@ const FAQS = [
     // washing and leave out the hourly short-term-rental turnovers the site
     // sells on its two Airbnb pages.
     q: "Where can the gift card be used?",
-    a: "On any of our home cleaning services in Edmonton, Calgary or Red Deer: standard, deep, move-in or move-out, post-construction, wall washing, and Airbnb and short-term rental turnovers, which are billed by the hour rather than by home size. The recipient picks the service and the date.",
+    a: "On any of our home cleaning services in Edmonton, Calgary, Red Deer or the communities around them: standard, deep, move-in or move-out, post-construction, wall washing, and Airbnb and short-term rental turnovers, which are billed by the hour rather than by home size. The recipient picks the service and the date.",
   },
   {
     q: "Does the gift card expire?",
@@ -151,7 +151,7 @@ export default function GiftCard() {
               <h1 className="mb-5 text-3xl font-bold text-white md:text-5xl">House Cleaning Gift Cards for Edmonton, Calgary and Red Deer</h1>
               <p className="text-lg leading-relaxed text-white/85 md:text-xl">
                 Choose any amount, add a message, and the card arrives by email, right away or on a
-                date you pick. The recipient can use it on any clean in Edmonton, Calgary or Red Deer;
+                date you pick. The recipient can use it on any clean in Edmonton, Calgary, Red Deer or the communities around them;
                 the Edmonton and Calgary offices are both rated {RATING_CLAIM}.
               </p>
 

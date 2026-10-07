@@ -267,9 +267,10 @@ export default function CalgaryPostConstruction() {
                 added to the clean and priced by home size.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
-                The Calgary team does <strong>final-stage post-construction cleaning</strong>, the{" "}
+                The Calgary team does <strong>final-stage post-construction cleaning</strong>, the clean that
+                follows the last trade out of the building (a finished home that is simply changing hands is a{" "}
                 <Link to="/move-out-cleaning-calgary/" className="text-primary underline underline-offset-4">move-in clean</Link>{" "}
-                that follows the last trade out of the building. New builds, kitchen and bathroom remodels, finished
+                instead, priced by bedrooms). New builds, kitchen and bathroom remodels, finished
                 basements, conversions and whole-home renovations all book the same way, by the square footage of the space
                 that was worked on.
               </p>
@@ -585,7 +586,8 @@ export default function CalgaryPostConstruction() {
                 <Link to="/about-us/" className="text-white underline underline-offset-4">About Duty Cleaners</Link>.
               </p>
               <p className="text-base text-white/90 mb-8">
-                The form asks for the square footage band and the date, and shows the price before you book. The other cleans
+                The instant quote shows an estimate range from the size of the home, and the office calls to confirm the
+                square-footage band and the date; nothing is charged until the clean is done. The other cleans
                 are listed under{" "}
                 <Link to="/calgary/services/" className="text-white underline underline-offset-4">every Calgary cleaning service, with starting prices</Link>.
               </p>

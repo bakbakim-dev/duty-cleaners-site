@@ -19,7 +19,6 @@ const DC_GHL_RETRY_MINUTES = [5, 30, 120, 720, 1440, 2880];
 const DC_GHL_ALLOWED_ORIGINS = [
     'https://dutycleaners.ca',
     'https://www.dutycleaners.ca',
-    'https://duty-cleaners-preview.netlify.app',
     'https://mikaily131.sg-host.com',
     'http://127.0.0.1:5173',
     'http://localhost:5173',
@@ -1187,7 +1186,8 @@ function dc_ghl_deliver(array $config, array $payload): array
         $tags = $payload['stage'] === 'confirm'
             ? ['instant-quote', 'quote-confirmed']
             : ['quote-started'];
-        if ($payload['city'] !== '') $tags[] = strtolower($payload['city']);
+        $cityTag = strtolower(trim((string) $payload['city']));
+        if ($cityTag !== '' && isset(DC_GHL_BRANCHES[$cityTag])) $tags[] = $cityTag === 'red deer' ? 'reddeer' : $cityTag;
         if ($payload['intent'] === 'deep') $tags[] = 'deep-intent';
         // A call-back request travels the confirmed-quote path like a booking;
         // this tag is what lets GoHighLevel alert the office to call. It must

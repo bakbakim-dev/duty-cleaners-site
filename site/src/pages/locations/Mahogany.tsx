@@ -34,7 +34,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Mahogany?",
-    answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `You can book any of these house cleans here:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -108,7 +108,7 @@ export default function Mahogany() {
                 Professional House Cleaning in Mahogany
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Mahogany is still being built out on Calgary's southeast edge, so homes downwind of an active lot get construction silt on sills, window tracks and door tops within days of a wipe. Our Calgary team takes a damp cloth to it every visit.
+                As of 2026, Mahogany is still being built out on Calgary's southeast edge, so homes downwind of an active lot get construction silt on sills, window tracks and door tops within days of a wipe. Our Calgary team takes a damp cloth to it every visit.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

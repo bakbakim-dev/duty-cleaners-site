@@ -73,12 +73,12 @@ export default function Okotoks() {
     <>
       <Helmet>
         <title>House Cleaning Services in Okotoks, AB | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Okotoks, where a provincial licence on the Sheep River sets how much water the town may take. The clean involves no outdoor work." />
+        <meta name="description" content="House cleaning in Okotoks from our Calgary branch: standard, deep and move-out cleans at a flat price by home size, before GST, plus the travel fee." />
         <meta property="og:title" content="House Cleaning Services in Okotoks, AB | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Okotoks, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Okotoks, where a provincial licence on the Sheep River sets how much water the town may take. The clean involves no outdoor work." />
-        <meta property="og:description" content="House cleaning in Okotoks, where a provincial licence on the Sheep River sets how much water the town may take. The clean involves no outdoor work." />
+        <meta name="twitter:description" content="House cleaning in Okotoks from our Calgary branch: standard, deep and move-out cleans at a flat price by home size, before GST, plus the travel fee." />
+        <meta property="og:description" content="House cleaning in Okotoks from our Calgary branch: standard, deep and move-out cleans at a flat price by home size, before GST, plus the travel fee." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/okotoks/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/okotoks/" />
@@ -103,7 +103,7 @@ export default function Okotoks() {
                   Professional House Cleaning in Okotoks
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  How much water Okotoks may take is set by a provincial licence on the Sheep River, and under Stage 1 of the water bylaw, outdoor watering runs two weekdays a week from May through October. The clean itself involves no outdoor work.
+                  Our Calgary branch cleans Okotoks homes at a flat price set by home size, shown before GST and with the travel fee for towns outside Calgary, and you pay after the clean.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -156,10 +156,10 @@ export default function Okotoks() {
 
       <LocalMarketNote
         eyebrow="Water discipline"
-        heading="Two watering days a week"
+        heading="Water set by the Sheep River"
         paragraphs={[
           "How much water the town may take is set by provincial licence on the Sheep River, not by demand, and land use for new development is approved only where licence capacity already exists. A mandatory watering schedule has been in place since 2008. Conservation here is not a preference; it is the operating condition.",
-          "Under Stage 1 of the water bylaw, outdoor watering runs two days a week and weekdays only: even-numbered homes Tuesday and Friday, odd-numbered Monday and Thursday, May through October. The clean itself involves no outdoor work.",
+          "The town's water bylaw sets outdoor watering days by house number, and fewer days are allowed as the conservation stage rises; the schedule in use in 2026 was approved by council in 2024. The clean itself involves no outdoor work.",
         ]}
         accent="calgary"
       />

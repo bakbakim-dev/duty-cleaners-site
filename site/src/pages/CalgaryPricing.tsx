@@ -679,7 +679,7 @@ export default function CalgaryPricing() {
               </p>
               <p className="text-white/80 leading-relaxed mb-8">
                 The{" "}
-                <Link to="/reviews/" className="text-accent underline underline-offset-4 hover:text-white">{CITY_PROOF.calgary.googleReviewCount} Calgary Google reviews</Link>{" "}
+                <Link to="/reviews/" className="text-accent underline underline-offset-4 hover:text-white">Calgary reviews we have copied from Google</Link>{" "}
                 are worth ten minutes before you book. If the job is not a standard, deep or move-out clean, it is under{" "}
                 <Link to="/calgary/services/" className="text-accent underline underline-offset-4 hover:text-white">every Calgary cleaning service, with starting prices</Link>.
                 And a clean makes a straightforward present:{" "}

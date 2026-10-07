@@ -61,12 +61,18 @@ const SERVICE_IDS: Record<string, number> = {
   "move-in-out": 2,
 };
 
-/** BookingKoala booknow frequency ids, keyed by the bk-config frequency id. */
-const FREQUENCY_IDS: Record<number, number> = {
+/**
+ * BookingKoala booknow frequency ids, keyed by the bk-config frequency id.
+ * bk-config: 3 Weekly, 4 Bi-Weekly, 2 Every 4 Weeks. The booking page's own
+ * radios (read 2026-10-07, signed out): freq_3 Weekly, freq_4 Bi-Weekly,
+ * freq_64 Every 4 Weeks. The keys were swapped until 2026-10-07, so an Every 4
+ * Weeks customer arrived with Weekly ticked (AuditSpur #246).
+ */
+export const FREQUENCY_IDS: Record<number, number> = {
   1: 1, // One-Time
-  2: 3, // Weekly
+  3: 3, // Weekly
   4: 4, // Bi-Weekly
-  3: 64, // Every 4 Weeks
+  2: 64, // Every 4 Weeks
 };
 
 /**

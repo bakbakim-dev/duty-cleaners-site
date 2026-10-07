@@ -51,7 +51,7 @@ export default function Canora() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Canora?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `You can book any of these house cleans here:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -265,7 +265,7 @@ export default function Canora() {
         eyebrow="From the route"
         heading="Where the LRT turns south"
         paragraphs={[
-          "Stony Plain Road is Canora's southern boundary, and the Valley Line West alignment runs down the centre of it before turning south at 156 Street and leaving the neighbourhood behind. One flank is a live work zone through the 2026 season; the other three are not. Between visits, sills, screens and window tracks on the south blocks carry the concrete dust the cutting throws, which houses up at 107 Avenue never see.",
+          "Stony Plain Road is Canora's southern boundary, and the Valley Line West alignment runs down the centre of it before turning south at 156 Street and leaving the neighbourhood behind. As of 2026 one flank is still a work zone, with construction expected to finish in 2028; the other three are not. Between visits, sills, screens and window tracks on the south blocks carry the concrete dust the cutting throws, which houses up at 107 Avenue never see.",
           "Tenure shapes the rest of the work. About seven in ten dwellings that reported their tenure in the City's 2016 municipal census are rented, roughly half the stock is apartments and another 30% duplex or fourplex, and three quarters of the homes were built before 1981. That mix puts more move-outs on the calendar here than in owner-occupied pockets: a suite handed back on possession day gets the oven, the fridge seals and the closet shelves whether anyone used them or not.",
         ]}
       />
