@@ -38,14 +38,13 @@ DirectoryIndex index.html
   # rendering the homepage body would be soft duplicates of the best page.
   RewriteRule ^book/?$ /spa-shell.html [L]
   RewriteRule ^locations/all/?$ /spa-shell.html [L]
-  RewriteRule ^gift-cards/?$ /spa-shell.html [L]
 
   # The booking link in the "finish booking" text (2026-09-25): /r/<code>
   # reopens a confirmed quote on BookingKoala. resume.php answers every code
   # with a redirect to the booking page, so a bad code never shows an error.
   RewriteRule ^r/([A-Za-z0-9]{10})/?$ /api/resume.php?c=$1 [L]
 
-  # 192 permanent redirects.
+  # 208 permanent redirects.
   RewriteRule ^8038/how-much-does-a-house-cleaning-cost/?$ /how-much-does-a-house-cleaning-cost/ [R=301,L]
   RewriteRule ^8081/the-top-5-must-have-cleaning-products-for-a-spotless-home/?$ /the-top-5-must-have-cleaning-products-for-a-spotless-home/ [R=301,L]
   RewriteRule ^8060/how-often-should-a-cleaning-service-clean-my-house/?$ /how-often-should-a-cleaning-service-clean-my-house/ [R=301,L]
@@ -196,11 +195,27 @@ DirectoryIndex index.html
   RewriteRule ^wp-content/uploads/2024/08/10\.png/?$ / [R=301,L]
   RewriteRule ^wp-content/uploads/2024/08/11\.jpg/?$ / [R=301,L]
   RewriteRule ^wp-content/uploads/2024/08/12\.png/?$ / [R=301,L]
+  RewriteRule ^cleaning-services-for-beaumont-ab/?$ /cleaning-services-beaumont/ [R=301,L]
+  RewriteRule ^cleaning-services-for-windermere-ab/?$ /cleaning-services-windermere/ [R=301,L]
+  RewriteRule ^cleaning-services-for-edmonton/?$ / [R=301,L]
+  RewriteRule ^cleaning-professionals-edmonton/?$ / [R=301,L]
+  RewriteRule ^move-in-and-move-out-cleaning-calgary/?$ /move-out-cleaning-calgary/ [R=301,L]
+  RewriteRule ^services/deep-cleaning-services-edmonton/?$ /edmonton/deep-cleaning/ [R=301,L]
+  RewriteRule ^cleaning-jobs-in-edmonton/?$ /join-the-team/ [R=301,L]
+  RewriteRule ^office-cleaning-company/?$ /commercial-cleaning/ [R=301,L]
+  RewriteRule ^end-tenancy-cleaning/?$ /move-out-cleaning-edmonton/ [R=301,L]
+  RewriteRule ^how-to-choose-the-best-cleaning-professionals-for-your-home/?$ /blog/choosing-cleaning-company/ [R=301,L]
+  RewriteRule ^how-to-prepare-your-home-for-a-house-cleaning-service/?$ /prepare/ [R=301,L]
+  RewriteRule ^cleaning-checklist/?$ /whats-included/ [R=301,L]
+  RewriteRule ^how-to-clean-and-disinfect-your-home-from-germs-viruses-and-prevention-methods/?$ /blog/ [R=301,L]
+  RewriteRule ^6-things-professional-cleaners-do-that-homeowners-dont/?$ /blog/ [R=301,L]
+  RewriteRule ^wp-content/uploads/2022/06/DutyCleaners\.mp4/?$ / [R=301,L]
   RewriteRule ^edmonton/?$ / [R=301,L]
   RewriteRule ^edmonton-2/?$ / [R=301,L]
   RewriteRule ^calgary-2/?$ /cleaning-services-calgary/ [R=301,L]
   RewriteRule ^commercial-cleaning-calgary/?$ /commercial-cleaning-services-calgary/ [R=301,L]
-  RewriteRule ^insurance-liability/?$ /satisfaction-guarantee/ [R=301,L]
+  RewriteRule ^insurance-liability/?$ /faqs/ [R=301,L]
+  RewriteRule ^gift-cards/?$ /gift-card/ [R=301,L]
   RewriteRule ^calgary/?$ /cleaning-services-calgary/ [R=301,L]
   RewriteRule ^edmonton/services/?$ /services/ [R=301,L]
   RewriteRule ^edmonton/pricing/?$ /pricing/ [R=301,L]

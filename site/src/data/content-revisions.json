@@ -4,52 +4,52 @@
     "modified": "2026-10-06"
   },
   "/about-us": {
-    "hash": "41c1411d53d940d120c93a38535b6be4393fa3c5a97a9986f95243fe31246abd",
-    "modified": "2026-10-06"
+    "hash": "a81c5a77892e356bebcea4d6db3b2c1ccfc9379ebed4c6b80ff6608900bc6441",
+    "modified": "2026-10-07"
   },
   "/airbnb-cleaning-services-calgary": {
-    "hash": "8477c15fb93a02516b0b0f28caef01a078c9e5d7979eb16c2a7b09b57e9b330d",
-    "modified": "2026-10-02"
+    "hash": "62327a7cf20489577ee82e496a0a14b103189b3ce6b90c72f3f0f7f82ac6f6f2",
+    "modified": "2026-10-07"
   },
   "/blog": {
-    "hash": "8722890d4e93b4da6a9c2ae96257436e1941e31bd2c2a61868fca7076b0440dc",
-    "modified": "2026-10-06"
+    "hash": "ccfbf9fc249c5d419a51d59f032d4ad9b39dc454435386721ca529efad5f7bc5",
+    "modified": "2026-10-07"
   },
   "/blog/choosing-cleaning-company": {
-    "hash": "d6f6e2443233a8a062734506e9d7e1f38ef5a4064230f67b4cff7798b9c75189",
-    "modified": "2026-10-02"
+    "hash": "59382ce3e38bfd4c360ddc6dcbd5c891b50ee3e8d9b5e1fb64ae60f288da7f0d",
+    "modified": "2026-10-07"
   },
   "/blog/cleaning-schedule": {
-    "hash": "afce07c37ff45c0357b9dfd0a09c46bd0835abb3c517378381674ed5c2214c5a",
-    "modified": "2026-09-12"
+    "hash": "0409166a830bbe0d8dd9a10b2b9dfebf37aae804c4a2d7ce33b5712d3de8374d",
+    "modified": "2026-10-07"
   },
   "/blog/cleaning-services-calgary": {
-    "hash": "0693fa3a5b0c6596f5b7773492944439aea05fe6a908a3f6692159e6eb8fd223",
-    "modified": "2026-09-26"
+    "hash": "b6723ee05baa86d9ca8ae1b1847a954ba54028c42d8eb162cac68c561510f6a5",
+    "modified": "2026-10-07"
   },
   "/blog/spotless-home-tips": {
-    "hash": "dd7b5dc1c7a466a6a37313674583635a987f464155ec8858e8da05d40413f95d",
-    "modified": "2026-09-13"
+    "hash": "9d79bb1c0f4e2982f7138d25f494fdaa551c61f39a084c7c534495dbf058a8af",
+    "modified": "2026-10-07"
   },
   "/calgary/deep-cleaning": {
-    "hash": "7d04d506d33cd7f69fb6add0773e90d8a8c80c300da9c1ebdbfdc73140e1c154",
-    "modified": "2026-10-06"
+    "hash": "558669e9548a7c7cc24ba757943dca5342ae196ac8b8bfb4d7351c2d0f21596b",
+    "modified": "2026-10-07"
   },
   "/calgary/pricing": {
-    "hash": "c8e41a300ab2189267adaea6cfd2dff8daea2d8ede0bf9778a87f562fc9fa03d",
-    "modified": "2026-10-06"
+    "hash": "30ce2417df45aa789a586668df7efbfde6dc14d317b8c418846671a333b97f0c",
+    "modified": "2026-10-07"
   },
   "/calgary/recurring-cleaning": {
-    "hash": "5a95637f33d067febe7c8bedb9949cb53f2a4d04f0a3e08078276eca026264ed",
-    "modified": "2026-09-26"
+    "hash": "82ebf98970892bcdb89cc91103b1c1e47be7931c3c8208f833e0f788a50573bd",
+    "modified": "2026-10-07"
   },
   "/calgary/regular-cleaning": {
     "hash": "9efe6cee7b0f75b8dd0f06f9f5ae74e2626aa7880f0e968b679a15b4f27a3327",
     "modified": "2026-10-06"
   },
   "/calgary/services": {
-    "hash": "982f15c6eb7e5842eb93509303a81e22b226babe1221032319b34c8f23f30cff",
-    "modified": "2026-10-02"
+    "hash": "aaec90c179bce15827106ed08101533dde6d39132a17b125dc5ee921b8301dac",
+    "modified": "2026-10-07"
   },
   "/cleaning-services-airdrie": {
     "hash": "12fa6ec6f4c210f2a7a69052a8ceeac1e99c3580b8a12044dd8a202c112ee73f",
@@ -60,12 +60,12 @@
     "modified": "2026-10-02"
   },
   "/cleaning-services-calgary": {
-    "hash": "ae13a939e1e001934f813dd109df387ed8079f5e5305deac643f3fa5201b673b",
-    "modified": "2026-10-06"
+    "hash": "08bbd806ed6356cd26ff7101ff1b95cecca5eafe397d690af94e886567ac8cee",
+    "modified": "2026-10-07"
   },
   "/cleaning-services-cochrane": {
-    "hash": "e471113abea8c7aafe89609265aeb9d326320584d4fbaec490235ccd2f375a56",
-    "modified": "2026-10-02"
+    "hash": "395bc5f061986ac276e0ec506c00668b0ec2aa7afbd8c31072b643f892599f76",
+    "modified": "2026-10-07"
   },
   "/cleaning-services-devon": {
     "hash": "27836b0f1a5304e94cda5bce1cb6f3bf297703c49724077eba295ca6914229b8",
@@ -84,16 +84,16 @@
     "modified": "2026-10-06"
   },
   "/cleaning-services-red-deer": {
-    "hash": "a882d1aaad6552fafaef7faa7bad13efe13097fcd224f14cafa61506d5093eaa",
-    "modified": "2026-10-06"
+    "hash": "7719f8db78280d9282d409b4d50fc82939273341445eda452a813ad7b82f42cf",
+    "modified": "2026-10-07"
   },
   "/cleaning-services-sherwood-park": {
     "hash": "3f04adc62465543dbb44c5e5a8e7fff799afb62499616eb293a94654786a7b90",
     "modified": "2026-10-06"
   },
   "/cleaning-services-spruce-grove": {
-    "hash": "5a18f1a7283fe2bae9f12c3e61c622868c03dcf0f556d56d8958963be2f49bff",
-    "modified": "2026-10-06"
+    "hash": "deb458a9eb060f79bc474c9b73538c6e31236f47b4bc1cb203b15256f8ea1a30",
+    "modified": "2026-10-07"
   },
   "/cleaning-services-st-albert": {
     "hash": "7a031aee3fe2077daf079e87d521a77a6b94a409231d5c19f96672c41452d44a",
@@ -104,12 +104,12 @@
     "modified": "2026-10-02"
   },
   "/cleaning-services-windermere": {
-    "hash": "0d99f344d110f312d0bcd3a388119a44fbe47b5c4ce8ffdad65e3d3c043a5ce4",
-    "modified": "2026-10-06"
+    "hash": "778820995207d7f32b8c123f21ec0d79f355b42962199c692cd6a4666ea57f74",
+    "modified": "2026-10-07"
   },
   "/cleaning-with-vinegar-and-baking-soda": {
-    "hash": "95278a0418bf7e7d4c9b4f7cd93da55c58e083010f8ea14a1cecd93e9131a9aa",
-    "modified": "2026-10-06"
+    "hash": "79b834f209c7e047b65ba2102c37e011666daec213dfad20e72367be1a1dd810",
+    "modified": "2026-10-07"
   },
   "/commercial-cleaning": {
     "hash": "0de8704fc7e670dd327b1f1e5fa8d4f2f484ee9d9d95526aaecbee0a0e7cdbb3",
@@ -120,20 +120,20 @@
     "modified": "2026-10-02"
   },
   "/contact-us": {
-    "hash": "359d05a4965e6f24746d3a7794f17926e24971e445b19613b34dc13a2f0ea2c3",
-    "modified": "2026-10-06"
+    "hash": "832a40483e37e50d6884a437d6d8c59f92d50cb501ca3df99b29012a56efc6ce",
+    "modified": "2026-10-07"
   },
   "/edmonton/airbnb-cleaning": {
-    "hash": "559e81530e19ba43216d00fefb4dc0ec3423ea4a80e3b70aec096b979ffda7d1",
-    "modified": "2026-10-06"
+    "hash": "971902ebe7ff162dce32b2f56496ec789c98d54164e2b6845cc70790390bd5e5",
+    "modified": "2026-10-07"
   },
   "/edmonton/deep-cleaning": {
-    "hash": "6ed48970e83e0c9bbd1c94825f74e80d9df01d9e82aadc59705e281d58ba35ba",
-    "modified": "2026-10-06"
+    "hash": "0d9a43a4e43984fd750d9161a3db80b0d79838fe0b57f6ed223a2d2dcff7991a",
+    "modified": "2026-10-07"
   },
   "/edmonton/march-out-cleaning": {
-    "hash": "e8fe2eb2e255749a9148f3b71a81b0f4eb6e7e89372df33d25ed0c15580b4d50",
-    "modified": "2026-10-02"
+    "hash": "f8f280ce7ba9149f87f0e47c4b5ce4e6daa47ffc7f7d3d3de1814b0673edc4a6",
+    "modified": "2026-10-07"
   },
   "/edmonton/recurring-cleaning": {
     "hash": "06313844ceae689194c6f30276a9c56481b3c140d5ffa2c6f249db6690fab771",
@@ -144,16 +144,16 @@
     "modified": "2026-10-06"
   },
   "/faqs": {
-    "hash": "479c4055e6b2f1a458215ce8e5e15f0a73ff4f02c78f5f42895a0fffdc9b41a1",
-    "modified": "2026-10-06"
+    "hash": "f43253ee42f95c16630d3764b8cf23862606af6db03f3cfa2b77841284b58efc",
+    "modified": "2026-10-07"
   },
   "/gift-card": {
-    "hash": "9d52ae358b8f1e053a0b54ce1cc2a9df739f21e1e9eaff636b34c570f66d8259",
-    "modified": "2026-10-06"
+    "hash": "aad0f084282787c6dc6400e6a7ebf223ffd4401505d1b3316cc235230ff0a086",
+    "modified": "2026-10-07"
   },
   "/how-much-does-a-house-cleaning-cost": {
-    "hash": "a8284b68ed2395146a54790c6fed9e8eae432c757e3c7a14fa120d1ab2aba6d1",
-    "modified": "2026-10-06"
+    "hash": "257b9e46a2fe3d5c55ba8af0eb18e1d022f2829b6e4651cd33b041322a531724",
+    "modified": "2026-10-07"
   },
   "/how-often-should-a-cleaning-service-clean-my-house": {
     "hash": "65ce3a1c9589dae3d415ded93325c75d426ccd5601fab9ad93707592c5d0d8d8",
@@ -164,8 +164,8 @@
     "modified": "2026-09-11"
   },
   "/locations": {
-    "hash": "f56ef94261b897bd708915d27e32eea96c1e0aa69e1779827e46d4080f076ef3",
-    "modified": "2026-10-06"
+    "hash": "6b9206fb8fa755c95a26893ba73a6285d5c0cc04f069d78d7b53b5986eca624d",
+    "modified": "2026-10-07"
   },
   "/locations/abbottsfield-edmonton": {
     "hash": "4d11b3c5bada6296034b96523889025640d4ee4164149dabdda8eb4a8cfd0a6b",
@@ -216,28 +216,28 @@
     "modified": "2026-10-06"
   },
   "/locations/beacon-heights-edmonton": {
-    "hash": "50ec90296e88dd2357ea2e3b2b69e84a41ad25df000d3aa0d2918f6874c64bee",
-    "modified": "2026-10-06"
+    "hash": "1043d92fa62ca696b9738eeb349bd24b43c79f67b5ab4b40756296568920805d",
+    "modified": "2026-10-07"
   },
   "/locations/bellevue-edmonton": {
-    "hash": "a983304c952d8d0e4bc3f09f7082a81137a755e665f2e3a8bcbaf5f11adc7c4b",
-    "modified": "2026-09-27"
+    "hash": "8a806d8f13e05758a24062715af750674aa6c8b21fd1a87f2e9ff20d8210abf2",
+    "modified": "2026-10-07"
   },
   "/locations/belmont-edmonton": {
-    "hash": "b854edb22e4a410f87b2b62eadd2e16470600f6c456d77b95603b6ddb4c2590e",
-    "modified": "2026-10-06"
+    "hash": "0ea3dc10f8572d7b67f68bf01a35d6089cc42fe8f37b85b0d526ab503266e852",
+    "modified": "2026-10-07"
   },
   "/locations/beltline-calgary": {
-    "hash": "2ce11213b3e34f9a66ec974308a608eabcafae6eb63bfe6e4f5fd7629f734ebf",
-    "modified": "2026-10-06"
+    "hash": "1a83c34ecce9c94920487b711e5d4570811827a4615ace3889e52fb5663ded4f",
+    "modified": "2026-10-07"
   },
   "/locations/belvedere-edmonton": {
     "hash": "b33b5aa2f6e204999e4c034d83406b6e14540873e493b34ee272a97a25ef4f2b",
     "modified": "2026-10-06"
   },
   "/locations/black-diamond": {
-    "hash": "ff907302edd9236c9b927689d19f9d57d2314170de74d1ab72f6815106159435",
-    "modified": "2026-10-06"
+    "hash": "411b58516a4f67cc0aaf0212355127ddeb0ebb03c1e21facdc313d08a2893edf",
+    "modified": "2026-10-07"
   },
   "/locations/bonnie-doon-edmonton": {
     "hash": "44770c99759d7ddc1a0eaf1be9ccd01da2653bd407c255c79ae43a6d994a574e",
@@ -268,12 +268,12 @@
     "modified": "2026-10-06"
   },
   "/locations/canora-edmonton": {
-    "hash": "8808c14a7f9c4b3e03aa380cbbf988373371c0328d4561c5019ec0424ab1c2e2",
-    "modified": "2026-10-06"
+    "hash": "3c986450f7486ebc7c9ff25cbe28201524e4a4fc34c0e79f1f9b6634e344922d",
+    "modified": "2026-10-07"
   },
   "/locations/capilano-edmonton": {
-    "hash": "f1432c924548a625e3e509d64f0aa4b3ddeb6f7fc4b5fd5a1e6ecfdc94a48980",
-    "modified": "2026-09-27"
+    "hash": "93b571990ed683f6b94bca268044d028f11435a3c04e889654dfcab1038b6d12",
+    "modified": "2026-10-07"
   },
   "/locations/capitol-hill-calgary": {
     "hash": "7ff7159a68b8d84c9f74891b5159cdb4cd13a7fb9199e50a6d75fb63174f6023",
@@ -284,8 +284,8 @@
     "modified": "2026-10-06"
   },
   "/locations/castle-downs": {
-    "hash": "173f0e4824e05c47c6d09db269ee69ca813a0295c65c9a0f507c36646bea4f59",
-    "modified": "2026-10-06"
+    "hash": "2b8afd6859a53df97fca9360c3165928e362a3de830e6d35d8961396efd52ad2",
+    "modified": "2026-10-07"
   },
   "/locations/central-mcdougall-edmonton": {
     "hash": "8bb9e23cbc65d0e7d4d51f0c1e83d29e8b5673ec47a211f45ce8082f3999d63f",
@@ -300,8 +300,8 @@
     "modified": "2026-10-06"
   },
   "/locations/clareview": {
-    "hash": "2d83ed18793d078feb37c6a57259618a8ef22952c9cc5a515ffcef12a4e9ab4a",
-    "modified": "2026-10-06"
+    "hash": "b8e9d0958ca7a3db59947d85128fb41e776cdcfdd668eed73ecaf2f73dd462dd",
+    "modified": "2026-10-07"
   },
   "/locations/cliff-bungalow-calgary": {
     "hash": "45f0d3f1aa2421e32c6f3735868ceace5cc10a0daad4c799e2980816935b3587",
@@ -312,16 +312,16 @@
     "modified": "2026-10-06"
   },
   "/locations/crescent-heights-calgary": {
-    "hash": "22357ac569ac024a486a626cb28c1403ae553c2abbcf0b8fa6be5eff065d6e5d",
-    "modified": "2026-10-06"
+    "hash": "2941bc3660c594ce4df119d9bde89887314ef88d5a357a424d40895a4859ff64",
+    "modified": "2026-10-07"
   },
   "/locations/crossfield": {
-    "hash": "2f33be119393684ea9da7122e2ff16414d067ec4d3a05159215e481a49dd88b2",
-    "modified": "2026-10-06"
+    "hash": "7677ec3dfd3fdad53e7e88b8e576405f71fbddf151e2cba9b06acf9c4dae78f9",
+    "modified": "2026-10-07"
   },
   "/locations/dalhousie-calgary": {
-    "hash": "c03a57ee67d032142e9a0c9ba65b184745dfbb64eb056f4be068fa0fe0e9716d",
-    "modified": "2026-10-06"
+    "hash": "d8611beb7f75c9b09799cc0ae324e4dd053ed4b6baa8e290bd39c91b9aa548b1",
+    "modified": "2026-10-07"
   },
   "/locations/delton": {
     "hash": "e9f99e63a81d45e634216912dcb7b1d79045953f82315cea91868cf7d6aeff4f",
@@ -344,8 +344,8 @@
     "modified": "2026-10-06"
   },
   "/locations/east-village-calgary": {
-    "hash": "cd117f39932269ebcb8b5a75cf3d0d06970b731f698c0d458531758084292454",
-    "modified": "2026-10-06"
+    "hash": "fd9a4aba0d71b58d39d3f445b9d6d66b82b6e18b9d12be042048004792e8b659",
+    "modified": "2026-10-07"
   },
   "/locations/eastwood-edmonton": {
     "hash": "960100bf0c30f9b75d0effb1937c0ddad83febb1e5d1a9ce8b8df6ad2c254d17",
@@ -360,8 +360,8 @@
     "modified": "2026-10-06"
   },
   "/locations/elbow-park-calgary": {
-    "hash": "cd4ca10044063f161bcab66db9015ae0a5ed23e41ff979bcf82c451c946980ab",
-    "modified": "2026-10-06"
+    "hash": "409e4e45cccd5269056761ac482342a2dd2a4b561cd4822e7af3d88e2d4522ce",
+    "modified": "2026-10-07"
   },
   "/locations/erlton-calgary": {
     "hash": "163ea0086566fb2cc83b8a12f2d6cd40803748da5bcc59f69d9b770983cf14f8",
@@ -376,12 +376,12 @@
     "modified": "2026-10-06"
   },
   "/locations/garneau": {
-    "hash": "fadccc3828df18c8913b5edd2458100c84f98d706a95686e3630575e666d7c96",
-    "modified": "2026-10-06"
+    "hash": "1a58a32e7b0592dd78094a796c0e834c0b1a03b2c5d56917afd80e786a66c8a6",
+    "modified": "2026-10-07"
   },
   "/locations/glastonbury": {
-    "hash": "c5c06eb3c08fc481ba4a913f00d3a9793c943f9710b9ec7734d7b53db28813db",
-    "modified": "2026-10-06"
+    "hash": "50f3c43fdd9747e89cd83b06573c995e1e4aabb9e6f51a636cf9076224a7a196",
+    "modified": "2026-10-07"
   },
   "/locations/glengarry-edmonton": {
     "hash": "06032f5b74f99efeccb6565efd3005689565e58ee3b7709af34429353bfddd76",
@@ -392,24 +392,24 @@
     "modified": "2026-10-06"
   },
   "/locations/glenwood-edmonton": {
-    "hash": "5ea212dd488bd48800cc77f50f2cdeaea03da72da4ad9abab0e49bf6e8e1f4c6",
-    "modified": "2026-10-06"
+    "hash": "33867a2f0256331266e76554d91ebfcc27380bba94b9ec25fc71f51a4a2f7dae",
+    "modified": "2026-10-07"
   },
   "/locations/greenfield-edmonton": {
-    "hash": "a8ca4265021998f2eb241ada3fdedd8a469ebe2626caa193bd128645b01b66fc",
-    "modified": "2026-10-06"
+    "hash": "4134b517b0fc50e634b4953743ae69f41a41aa8475243d1814a68d25b96abb26",
+    "modified": "2026-10-07"
   },
   "/locations/greenview-calgary": {
-    "hash": "6d8d6217ff994327811b3ce858e078f248dd4c1e8165addecf96bf763c1cb3a6",
-    "modified": "2026-10-06"
+    "hash": "25d8aa1e96c58e06869e6ec56c84e145c054eb4b55ca255904cab2026463da78",
+    "modified": "2026-10-07"
   },
   "/locations/griesbach-edmonton": {
-    "hash": "5ecc05b55a518a568d9f8dc56cb5679f2cdb4734f7ebac035e2eaf3cbd5e2a54",
-    "modified": "2026-10-06"
+    "hash": "c3cd27bb19135ac2b914f9094bfdecd76d741f5ccbe893b64780b4afe3bfb829",
+    "modified": "2026-10-07"
   },
   "/locations/grovenor": {
-    "hash": "c840690845e5c4bdc215c3ea1b0d3597369bc0d322d7df5b96a985ed458dfc3d",
-    "modified": "2026-10-06"
+    "hash": "db9dac9e2b3014bde5bdf72ac35aa74e15c1086b5cf4d6a314301b50c6635ac7",
+    "modified": "2026-10-07"
   },
   "/locations/hairsine-edmonton": {
     "hash": "aac8ebb970b114fbe70ba6e216b9d1beeb261645eea442906a0bf6f477fda7f1",
@@ -420,8 +420,8 @@
     "modified": "2026-09-27"
   },
   "/locations/hermitage-edmonton": {
-    "hash": "ef4ec28d62e7a2ba171a5c18a199a90917bd01a7917bc5e1e78f1c17daf3ab99",
-    "modified": "2026-10-06"
+    "hash": "30d7abb1a8e172a88ca288c20c29a68d94db8a1912657a1a1d5a5fbd2eeb547b",
+    "modified": "2026-10-07"
   },
   "/locations/high-river": {
     "hash": "16f287e3ccee0d11570d0f767436092886c207454edb56849894b731b4b860c8",
@@ -440,24 +440,24 @@
     "modified": "2026-10-06"
   },
   "/locations/holyrood-edmonton": {
-    "hash": "712931ce51905823722d028c70823fc226f06c6d4b50c652efb200a67921fa95",
-    "modified": "2026-10-06"
+    "hash": "0d4fc62b78bd07bec85fc126bc0b531d310c37bba3644f2c68aaa9207f7142da",
+    "modified": "2026-10-07"
   },
   "/locations/huntington-hills-calgary": {
     "hash": "850c81de658cadc472ff4da3f2cfb994f06849ead0685e11ffb83f8c6f4a3c12",
     "modified": "2026-10-06"
   },
   "/locations/inglewood": {
-    "hash": "0855633e44ba02bc889397c61d93c980a3061d39d2ee933c57d6253774d13584",
-    "modified": "2026-10-06"
+    "hash": "722fe336c4127b2319453dad816316db497a8267d358c1964678915088813bfb",
+    "modified": "2026-10-07"
   },
   "/locations/inglewood-calgary": {
     "hash": "b71f5de1341b7d1cb73f81de56fe4f6aa14ba4a26f25366f89411ac03842361b",
     "modified": "2026-10-06"
   },
   "/locations/kensington": {
-    "hash": "e04e8a80123c0bbb05c0be62cb9143963f93b02fe92d7e84753ffc54b0fbab70",
-    "modified": "2026-10-06"
+    "hash": "dfbd71a3aad1c79a0777e52b2a84213859f5174b1f6f5a8e67d0a65edd5508de",
+    "modified": "2026-10-07"
   },
   "/locations/kildare-edmonton": {
     "hash": "c8c4615a38e3151c45bf3683bf02301378eca99024e93aca7b44e3abc8953232",
@@ -484,8 +484,8 @@
     "modified": "2026-10-06"
   },
   "/locations/larkspur-edmonton": {
-    "hash": "e9b0b9e6e477d2ab29c276a5a4940703ac1fe6516f6abb0ac67b208f426c8fc1",
-    "modified": "2026-10-06"
+    "hash": "5dd294c5f145bbfc56b874348af1c6af857b48686f39d83b5213b1acd56b361e",
+    "modified": "2026-10-07"
   },
   "/locations/lauderdale": {
     "hash": "ec3648f8641259489e25a3cb0c3c1437777913ca8f6212654f3ecd2899e2de5f",
@@ -508,8 +508,8 @@
     "modified": "2026-10-06"
   },
   "/locations/mahogany": {
-    "hash": "8895326f1424dbaed0872bc2b07641a32bf67efa5832e33c179b561de0d85061",
-    "modified": "2026-10-06"
+    "hash": "55fe18d542831f2521932e777850018afd0cacc1928b11c400ccc3ff6718663c",
+    "modified": "2026-10-07"
   },
   "/locations/manchester-calgary": {
     "hash": "67a303e3a31a7220705be9bfec04fcf34367a1612a58eab7207250f84e14fd7b",
@@ -520,8 +520,8 @@
     "modified": "2026-10-06"
   },
   "/locations/marda-loop": {
-    "hash": "b941558d5d7e4d4caf40e07b2506d9be3b738d580e3c83f795d0a988567c3326",
-    "modified": "2026-10-06"
+    "hash": "3975dbfc102e7d5ec4c0ac3f46125fe4661580964a835ff3831a8a2c6e148624",
+    "modified": "2026-10-07"
   },
   "/locations/marlborough": {
     "hash": "bfcb2417a3917290b5286a5bb58207380b166edcd9d1aa797b50214a1b11ce74",
@@ -576,28 +576,28 @@
     "modified": "2026-10-06"
   },
   "/locations/mount-royal": {
-    "hash": "aaa5c0ec1a8269f19814f622100bf54f10d7fed725995f0b723332707f0b4cc4",
-    "modified": "2026-10-06"
+    "hash": "bf18057ca7edcc8cef29c1a08918b37b78fe8a4dfb48d922b4b7cc0e06a84822",
+    "modified": "2026-10-07"
   },
   "/locations/northmount-edmonton": {
     "hash": "9a5be55d48d85867c70f0d4382e743be31bbdde64e688c5de92b9c48be099e34",
     "modified": "2026-10-06"
   },
   "/locations/ogden-calgary": {
-    "hash": "ffd60913ed533268b80407fb92c67da4b2d7dfe782889cfea3c185e5b2757b68",
-    "modified": "2026-10-06"
+    "hash": "f1ab9e5cfb7c23f06207fa64878c85eb7fe69996cd70760c70f6eceac1c71cad",
+    "modified": "2026-10-07"
   },
   "/locations/okotoks": {
-    "hash": "01c13091cb4f1c783a00c70a062f0cedd16574103aa006f8b691d30dfb3faa2d",
-    "modified": "2026-10-06"
+    "hash": "e7013651e8e8112f43a2dc174ad6179fd321f1f26799dadf65023f889bd27746",
+    "modified": "2026-10-07"
   },
   "/locations/old-strathcona": {
-    "hash": "7fd55a2144c5a5153ba611d287b013b96353974da5828376a789756fc40c7732",
-    "modified": "2026-10-06"
+    "hash": "666162da1f12de3a64b4cc3cceaaa707b33313b3961f1ff35a4cb1cf9826177c",
+    "modified": "2026-10-07"
   },
   "/locations/ottewell-edmonton": {
-    "hash": "8205457ec4089c92b2804d8c339dde976837a181ca02e8bcb04fedf392a6cd8b",
-    "modified": "2026-10-06"
+    "hash": "f9995fd146f9d46ce8cc9adf06d2175f4bea037dd0912b2459215c6cdde2e0df",
+    "modified": "2026-10-07"
   },
   "/locations/ozerna-edmonton": {
     "hash": "1c1a1e31a4c1ae2a0f3e9829d64b1cd88446ccc81cad988ee459de8c723b12e4",
@@ -608,12 +608,12 @@
     "modified": "2026-10-06"
   },
   "/locations/pleasantview": {
-    "hash": "b576bf4ace92aa0b9fcd1730c07920df968e1075ba97df61d7a86a9ef4e7be5a",
-    "modified": "2026-10-06"
+    "hash": "a892b67679a1aa9e4e731dca88bc4dc5e11f242b76eaedfca55144b3c352762e",
+    "modified": "2026-10-07"
   },
   "/locations/prince-charles-edmonton": {
-    "hash": "60e2e02c810de497f8b57ea79ee6b62c70c97e5307255c248d15b9fba577e4e7",
-    "modified": "2026-10-06"
+    "hash": "b2b25e3f6a223bf91b20471c123abb90e9880c8c6546abc217bbe1f39d477cb8",
+    "modified": "2026-10-07"
   },
   "/locations/queen-alexandra-edmonton": {
     "hash": "9474e4c2d967f07e87b86d3a6f5f522205ed8727655c0dde0510c69624991b76",
@@ -648,16 +648,16 @@
     "modified": "2026-10-06"
   },
   "/locations/rosslyn-edmonton": {
-    "hash": "8023c413ef362a7f20445edc9866a4ad5345c4a2a229c630147cca87930c5814",
-    "modified": "2026-10-06"
+    "hash": "4f29fd3457ac7e03978fa77521880b5e3dd468f1219c9777d0ee95110c330a58",
+    "modified": "2026-10-07"
   },
   "/locations/roxboro-calgary": {
     "hash": "2c6016546d0d2605f80ba52fcb9509e2c9ae330f696a6a42c2b9cb100277acfd",
     "modified": "2026-10-06"
   },
   "/locations/saddle-ridge": {
-    "hash": "207437bcbffda56dd3168286a522c27fc2820570fd94a3dbda50f95782e214de",
-    "modified": "2026-10-06"
+    "hash": "8c3a8f687ac493b46d3ef4742250be4c28bc88595f4ad36a223d66b73e4dbc92",
+    "modified": "2026-10-07"
   },
   "/locations/scarboro-calgary": {
     "hash": "466eb0be5211eacf088bbdea8a26f7ebe3b571b8bce6fc8a4d62f0140ded7a6b",
@@ -668,12 +668,12 @@
     "modified": "2026-10-06"
   },
   "/locations/schonsee-edmonton": {
-    "hash": "6f69833e3cdf1fbdb87fdd68fbfd2b7b55aab9e3f17b7e7a5c3c408cea8bf8d4",
-    "modified": "2026-10-06"
+    "hash": "8815d6d9dbd40ddcae698a04f139b4a54209004e3a30a2ebe30af8a01aa7e7bc",
+    "modified": "2026-10-07"
   },
   "/locations/secord-edmonton": {
-    "hash": "01a63028352cd941aa101c154211f380938a4fb0dafcf4e61d0a141aa78e0179",
-    "modified": "2026-10-06"
+    "hash": "2ab5783fe5263538f5061576d2f2b6c3b324d0710402a8f79c8897c1ba98b2e0",
+    "modified": "2026-10-07"
   },
   "/locations/shaganappi-calgary": {
     "hash": "956123e76b601b957b4f3ad50d2b1cc86c01de76ad7b2ce730bd398717e5f461",
@@ -716,8 +716,8 @@
     "modified": "2026-10-06"
   },
   "/locations/sunalta-west-calgary": {
-    "hash": "1e04c858d0030f89a0f8074b2b93c1b857c5e291787ee50f02f7502bd0e2c1f9",
-    "modified": "2026-10-06"
+    "hash": "f2f630ec9bf48ebbbad1fad893e95c3e3b17a93bfd95c8308b35a8631c20c6c5",
+    "modified": "2026-10-07"
   },
   "/locations/sunnyside-calgary": {
     "hash": "cce1e086faab96862249b0e85dd07dfd9c78768ccdaae737cad7cfd4360247fc",
@@ -736,8 +736,8 @@
     "modified": "2026-10-06"
   },
   "/locations/turner-valley": {
-    "hash": "1dbfdfb7d3870a5a588f2c2156d3d82841348a8b3cf8c5f01072dd67653f1786",
-    "modified": "2026-10-06"
+    "hash": "a39343814135e0931654cb249091d36a547fa5b2eef602d7caf93890215d5d89",
+    "modified": "2026-10-07"
   },
   "/locations/tuscany": {
     "hash": "47b90d880e0049ec39a30b94007fed3c92267d11f162d008210875ca4ca27fff",
@@ -752,12 +752,12 @@
     "modified": "2026-10-06"
   },
   "/locations/victoria-park-calgary": {
-    "hash": "3f9af074b6560f33bb4cc719dde234c123c6acc55bb08d21d5b59b2c3eff0c4c",
-    "modified": "2026-10-06"
+    "hash": "5112ee2e30fc77a512d5eaabe1d6a0c72793200c97b63add9fea17ee0a53c532",
+    "modified": "2026-10-07"
   },
   "/locations/west-calgary": {
-    "hash": "7248d02cb5dde72d1ef1c9ed59099512d497dfa69fdd34f2de22c00848186a64",
-    "modified": "2026-10-06"
+    "hash": "b2a68ac37388a7c705cb03273c09bfcaf967af3797ae15d0bca1ce206454f258",
+    "modified": "2026-10-07"
   },
   "/locations/westmount-edmonton": {
     "hash": "b0df3d795092cfbd9a4b1093e2164a64951e472ce6cbabe8a03751dae4961771",
@@ -788,52 +788,52 @@
     "modified": "2026-10-06"
   },
   "/post-construction-cleaning": {
-    "hash": "e17053ddb5bd4ab4cf2704145e3668854946a45f26638cff3edf12730d328660",
-    "modified": "2026-10-06"
+    "hash": "75c9a38e1e2d0ba1b57646900e297cc0c04b5d173a2187a99d800a51a7c4b29f",
+    "modified": "2026-10-07"
   },
   "/post-construction-cleaning-calgary": {
-    "hash": "ef42406ecc6fb5c0e4ef0ba052aa533a4aa8d77029bccaf21c1ba1d3cc5202b3",
-    "modified": "2026-10-06"
+    "hash": "c728b7292271dc9da84de4eec5f1894430f7b18b168049baf00bc0ac46f1873b",
+    "modified": "2026-10-07"
   },
   "/prepare": {
     "hash": "45b2f2d717d3c138c2ff5cc318581e3a1f4b4e2ac37407d86ab840500eafc33a",
     "modified": "2026-09-27"
   },
   "/pricing": {
-    "hash": "862737bd3c69ae8f451e7511843973f33847e2261f2bb0d2631a4c9783057291",
-    "modified": "2026-10-06"
+    "hash": "83c40c94330543aa53000ae84d90228e4565f0f5cd80413ae45cde5a6e02043b",
+    "modified": "2026-10-07"
   },
   "/privacy-policy": {
-    "hash": "e4b795375cbdbb4b9e9266db75a0a500f11841acb8bd201a32495d97dbac1d2f",
-    "modified": "2026-10-06"
+    "hash": "89456bd774650b19abb896ebb1c2a4abf6284d8b36b7d2d0250ed8d806e01eaf",
+    "modified": "2026-10-07"
   },
   "/reviews": {
-    "hash": "f8bd949b92f928947371dc5529a98ba56cde9dbe857e4d7ec9d5677a4c3f4138",
-    "modified": "2026-10-06"
+    "hash": "130cc2e9bed3c7d1b4497829793e3b1bb791befa7e9184eddde2745b3bd1a256",
+    "modified": "2026-10-07"
   },
   "/satisfaction-guarantee": {
-    "hash": "f2cef6b7720d50356748053a7bf98052187559d068a3fabba259378d6534adc5",
-    "modified": "2026-10-06"
+    "hash": "3c681f0bcb3290ce264f331fa1f674cb96789ea2b8ca16ac510c6608e3d51bde",
+    "modified": "2026-10-07"
   },
   "/services": {
-    "hash": "e79fe689fefa481f3f77be250b5c7400d989167c5a4d33228fab04abe4509ca8",
-    "modified": "2026-10-02"
+    "hash": "f03e011fe02678b71f8e2b930bf9cbe903d2fb9807ac3010e1bcf7fda83e7463",
+    "modified": "2026-10-07"
   },
   "/terms": {
-    "hash": "ff94a397206d54522ff5e52ea513a4a672f567bbcae72ce3826e393a98abd0f0",
-    "modified": "2026-10-06"
+    "hash": "052e5b59571cd078739befd57c3e99cd7aeff4476bf170764f79b15d7368566c",
+    "modified": "2026-10-07"
   },
   "/the-top-5-must-have-cleaning-products-for-a-spotless-home": {
-    "hash": "35dd72a12c87491288e537e92cc2816f02f520cf06c3967aabee9bddbf782aa7",
-    "modified": "2026-10-02"
+    "hash": "a7d332e22d59a022b18caee1e57ea5f0978af87248e15884b70d32f41b0c61c3",
+    "modified": "2026-10-07"
   },
   "/wall-washing-wall-cleaning": {
-    "hash": "1f44b102fb6158ff44cb9781245f09f0a5556f3d151c47554f081a6247239a10",
-    "modified": "2026-10-06"
+    "hash": "5385dd316a0c00f5c496813e2cb8204722d55133750726a7bb0ebd42252f04d0",
+    "modified": "2026-10-07"
   },
   "/wall-washing-wall-cleaning-calgary": {
-    "hash": "d30dbc19bd7ac94e0ad13676809345c7ddafafa2852c61554b0ca4eb41186280",
-    "modified": "2026-10-06"
+    "hash": "daf2af80757b3707ca41d94cfad10a467a98c53752b60f22d92805df6e2dad4f",
+    "modified": "2026-10-07"
   },
   "/whats-included": {
     "hash": "adef43f316fea2e92ef335d613cffe74d87ffeaa4eefb83293d00e844ce2a168",

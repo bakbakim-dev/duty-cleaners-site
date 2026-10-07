@@ -311,6 +311,36 @@
 /wp-content/uploads/2024/08/11.jpg  /  301!
 /wp-content/uploads/2024/08/12.png/  /  301!
 /wp-content/uploads/2024/08/12.png  /  301!
+/cleaning-services-for-beaumont-ab/  /cleaning-services-beaumont/  301!
+/cleaning-services-for-beaumont-ab  /cleaning-services-beaumont/  301!
+/cleaning-services-for-windermere-ab/  /cleaning-services-windermere/  301!
+/cleaning-services-for-windermere-ab  /cleaning-services-windermere/  301!
+/cleaning-services-for-edmonton/  /  301!
+/cleaning-services-for-edmonton  /  301!
+/cleaning-professionals-edmonton/  /  301!
+/cleaning-professionals-edmonton  /  301!
+/move-in-and-move-out-cleaning-calgary/  /move-out-cleaning-calgary/  301!
+/move-in-and-move-out-cleaning-calgary  /move-out-cleaning-calgary/  301!
+/services/deep-cleaning-services-edmonton/  /edmonton/deep-cleaning/  301!
+/services/deep-cleaning-services-edmonton  /edmonton/deep-cleaning/  301!
+/cleaning-jobs-in-edmonton/  /join-the-team/  301!
+/cleaning-jobs-in-edmonton  /join-the-team/  301!
+/office-cleaning-company/  /commercial-cleaning/  301!
+/office-cleaning-company  /commercial-cleaning/  301!
+/end-tenancy-cleaning/  /move-out-cleaning-edmonton/  301!
+/end-tenancy-cleaning  /move-out-cleaning-edmonton/  301!
+/how-to-choose-the-best-cleaning-professionals-for-your-home/  /blog/choosing-cleaning-company/  301!
+/how-to-choose-the-best-cleaning-professionals-for-your-home  /blog/choosing-cleaning-company/  301!
+/how-to-prepare-your-home-for-a-house-cleaning-service/  /prepare/  301!
+/how-to-prepare-your-home-for-a-house-cleaning-service  /prepare/  301!
+/cleaning-checklist/  /whats-included/  301!
+/cleaning-checklist  /whats-included/  301!
+/how-to-clean-and-disinfect-your-home-from-germs-viruses-and-prevention-methods/  /blog/  301!
+/how-to-clean-and-disinfect-your-home-from-germs-viruses-and-prevention-methods  /blog/  301!
+/6-things-professional-cleaners-do-that-homeowners-dont/  /blog/  301!
+/6-things-professional-cleaners-do-that-homeowners-dont  /blog/  301!
+/wp-content/uploads/2022/06/DutyCleaners.mp4/  /  301!
+/wp-content/uploads/2022/06/DutyCleaners.mp4  /  301!
 /edmonton/  /  301!
 /edmonton  /  301!
 /edmonton-2/  /  301!
@@ -319,8 +349,10 @@
 /calgary-2  /cleaning-services-calgary/  301!
 /commercial-cleaning-calgary/  /commercial-cleaning-services-calgary/  301!
 /commercial-cleaning-calgary  /commercial-cleaning-services-calgary/  301!
-/insurance-liability/  /satisfaction-guarantee/  301!
-/insurance-liability  /satisfaction-guarantee/  301!
+/insurance-liability/  /faqs/  301!
+/insurance-liability  /faqs/  301!
+/gift-cards/  /gift-card/  301!
+/gift-cards  /gift-card/  301!
 /calgary/  /cleaning-services-calgary/  301!
 /calgary  /cleaning-services-calgary/  301!
 /edmonton/services/  /services/  301!
@@ -401,8 +433,6 @@
 /book  /spa-shell.html  200
 /locations/all/  /spa-shell.html  200
 /locations/all  /spa-shell.html  200
-/gift-cards/  /spa-shell.html  200
-/gift-cards  /spa-shell.html  200
 
 # Everything else genuinely does not exist, so say so. A 200 with the app shell is
 # the soft-404 pattern: it tells a crawler to keep the URL and re-crawl it, across
