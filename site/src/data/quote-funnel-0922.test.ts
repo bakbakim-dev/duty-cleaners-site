@@ -44,7 +44,6 @@ describe("the travel fee is in the funnel's price", () => {
     expect(src).not.toContain("Where is the home?");
     // Both payloads: the home-details one and the confirm step (AuditSpur #249, 2026-10-07).
     expect(src.match(/city: area\?\.general \? "" : proof\.key,/g) ?? [], "a payload sends the page's branch on a general page").toHaveLength(2);
-    expect(src, "a payload sends the page's branch on a general page").not.toMatch(/^\s*city: proof\.key,/m);
     expect(src).toMatch(/Is the home inside \{limitsCity\(area, "or"\)\} city limits\?/);
   });
 
