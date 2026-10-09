@@ -351,7 +351,7 @@ export const BOOKINGS_CLAIM = `${BOOKINGS} Alberta bookings since ${COMPANY.foun
  * Set `enabled: false` for anything not operationally true.
  * The owner confirmed "No contracts" and the no-charge line on 2026-09-10, and
  * the reschedule line restates the 24-hour notice policy.ts confirms. Online
- * bookings need 24 hours' notice, so nothing is ever charged on the booking day.
+ * booking closes at 5 PM two days before the clean (owner confirmed 2026-10-08).
  * The card hold placed the day before the clean (PAYMENT_TERMS) is not a charge,
  * though it can land on the booking day for a clean booked just over 24 hours out.
  */

@@ -173,7 +173,7 @@ const FAQS = [
   },
   {
     question: "How far ahead do I need to book a clean in Red Deer?",
-    answer: `Online bookings need at least 24 hours' notice. For anything sooner, call the Red Deer line at ${OFFICE.phone} and ask what the schedule has open; same-day and next-day slots depend on the schedule. After a quote request, the office texts within ${RESPONSE_TIME_PROMISE} to confirm the time.`,
+    answer: `Online booking closes at 5 PM two days before the clean. For anything sooner, call the Red Deer line at ${OFFICE.phone} and ask what the schedule has open; same-day and next-day slots depend on the schedule. After a quote request, the office texts within ${RESPONSE_TIME_PROMISE} to confirm the time.`,
   },
   {
     question: "Do I need to be home for a clean in Red Deer?",
@@ -516,7 +516,7 @@ export default function RedDeer() {
                   <p>
                     The instant price asks for the home's size and type, then your name, email and phone, then shows the figure
                     with the pets question and the add-ons, before you choose a date. A Red Deer postal code carries no travel fee, and the booking goes through
-                    the same online booking page as an Edmonton or Calgary clean. Online bookings need at least 24 hours' notice; for
+                    the same online booking page as an Edmonton or Calgary clean. Online booking closes at 5 PM two days before the clean; for
                     anything sooner, call the Red Deer line and ask what is open.
                   </p>
                   <p>
