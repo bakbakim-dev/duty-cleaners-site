@@ -108,7 +108,7 @@ export default function MeadowlarkPark() {
                 Professional House Cleaning in Meadowlark Park
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                The city's assessment roll dates about nine in ten Meadowlark Park houses to 1960 or earlier, and in houses that age the front door sits a step or two from the main-floor hardwood.
+                About four in five Meadowlark Park homes date from 1960 or earlier (2021 census), and in houses that age the front door sits a step or two from the main-floor hardwood.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -239,7 +239,7 @@ export default function MeadowlarkPark() {
         eyebrow="What we see here"
         heading="Chinook's parking lot is inside the line"
         paragraphs={[
-          "Almost nothing here is new: the city's assessment roll dates about nine in ten Meadowlark Park houses to 1960 or earlier, and only a couple of dozen infills have gone up since 1980. In the 2021 census, 92 per cent of the occupied dwellings here were detached. Houses of that vintage put the front door a step or two from the main-floor finish, and with no vestibule to stop it, winter grit goes straight onto the hardwood the door opens onto.",
+          "Almost nothing here is new: about four in five homes date from 1960 or earlier, and only a handful were built after 1980 (2021 census). In the 2021 census, 92 per cent of the occupied dwellings here were detached. Houses of that vintage put the front door a step or two from the main-floor finish, and with no vestibule to stop it, winter grit goes straight onto the hardwood the door opens onto.",
           "Arterials box the place in on three sides: Glenmore Trail south, Macleod Trail east, Elbow Drive west, with 58 Avenue SW closing the north. Chinook Centre and its parking lots occupy the eastern edge along Macleod, inside the community line. November to April, that geography delivers road sand and de-icing brine on every pair of boots, and brine dries to a white haze on wood and baseboards, which is why neutral-pH cleaning matters here.",
         ]}
         accent="calgary"

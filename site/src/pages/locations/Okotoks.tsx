@@ -237,7 +237,7 @@ export default function Okotoks() {
                 House Cleaning in Okotoks & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Okotoks is one of nine communities outside Calgary that the Calgary branch serves, along with Airdrie, Cochrane, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley. Because these are outside city limits, a travel fee applies, and it shows on the quote before you book.
+                Okotoks is one of nine communities outside Calgary that the Calgary branch serves, along with Airdrie, Cochrane, Chestermere, Strathmore, High River, Langdon, Crossfield and <Link to="/locations/turner-valley/" className="text-primary underline underline-offset-2">Diamond Valley</Link>. Because these are outside city limits, a travel fee applies, and it shows on the quote before you book.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas<span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />

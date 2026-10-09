@@ -1,3 +1,4 @@
+import { POLICY } from "@/data/policy";
 import { INITIAL_CLEAN_LENGTH_ANSWER } from "@/data/policy";
 import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
 import { locationServices, locationWhyUs } from "@/data/location-cards";
@@ -53,11 +54,19 @@ export default function Windermere() {
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes — the discount grows with visit frequency:\n\n• Every week: ${OFF_WEEKLY} off\n• Every two weeks: ${OFF_BIWEEKLY} off\n• Every four weeks: ${OFF_FOUR_WEEKLY} off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
       answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Baseboards and doors wiped\n• Light switches fully cleaned\n• Vent covers wiped`
+    },
+    {
+      question: "Do you clean the older estate homes on Windermere Drive?",
+      answer: "Yes. About 80 estate homes stood along the river edge before the neighbourhood plan was adopted in 2006, most of them built in the 1960s and 1970s, and the plan keeps their wide lots along Windermere Drive. Older finishes are checked before anything wet or abrasive touches them. Our price tables stop at five bedrooms; the instant quote prices six- and seven-bedroom homes."
+    },
+    {
+      question: "Do you cover the whole Windermere area, or only the Windermere neighbourhood?",
+      answer: "The whole area. It runs from Anthony Henday Drive south to 41 Avenue SW, and from the Whitemud Creek ravine west to the North Saskatchewan River, taking in Ambleside, Windermere, Keswick, Glenridding Heights and Glenridding Ravine. All of it is inside Edmonton city limits, so there is no travel fee."
     },
     {
       question: "What happens if something is missed?",
@@ -228,9 +237,10 @@ export default function Windermere() {
 
       <LocalMarketNote
         eyebrow="From the route"
-        heading="Everything young except the valley"
+        heading="Mostly new, beside the valley"
         paragraphs={[
-          "Building had barely started when the 2005 municipal census counted 84 houses here; by 2012 there were about 1,500 homes. Almost every home here went up inside the last twenty years, so nothing dates from the era of enamel fixtures and waxed hardwood floors. What that leaves is modern surface, and engineered stone and engineered wood are permanently dulled by abrasives and high-pH cleaner. Neutral-pH product and a dry cloth is the default.",
+          "Two eras sit side by side here. A line of estate homes along the river edge dates from the 1960s and 1970s; nearly everything else went up after the City adopted the neighbourhood plan in 2006, and by the 2019 municipal census there were 4,299 homes. Newer kitchens are mostly engineered stone, and engineered stone and engineered wood are permanently dulled by abrasives and high-pH cleaner, so neutral-pH product and a dry cloth is the default.",
+          `At the 2016 municipal census about six in ten Windermere homes were single-detached houses, one in seven a duplex or fourplex, and about one in five a condo or apartment, most in buildings of four storeys or less. The price follows the home you choose in the instant quote, house, townhouse or condo, with its bedrooms and bathrooms. In a condo building, tell us how the team gets in: a fob, a buzzer code or a key left with the concierge. If the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}.`,
           "The west and northwest edge is the North Saskatchewan valley, so a good number of lots face open sky rather than another house. At Edmonton's latitude the afternoon sun comes in low across that opening, and at that angle a single wet pass dries into visible lines, so west glass gets a dry buff after the wash. The city's spring sweep does not start until April, so March road sand is still on the streets and gets tracked indoors.",
         ]}
       />

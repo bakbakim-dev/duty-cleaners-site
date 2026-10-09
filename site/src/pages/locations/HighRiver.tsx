@@ -239,7 +239,7 @@ export default function HighRiver() {
                 House Cleaning in High River & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                High River is one of nine communities outside Calgary that the Calgary branch serves, along with Okotoks, Diamond Valley, Airdrie, Cochrane, Chestermere, Strathmore, Langdon and Crossfield. For an address that is not on that list, call (403) 768-1341 and ask.
+                High River is one of nine communities outside Calgary that the Calgary branch serves, along with Okotoks, <Link to="/locations/turner-valley/" className="text-primary underline underline-offset-2">Diamond Valley</Link>, Airdrie, Cochrane, Chestermere, Strathmore, Langdon and Crossfield. For an address that is not on that list, call (403) 768-1341 and ask.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas<span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />

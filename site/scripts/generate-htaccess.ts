@@ -34,6 +34,7 @@
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { LEGACY_URLS, canonicalForPath, withTrailingSlash } from "../src/data/legacy-urls";
+import { ARCHIVE_REDIRECTS } from "../src/data/legacy-urls-archive";
 
 const APP_ONLY_ROUTES = ["/book", "/locations/all", "/gift-cards"];
 
@@ -86,7 +87,7 @@ const add = (from: string, to: string, kind: "301" | "200") => {
   rules.push({ from, to, kind });
 };
 
-for (const u of LEGACY_URLS.filter((x) => x.mode === "redirect")) {
+for (const u of [...LEGACY_URLS, ...ARCHIVE_REDIRECTS].filter((x) => x.mode === "redirect")) {
   add(u.legacy, slash(canonicalForPath(u.target)), "301");
 }
 for (const [p, to] of redirectOnly) add(p, slash(canonicalForPath(to)), "301");

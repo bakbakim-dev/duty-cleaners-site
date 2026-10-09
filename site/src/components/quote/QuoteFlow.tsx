@@ -2051,14 +2051,32 @@ export default function QuoteFlow({
                         What type of home?
                       </Label>
                       <div id="homeType" role="radiogroup" aria-label="What type of home?" className="mt-2 grid gap-2 sm:grid-cols-2">
-                        {homeTypes.map((option) => {
+                        {homeTypes.map((option, index) => {
                           const active = option.id === homeType;
+                          // One tab stop; the arrows move the choice, as on the
+                          // bedroom chips (deep audit 2026-10-09). Arrows only
+                          // choose: they never jump the page to the next question.
+                          const chosenIndex = homeTypes.findIndex((candidate) => candidate.id === homeType);
+                          const focusIndex = chosenIndex === -1 ? 0 : chosenIndex;
                           return (
                             <button
                               key={option.id}
                               type="button"
                               role="radio"
                               aria-checked={active}
+                              tabIndex={index === focusIndex ? 0 : -1}
+                              onKeyDown={(event) => {
+                                const step =
+                                  event.key === "ArrowDown" || event.key === "ArrowRight" ? 1
+                                  : event.key === "ArrowUp" || event.key === "ArrowLeft" ? -1
+                                  : 0;
+                                if (!step) return;
+                                event.preventDefault();
+                                const next = (index + step + homeTypes.length) % homeTypes.length;
+                                setHomeType(homeTypes[next].id);
+                                setHomeTypeError(null);
+                                (event.currentTarget.parentElement?.children[next] as HTMLElement | undefined)?.focus();
+                              }}
                               onClick={() => {
                                 setHomeType(option.id);
                                 setHomeTypeError(null);

@@ -253,7 +253,7 @@ export default function Glenora() {
         eyebrow="Ground truth"
         heading="Government House and the ravine edge"
         paragraphs={[
-          "More than eight homes in ten here were standing by 1980 (2016 census), and the south edge is not a street at all — it drops into the river valley and MacKinnon Ravine. Two consequences follow. Interiors of that age carry plaster, deep milled trim and original hardwood, none of which take a saturated mop; and the ravine sends leaf litter, seed and spring mud up to the doors that face it.",
+          "More than eight homes in ten here were standing by 1980 (2016 federal census), and the south edge is not a street at all — it drops into the river valley and MacKinnon Ravine. Two consequences follow. Interiors of that age carry plaster, deep milled trim and original hardwood, none of which take a saturated mop; and the ravine sends leaf litter, seed and spring mud up to the doors that face it.",
           "The other surprise is the housing mix. Three quarters is detached, but a full fifth sits in high-rise apartments, mostly along the Groat Road side by Government House. That is two different jobs on one street grid: a century house wants slow dry work on trim and radiators, while a tower suite is a compact kitchen and a bathroom fan.",
         ]}
       />

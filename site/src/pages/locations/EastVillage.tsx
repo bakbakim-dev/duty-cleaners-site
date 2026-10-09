@@ -67,12 +67,12 @@ export default function EastVillage() {
     <>
       <Helmet>
         <title>East Village, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Nearly all East Village housing in Calgary went up after 2009, so a house clean there meets drywall haze still working out of vents and closet tracks." />
+        <meta name="description" content="Over half of East Village homes in Calgary went up after 2010, so a house clean there often meets drywall haze in vents and closet tracks." />
         <meta property="og:title" content="East Village, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="East Village, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Nearly all East Village housing in Calgary went up after 2009, so a house clean there meets drywall haze still working out of vents and closet tracks." />
-        <meta property="og:description" content="Nearly all East Village housing in Calgary went up after 2009, so a house clean there meets drywall haze still working out of vents and closet tracks." />
+        <meta name="twitter:description" content="Over half of East Village homes in Calgary went up after 2010, so a house clean there often meets drywall haze in vents and closet tracks." />
+        <meta property="og:description" content="Over half of East Village homes in Calgary went up after 2010, so a house clean there often meets drywall haze in vents and closet tracks." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/east-village-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/east-village-calgary/" />
@@ -108,7 +108,7 @@ export default function EastVillage() {
                 Professional House Cleaning in East Village
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Nearly all East Village housing was built under the master plan council approved in 2009. Our Calgary branch cleans it at a flat rate by home size, before 5% GST.
+                More than half of East Village's homes were built in 2011 or later, under the master plan council approved in 2009; about one in four is older, from before 2001. Our Calgary branch cleans it at a flat rate by home size, before 5% GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -239,7 +239,7 @@ export default function EastVillage() {
         eyebrow="Neighbourhood notes"
         heading="Half a neighbourhood still to come"
         paragraphs={[
-          "The few old buildings here are not housing. Nearly all of the housing arrived under the master plan council approved in 2009. So what we meet indoors is new-build residue rather than decades of buildup — drywall haze still working out of vents and closet tracks, adhesive marks on window frames, grout in its first years.",
+          "More than half the homes here arrived after 2010 under the master plan council approved in 2009 (2021 census), and about one in four is older, from before 2001. So in most suites what we meet indoors is new-build residue rather than decades of buildup — drywall haze still working out of vents and closet tracks, adhesive marks on window frames, grout in its first years.",
           "And the plan is roughly half delivered. As of 2026, CMLC counts more than 1,700 homes built on these 49 acres since 2009 against an eventual 3,500, which means live construction sites a block or two from most lobbies for years yet. Suites facing an open excavation collect a hard concrete dust that will scratch if it is wiped dry; on interior sills it comes off wet, then gets polished.",
         ]}
         accent="calgary"

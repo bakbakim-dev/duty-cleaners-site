@@ -17,6 +17,7 @@
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { LEGACY_URLS, canonicalForPath, withTrailingSlash } from "../src/data/legacy-urls";
+import { ARCHIVE_REDIRECTS } from "../src/data/legacy-urls-archive";
 
 /** Routes that must resolve but are intentionally absent from the sitemap. */
 const APP_ONLY_ROUTES = ["/book", "/locations/all", "/gift-cards"];
@@ -70,7 +71,7 @@ const add = (from: string, to: string, code: string) => {
 };
 
 // 1. Legacy URLs marked as redirects.
-for (const u of LEGACY_URLS.filter((x) => x.mode === "redirect")) {
+for (const u of [...LEGACY_URLS, ...ARCHIVE_REDIRECTS].filter((x) => x.mode === "redirect")) {
   add(u.legacy, slash(canonicalForPath(u.target)), "301!");
 }
 // 2. Router redirect-only routes (<Navigate>), so the hop happens server-side too.
