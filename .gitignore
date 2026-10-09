@@ -15,3 +15,6 @@ dist_*.txt
 
 # Local Netlify folder
 .netlify
+
+# Named candidate copies of the subcontractor agreement (personal names)
+contracts/candidate-copies/

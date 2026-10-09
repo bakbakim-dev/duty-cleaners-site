@@ -79,9 +79,11 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 ## Owner decisions (2026-09-10 and 11) — do not contradict or re-ask
 - Volume claim: "5,000+ Alberta bookings since 2017" (`BOOKINGS_CLAIM`). Bookings, not homes;
   never split by city.
-- "No contracts" and "You won't be charged today" are confirmed. Online bookings need at least 24
-  hours' notice; a temporary card hold goes on the day before the clean (not a charge); the card
-  is charged after the clean. Same-day or next-day slots: by phone, when the schedule allows.
+- "No contracts" and "You won't be charged today" are confirmed. Online booking closes at 5 PM two
+  days before the clean (owner, 2026-10-08, BookingKoala's own cutoff; it replaced "at least 24
+  hours' notice"); a temporary card hold goes on the day before the clean (not a charge); the card
+  is charged after the clean. Same-day or next-day slots: by phone, when the schedule allows. The
+  24-hour notice to change or cancel a booking is a separate rule and is unchanged.
 - Name, email and phone remain required before the full price and extras. A lead-relay failure must
   never hide the locally calculated price after those valid fields were provided. Show the price
   with an accurate capture-retry notice; never say "honour your quote" before a price has appeared
@@ -242,6 +244,18 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   sequence, texting hours, STOP). Update it whenever those workflows change.
 - Generated "before/after" images are not used: the two-kitchens image left the Edmonton Airbnb page
   and the oven before/after left the Calgary Deep card.
+
+## Codex's live changes of 6-9 Oct (owner told Codex to finish the audit repairs; reviewed 2026-10-09)
+- Another agent (Codex) uploaded three builds of its own to SiteGround (7 Oct index-BocE4Of8, 8 Oct
+  index-B9YIPTEv, 9 Oct index-2Ig58hDN) and edited the live `api/enquiry-evidence.php`. Its final source
+  was committed on 2026-10-09 so the repo matches production again: the "Basement Suite Only" GoHighLevel
+  label for home type 56 (`ghl.ts`; the option exists on the GHL field), the one-receipt-one-key-event
+  guard (`enquiry-receipt-analytics.ts`, used by QuoteFlow and Contact), and the enquiry-evidence rule:
+  only a confirmed instant quote or a quote call-back is a qualifying enquiry for Long Term Nurture; a
+  general contact message is not (it can be a complaint or an access update).
+- Codex records every change it makes as files in `Documents/Codex/2026-09-29/i-h/` (audit-*.json and
+  record-*.py, newest first). Read those before assuming the repo or `CLAUDE.md` describes live GHL,
+  BookingKoala, Zapier, Missive, ClickUp or Dialpad settings.
 
 ## Owner decisions (2026-09-26, open-items tracker) — do not contradict or re-ask
 - Extra work, verbatim in `EXTRA_WORK_TERM` (policy.ts): contact as soon as we know; the final total
