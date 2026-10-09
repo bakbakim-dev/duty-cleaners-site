@@ -262,8 +262,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/htaccess-parity.test.ts",
     target: "public/.htaccess",
-    find: "RewriteRule ^services/commercial-cleaning/?$ /commercial-cleaning/ [R=301,L]",
-    replace: "RewriteRule ^services/commercial-cleaning/?$ /commercial-cleaning-services-calgary/ [R=301,L]",
+    find: "RewriteRule ^services/commercial-cleaning/?$ /commercial-cleaning/ [R=301,L,NE]",
+    replace: "RewriteRule ^services/commercial-cleaning/?$ /commercial-cleaning-services-calgary/ [R=301,L,NE]",
     failing: "every Netlify redirect has an Apache equivalent, and vice versa",
     why: "Repoints one Apache rule so the two generated rule sets disagree.",
   },

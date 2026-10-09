@@ -175,7 +175,9 @@ out.push(
   `  # ${rules.filter((x) => x.kind === "301").length} permanent redirects.`,
 );
 for (const r of rules.filter((x) => x.kind === "301")) {
-  out.push(`  RewriteRule ^${rx(bare(r.from))}/?$ ${r.to} [R=301,L]`);
+  // NE: a target may carry a fragment (/#quote opens the instant price), which
+  // Apache would otherwise send as %23. Every target is one of our own paths.
+  out.push(`  RewriteRule ^${rx(bare(r.from))}/?$ ${r.to} [R=301,L,NE]`);
 }
 out.push(
   "</IfModule>",
