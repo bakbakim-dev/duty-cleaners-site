@@ -28,8 +28,8 @@ export interface PriceOverride {
 export const BK_PRICE_OVERRIDES: Record<number, PriceOverride> = {
   /* ---- Home type (shared by Standard and Move In/Move Out) ---------- */
   90: { label: "Two Storey House (Main + Upper Floor)", price: 55, timeSeconds: 2400 },
-  89: { label: "Two Story Townhouse (Duplex)", price: 40, timeSeconds: 1800 },
-  54: { label: "Bungalow (Single Story Home)", price: 15, timeSeconds: 300 },
+  89: { label: "Two Storey Townhouse (Duplex)", price: 40, timeSeconds: 1800 },
+  54: { label: "Bungalow (Single Storey Home)", price: 15, timeSeconds: 300 },
   56: { label: "Basement Suite Only", price: 15, timeSeconds: 300 },
   55: { label: "Apartment or Condo", price: 0, timeSeconds: 0 },
 

@@ -190,7 +190,8 @@ export default function PrivacyPolicy() {
                 <li>
                   Any <strong>gclid or UTM parameters</strong> in the link you arrived through, so that when you
                   ask for a price or book we can tell which ad or campaign brought you here (they go to our CRM
-                  with your quote)
+                  with your quote), and the name of the website that sent you here, such as google.com (the
+                  site's name only, never the page or what you searched for)
                 </li>
                 <li>Whether you have dismissed the announcement bar, so it stays dismissed</li>
                 <li>A flag noting that you have been sent to our booking system, so the page can restore correctly if you come back</li>

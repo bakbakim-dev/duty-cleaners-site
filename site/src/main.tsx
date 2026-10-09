@@ -1,13 +1,14 @@
 import { createRoot } from "react-dom/client";
 import { createRoutesFromChildren, matchRoutes } from "react-router-dom";
 import App, { routeTree } from "./App.tsx";
-import { captureTrackingParams } from "./lib/tracking";
+import { captureReferrer, captureTrackingParams } from "./lib/tracking";
 import { initAnalytics, initContactClickTracking } from "./lib/analytics";
 import { initWebVitals } from "./lib/web-vitals";
 import "./index.css";
 
 // Capture gclid/UTM attribution from the landing URL (first-touch wins).
 captureTrackingParams();
+captureReferrer();
 
 // Google Analytics 4 loads only when a measurement ID is set at build time
 // (VITE_GA4_MEASUREMENT_ID, see .env.example); without one this adds nothing.

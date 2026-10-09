@@ -205,6 +205,12 @@ All colors MUST be HSL.
     outline-color: hsl(var(--brand-gold));
   }
 
+  /* ...except on a light card inside a navy section (the city hubs' quote card):
+     gold on white is 2.3:1, below the 3:1 a focus ring needs (AuditSpur #164). */
+  .bg-brand-navy :is(.bg-card, .bg-white, .bg-background) :focus-visible {
+    outline-color: hsl(var(--brand-navy));
+  }
+
   /* WCAG 2.2 SC 2.5.8 — standalone links need a 24px minimum target. Links
      that sit inside a sentence are exempt, so this only lifts links that are
      already their own block: list rows, table cells, footers and nav. */
@@ -375,6 +381,7 @@ All colors MUST be HSL.
   .animate-slideInUp,
   .animate-blob,
   .animate-pulse-glow,
+  .animate-pulse,
   .animate-bounce-in,
   .animate-fade-slide-up,
   .hover-gentle-shake:hover,
@@ -533,7 +540,7 @@ All colors MUST be HSL.
   opacity: 0.08;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.99em) {
   .motif-linen {
     display: none;
   }
@@ -728,7 +735,7 @@ All colors MUST be HSL.
   letter-spacing: -0.01em;
   color: hsl(var(--foreground));
 }
-@media (min-width: 640px) {
+@media (min-width: 40em) {
   .funnel-price-figure { font-size: 2.25rem; }
 }
 .funnel-price-tax {
@@ -953,7 +960,7 @@ All colors MUST be HSL.
   padding-block: 4.5rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   .band {
     padding-block: 6.5rem;
   }
@@ -964,7 +971,7 @@ All colors MUST be HSL.
   padding-block: 3.5rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   .band-tight {
     padding-block: 4.5rem;
   }
@@ -1208,7 +1215,7 @@ html:not([data-motion="on"]) .opacity-0.translate-y-8 {
 
 /* Below md the fixed "Quick contact and quote actions" bar covers the bottom of the
    screen; keep focused and scrolled-to elements above it (AuditSpur #163, WCAG 2.4.11). */
-@media (max-width: 767px) {
+@media (max-width: 47.99em) {
   html {
     scroll-padding-bottom: 6rem;
   }

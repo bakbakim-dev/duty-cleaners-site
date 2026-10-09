@@ -6,6 +6,16 @@ export default {
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
+    // em, not px: em media queries scale with the visitor's default font size, so
+    // "Large" or "Very large" text gets the narrower layout instead of a header
+    // that runs off the screen (AuditSpur #365). At 16 px they equal the defaults.
+    screens: {
+      sm: "40em",
+      md: "48em",
+      lg: "64em",
+      xl: "80em",
+      "2xl": "96em",
+    },
     container: {
       center: true,
       padding: "2rem",

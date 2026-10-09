@@ -37,9 +37,13 @@ export default function RiverbendMapImpl() {
 
     const markers = [
       { pos: [53.478, -113.555] as [number, number], label: "Riverbend, Edmonton" },
-      { pos: [53.475, -113.545] as [number, number], label: "Southgate Centre" },
-      { pos: [53.482, -113.560] as [number, number], label: "Brander Gardens" },
+      { pos: [53.486, -113.514] as [number, number], label: "Southgate Centre" },
+      { pos: [53.492, -113.578] as [number, number], label: "Brander Gardens" },
     ];
+
+    // The landmarks are pinned where OpenStreetMap has them (AuditSpur #233,
+    // checked 2026-10-09), which is wider than one zoom level shows: frame them all.
+    map.fitBounds(L.latLngBounds(markers.map((m) => m.pos)), { padding: [40, 40], maxZoom: 14 });
 
     markers.forEach((m, index) => {
       // Named, not silenced: each pin is a real place and its label is

@@ -1,12 +1,14 @@
 import { DC_NOTES_MAX, entryNoteLine, type CleanerDetails } from "./booking-redirect";
 
-// Equivalent to the live BookingKoala questions, verified 2026-09-12.
+// Equivalent to the live BookingKoala questions, verified 2026-09-12. `label` is
+// BookingKoala's own wording (it travels to the booking page, typo included);
+// `display` is what the funnel shows (AuditSpur #253).
 export const CLEANLINESS_OPTIONS = [
-  { value: 1, label: "1 - Almost Spotless" },
-  { value: 2, label: "2 - Mostly Clean" },
-  { value: 3, label: "3 - Decently Clean" },
-  { value: 4, label: "4 - Needs Attention" },
-  { value: 5, label: "5- Very Dirty" },
+  { value: 1, label: "1 - Almost Spotless", display: "1 - Almost spotless" },
+  { value: 2, label: "2 - Mostly Clean", display: "2 - Mostly clean" },
+  { value: 3, label: "3 - Decently Clean", display: "3 - Decently clean" },
+  { value: 4, label: "4 - Needs Attention", display: "4 - Needs attention" },
+  { value: 5, label: "5- Very Dirty", display: "5 - Very dirty" },
 ] as const;
 // `label` is BookingKoala's own wording and travels to the booking page; `display`
 // is what the funnel shows. The visitor has not picked a slot yet at this point,

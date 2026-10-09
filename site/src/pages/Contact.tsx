@@ -433,7 +433,7 @@ export default function Contact() {
       if (!outcome.ok) {
         setSubmissionStatus({
           kind: "error",
-          message: "We couldn't send your message. Your answers are still here—try again or call the office for your city.",
+          message: `We couldn't send your message. Your answers are still here—try again, or call Edmonton at ${CITY_PROOF.edmonton.phone} or Calgary at ${CITY_PROOF.calgary.phone}.`,
         });
         return;
       }
@@ -582,19 +582,19 @@ export default function Contact() {
                   </a>
                 </Button>
               )}
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-auto min-h-12 max-w-full whitespace-normal px-6" asChild>
                 <a href={CITY_PROOF.edmonton.phoneLink}>
                   <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                   Call Edmonton
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-auto min-h-12 max-w-full whitespace-normal px-6" asChild>
                 <a href={CITY_PROOF.calgary.phoneLink}>
                   <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                   Call Calgary
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-auto min-h-12 max-w-full whitespace-normal px-6" asChild>
                 <a href={CITY_PROOF.reddeer.phoneLink}>
                   <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                   Call Red Deer

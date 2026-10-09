@@ -289,9 +289,9 @@ export default function Terms() {
             </div>
           </div>
         </div>
+          <TrustPageCta />
         </main>
 
-        <TrustPageCta />
         <Footer />
       </div>
     </>

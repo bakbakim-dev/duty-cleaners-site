@@ -37,9 +37,13 @@ export default function TerwillegarMap() {
 
     const markers = [
       { pos: [53.467, -113.585] as [number, number], label: "Terwillegar, Edmonton" },
-      { pos: [53.460, -113.590] as [number, number], label: "Terwillegar Park" },
-      { pos: [53.470, -113.578] as [number, number], label: "Terwillegar Community Recreation Centre" },
+      { pos: [53.472, -113.604] as [number, number], label: "Terwillegar Park" },
+      { pos: [53.458, -113.582] as [number, number], label: "Terwillegar Community Recreation Centre" },
     ];
+
+    // The landmarks are pinned where OpenStreetMap has them (AuditSpur #233,
+    // checked 2026-10-09), which is wider than one zoom level shows: frame them all.
+    map.fitBounds(L.latLngBounds(markers.map((m) => m.pos)), { padding: [40, 40], maxZoom: 14 });
 
     markers.forEach((m, index) => {
       // Named, not silenced: each pin is a real place and its label is

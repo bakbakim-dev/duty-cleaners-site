@@ -13,7 +13,7 @@
  *      and offer a same-request retry.
  */
 
-import { getStoredTracking } from "@/lib/tracking";
+import { getLeadTracking } from "@/lib/tracking";
 import {
   monitoredFormForSource,
   reportFormFailure,
@@ -148,7 +148,7 @@ export async function submitQuote(
         request_id: requestId,
         ...(options.sessionId ? { session_id: options.sessionId } : {}),
         stage: stageFor(payload),
-        tracking: getStoredTracking(),
+        tracking: getLeadTracking(),
         // Anti-abuse. The honeypot stays empty for anyone using a browser; the
         // timestamp lets the relay reject instant submissions. Neither asks the
         // customer for anything, and neither blocks a real lead if omitted.

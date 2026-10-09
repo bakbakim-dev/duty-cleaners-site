@@ -74,6 +74,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   { guard: "src/lib/callback-task-php.test.ts", target: "public/api/ghl-quote.php", find: "        $state = [...$state, ...(array) ($record['callback_task'] ?? []), 'attempts' => $state['attempts'], 'issue' => 'task attempt failed'];", replace: "        throw new RuntimeException('task step fault');", failing: "treat a fault inside the task step as one failed try, never the end of the cron run", why: "One fault in the task step aborts the whole cron run, so every lead queued behind it waits, for good if the fault persists." },
   { guard: "src/lib/enquiry-evidence-php.test.ts", target: "public/api/enquiry-evidence.php", find: "'date'=>$at->setTimezone(new DateTimeZone('America/Edmonton'))->format('Y-m-d')", replace: "'date'=>$at->format('Y-m-d')", failing: "is dated from the server's receipt in Edmonton time, never the browser's clock", why: "An evening enquiry is dated the next day (UTC), so its consent window starts a day late." },
   { guard: "src/lib/enquiry-evidence-php.test.ts", target: "public/api/enquiry-evidence.php", find: "return ($payload['stage']??'')==='confirm' && in_array($source,[", replace: "return in_array($source,[", failing: "counts confirmed quote requests, excluding general contact messages, price checks and job applications", why: "A price check that never became an enquiry would count as consent evidence for Long Term Nurture." },
+  // ---- 2026-10-09: the referring site names the lead channel (AuditSpur #320) ----
+  { guard: "src/lib/lead-channel-php.test.ts", target: "public/api/ghl-quote.php", find: ": dc_ghl_referrer_channel($get('referrer_host')));", replace: ": 'Website (no ad or campaign tags)');", failing: "names the referring site when the visit carried no ad or campaign tags", why: "A lead from Google search, the Business Profile or Facebook reads as a typed-in visit again, so GoHighLevel cannot tell where untagged leads come from." },
   // ---- 2026-10-08 (Codex, deployed; reviewed 2026-10-09): one receipt, one key event ----
   { guard: "src/lib/enquiry-receipt-analytics.test.ts", target: "src/lib/enquiry-receipt-analytics.ts", find: "if (!receiptId || recorded.has(receiptId)) return false;", replace: "if (!receiptId) return false;", failing: "counts repeated success for the same receipt once without exposing its ID", why: "A retried or re-sent lead fires generate_lead again, so GA4 counts one enquiry as two key events." },
   { guard: "src/lib/enquiry-evidence-php.test.ts", target: "public/api/enquiry-evidence.php", find: "if($current>$receipt['date']||($current===$receipt['date']&&trim((string)($values[$evidenceId]??''))!==''))return [];", replace: "", failing: "never shortens a newer enquiry date or overwrites same-day evidence", why: "A delayed retry of an older enquiry overwrites a newer date, shortening the contact's consent window." },
@@ -2041,8 +2043,9 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0923.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
-    find: "{option.display}",
-    replace: "{option.label}",
+    // Indented as the flexibility buttons are: the cleanliness scale has a {option.display} too.
+    find: "                          {option.display}",
+    replace: "                          {option.label}",
     failing: "shows plain buttons and a lead-in, and still sends BookingKoala's labels",
     why: "The flexibility buttons show BookingKoala's comment-section wording again.",
   },

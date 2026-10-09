@@ -44,6 +44,23 @@ const pageLabel = (pathname: string) => {
  * (which keeps layout, so the embed can keep measuring itself) so re-opening
  * is instant and any answers already typed are still there.
  */
+/**
+ * The last link or button pressed. Safari (WebKit) does not move focus to a
+ * link or button on click or tap, so document.activeElement cannot name the
+ * control that opened the quote; this does (AuditSpur #364).
+ */
+let lastPressedControl: HTMLElement | null = null;
+if (typeof document !== "undefined") {
+  document.addEventListener(
+    "pointerdown",
+    (event) => {
+      const control = (event.target as Element | null)?.closest?.("a, button");
+      if (control instanceof HTMLElement) lastPressedControl = control;
+    },
+    { capture: true, passive: true },
+  );
+}
+
 export default function QuoteOverlay() {
   const { isOpen, isMounted, initialService, initialIntent, servicePreset, closeQuote } =
     useQuoteOverlay();
@@ -63,7 +80,8 @@ export default function QuoteOverlay() {
   useEffect(() => {
     if (!isOpen) return;
 
-    openerRef.current = document.activeElement as HTMLElement | null;
+    const active = document.activeElement as HTMLElement | null;
+    openerRef.current = active && active !== document.body && active.tagName !== "MAIN" ? active : lastPressedControl;
     scrollYRef.current = window.scrollY;
     const previousOverflow = document.body.style.overflow;
     const pageRoot = document.getElementById("root");

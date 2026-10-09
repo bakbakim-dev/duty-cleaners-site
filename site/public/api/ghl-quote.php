@@ -962,6 +962,36 @@ const DC_GHL_BRANCH_PHONES = [
 ];
 const DC_GHL_NO_BRANCH_PHONE = 'Edmonton (780) 913-6565 or Calgary (403) 768-1341';
 
+/*
+ * A visit with no ad or campaign tags is named after the site that sent it
+ * (AuditSpur #320): the browser's referring hostname, kept by tracking.ts.
+ * Google covers search, Maps and the Business Profile's website button, which
+ * cannot be told apart from here. No referrer keeps the old wording, which
+ * GoHighLevel filters may already use.
+ */
+const DC_GHL_REFERRER_CHANNELS = [
+    '/(^|\.)google\.[a-z.]+$/' => 'Google (search, Maps or Business Profile)',
+    '/(^|\.)bing\.com$/' => 'Bing',
+    '/(^|\.)duckduckgo\.com$/' => 'DuckDuckGo',
+    '/(^|\.)yahoo\.[a-z.]+$/' => 'Yahoo',
+    '/(^|\.)(facebook\.com|fb\.com|fb\.me)$/' => 'Facebook',
+    '/(^|\.)instagram\.com$/' => 'Instagram',
+    '/(^|\.)(chatgpt\.com|openai\.com)$/' => 'ChatGPT',
+    '/(^|\.)perplexity\.ai$/' => 'Perplexity',
+    '/(^|\.)yelp\.[a-z.]+$/' => 'Yelp',
+    '/(^|\.)homestars\.com$/' => 'HomeStars',
+];
+
+function dc_ghl_referrer_channel(string $host): string
+{
+    $host = strtolower(trim($host));
+    if ($host === '' || !preg_match('/^[a-z0-9.-]{1,120}$/', $host)) return 'Website (no ad or campaign tags)';
+    foreach (DC_GHL_REFERRER_CHANNELS as $pattern => $name) {
+        if (preg_match($pattern, $host)) return $name;
+    }
+    return 'Referral: ' . $host;
+}
+
 /** @return array<string,string> GHL field key => value (empty values are skipped). */
 function dc_ghl_source_values(array $payload): array
 {
@@ -972,7 +1002,7 @@ function dc_ghl_source_values(array $payload): array
     $medium = $get('utm_medium');
     $channel = $clickId !== ''
         ? 'Google Ads'
-        : ($source !== '' ? $source . ($medium !== '' ? ' / ' . $medium : '') : 'Website (no ad or campaign tags)');
+        : ($source !== '' ? $source . ($medium !== '' ? ' / ' . $medium : '') : dc_ghl_referrer_channel($get('referrer_host')));
     $branch = DC_GHL_BRANCHES[strtolower(trim((string) ($payload['city'] ?? '')))] ?? '';
     return [
         'contact.branch' => $branch,

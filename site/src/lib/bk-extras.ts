@@ -395,7 +395,14 @@ export function groupExtras(
 const LOWERCASE_WORDS = new Set(["of", "or", "and", "per", "with", "the", "a", "to", "in", "on"]);
 
 export function extraDisplayName(name: string): string {
-  return name
+  // The asterisks point at a footnote BookingKoala never shows, and the unit
+  // ("Per Hour", "(per set)") is already printed beside the price (AuditSpur #253).
+  const cleaned = name
+    .replace(/\s*\*+/g, "")
+    .replace(/\s+per hour$/i, "")
+    .replace(/\s*\(per [a-z ]+\)$/i, "")
+    .trim();
+  return cleaned
     .split(" ")
     .map((word, index) => {
       if (/[A-Z]/.test(word)) return word;

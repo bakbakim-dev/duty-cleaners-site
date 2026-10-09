@@ -3185,7 +3185,7 @@ export default function QuoteFlow({
                             : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
                         }`}
                       >
-                        {option.label}
+                        {option.display}
                       </button>
                     ))}
                   </div>

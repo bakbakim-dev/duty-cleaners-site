@@ -25,7 +25,7 @@ import { createQuoteRequestId, fingerprintQuotePayload, submitQuote } from "@/li
 import { track } from "@/lib/analytics";
 import { z } from "zod";
 import heroCleanersSmiling from "@/assets/hero-cleaners-smiling.webp";
-import { CITY_PROOF, CLEANER_JOB_POSTING, COMPANY } from "@/data/proof";
+import { CITY_PROOF, CLEANER_JOB_POSTING, COMPANY, SUPPORT_EMAIL } from "@/data/proof";
 
 const applicationSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(50, "First name must be less than 50 characters"),
@@ -268,7 +268,7 @@ export default function JoinTheTeam() {
       if (!outcome.ok) {
         setSubmissionStatus({
           kind: "error",
-          message: "We couldn't send your application. Your answers are still here—try again or email support@dutycleaners.ca.",
+          message: `We couldn't send your application. Your answers are still here—try again, email ${SUPPORT_EMAIL} or call Edmonton at ${CITY_PROOF.edmonton.phone}.`,
         });
         return;
       }
@@ -736,7 +736,7 @@ export default function JoinTheTeam() {
                         <SelectValue placeholder="Select experience" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="no-experience">No Experience willing to be trained</SelectItem>
+                        <SelectItem value="no-experience">No experience, willing to be trained</SelectItem>
                         <SelectItem value="1-year">1 year and under</SelectItem>
                         <SelectItem value="2-years">2 years</SelectItem>
                         <SelectItem value="3-years">3 years</SelectItem>
@@ -773,7 +773,7 @@ export default function JoinTheTeam() {
                         <SelectValue placeholder="Select answer" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="none">NONE (Starting new)</SelectItem>
+                        <SelectItem value="none">None (starting new)</SelectItem>
                         <SelectItem value="under-10">Under 10</SelectItem>
                         <SelectItem value="over-10">Over 10</SelectItem>
                         <SelectItem value="varies">Varies</SelectItem>

@@ -71,6 +71,46 @@ export function captureTrackingParams(): void {
   }
 }
 
+/*
+ * The site that sent this visit (AuditSpur #320). Without it a lead from Google
+ * search, the Business Profile, Facebook or a directory read the same as one
+ * typed in. Only the hostname is kept (google.com, never the search or the
+ * path), first touch wins, and it goes to the CRM with a quote, nowhere else:
+ * it is not one of TRACKED_PARAMS, so it never reaches the booking page.
+ */
+const REFERRER_KEY = "dc-referrer";
+
+export function captureReferrer(): void {
+  if (typeof window === "undefined") return;
+  try {
+    if (sessionStorage.getItem(REFERRER_KEY) !== null) return;
+    let host = "";
+    if (document.referrer) {
+      const from = new URL(document.referrer).hostname.toLowerCase();
+      const own = window.location.hostname.toLowerCase();
+      if (from && from !== own && !from.endsWith(".dutycleaners.ca") && from !== "dutycleaners.ca") {
+        host = from.replace(/^www\./, "");
+      }
+    }
+    sessionStorage.setItem(REFERRER_KEY, host);
+  } catch {
+    // Storage unavailable or an unparsable referrer: attribution is best-effort.
+  }
+}
+
+/** The tracking map the relay receives: campaign parameters plus the referring host, if any. */
+export function getLeadTracking(): Record<string, string> {
+  const tracking = getStoredTracking();
+  if (typeof window === "undefined") return tracking;
+  try {
+    const host = sessionStorage.getItem(REFERRER_KEY);
+    if (host) return { ...tracking, referrer_host: host.slice(0, 120) };
+  } catch {
+    // ignore
+  }
+  return tracking;
+}
+
 /**
  * Resolves the current quote-service label from the URL first, then storage.
  * Returns null when no recognized service context exists.

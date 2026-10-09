@@ -1,6 +1,6 @@
 import { CITY_PROOF, RED_DEER_PATH, type Branch } from "@/data/proof";
 import { OFFICES_ANCHOR } from "@/components/OfficeCallLink";
-import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { explicitBranchFromPath } from "@/lib/city-from-path";
@@ -157,6 +157,31 @@ function NavLink({
 
 export default function Navigation({ city, branch: branchKey }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // Escape returns focus to the button that opened the phone menu: the menu
+  // unmounts on close, so focus inside it fell to the page body (AuditSpur #165).
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuOpenRef = useRef(false);
+  mobileMenuOpenRef.current = mobileMenuOpen;
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  // The open phone menu scrolls inside itself and never runs past the screen:
+  // its height is the space left below it, which changes as the announcement
+  // bar scrolls away (AuditSpur #366).
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const fit = () => {
+      const menu = mobileMenuRef.current;
+      if (!menu) return;
+      menu.style.maxHeight = `${Math.max(240, window.innerHeight - menu.getBoundingClientRect().top)}px`;
+    };
+    fit();
+    window.addEventListener("scroll", fit, { passive: true });
+    window.addEventListener("resize", fit);
+    return () => {
+      window.removeEventListener("scroll", fit);
+      window.removeEventListener("resize", fit);
+    };
+  }, [mobileMenuOpen]);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileContactOpen, setMobileContactOpen] = useState(false);
@@ -172,7 +197,10 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
       setOpenDropdown(null);
-      setMobileMenuOpen(false);
+      if (mobileMenuOpenRef.current) {
+        setMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -226,7 +254,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
 
   // Reserve space for the fixed mobile CTA bar so it never covers page content.
   useEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const isMobile = window.matchMedia("(max-width: 47.99em)").matches;
     if (!isMobile || mobileCtaHidden) {
       document.body.style.paddingBottom = "";
       return;
@@ -461,6 +489,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
 
           {/* Mobile Menu Button */}
           <button
+            ref={menuButtonRef}
             type="button"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
@@ -474,7 +503,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div id="mobile-menu" role="dialog" aria-modal="false" aria-label="Site menu" className="lg:hidden py-4 space-y-1 border-t animate-in fade-in-0 slide-in-from-top-2 duration-200">
+          <div ref={mobileMenuRef} id="mobile-menu" role="dialog" aria-modal="false" aria-label="Site menu" className="lg:hidden max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain transition-none py-4 space-y-1 border-t animate-in fade-in-0 slide-in-from-top-2 duration-200">
             {/* The primary action belongs inside the menu, not only in the bar. */}
             <a
               href={quoteTarget}
@@ -483,11 +512,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
             >
               {quoteLabel}
             </a>
-            <Link to="/about-us/" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
-              About Us
-            </Link>
-
-            {/* Locations Dropdown - Mobile */}
+            {/* Service Areas Dropdown - Mobile */}
             <div>
               <button
                 type="button"
@@ -495,7 +520,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
                 className="w-full flex items-center justify-between py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors"
                 onClick={() => setMobileLocationsOpen(!mobileLocationsOpen)}
               >
-                Locations
+                Service Areas
                 <span className={`dc-icon dc-icon-chevron-down w-4 h-4 transition-transform duration-200 ${mobileLocationsOpen ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
               {mobileLocationsOpen && (
@@ -514,10 +539,6 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
                 </div>
               )}
             </div>
-
-            <Link to="/join-the-team/" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
-              Careers
-            </Link>
 
             {/* Services Dropdown - Mobile */}
             <div>
@@ -608,7 +629,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
 
       {/* Mobile Sticky CTA Bar — rendered outside <header> because the header's
           backdrop-blur creates a containing block that would break fixed positioning */}
-      {!mobileCtaHidden && (
+      {!mobileCtaHidden && !mobileMenuOpen && (
         <aside
           aria-label="Quick contact and quote actions"
           className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex gap-2 border-t border-brand-navy-foreground/15 bg-brand-navy p-3 shadow-2xl"
@@ -616,7 +637,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
           <Button
             asChild
             variant="outline"
-            className="min-h-[48px] shrink-0 border-brand-navy-foreground/40 bg-transparent px-3 min-[360px]:px-4 text-base font-bold text-brand-navy-foreground hover:bg-brand-navy-foreground/10 hover:text-brand-navy-foreground"
+            className="h-auto min-h-[48px] shrink-0 border-brand-navy-foreground/40 bg-transparent px-3 min-[360px]:px-4 text-base font-bold text-brand-navy-foreground hover:bg-brand-navy-foreground/10 hover:text-brand-navy-foreground"
           >
             <a href={neutral ? OFFICES_ANCHOR : phoneLink} aria-label={neutral ? "Call an office" : `Call ${phone}`}>
               <span className="dc-icon dc-icon-phone mr-2 h-5 w-5" aria-hidden="true" />
@@ -625,7 +646,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
           </Button>
           {/* At 320px (WCAG 1.4.10 reflow) the label ran past the screen: below 360px
               the icon goes, and a label that still does not fit wraps. */}
-          <Button asChild className="min-h-[48px] min-w-0 flex-1 whitespace-normal px-3 text-center leading-tight min-[360px]:px-4 bg-accent text-base font-bold text-accent-foreground hover:bg-accent/90">
+          <Button asChild className="h-auto min-h-[48px] min-w-0 flex-1 whitespace-normal px-3 text-center leading-tight min-[360px]:px-4 bg-accent text-base font-bold text-accent-foreground hover:bg-accent/90">
             <Link to={quoteTarget} onClick={handleQuoteClick}>
               <Calculator className="mr-2 hidden h-5 w-5 shrink-0 min-[360px]:inline-block" aria-hidden="true" />
               {quoteLabel}
