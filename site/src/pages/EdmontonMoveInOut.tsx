@@ -668,8 +668,6 @@ export default function EdmontonMoveInOut() {
 
         <MoveOutServiceAreas city="Edmonton" />
 
-      </main>
-
         <section className="pb-16">
 
           <div className="container mx-auto px-4">
@@ -679,6 +677,8 @@ export default function EdmontonMoveInOut() {
           </div>
 
         </section>
+
+      </main>
 
         <Footer hasQuoteSection />
       </div>

@@ -60,7 +60,7 @@ All colors MUST be HSL.
 
     /* Soft neutral muted tones */
     --muted: 210 15% 93%;
-    --muted-foreground: 215 15% 45%;
+    --muted-foreground: 215 15% 43%;
 
     /* Action orange — AA-compliant on white (5.27:1). Used for CTA fills and
        any orange TEXT. The brighter tone below is decoration only. */

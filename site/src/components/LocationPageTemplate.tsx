@@ -245,7 +245,6 @@ export default function LocationPageTemplate({
       </Helmet>
       <Navigation city={region} />
       <main id="main-content" tabIndex={-1}>
-        <AreaScopeNote />
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -295,6 +294,9 @@ export default function LocationPageTemplate({
           </div>
         </div>
       </section>
+
+      {/* After the hero, so the page's H1 comes before the note's h2 (deep audit 2026-10-09). */}
+      <AreaScopeNote />
 
       {/* What the hero pills said, as one plain row under the hero. The same
           three the hand-written neighbourhood pages carry: the content prompt
