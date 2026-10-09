@@ -185,7 +185,7 @@ DirectoryIndex index.html
   RewriteRule ^post-construction-2/?$ /post-construction-cleaning/ [R=301,L,NE]
   RewriteRule ^regular-house-cleaning-2/?$ /edmonton/regular-cleaning/ [R=301,L,NE]
   RewriteRule ^homepage/booking/?$ /pricing/ [R=301,L,NE]
-  RewriteRule ^services/booking/?$ /#quote [R=301,L,NE]
+  RewriteRule ^services/booking/?$ /?%{QUERY_STRING}#quote [R=301,L,NE]
   RewriteRule ^wp-content/uploads/2024/08/2\.jpg/?$ /gift-card/ [R=301,L,NE]
   RewriteRule ^wp-content/uploads/2024/08/4\.jpg/?$ / [R=301,L,NE]
   RewriteRule ^wp-content/uploads/2024/08/5\.jpg/?$ / [R=301,L,NE]

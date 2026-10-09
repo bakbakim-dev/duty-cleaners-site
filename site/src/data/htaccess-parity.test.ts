@@ -50,7 +50,7 @@ function apachePairs(): Set<string> {
     // The generator escapes regex metacharacters in the source path; strip the
     // backslashes to compare against the plain path.
     const from = ("/" + m[1].replace(/\\/g, "")).replace(/\/+$/, "") || "/";
-    const to = m[2].replace(/\/+$/, "") || "/";
+    const to = m[2].replace("?%{QUERY_STRING}#", "#").replace(/\/+$/, "") || "/";
     out.add(`${from} -> ${to}`);
   }
   return out;
@@ -85,6 +85,18 @@ describe("the Apache and Netlify rule sets describe the same site", () => {
       onlyApache.slice(0, 8),
       `${onlyApache.length} rule(s) exist only in .htaccess`,
     ).toEqual([]);
+  });
+
+  it("keeps booking-link tracking parameters before the quote fragment", () => {
+    const text = readFileSync(join(PUBLIC, ".htaccess"), "utf-8");
+    const rule = text.split(/\r?\n/).find((line) => line.includes("RewriteRule ^services/booking/?$"));
+    expect(rule).toContain(" /?%{QUERY_STRING}#quote [R=301,L,NE]");
+    // The browser must see precisely #quote even on tracked marketing links.
+    for (const query of ["", "utm_source=nurture&utm_medium=email"]) {
+      const target = new URL("/?%{QUERY_STRING}#quote".replace("%{QUERY_STRING}", query), "https://dutycleaners.ca");
+      expect(target.hash).toBe("#quote");
+      expect(target.searchParams.get("utm_source")).toBe(query ? "nurture" : null);
+    }
   });
 
   it("does not redirect a request that is already HTTPS behind the proxy", () => {

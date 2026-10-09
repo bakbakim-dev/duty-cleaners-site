@@ -38,6 +38,7 @@ export interface GuardProof {
 }
 
 export const GUARD_PROOFS: GuardProof[] = [
+  { guard: "src/data/htaccess-parity.test.ts", target: "public/.htaccess", find: "RewriteRule ^services/booking/?$ /?%{QUERY_STRING}#quote [R=301,L,NE]", replace: "RewriteRule ^services/booking/?$ /#quote [R=301,L,NE]", failing: "keeps booking-link tracking parameters before the quote fragment", why: "Restores the live failure where Apache puts UTM parameters after #quote and the quote overlay does not open." },
   { guard: "src/data/seo-editorial.test.ts", target: "src/data/service-copy.ts", find: "some marks may remain", replace: "every mark disappears", failing: "qualifies wall-washing results in the shared description", why: "Reintroduces an unconditional wall-washing result promise." },
   { guard: "src/data/seo-editorial.test.ts", target: "scripts/content-revisions.ts", find: "if (previous?.hash === hash) return previous;", replace: "if (false) return previous;", failing: "does not change revision dates for CSS or date-only edits", why: "Advances a revision date even though the content fingerprint is unchanged." },
   { guard: "src/lib/form-health.test.ts", target: "src/lib/form-health.ts", find: "path: currentPath(),", replace: 'path: "/?email=customer@example.com",', failing: "reports fixed diagnostics without form values or URL parameters", why: "Leaks a customer's email-shaped query value into the operational alert." },

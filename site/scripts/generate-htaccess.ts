@@ -177,7 +177,13 @@ out.push(
 for (const r of rules.filter((x) => x.kind === "301")) {
   // NE: a target may carry a fragment (/#quote opens the instant price), which
   // Apache would otherwise send as %23. Every target is one of our own paths.
-  out.push(`  RewriteRule ^${rx(bare(r.from))}/?$ ${r.to} [R=301,L,NE]`);
+  // Put an incoming query before the fragment. Otherwise Apache appends it
+  // after #quote, so tracking links become #quote?utm_source=... and fail to
+  // open the quote overlay. Explicitly retaining it also preserves attribution.
+  const target = r.to.includes("#") && !r.to.includes("?")
+    ? r.to.replace("#", "?%{QUERY_STRING}#")
+    : r.to;
+  out.push(`  RewriteRule ^${rx(bare(r.from))}/?$ ${target} [R=301,L,NE]`);
 }
 out.push(
   "</IfModule>",
