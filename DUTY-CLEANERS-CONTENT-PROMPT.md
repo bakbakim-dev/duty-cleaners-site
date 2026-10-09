@@ -18,7 +18,7 @@ the same sales claim. Do not create synonym, schedule or service-by-neighbourhoo
 pages. Shared truthful service facts may repeat; fabricated local differences may not.
 
 Use the current `proof.ts`, `policy.ts`, `pricing.ts` and BookingKoala snapshot,
-including the Red Deer branch, before the historical fact tables below. Preserve
+including Red Deer (booked now, no office until 2027), before the historical fact tables below. Preserve
 all URLs unless a separate retirement is approved. Parkhill/Stanley Park merger
 and Upper Mount Royal narrowing remain drafts. Do not publish invented jobs,
 reviews or AI pictures presented as real customer evidence.
@@ -181,12 +181,12 @@ F5  Hours: Monday to Saturday 8:00 AM to 8:00 PM, Sunday 9:00 AM to 3:00 PM.
 F6  We book an arrival window, not an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to
     4:00 PM.
 F7  After a quote request we text within 24 hours to confirm the time. Promise nothing faster.
-F8  Online bookings need at least 24 hours' notice. For anything sooner, the customer calls the
-    branch and asks what the schedule has open.
+F8  Online booking closes at 5 PM two days before the clean (owner, 2026-10-08). For anything
+    sooner, the customer calls the branch and asks what the schedule has open.
 
 Proof
-R1  Rated 4.9 on Google. The Edmonton listing has 236 reviews and the Calgary listing 51, read on
-    1 September 2026. Use the count of the branch this page belongs to. Never add the two
+R1  Rated 4.9 on Google. The Edmonton listing has 243 reviews and the Calgary listing 53, read on
+    7 October 2026 (the current counts live in proof.ts; use those). Use the count of the branch this page belongs to. Never add the two
     together: Google publishes no combined figure.
 R2  Every cleaner is reference-checked before a first job and rated by the customer after each
     visit, and the ratings decide who we keep sending. Never state an applicant acceptance rate:
@@ -217,7 +217,7 @@ P2  Deep clean, same sizes, 1 to 5 bedrooms: $255, $315, $372, $444, $485. It is
     checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and
     vent covers, and cobwebs where there are any. Light switches and cobwebs belong to the deep
     package only; never list them on the standard checklist. Ceiling fans are in no package: the
-    team dusts them only on request, where a 3-step ladder reaches them safely.
+    team dusts them only on request, where a two-step stool reaches them.
 P3  Move-in or move-out clean, same sizes, 1 to 5 bedrooms: $284, $361, $424, $501, $539.
 P4  Recurring: the standard clean on a schedule. Weekly 20% off, bi-weekly 15% off, every 4 weeks
     10% off, from the second visit; the first clean is charged at the one-time rate. Name the 10%
@@ -238,9 +238,9 @@ P10 Homes with pets: $19.99 per visit. It is compulsory, and it shows on the quo
     booking.
 P11 No trip fee inside Edmonton, Calgary or Red Deer city limits. Outside them the travel fee is $29.99 for
     home cleaning and $50 for post-construction.
-P12 Optional alternative products: $15 before GST. Ask the office which products are available
-    and suitable for your surfaces when you book. Never call them eco-friendly, green, non-toxic or
-    pet-safe.
+P12 Eco-friendly products: $15 before GST, on any service (owner, 2026-09-26). The team buys or
+    uses them on request; they are not on the booking form, so the customer asks when booking.
+    Say "eco-friendly" only: never green, non-toxic, pet-safe or safe.
 Every price you state needs its condition in the same sentence or the next one: that it is
 before GST, which home size it is for, and which compulsory charges can apply. Never present a
 price as the whole bill when the pet charge, the home-type surcharge or the travel fee can apply.
@@ -252,16 +252,18 @@ T1  The guarantee: if something was missed, tell us within 24 hours of the clean
     visit. It is not a money-back guarantee, though a customer who wants something else can
     call and talk about it.
 T2  Payment: nothing is charged at booking. The day before, a temporary hold is placed on the
-    card to confirm it is valid; it can look like a charge in a banking app, but no money moves.
-    The card is charged once the clean is complete. Visa, Mastercard, American Express, debit
-    and e-transfer.
+    card for the price. It is not a charge, but on a debit card that amount is set aside until
+    the card is charged, once the clean is complete. Never write "no money moves". Visa,
+    Mastercard, American Express and debit. E-transfer is arranged by phone, never online, and
+    with no card to hold an e-transfer booking is paid in full the day before the clean.
 T3  Cancelling or changing a booking needs 24 hours' notice; inside 24 hours the fee is $50. If
     we have to move a booking (a cleaner is ill, a vehicle will not start, the roads are
     unsafe), we say so as soon as we know and offer the earliest slot we have. Nobody pays for a
     visit we did not do, and cancelling a booking we moved costs nothing. We do not pay
     compensation for a rescheduled clean.
-T4  If the team arrives and cannot get in, the lockout charge is half the cost of the scheduled
-    service.
+T4  If the team arrives and cannot get in or cannot start (no key or a code that does not work,
+    no water or power, building work under way, a pet that cannot be kept away, conditions not
+    mentioned when booking), the charge is up to half the cost of the scheduled service.
 T5  You do not need to be home: most customers leave a key, a lockbox code or smart-lock access,
     and the team locks up. The team brings all supplies and equipment. Running water is
     required, and vacuuming may not be possible without electricity. The cleaners are
@@ -272,7 +274,7 @@ T6  You do not need to clean before the team comes. Clear counters and floors ge
     cluttered ones get worked around, and decluttering or organising is a separate hourly
     add-on.
 T7  Not included: lifting anything over 25 lb; outdoor work, including exterior windows; anything
-    beyond a 3-step ladder; light bulbs and fragile fixtures; bodily fluids, animal waste and
+    beyond a two-step stool; light bulbs and fragile fixtures; bodily fluids, animal waste and
     litter boxes; mould remediation (light surface mildew may be wiped where safe); pests and
     rodents; garages, patios and outdoor areas (a balcony or garage sweep is a separate add-on,
     offered mostly in summer when the weather allows); carpet steam cleaning and upholstery; furnace,
@@ -302,10 +304,12 @@ A2  Calgary branch: 66 Calgary neighbourhoods, plus 9 communities outside the ci
     Valley)", "Turner Valley (Diamond Valley)".
 A3  Name only places on these lists. For any other address that is not listed, tell the reader
     to call the branch; never say whether it is served.
-A4  Red Deer branch (since 2026-09-11): its own office at 5212 48 St, Red Deer, (587) 570-6979,
-    Monday to Saturday 7:00 AM to 9:00 PM, closed Sunday. Same prices, no travel fee inside Red
-    Deer, booked online like the other branches. It has no Google reviews yet: never give it the
-    4.9 rating. No surrounding communities are on file for it.
+A4  Red Deer (owner, 2026-10-06): NO office until 2027. Red Deer homes are booked online now and
+    the Edmonton office runs the cleans; (587) 570-6979 rings that office and is answered in its
+    hours. Never write "Red Deer office", "three offices", a Red Deer street address or the old
+    7 AM-9 PM hours. Same prices, no travel fee inside Red Deer; addresses around it pay the
+    standard travel fee and book online. It has no Google reviews yet: never give it the 4.9
+    rating. No surrounding communities are on file for it.
 
 City conditions you may use
 C1  Edmonton holds its cold rather than cycling through thaws, so the sand and salt tracked in
