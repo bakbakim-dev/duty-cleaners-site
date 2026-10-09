@@ -85,7 +85,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What if the cleaners cannot get in?",
-        answer: "If the team arrives and cannot get into the home because no key was left, a code does not work or nobody can let them in, the visit is charged at up to half the cost of the scheduled service. The cleaner has already travelled and the slot cannot be reassigned at that point. Letting us know at least 24 hours ahead avoids the charge.",
+        answer: `If the team arrives and cannot get in, or cannot start because the home is not ready, the visit is charged at ${POLICY.lockoutFee}. That covers no key left, a code that does not work or nobody to let them in; no running water, or no power where the clean needs it; building or renovation work still under way; a pet that cannot be kept away from the team; and conditions we do not clean that were not mentioned when booking. The cleaner has already travelled and the slot cannot be reassigned at that point. Letting us know at least ${POLICY.cancellationNoticeHours} hours ahead avoids the charge.`,
       },
       {
         question: "What are your operating hours?",

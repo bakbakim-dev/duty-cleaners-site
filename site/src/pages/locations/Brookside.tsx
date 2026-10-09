@@ -88,7 +88,7 @@ export default function Brookside() {
   url: "https://dutycleaners.ca/locations/brookside-edmonton",
   areaServed: "Brookside, Edmonton, AB",
   description: "Our Edmonton branch cleans Brookside's 1960s and 1970s houses, where original tile, grout and repainted wood need low-moisture work.",
-  geo: { latitude: "53.483", longitude: "-113.538" },
+  geo: { latitude: "53.494", longitude: "-113.568" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/brookside-edmonton/" />
@@ -232,7 +232,7 @@ export default function Brookside() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.483, -113.538]} label="Brookside, Edmonton" />
+                  <LocationMap center={[53.494, -113.568]} label="Brookside, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

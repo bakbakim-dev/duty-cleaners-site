@@ -68,7 +68,7 @@ export default function EdmontonDeepCleaning() {
       heroSubheading={`The standard clean plus baseboards, door frames, switches and vents, from ${TIERS[0].price} before GST for a one-bedroom apartment or condo. You pay after the clean.`}
       heroBadges={["Standard Checklist Plus the Deep Package", "All Supplies Brought For You", `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`]}
       heroImage={heroImage}
-      heroImageAlt="Kitchen after a deep clean"
+      heroImageAlt="Kitchen with white upper cabinets, dark lower cabinets and a stainless range hood"
       heroImageWidth={1024}
       heroImageHeight={1024}
       overviewHeading={<>When an Edmonton home <Accent>needs a deep clean.</Accent></>}
@@ -173,9 +173,9 @@ export default function EdmontonDeepCleaning() {
         { q: "Does a deep clean remove mould or mildew?", a: "No. Mould remediation is a different trade, and it is not what a deep clean buys. Light mildew on shower grout or caulking is wiped when it is safe to. Past that we stop, tell you where it is and what it looks like, and leave it to somebody equipped for it." },
         { q: "When should I book a deep cleaning?", a: "In Edmonton, book for the spring melt, when a whole winter of sanding grit comes off boots and paws in about three weeks; a booking in late March or April clears it before it is ground into the floors. Fall, just before furnace season closes the windows until April, is the other good time. Outside those two, book one before guests arrive, after a long stretch without a clean, or as the first visit before a recurring schedule starts." },
         { q: "How long does a deep cleaning take?", a: `A deep clean of a two-bedroom, one-bathroom apartment usually takes ${POLICY.typicalVisitLength?.deep}, against ${POLICY.typicalVisitLength?.standard} for a standard clean of the same apartment; a bigger home takes longer. The price is set by home size for the condition you describe; if the home needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on.` },
-        { q: "How is deep cleaning different from regular cleaning?", a: "A standard clean is the surfaces you use: floors, bathrooms, kitchen counters, and dusting whatever is in reach. The deep clean adds the package on top, which is the trim and door frames, the switch plates, the outlet covers, the vent covers, the shower glass, and the stovetop, grates and fridge top. In a house that has been sealed since October, that is where the furnace dust and the boot grit have gone." },
+        { q: "How is deep cleaning different from regular cleaning?", a: "A standard clean is the surfaces you use: floors, bathrooms, kitchen counters, and dusting whatever is in reach. The deep clean adds the package on top: baseboards, doors and door frames, light switches, wall outlets and vent covers, cobwebs where there are any, and a detailed stovetop, grates and fridge top. In a house that has been sealed since October, that is where the furnace dust and the boot grit have gone." },
         { q: "Do I need to prepare anything?", a: "Two things help, and neither of them is cleaning. Tell us how the team gets in, whether that is a lockbox, a smart-lock code, a garage code or a key with a concierge. Then tell us which rooms matter most and which to leave alone, because a deep clean spends its hours on trim and edges and there is no sense spending them in a room you would rather we skipped." },
-        { q: "Are your products safe for kids and pets?", a: `We bring our own standard professional products. Tell us about any sensitivities, or anything you would rather we did not use, when you book. Eco-friendly products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
+        { q: "Can you change the products for a home with kids or pets?", a: `We bring our own standard professional products. Tell us about kids, pets or any sensitivities, or anything you would rather we did not use, when you book. Eco-friendly products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
         { q: "How often should I get a deep cleaning?", a: "There is no fixed interval, and a number of months is the wrong way to decide it. What sets it is how long the edges have been left: if the trim, the vents and the tops of the door frames have not been touched since the last one, it is due. A home where the furnace runs all winter and everybody comes in through the same door reaches that point sooner. Standard visits on a schedule in between are what keep the gap long." },
         { q: "What happens if something is missed?", a: `Tell us within ${POLICY.guaranteeWindowHours} hours and the team comes back to re-clean it at no charge. Photos help but are not required. The commitment is the return visit rather than a refund, though you can call the Edmonton office on (780) 913-6565 to talk through anything else.` },
       ]}
@@ -218,7 +218,7 @@ export default function EdmontonDeepCleaning() {
       ctaHeading={<>Deep cleaning in <em className="italic text-accent-on-dark">Edmonton</em> from {TIERS[0].price}.</>}
       ctaDescription={`The price is flat by home size, before GST: ${TIERS[0].price} is a one-bedroom apartment or condo, and any home-type, pet or travel charge shows on the quote. Nothing is charged until the clean is complete.`}
       galleryImages={[
-        { picture: heroImageCard, alt: "Kitchen after a deep clean" },
+        { picture: heroImageCard, alt: "Kitchen with white upper cabinets, dark lower cabinets and a stainless range hood" },
       ]}
       galleryRepeatsHero
     />

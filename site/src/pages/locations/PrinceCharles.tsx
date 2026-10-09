@@ -88,7 +88,7 @@ export default function PrinceCharles() {
   url: "https://dutycleaners.ca/locations/prince-charles-edmonton",
   areaServed: "Prince Charles, Edmonton, AB",
   description: "House cleaning in Prince Charles, Edmonton, where compact wartime and 1950s houses with original trim are priced flat by home size.",
-  geo: { latitude: "53.575", longitude: "-113.507" },
+  geo: { latitude: "53.577", longitude: "-113.536" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/prince-charles-edmonton/" />
@@ -235,7 +235,7 @@ export default function PrinceCharles() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.575, -113.507]} label="Prince Charles, Edmonton" />
+                  <LocationMap center={[53.577, -113.536]} label="Prince Charles, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

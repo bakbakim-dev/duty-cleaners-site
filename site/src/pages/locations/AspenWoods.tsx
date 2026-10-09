@@ -49,12 +49,12 @@ export default function AspenWoods() {
     <>
       <Helmet>
         <title>House Cleaners in Aspen Woods, Calgary | Duty Cleaners</title>
-        <meta name="description" content="In Aspen Woods, Calgary, homes date from 2001, and their stone counters want a pH-neutral product rather than a degreaser." />
+        <meta name="description" content="House cleaning in Aspen Woods, Calgary, where homes date from 2001 and their stone counters want a pH-neutral product rather than a degreaser." />
         <meta property="og:title" content="House Cleaners in Aspen Woods, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Aspen Woods, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="In Aspen Woods, Calgary, homes date from 2001, and their stone counters want a pH-neutral product rather than a degreaser." />
-        <meta property="og:description" content="In Aspen Woods, Calgary, homes date from 2001, and their stone counters want a pH-neutral product rather than a degreaser." />
+        <meta name="twitter:description" content="House cleaning in Aspen Woods, Calgary, where homes date from 2001 and their stone counters want a pH-neutral product rather than a degreaser." />
+        <meta property="og:description" content="House cleaning in Aspen Woods, Calgary, where homes date from 2001 and their stone counters want a pH-neutral product rather than a degreaser." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/aspen-woods/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/aspen-woods/" />

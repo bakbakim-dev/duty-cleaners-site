@@ -38,7 +38,7 @@ const pcTravelFee = formatPrice(travelFee("post-construction") ?? 0);
 
 /* The title carries the derived floor and the payment term; the brand would
    push it past 60 characters. */
-const PAGE_TITLE = `Post-Construction Cleaning Edmonton from ${startingPriceLabel} | Pay After`;
+const PAGE_TITLE = `Post-Construction Cleaning in Edmonton from ${startingPriceLabel}`;
 const META_DESCRIPTION = `Once the last trade leaves an Edmonton new build or renovation, post-construction cleaning is priced by square footage from ${startingPriceLabel} before GST.`;
 
 /* Card titles were Title Case service-brochure headings ("Fine Dust & Debris

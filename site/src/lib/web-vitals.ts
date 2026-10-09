@@ -12,8 +12,10 @@
  * What is sent: the metric's name (LCP, INP, CLS, FCP, TTFB), its value in
  * milliseconds (CLS as a whole number ×1000), Google's rating (good,
  * needs-improvement, poor), the connection type (4g, 3g…) where the browser
- * reports one, and the device class that track() adds. Everything still goes
- * through track() and its allowlist; page_location is the cleaned address.
+ * reports one, the path of the page that was loaded (metric_page: INP and CLS
+ * arrive when the visitor leaves, often from another page), and the device class
+ * that track() adds. Everything still goes through track() and its allowlist;
+ * page_location is the cleaned address.
  *
  * It runs only where GA4 runs (initAnalytics() set window.__dcGa4: the live
  * domain, a measurement ID, no Global Privacy Control or Do Not Track), and the
@@ -42,7 +44,7 @@ export function connectionType(): string | undefined {
 }
 
 /** The event properties for one measurement. */
-export function webVitalProps(metric: VitalMetric, connection?: string): Record<string, string | number> {
+export function webVitalProps(metric: VitalMetric, connection?: string, page?: string): Record<string, string | number> {
   const value = metric.name === "CLS" ? metric.value * 1000 : metric.value;
   const props: Record<string, string | number> = {
     metric: metric.name,
@@ -50,6 +52,7 @@ export function webVitalProps(metric: VitalMetric, connection?: string): Record<
     metric_rating: metric.rating,
   };
   if (connection) props.connection = connection;
+  if (page) props.metric_page = page;
   return props;
 }
 
@@ -59,10 +62,13 @@ export function initWebVitals(): void {
   if (started || typeof window === "undefined" || typeof document === "undefined") return;
   if (!window.__dcGa4) return;
   started = true;
+  // web-vitals measures this page load only, so every metric belongs to the
+  // page the visitor landed on, wherever they are when it is sent.
+  const page = window.location.pathname;
   const start = () => {
     (import(/* @vite-ignore */ webVitalsUrl) as Promise<typeof import("web-vitals")>)
       .then(({ onCLS, onFCP, onINP, onLCP, onTTFB }) => {
-        const report = (metric: VitalMetric) => track("web_vital", webVitalProps(metric, connectionType()));
+        const report = (metric: VitalMetric) => track("web_vital", webVitalProps(metric, connectionType(), page));
         onLCP(report);
         onINP(report);
         onCLS(report);

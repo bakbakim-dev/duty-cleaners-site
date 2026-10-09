@@ -103,7 +103,7 @@ const EDMONTON_REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount;
   a page with a fraction of this one's authority. The hub takes the phrase and
   keeps the reason to click; /services/ is being retitled off it separately.
 */
-const PAGE_TITLE = `House Cleaning Services Edmonton from ${FROM_STANDARD} | Pay After`;
+const PAGE_TITLE = `House Cleaning Services Edmonton from ${FROM_STANDARD} | Duty Cleaners`;
 const PAGE_DESCRIPTION = "Explore house cleaning in Edmonton. Compare services, check what's included and see pricing for your home before you book with Duty Cleaners.";
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
@@ -268,7 +268,7 @@ export default function Edmonton2() {
            heroSrcSet={HERO_SRCSET}
            heroWidth={edmontonHeroRoom.img.w}
            heroHeight={edmontonHeroRoom.img.h}
-           heroAlt="Professional cleaner wiping a kitchen island in a bright Edmonton home"
+           heroAlt="Cleaner in a navy polo wiping a marble kitchen island, a caddy of supplies beside her"
            heroPosition="center 48%"
          />
 

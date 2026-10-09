@@ -67,12 +67,12 @@ export default function Mahogany() {
     <>
       <Helmet>
         <title>House Cleaning Services in Mahogany, Calgary | Duty Cleaners</title>
-        <meta name="description" content="New phases keep opening past 52 Street SE in Mahogany, Calgary, so homes downwind of an active lot get construction silt on sills and window tracks." />
+        <meta name="description" content="House cleaning in Mahogany, Calgary, where new phases keep opening past 52 Street SE and homes downwind of an active lot get silt on sills." />
         <meta property="og:title" content="House Cleaning Services in Mahogany, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Mahogany, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="New phases keep opening past 52 Street SE in Mahogany, Calgary, so homes downwind of an active lot get construction silt on sills and window tracks." />
-        <meta property="og:description" content="New phases keep opening past 52 Street SE in Mahogany, Calgary, so homes downwind of an active lot get construction silt on sills and window tracks." />
+        <meta name="twitter:description" content="House cleaning in Mahogany, Calgary, where new phases keep opening past 52 Street SE and homes downwind of an active lot get silt on sills." />
+        <meta property="og:description" content="House cleaning in Mahogany, Calgary, where new phases keep opening past 52 Street SE and homes downwind of an active lot get silt on sills." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mahogany/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mahogany/" />

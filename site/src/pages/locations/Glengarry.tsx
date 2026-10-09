@@ -88,7 +88,7 @@ export default function Glengarry() {
   url: "https://dutycleaners.ca/locations/glengarry-edmonton",
   areaServed: "Glengarry, Edmonton, AB",
   description: "Basement suites are common in Glengarry's 1960s Edmonton bungalows, and a suite doubles the kitchens and bathrooms a clean has to cover.",
-  geo: { latitude: "53.585", longitude: "-113.498" },
+  geo: { latitude: "53.596", longitude: "-113.477" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/glengarry-edmonton/" />
@@ -232,7 +232,7 @@ export default function Glengarry() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.585, -113.498]} label="Glengarry, Edmonton" />
+                  <LocationMap center={[53.596, -113.477]} label="Glengarry, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

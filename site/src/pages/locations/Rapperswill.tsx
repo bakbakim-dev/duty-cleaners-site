@@ -88,7 +88,7 @@ export default function Rapperswill() {
   url: "https://dutycleaners.ca/locations/rapperswill-edmonton",
   areaServed: "Rapperswill, Edmonton, AB",
   description: "House cleaning in Rapperswill, Edmonton, for post-2007 homes with engineered flooring, factory-finished cabinet doors and sealed counters.",
-  geo: { latitude: "53.631", longitude: "-113.55" },
+  geo: { latitude: "53.633", longitude: "-113.535" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/rapperswill-edmonton/" />
@@ -235,7 +235,7 @@ export default function Rapperswill() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.631, -113.55]} label="Rapperswill, Edmonton" />
+                  <LocationMap center={[53.633, -113.535]} label="Rapperswill, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

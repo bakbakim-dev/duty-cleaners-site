@@ -108,7 +108,7 @@ export default function DowntownWestEnd() {
                 Professional House Cleaning in Downtown West End
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Twenty-five single-family houses remain in the Downtown West End, so nearly every clean here happens in a tower suite. Each visit is priced flat by home size, and the card is charged only once the clean is complete.
+                Almost every home in the Downtown West End is an apartment or condo suite, so nearly every clean here happens in a tower. Each visit is priced flat by home size, and the card is charged only once the clean is complete.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -236,9 +236,9 @@ export default function DowntownWestEnd() {
 
       <LocalMarketNote
         eyebrow="On the ground"
-        heading="Twenty-five houses and everything else"
+        heading="A neighbourhood of towers"
         paragraphs={[
-          "Twenty-five single-family houses are all that remain inside the boundaries; everything else on this strip between the Bow River and the CPR tracks is towers. So nearly every job here is a condo job, and the constraints repeat — window walls reachable only from the inside and no outdoor tap anywhere in the building plan to fill a bucket from.",
+          "The 2021 census counted no occupied detached houses inside the boundaries; the homes on this strip between the Bow River and the CPR tracks are suites in towers. So nearly every job here is a condo job, and the constraints repeat — window walls reachable only from the inside and no outdoor tap anywhere in the building plan to fill a bucket from.",
           "Which face a suite has decides the rest. Rail-corridor sills on the south side hold a fine dark film that smears under a dry cloth; north-side glass over the river trades that for a humid haze the moment the weather turns. Access sets the schedule too. The Downtown West–Kerby platform is right here, and the Plus 15 network stops a block east at 8 Street SW. Crews and equipment go up the service elevator, so we confirm loading hours before a first visit.",
         ]}
         accent="calgary"

@@ -80,25 +80,25 @@ export default function Pleasantview() {
     <>
       <Helmet>
         <title>House Cleaning in Pleasantview, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="A Pleasantview bungalow's hours go to floors and baseboards, while an apartment's go to the galley kitchen, the bathroom fan and the balcony door track." />
+        <meta name="description" content="House cleaning in Pleasantview, Edmonton: a bungalow's hours go to floors and baseboards, an apartment's to the galley kitchen and bathroom fan." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Pleasantview, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/pleasantview",
   areaServed: "Pleasantview, Edmonton, AB",
-  description: "A Pleasantview bungalow's hours go to floors and baseboards, while an apartment's go to the galley kitchen, the bathroom fan and the balcony door track.",
+  description: "House cleaning in Pleasantview, Edmonton: a bungalow's hours go to floors and baseboards, an apartment's to the galley kitchen and bathroom fan.",
   geo: { latitude: "53.497", longitude: "-113.516" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/pleasantview/" />
         <meta property="og:title" content="House Cleaning in Pleasantview, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="A Pleasantview bungalow's hours go to floors and baseboards, while an apartment's go to the galley kitchen, the bathroom fan and the balcony door track." />
+        <meta property="og:description" content="House cleaning in Pleasantview, Edmonton: a bungalow's hours go to floors and baseboards, an apartment's to the galley kitchen and bathroom fan." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/pleasantview/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Pleasantview, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="A Pleasantview bungalow's hours go to floors and baseboards, while an apartment's go to the galley kitchen, the bathroom fan and the balcony door track." />
+        <meta name="twitter:description" content="House cleaning in Pleasantview, Edmonton: a bungalow's hours go to floors and baseboards, an apartment's to the galley kitchen and bathroom fan." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

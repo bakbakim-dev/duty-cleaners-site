@@ -88,7 +88,7 @@ export default function Evansdale() {
   url: "https://dutycleaners.ca/locations/evansdale-edmonton",
   areaServed: "Evansdale, Edmonton, AB",
   description: "The Edmonton branch of Duty Cleaners cleans Evansdale's 1970s split-levels and other homes at a flat rate by home size, before 5% GST.",
-  geo: { latitude: "53.589", longitude: "-113.471" },
+  geo: { latitude: "53.611", longitude: "-113.478" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/evansdale-edmonton/" />
@@ -232,7 +232,7 @@ export default function Evansdale() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.589, -113.471]} label="Evansdale, Edmonton" />
+                  <LocationMap center={[53.611, -113.478]} label="Evansdale, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

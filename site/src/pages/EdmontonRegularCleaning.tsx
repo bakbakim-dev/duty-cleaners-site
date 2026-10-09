@@ -285,7 +285,7 @@ export default function EdmontonRegularCleaning() {
       ctaHeading={<>Standard cleaning in <em className="italic text-accent-on-dark">Edmonton</em> from {FROM}.</>}
       ctaDescription="A standard clean is one visit, priced flat by home size before GST and paid once the clean is complete."
       galleryImages={[
-        { picture: kitchenImage, alt: "Clean, tidy kitchen after a standard cleaning visit" },
+        { picture: kitchenImage, alt: "White kitchen with glass-front cabinets, marble counters and roses by the window" },
         { picture: livingRoomImage, alt: "Freshly cleaned bathroom with tidy shelves and polished surfaces" },
         { picture: cleanerImage, alt: "Professional cleaner wiping kitchen surfaces" },
       ]}

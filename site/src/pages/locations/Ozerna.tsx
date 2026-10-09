@@ -6,7 +6,7 @@ import { getListing } from "@/lib/google-listings";
 import { standardTierRows, FREQUENCIES } from "@/data/pricing";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect, lazy, Suspense } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { CheckCircle2, Star, Shield, Home, Truck, SprayCan, Bath, Leaf, ThumbsUp, Calculator, PaintRoller, Sparkles } from "lucide-react";
-import heroImg from "@/assets/gallery/ozerna-cleaner-bedroom.webp";
+import heroImg from "@/assets/airbnb/turnover-bedroom.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -80,25 +80,25 @@ export default function Ozerna() {
     <>
       <Helmet>
         <title>House Cleaners in Ozerna, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="In Ozerna, moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases to the hand-work list." />
+        <meta name="description" content="House cleaning in Ozerna, Edmonton: moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Ozerna, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/ozerna-edmonton",
   areaServed: "Ozerna, Edmonton, AB",
-  description: "In Ozerna, moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases to the hand-work list.",
-  geo: { latitude: "53.62", longitude: "-113.421" },
+  description: "House cleaning in Ozerna, Edmonton: moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases.",
+  geo: { latitude: "53.620", longitude: "-113.449" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/ozerna-edmonton/" />
         <meta property="og:title" content="House Cleaners in Ozerna, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="In Ozerna, moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases to the hand-work list." />
+        <meta property="og:description" content="House cleaning in Ozerna, Edmonton: moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ozerna-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Ozerna, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="In Ozerna, moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases to the hand-work list." />
+        <meta name="twitter:description" content="House cleaning in Ozerna, Edmonton: moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -135,7 +135,7 @@ export default function Ozerna() {
               <div className="lg:w-[440px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner making a bed in a bedroom"
+                  alt="Made bed with white bedding between two bedside lamps"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -232,7 +232,7 @@ export default function Ozerna() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.62, -113.421]} label="Ozerna, Edmonton" />
+                  <LocationMap center={[53.62, -113.449]} label="Ozerna, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

@@ -88,7 +88,7 @@ export default function Abbottsfield() {
   url: "https://dutycleaners.ca/locations/abbottsfield-edmonton",
   areaServed: "Abbottsfield, Edmonton, AB",
   description: "Abbottsfield, Edmonton has more 1970s townhouse rows and walk-ups than detached homes, so stair runs and galley kitchens shape each clean.",
-  geo: { latitude: "53.576", longitude: "-113.417" },
+  geo: { latitude: "53.573", longitude: "-113.389" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/abbottsfield-edmonton/" />
@@ -235,7 +235,7 @@ export default function Abbottsfield() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.576, -113.417]} label="Abbottsfield, Edmonton" />
+                  <LocationMap center={[53.573, -113.389]} label="Abbottsfield, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

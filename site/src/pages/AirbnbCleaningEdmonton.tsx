@@ -25,8 +25,8 @@ import imgBedroom from "@/assets/hero-family-bedroom.webp?card";
 import imgBathroom from "@/assets/gallery/bathroom-clean.webp?card";
 import imgKitchen from "@/assets/gallery/kitchen-deep-clean.webp?card";
 import imgLiving from "@/assets/gallery/living-room-clean.webp?card";
-import imgLaundry from "@/assets/cleaning-equipment-flatlay.webp?card";
-import imgEssentials from "@/assets/gallery/eco-products.webp?card";
+import imgLaundry from "@/assets/airbnb/turnover-linens.webp?card";
+import imgEssentials from "@/assets/airbnb/turnover-bathroom.webp?card";
 import heroBg from "@/assets/airbnb/edmonton-hero-living.webp?hero";
 
 import gal1 from "@/assets/gallery/family-clean-home-edmonton.webp?card";
@@ -195,7 +195,7 @@ const AirbnbCleaningEdmonton = () => {
 
   const howItWorks = [
     { icon: ClipboardCheck, title: "Send the checkout time", description: "Request a turnover quote online or by phone with the checkout and the next check-in. Those two times set the window we work in." },
-    { icon: KeyRound, title: "Tell us how to get in", description: "Lockbox code, smart lock or a key on site. You do not need to be there, and the booking form asks for access and parking." },
+    { icon: KeyRound, title: "Tell us how to get in", description: "Lockbox code, smart lock or a key on site. You do not need to be there; tell us about access and parking when you ask for the quote." },
     { icon: Wand2, title: "The turnover runs to a checklist", description: "The same list every visit, in the same order, so the third turnover covers what the first one did." },
     { icon: DoorOpen, title: "Locked up behind the team", description: "Beds made, supplies restocked, bins emptied, door locked. The next guest walks into the unit as the checklist left it." },
   ];

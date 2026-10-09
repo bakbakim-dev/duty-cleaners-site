@@ -264,7 +264,7 @@ export default function Inglewood() {
         heading="A former rail line, a busy road"
         paragraphs={[
           "Groat Road runs Inglewood's western boundary, and most of the housing between 111 and 118 Avenue went up in the thirty-five years after the war, with building all but stopped by 1990. What that leaves is low-rise apartment blocks and small post-war houses with kitchens and bathrooms of a certain age: enamel, tile grout, painted wood window frames. A move-out clean in one of those blocks or houses ends in a walkthrough. Oven interiors, fridge seals and window tracks get done on every one.",
-          "Along this stretch Groat Road is a plain surface arterial rather than the parkway it becomes further south, so suites on that frontage collect winter sand at the entries and a road film on balcony glass, so their entry floors need keeping ahead of that sand. On the east there is no street: the boundary is the abandoned Canadian National right-of-way. The road film on the balcony glass and the screens on the rail side both sit outdoors, beyond what a clean covers.",
+          "Along this stretch Groat Road is a plain surface arterial rather than the parkway it becomes further south, and suites on that frontage collect winter sand at the entries, so their entry floors need keeping ahead of it. On the east there is no street: the boundary is the abandoned Canadian National right-of-way. The road film on balcony glass and the screens on the rail side sit outdoors, beyond what a clean covers.",
         ]}
       />
 

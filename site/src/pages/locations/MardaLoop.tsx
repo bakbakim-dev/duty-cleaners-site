@@ -50,12 +50,12 @@ export default function MardaLoop() {
     <>
       <Helmet>
         <title>House Cleaning in Marda Loop, Calgary | Duty Cleaners</title>
-        <meta name="description" content="In Marda Loop, Calgary, new infills have pale floors and glass rails that show every mark; the post-war bungalows beside them are dense with trim." />
+        <meta name="description" content="House cleaning in Marda Loop, Calgary: new infills with pale floors and glass rails that show every mark, beside post-war bungalows dense with trim." />
         <meta property="og:title" content="House Cleaning in Marda Loop, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Marda Loop, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="In Marda Loop, Calgary, new infills have pale floors and glass rails that show every mark; the post-war bungalows beside them are dense with trim." />
-        <meta property="og:description" content="In Marda Loop, Calgary, new infills have pale floors and glass rails that show every mark; the post-war bungalows beside them are dense with trim." />
+        <meta name="twitter:description" content="House cleaning in Marda Loop, Calgary: new infills with pale floors and glass rails that show every mark, beside post-war bungalows dense with trim." />
+        <meta property="og:description" content="House cleaning in Marda Loop, Calgary: new infills with pale floors and glass rails that show every mark, beside post-war bungalows dense with trim." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/marda-loop/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/marda-loop/" />

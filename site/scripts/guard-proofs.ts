@@ -2455,6 +2455,14 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/lib/page-speed.test.ts",
     target: "src/lib/analytics.ts",
+    find: '  "metric_page",',
+    replace: "",
+    failing: "measurements reach analytics with only their own fields",
+    why: "The allowlist drops metric_page, so INP and CLS sent on leaving are filed under whatever page the visitor reached last (AuditSpur #317).",
+  },
+  {
+    guard: "src/lib/page-speed.test.ts",
+    target: "src/lib/analytics.ts",
     find: '  "metric_rating",',
     replace: "",
     failing: "measurements reach analytics with only their own fields",

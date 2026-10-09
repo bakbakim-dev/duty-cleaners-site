@@ -8,7 +8,7 @@ export default function LewisEstates() {
         region="edmonton"
         title="House Cleaning in Lewis Estates, Edmonton | Duty Cleaners"
         description="Lewis Estates homes that back onto a trail or green edge collect mud and path dust at the back door, so back entries, mudrooms and the floor just inside them get specific attention. West-end homes here tend to have more bathrooms than an older inner-city house, and bathrooms are the slowest rooms per square metre, so mention the count when you book."
-      seoDescription="Where Lewis Estates homes in west Edmonton back onto a trail, mud and path dust come in by the back door, and back entries get specific attention."
+      seoDescription="Lewis Estates house cleaning in west Edmonton: homes that back onto a trail get mud and path dust at the back door, so back entries get extra attention."
       localNote={{
         heading: "What a Lewis Estates home needs",
         paragraphs: [

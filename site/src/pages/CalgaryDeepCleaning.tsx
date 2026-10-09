@@ -47,7 +47,7 @@ export default function CalgaryDeepCleaning() {
       serviceName="Deep House Cleaning in Calgary"
       canonical="https://dutycleaners.ca/calgary/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <em className="italic text-accent-on-dark">Calgary</em></>}
-      heroSubheading={`A standard clean plus the baseboards, door frames, switch plates and vent covers it passes over, from ${TIERS[0].price} before GST for a one-bedroom apartment, charged after the clean.`}
+      heroSubheading={`A standard clean plus the deep package: baseboards, doors, light switches, wall outlets, vent covers and cobwebs, from ${TIERS[0].price} before GST for a one-bedroom apartment, charged after the clean.`}
       heroBadges={["Baseboards & Door Frames by Hand", "All Supplies Brought For You", `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`]}
       heroImage={heroImage}
       heroImageAlt="Long kitchen with granite counters, a gas cooktop under a range hood and two stainless-steel fridges"
@@ -150,7 +150,7 @@ export default function CalgaryDeepCleaning() {
         { q: "Will the team deal with mould in the shower?", a: "Light surface mildew on grout or caulking gets wiped where it is safe to. Anything heavier is mould remediation, which is a different trade, and we will tell you so rather than scrub at it." },
         { q: "How long will a Calgary deep clean take?", a: `In a two-bedroom, one-bathroom apartment, ${POLICY.typicalVisitLength?.deep}. Larger homes and heavier build-up take longer. The price is set by home size for the condition you describe; if the home needs much more work than that, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on.` },
         { q: "What does a deep clean do that a standard clean does not?", a: "The standard clean keeps a kept-up home kept up: floors, bathrooms, kitchen surfaces, dusting. The deep-clean package goes to what those visits pass over, the baseboards and door frames, the switch plates and outlet covers, the vents, the tile and shower glass, and the range hood and stovetop grease." },
-        { q: "Are the products safe around children and pets?", a: `We bring standard professional products. If anyone in the house has a sensitivity, or there is a product you would rather we did not use, say so when you book. Eco-friendly products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}. A home with pets carries a ${addOnLabel("must-choose-if-you-have-pets")} charge on each visit, and it shows on the quote before you book.` },
+        { q: "Which products do you use in a home with children or pets?", a: `We bring standard professional products. If anyone in the house has a sensitivity, or there is a product you would rather we did not use, say so when you book. Eco-friendly products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}. A home with pets carries a ${addOnLabel("must-choose-if-you-have-pets")} charge on each visit, and it shows on the quote before you book.` },
         { q: "How often does a Calgary home need a deep clean?", a: "There is no fixed interval for every home. Check the condition of baseboards, doors and other deep-package items, along with the upkeep you do between visits. Recurring standard cleaning can help with routine tasks but does not include every deep-clean item." },
       ]}
       closingSections={[

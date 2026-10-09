@@ -49,8 +49,8 @@ const NotFound = () => {
               That page has moved or never existed
             </h1>
             <p className="mx-auto mt-4 max-w-[60ch] text-lg text-muted-foreground">
-              Sorry about that. You can still see your price online, or call the office for your city and
-              we'll point you to the right place.
+              Sorry about that. You can still see your price online, or call us and we'll point you to
+              the right place.
             </p>
 
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">

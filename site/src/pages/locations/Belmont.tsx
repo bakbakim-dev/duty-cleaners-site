@@ -88,7 +88,7 @@ export default function Belmont() {
   url: "https://dutycleaners.ca/locations/belmont-edmonton",
   areaServed: "Belmont, Edmonton, AB",
   description: "In Belmont, Edmonton, row houses and duplexes stack their rooms, so house cleaning there spends more time on stair runs and landings.",
-  geo: { latitude: "53.583", longitude: "-113.395" },
+  geo: { latitude: "53.595", longitude: "-113.394" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/belmont-edmonton/" />
@@ -235,7 +235,7 @@ export default function Belmont() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.583, -113.395]} label="Belmont, Edmonton" />
+                  <LocationMap center={[53.595, -113.394]} label="Belmont, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

@@ -88,7 +88,7 @@ export default function Belvedere() {
   url: "https://dutycleaners.ca/locations/belvedere-edmonton",
   areaServed: "Belvedere, Edmonton, AB",
   description: "Belvedere, Edmonton house cleaning beside the CN tracks and LRT stop, where fine dark dust shows on pale sills within days.",
-  geo: { latitude: "53.581", longitude: "-113.425" },
+  geo: { latitude: "53.595", longitude: "-113.435" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/belvedere-edmonton/" />
@@ -232,7 +232,7 @@ export default function Belvedere() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.581, -113.425]} label="Belvedere, Edmonton" />
+                  <LocationMap center={[53.595, -113.435]} label="Belvedere, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

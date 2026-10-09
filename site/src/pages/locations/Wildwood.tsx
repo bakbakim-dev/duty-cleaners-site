@@ -66,12 +66,12 @@ export default function Wildwood() {
     <>
       <Helmet>
         <title>House Cleaning Services in Wildwood, Calgary | Duty Cleaners</title>
-        <meta name="description" content="In Wildwood, Calgary, most detached bungalows sit on wide lots with rear laneways, so the back-door mudroom takes the most wear." />
+        <meta name="description" content="House cleaning in Wildwood, Calgary, where most bungalows sit on wide lots with rear laneways, so the back-door mudroom takes the most wear." />
         <meta property="og:title" content="House Cleaning Services in Wildwood, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Wildwood, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="In Wildwood, Calgary, most detached bungalows sit on wide lots with rear laneways, so the back-door mudroom takes the most wear." />
-        <meta property="og:description" content="In Wildwood, Calgary, most detached bungalows sit on wide lots with rear laneways, so the back-door mudroom takes the most wear." />
+        <meta name="twitter:description" content="House cleaning in Wildwood, Calgary, where most bungalows sit on wide lots with rear laneways, so the back-door mudroom takes the most wear." />
+        <meta property="og:description" content="House cleaning in Wildwood, Calgary, where most bungalows sit on wide lots with rear laneways, so the back-door mudroom takes the most wear." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/wildwood-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/wildwood-calgary/" />

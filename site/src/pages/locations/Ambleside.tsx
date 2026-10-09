@@ -79,25 +79,25 @@ export default function Ambleside() {
     <>
       <Helmet>
         <title>House Cleaning in Ambleside, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Nearly every Ambleside, Edmonton home has first-generation stone, vinyl plank and frameless glass, and all of it shows mineral spots within days." />
+        <meta name="description" content="Ambleside house cleaning in Edmonton: most homes have first-generation stone, vinyl plank and frameless glass, which show mineral spots in days." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Ambleside, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/ambleside-edmonton",
   areaServed: "Ambleside, Edmonton, AB",
-  description: "Nearly every Ambleside, Edmonton home has first-generation stone, vinyl plank and frameless glass, and all of it shows mineral spots within days.",
-  geo: { latitude: "53.454", longitude: "-113.63" },
+  description: "Ambleside house cleaning in Edmonton: most homes have first-generation stone, vinyl plank and frameless glass, which show mineral spots in days.",
+  geo: { latitude: "53.431", longitude: "-113.604" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/ambleside-edmonton/" />
         <meta property="og:title" content="House Cleaning in Ambleside, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Nearly every Ambleside, Edmonton home has first-generation stone, vinyl plank and frameless glass, and all of it shows mineral spots within days." />
+        <meta property="og:description" content="Ambleside house cleaning in Edmonton: most homes have first-generation stone, vinyl plank and frameless glass, which show mineral spots in days." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ambleside-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Ambleside, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Nearly every Ambleside, Edmonton home has first-generation stone, vinyl plank and frameless glass, and all of it shows mineral spots within days." />
+        <meta name="twitter:description" content="Ambleside house cleaning in Edmonton: most homes have first-generation stone, vinyl plank and frameless glass, which show mineral spots in days." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -233,7 +233,7 @@ export default function Ambleside() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.454, -113.63]} label="Ambleside, Edmonton" />
+                  <LocationMap center={[53.431, -113.604]} label="Ambleside, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

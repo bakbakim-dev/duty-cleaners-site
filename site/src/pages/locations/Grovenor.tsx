@@ -79,25 +79,25 @@ export default function Grovenor() {
     <>
       <Helmet>
         <title>Grovenor, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks in the Grovenor, Edmonton blocks nearest the road." />
+        <meta name="description" content="House cleaning in Grovenor, Edmonton, where cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks near the road." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Grovenor, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/grovenor",
   areaServed: "Grovenor, Edmonton, AB",
-  description: "Cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks in the Grovenor, Edmonton blocks nearest the road.",
-  geo: { latitude: "53.543", longitude: "-113.553" },
+  description: "House cleaning in Grovenor, Edmonton, where cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks near the road.",
+  geo: { latitude: "53.546", longitude: "-113.572" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/grovenor/" />
         <meta property="og:title" content="Grovenor, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks in the Grovenor, Edmonton blocks nearest the road." />
+        <meta property="og:description" content="House cleaning in Grovenor, Edmonton, where cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks near the road." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/grovenor/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Grovenor, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks in the Grovenor, Edmonton blocks nearest the road." />
+        <meta name="twitter:description" content="House cleaning in Grovenor, Edmonton, where cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks near the road." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -234,7 +234,7 @@ export default function Grovenor() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.543, -113.553]} label="Grovenor, Edmonton" />
+                  <LocationMap center={[53.546, -113.572]} label="Grovenor, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

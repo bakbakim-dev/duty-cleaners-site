@@ -103,8 +103,8 @@ const OUTER_TOWNS = calgarySurrounding
   was /calgary/services/, a page this one outranks on every other signal. The
   hub takes the phrase; the services hub is being retitled off it separately.
 */
-const PAGE_TITLE = `House Cleaning Services Calgary from ${FROM_STANDARD} | Pay After`;
-const PAGE_DESCRIPTION = "Find the right house cleaning service for your Calgary home. Review scope, prices and booking details with Duty Cleaners.";
+const PAGE_TITLE = `House Cleaning Services Calgary from ${FROM_STANDARD} | Duty Cleaners`;
+const PAGE_DESCRIPTION = `House cleaning in Calgary from ${FROM_STANDARD} before GST for a one-bedroom apartment, no travel fee inside city limits. See your price, then pay after the clean.`;
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
    it a phone pulled the full file instead of the 640w variant it needs.
@@ -277,7 +277,7 @@ export default function Calgary2() {
            heroSrcSet={HERO_SRCSET}
            heroWidth={calgaryHeroRoom.img.w}
            heroHeight={calgaryHeroRoom.img.h}
-           heroAlt="Professional cleaner vacuuming a living-room rug in a bright Calgary home"
+           heroAlt="Cleaner in a navy polo vacuuming a living-room rug beside a beige sofa"
            heroPosition="center 52%"
           />
 
@@ -520,8 +520,8 @@ export default function Calgary2() {
               <div className="mb-8 text-center">
                 <h2 className="display-serif text-3xl font-bold leading-tight text-foreground md:text-4xl">See the instant price for your Calgary home.</h2>
                 <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                  The form asks about the home, then your name, email and phone, and then shows the figure, with the
-                  plan and the extras chosen in front of it.
+                  The form asks about the home, then your name, email and phone, then shows your price, with the
+                  plan and any extras you picked listed beside it.
                 </p>
               </div>
 

@@ -67,12 +67,12 @@ export default function HuntingtonHills() {
     <>
       <Helmet>
         <title>House Cleaning in Huntington Hills, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Dogs and boots carry seed heads and thaw clay in from Nose Hill Park, so entry mats do most of the work in Huntington Hills homes in Calgary." />
+        <meta name="description" content="House cleaning in Huntington Hills, Calgary, where dogs and boots carry seed heads and thaw clay in from Nose Hill Park, so entry mats work hard." />
         <meta property="og:title" content="House Cleaning in Huntington Hills, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Huntington Hills, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Dogs and boots carry seed heads and thaw clay in from Nose Hill Park, so entry mats do most of the work in Huntington Hills homes in Calgary." />
-        <meta property="og:description" content="Dogs and boots carry seed heads and thaw clay in from Nose Hill Park, so entry mats do most of the work in Huntington Hills homes in Calgary." />
+        <meta name="twitter:description" content="House cleaning in Huntington Hills, Calgary, where dogs and boots carry seed heads and thaw clay in from Nose Hill Park, so entry mats work hard." />
+        <meta property="og:description" content="House cleaning in Huntington Hills, Calgary, where dogs and boots carry seed heads and thaw clay in from Nose Hill Park, so entry mats work hard." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/huntington-hills-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/huntington-hills-calgary/" />

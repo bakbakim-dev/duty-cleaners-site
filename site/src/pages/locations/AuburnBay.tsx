@@ -67,12 +67,12 @@ export default function AuburnBay() {
     <>
       <Helmet>
         <title>House Cleaning in Auburn Bay, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Calgary's Auburn Bay began building in 2005, so its first homes are at the age where grout goes porous; from May, the lake adds sand to mudrooms." />
+        <meta name="description" content="We clean homes in Auburn Bay, Calgary, where the first 2005 builds are at the age where grout goes porous and lake sand reaches mudrooms from May." />
         <meta property="og:title" content="House Cleaning in Auburn Bay, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Auburn Bay, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Calgary's Auburn Bay began building in 2005, so its first homes are at the age where grout goes porous; from May, the lake adds sand to mudrooms." />
-        <meta property="og:description" content="Calgary's Auburn Bay began building in 2005, so its first homes are at the age where grout goes porous; from May, the lake adds sand to mudrooms." />
+        <meta name="twitter:description" content="We clean homes in Auburn Bay, Calgary, where the first 2005 builds are at the age where grout goes porous and lake sand reaches mudrooms from May." />
+        <meta property="og:description" content="We clean homes in Auburn Bay, Calgary, where the first 2005 builds are at the age where grout goes porous and lake sand reaches mudrooms from May." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/auburn-bay/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/auburn-bay/" />

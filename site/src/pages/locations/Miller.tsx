@@ -88,7 +88,7 @@ export default function Miller() {
   url: "https://dutycleaners.ca/locations/miller-edmonton",
   areaServed: "Miller, Edmonton, AB",
   description: "In Miller, Edmonton, nearly all tracking in a two-storey comes through the attached garage and mudroom, while the formal entry stays clean.",
-  geo: { latitude: "53.626", longitude: "-113.391" },
+  geo: { latitude: "53.612", longitude: "-113.412" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/miller-edmonton/" />
@@ -232,7 +232,7 @@ export default function Miller() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.626, -113.391]} label="Miller, Edmonton" />
+                  <LocationMap center={[53.612, -113.412]} label="Miller, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

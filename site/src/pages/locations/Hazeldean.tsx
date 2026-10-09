@@ -48,22 +48,22 @@ export default function Hazeldean() {
     <>
       <Helmet>
         <title>House Cleaners in Hazeldean, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Between rail land and Mill Creek Ravine, Hazeldean's post-war Edmonton houses collect fine mineral dust on sills and ravine mud at the door." />
+        <meta name="description" content="Hazeldean house cleaning in Edmonton: post-war houses between rail land and Mill Creek Ravine get mineral dust on sills and ravine mud at the door." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Hazeldean",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/hazeldean",
   areaServed: "Hazeldean, Edmonton, AB",
-  description: "Between rail land and Mill Creek Ravine, Hazeldean's post-war Edmonton houses collect fine mineral dust on sills and ravine mud at the door.",
+  description: "Hazeldean house cleaning in Edmonton: post-war houses between rail land and Mill Creek Ravine get mineral dust on sills and ravine mud at the door.",
 }))}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/hazeldean/" />
         <meta property="og:title" content="House Cleaners in Hazeldean, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Between rail land and Mill Creek Ravine, Hazeldean's post-war Edmonton houses collect fine mineral dust on sills and ravine mud at the door." />
+        <meta property="og:description" content="Hazeldean house cleaning in Edmonton: post-war houses between rail land and Mill Creek Ravine get mineral dust on sills and ravine mud at the door." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/hazeldean/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Hazeldean, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Between rail land and Mill Creek Ravine, Hazeldean's post-war Edmonton houses collect fine mineral dust on sills and ravine mud at the door." />
+        <meta name="twitter:description" content="Hazeldean house cleaning in Edmonton: post-war houses between rail land and Mill Creek Ravine get mineral dust on sills and ravine mud at the door." />
         {/* The FAQs this page already renders — marked up so machine readers
             get the same Q&A the visitor sees. */}
         <script type="application/ld+json">

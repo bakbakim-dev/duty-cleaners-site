@@ -7,7 +7,7 @@ export default function Schonsee() {
       region="edmonton"
       title="House Cleaning in Schonsee, Edmonton | Duty Cleaners"
       description="With a lake and wetlands in the neighbourhood, Schonsee bathrooms hold moisture longer through the warm months, and the film that builds on shower grout and under the vanity takes scrubbing rather than wiping. Most homes here went up from the late 2000s into the 2010s, so a first deep clean that resets darkening caulk and tired grout often does more than several standard visits."
-      seoDescription="In Schonsee, Edmonton, lake humidity turns bathroom haze into a film on shower grout, and 2010s builder caulk has started to darken."
+      seoDescription="House cleaning in Schonsee, Edmonton, where lake humidity turns bathroom haze into a film on shower grout and 2010s builder caulk is darkening."
       localNote={{
         heading: "What a Schonsee home needs",
         paragraphs: [

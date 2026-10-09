@@ -87,7 +87,7 @@ export default function Kildare() {
   url: "https://dutycleaners.ca/locations/kildare-edmonton",
   areaServed: "Kildare, Edmonton, AB",
   description: "Kildare's row houses in Edmonton are narrow and vertical, so most of a house cleaning visit there goes to the kitchen, bathroom and stairwell.",
-  geo: { latitude: "53.6042", longitude: "-113.425" },
+  geo: { latitude: "53.603", longitude: "-113.458" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/kildare-edmonton/" />
@@ -236,7 +236,7 @@ export default function Kildare() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.6042, -113.425]} label="Kildare, Edmonton" />
+                  <LocationMap center={[53.603, -113.458]} label="Kildare, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

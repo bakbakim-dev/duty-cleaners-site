@@ -88,7 +88,7 @@ export default function BonnieDoon() {
   url: "https://dutycleaners.ca/locations/bonnie-doon-edmonton",
   areaServed: "Bonnie Doon, Edmonton, AB",
   description: "House cleaning in Bonnie Doon, Edmonton, from 1910s ravine-edge houses to 1950s infill, with deep casings and glass-knob doors wiped by hand.",
-  geo: { latitude: "53.521", longitude: "-113.453" },
+  geo: { latitude: "53.523", longitude: "-113.465" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/bonnie-doon-edmonton/" />
@@ -235,7 +235,7 @@ export default function BonnieDoon() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.521, -113.453]} label="Bonnie Doon, Edmonton" />
+                  <LocationMap center={[53.523, -113.465]} label="Bonnie Doon, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

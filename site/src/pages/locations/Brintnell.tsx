@@ -80,25 +80,25 @@ export default function Brintnell() {
     <>
       <Helmet>
         <title>House Cleaners in Brintnell, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Brintnell's 2000s-era homes in Edmonton have open-plan main floors and two-storey great rooms; our Edmonton branch prices each by home size." />
+        <meta name="description" content="House cleaning in Brintnell, Edmonton: 2000s-era homes with open-plan main floors and two-storey great rooms, each priced by home size." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Brintnell, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/brintnell-edmonton",
   areaServed: "Brintnell, Edmonton, AB",
-  description: "Brintnell's 2000s-era homes in Edmonton have open-plan main floors and two-storey great rooms; our Edmonton branch prices each by home size.",
+  description: "House cleaning in Brintnell, Edmonton: 2000s-era homes with open-plan main floors and two-storey great rooms, each priced by home size.",
   geo: { latitude: "53.621", longitude: "-113.405" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/brintnell-edmonton/" />
         <meta property="og:title" content="House Cleaners in Brintnell, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Brintnell's 2000s-era homes in Edmonton have open-plan main floors and two-storey great rooms; our Edmonton branch prices each by home size." />
+        <meta property="og:description" content="House cleaning in Brintnell, Edmonton: 2000s-era homes with open-plan main floors and two-storey great rooms, each priced by home size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/brintnell-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Brintnell, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Brintnell's 2000s-era homes in Edmonton have open-plan main floors and two-storey great rooms; our Edmonton branch prices each by home size." />
+        <meta name="twitter:description" content="House cleaning in Brintnell, Edmonton: 2000s-era homes with open-plan main floors and two-storey great rooms, each priced by home size." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

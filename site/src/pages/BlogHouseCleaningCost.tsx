@@ -28,7 +28,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
-import heroImage from "@/assets/blog/house-cleaning-cost-hero.webp?col";
+import heroImage from "@/assets/blog/house-cleaning-cost-hero-v2.webp?col";
 import apartmentImage from "@/assets/blog/apartment-cleaning.webp?col";
 import suppliesImage from "@/assets/blog/cleaning-supplies-cost.webp?col";
 import deepCleanImage from "@/assets/blog/deep-cleaning-kitchen.webp?col";

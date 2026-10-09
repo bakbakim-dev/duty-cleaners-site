@@ -372,7 +372,7 @@ export default function EdmontonMarchOut() {
               <ResponsiveImage
                 picture={imgKitchen}
                 sizes={"(min-width: 1024px) 240px, 50vw"}
-                alt="A cleaned kitchen with wiped appliance fronts"
+                alt="Kitchen with white upper cabinets, dark lower cabinets and a stainless range hood"
                 loading="lazy"
                 className="rounded-2xl object-cover w-full h-full aspect-[4/5]"
               />

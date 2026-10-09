@@ -80,25 +80,25 @@ export default function AspenGardens() {
     <>
       <Helmet>
         <title>Aspen Gardens, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Aspen Gardens, Edmonton backs the Whitemud ravine, and many of its 1960s homes have vaulted cedar ceilings that hold dust along the grain." />
+        <meta name="description" content="House cleaning in Aspen Gardens, Edmonton, by the Whitemud ravine, where many 1960s homes have vaulted cedar ceilings that hold dust in the grain." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Aspen Gardens, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/aspen-gardens-edmonton",
   areaServed: "Aspen Gardens, Edmonton, AB",
-  description: "Aspen Gardens, Edmonton backs the Whitemud ravine, and many of its 1960s homes have vaulted cedar ceilings that hold dust along the grain.",
-  geo: { latitude: "53.487", longitude: "-113.56" },
+  description: "House cleaning in Aspen Gardens, Edmonton, by the Whitemud ravine, where many 1960s homes have vaulted cedar ceilings that hold dust in the grain.",
+  geo: { latitude: "53.477", longitude: "-113.546" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/aspen-gardens-edmonton/" />
         <meta property="og:title" content="Aspen Gardens, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Aspen Gardens, Edmonton backs the Whitemud ravine, and many of its 1960s homes have vaulted cedar ceilings that hold dust along the grain." />
+        <meta property="og:description" content="House cleaning in Aspen Gardens, Edmonton, by the Whitemud ravine, where many 1960s homes have vaulted cedar ceilings that hold dust in the grain." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/aspen-gardens-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Aspen Gardens, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Aspen Gardens, Edmonton backs the Whitemud ravine, and many of its 1960s homes have vaulted cedar ceilings that hold dust along the grain." />
+        <meta name="twitter:description" content="House cleaning in Aspen Gardens, Edmonton, by the Whitemud ravine, where many 1960s homes have vaulted cedar ceilings that hold dust in the grain." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -235,7 +235,7 @@ export default function AspenGardens() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.487, -113.56]} label="Aspen Gardens, Edmonton" />
+                  <LocationMap center={[53.477, -113.546]} label="Aspen Gardens, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

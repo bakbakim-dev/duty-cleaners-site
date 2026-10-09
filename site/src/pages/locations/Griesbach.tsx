@@ -75,15 +75,15 @@ export default function Griesbach() {
     <>
       <Helmet>
         <title>Griesbach, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Griesbach in Edmonton is a former Forces base still being built, and its construction leaves sawdust and drywall silt on door casings and fan blades." />
+        <meta name="description" content="House cleaning in Griesbach, Edmonton, a former Forces base still being built, where sawdust and drywall silt settle on door casings and fan blades." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/griesbach-edmonton/" />
         <meta property="og:title" content="Griesbach, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Griesbach in Edmonton is a former Forces base still being built, and its construction leaves sawdust and drywall silt on door casings and fan blades." />
+        <meta property="og:description" content="House cleaning in Griesbach, Edmonton, a former Forces base still being built, where sawdust and drywall silt settle on door casings and fan blades." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/griesbach-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Griesbach, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Griesbach in Edmonton is a former Forces base still being built, and its construction leaves sawdust and drywall silt on door casings and fan blades." />
+        <meta name="twitter:description" content="House cleaning in Griesbach, Edmonton, a former Forces base still being built, where sawdust and drywall silt settle on door casings and fan blades." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Griesbach Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/griesbach-edmonton", areaServed: "Griesbach, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>

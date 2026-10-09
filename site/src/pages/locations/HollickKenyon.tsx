@@ -87,7 +87,7 @@ export default function HollickKenyon() {
   url: "https://dutycleaners.ca/locations/hollick-kenyon-edmonton",
   areaServed: "Hollick-Kenyon, Edmonton, AB",
   description: "Hollick-Kenyon's 1990s plan-book homes share oak spindle staircases, two-storey foyers and jetted tubs. The Edmonton team cleans them at a flat rate.",
-  geo: { latitude: "53.617", longitude: "-113.404" },
+  geo: { latitude: "53.624", longitude: "-113.422" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/hollick-kenyon-edmonton/" />
@@ -231,7 +231,7 @@ export default function HollickKenyon() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.617, -113.404]} label="Hollick-Kenyon, Edmonton" />
+                  <LocationMap center={[53.624, -113.422]} label="Hollick-Kenyon, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

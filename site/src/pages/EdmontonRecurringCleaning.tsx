@@ -86,7 +86,7 @@ export default function EdmontonRecurringCleaning() {
       heroSubheading={`Weekly, bi-weekly or every-4-weeks visits from ${FROM} before GST for a one-bedroom apartment or condo, ${pct(FOUR_WEEKS?.discount)} to ${pct(WEEKLY?.discount)} off from the second visit. You pay after each clean.`}
       heroBadges={["Weekly 20% Off", "Bi-Weekly 15% Off", "Every 4 Weeks 10% Off"]}
       heroImage={heroImage}
-      heroImageAlt="Bright, tidy living room kept up by a recurring clean"
+      heroImageAlt="Family of four playing with toys on a hardwood living-room floor"
       heroImageWidth={1024}
       heroImageHeight={1024}
       overviewHeading={<>The same clean, <Accent>on a schedule.</Accent></>}
@@ -256,7 +256,7 @@ export default function EdmontonRecurringCleaning() {
       ctaHeading={<>Recurring cleaning in <em className="italic text-accent-on-dark">Edmonton</em> from {FROM}, <em className="italic text-accent-on-dark">discounted on a schedule.</em></>}
       ctaDescription={`The first visit is charged at the one-time rate, from ${FROM} for a one-bedroom apartment or condo before GST, and the schedule discount starts with the second. The quote adds any home-type, pet or travel charge before you book.`}
       galleryImages={[
-        { picture: kitchenImage, alt: "Kitchen after a recurring cleaning visit" },
+        { picture: kitchenImage, alt: "Cleaner in blue overalls mopping the wood floor of a white kitchen" },
         { picture: livingRoomImage, alt: "Bright, consistently clean living room" },
         { picture: cleanerImage, alt: "Professional cleaner wiping surfaces in a home" },
       ]}

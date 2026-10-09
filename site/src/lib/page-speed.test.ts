@@ -126,11 +126,12 @@ describe("real visitors' page speed", () => {
   afterEach(() => vi.unstubAllGlobals());
 
   it("measurements reach analytics with only their own fields", () => {
-    expect(filterEventProps(webVitalProps({ name: "LCP", value: 2512.4, rating: "good" }, "4g"))).toEqual({
+    expect(filterEventProps(webVitalProps({ name: "LCP", value: 2512.4, rating: "good" }, "4g", "/pricing/"))).toEqual({
       metric: "LCP",
       metric_value: 2512,
       metric_rating: "good",
       connection: "4g",
+      metric_page: "/pricing/",
     });
     // CLS is a unitless score; it is sent as a whole number, ×1000.
     expect(webVitalProps({ name: "CLS", value: 0.0734, rating: "good" })).toEqual({

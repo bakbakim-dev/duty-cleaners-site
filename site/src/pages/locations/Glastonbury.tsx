@@ -75,15 +75,15 @@ export default function Glastonbury() {
     <>
       <Helmet>
         <title>House Cleaners in Glastonbury, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="In Glastonbury's 2000s two-storeys in west Edmonton, the garage-entry mudroom takes the tracking and the stair carpet shows traffic first." />
+        <meta name="description" content="House cleaning in Glastonbury, west Edmonton: in 2000s two-storeys the garage-entry mudroom takes the tracking and stair carpet shows traffic first." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/glastonbury/" />
         <meta property="og:title" content="House Cleaners in Glastonbury, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="In Glastonbury's 2000s two-storeys in west Edmonton, the garage-entry mudroom takes the tracking and the stair carpet shows traffic first." />
+        <meta property="og:description" content="House cleaning in Glastonbury, west Edmonton: in 2000s two-storeys the garage-entry mudroom takes the tracking and stair carpet shows traffic first." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/glastonbury/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Glastonbury, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="In Glastonbury's 2000s two-storeys in west Edmonton, the garage-entry mudroom takes the tracking and the stair carpet shows traffic first." />
+        <meta name="twitter:description" content="House cleaning in Glastonbury, west Edmonton: in 2000s two-storeys the garage-entry mudroom takes the tracking and stair carpet shows traffic first." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Glastonbury Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/glastonbury", areaServed: "Glastonbury, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>

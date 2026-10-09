@@ -303,7 +303,7 @@ export default function RedDeer() {
               src={redDeerHero}
               srcSet={HERO_SRCSET}
               sizes="100vw"
-              alt="Professional cleaner wiping a dining table in a Red Deer home"
+              alt="Cleaner in a navy polo wiping a wooden dining table with a blue cloth"
               width={1672}
               height={941}
               loading="eager"

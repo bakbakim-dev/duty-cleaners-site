@@ -61,14 +61,14 @@ export default function Allendale() {
     <>
       <Helmet>
         <title>House Cleaners in Allendale, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Post-war bungalows in Allendale, Edmonton sit against the CPR corridor, where the rail line and 104 Street traffic leave a fine, steady film of dust." />
+        <meta name="description" content="House cleaning in Allendale, Edmonton, where post-war bungalows sit by the CPR corridor and rail and 104 Street traffic leave a fine film of dust." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Allendale, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/allendale",
   areaServed: "Allendale, Edmonton, AB",
-  description: "Post-war bungalows in Allendale, Edmonton sit against the CPR corridor, where the rail line and 104 Street traffic leave a fine, steady film of dust.",
+  description: "House cleaning in Allendale, Edmonton, where post-war bungalows sit by the CPR corridor and rail and 104 Street traffic leave a fine film of dust.",
 }))}
         </script>
         {/* The FAQs below this page already renders — marked up so machine
@@ -86,12 +86,12 @@ export default function Allendale() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/allendale/" />
         <meta property="og:title" content="House Cleaners in Allendale, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Post-war bungalows in Allendale, Edmonton sit against the CPR corridor, where the rail line and 104 Street traffic leave a fine, steady film of dust." />
+        <meta property="og:description" content="House cleaning in Allendale, Edmonton, where post-war bungalows sit by the CPR corridor and rail and 104 Street traffic leave a fine film of dust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/allendale/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Allendale, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Post-war bungalows in Allendale, Edmonton sit against the CPR corridor, where the rail line and 104 Street traffic leave a fine, steady film of dust." />
+        <meta name="twitter:description" content="House cleaning in Allendale, Edmonton, where post-war bungalows sit by the CPR corridor and rail and 104 Street traffic leave a fine film of dust." />
       </Helmet>
 
       <div className="min-h-screen">

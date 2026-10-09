@@ -88,7 +88,7 @@ export default function Delwood() {
   url: "https://dutycleaners.ca/locations/delwood-edmonton",
   areaServed: "Delwood, Edmonton, AB",
   description: "Cleaning Delwood's 1960s bungalows in Edmonton means tiled tub surrounds, painted wood cabinets, and window tracks that fill from the elm and ash.",
-  geo: { latitude: "53.586", longitude: "-113.464" },
+  geo: { latitude: "53.596", longitude: "-113.449" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/delwood-edmonton/" />
@@ -232,7 +232,7 @@ export default function Delwood() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.586, -113.464]} label="Delwood, Edmonton" />
+                  <LocationMap center={[53.596, -113.449]} label="Delwood, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

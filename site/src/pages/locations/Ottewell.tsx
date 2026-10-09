@@ -80,25 +80,25 @@ export default function Ottewell() {
     <>
       <Helmet>
         <title>Ottewell, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Most Ottewell houses date from 1946 to 1960, so a clean there means more hand-wiped trim on original doors and casings." />
+        <meta name="description" content="Most Ottewell houses went up in the 1960s, so a house cleaning there means more hand-wiped trim on original doors and casings." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Ottewell, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/ottewell-edmonton",
   areaServed: "Ottewell, Edmonton, AB",
-  description: "Most Ottewell houses date from 1946 to 1960, so a clean there means more hand-wiped trim on original doors and casings.",
-  geo: { latitude: "53.53", longitude: "-113.418" },
+  description: "Most Ottewell houses went up in the 1960s, so a house cleaning there means more hand-wiped trim on original doors and casings.",
+  geo: { latitude: "53.532", longitude: "-113.429" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/ottewell-edmonton/" />
         <meta property="og:title" content="Ottewell, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Most Ottewell houses date from 1946 to 1960, so a clean there means more hand-wiped trim on original doors and casings." />
+        <meta property="og:description" content="Most Ottewell houses went up in the 1960s, so a house cleaning there means more hand-wiped trim on original doors and casings." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ottewell-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Ottewell, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Most Ottewell houses date from 1946 to 1960, so a clean there means more hand-wiped trim on original doors and casings." />
+        <meta name="twitter:description" content="Most Ottewell houses went up in the 1960s, so a house cleaning there means more hand-wiped trim on original doors and casings." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -119,7 +119,7 @@ export default function Ottewell() {
                   Professional House Cleaning in Ottewell
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Most Ottewell houses went up between 1946 and 1960: wide bungalows with hardwood under the broadloom and their original doors and casings. The back entrance here works harder than the front door.
+                  Most Ottewell houses went up in the 1960s and most of the rest in the late 1950s: wide bungalows with hardwood under the broadloom and their original doors and casings. The back entrance here works harder than the front door.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Ottewell() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.53, -113.418]} label="Ottewell, Edmonton" />
+                  <LocationMap center={[53.532, -113.429]} label="Ottewell, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>
@@ -268,7 +268,7 @@ export default function Ottewell() {
         eyebrow="Local knowledge"
         heading="The Ottewell clean, in practice"
         paragraphs={[
-          "Ottewell is 1950s Edmonton, and the great majority of its houses went up between 1946 and 1960. The typical house is a wide bungalow on a generous lot, with hardwood under the broadloom and a low-slung roofline that keeps the eaves close to grade, so dust from outside finds its way onto the sills quickly. Interiors of this vintage reward patience: original doors and casings mean more hand-wiped trim than a new build.",
+          "Ottewell is 1960s Edmonton: about two in three of its houses went up between 1961 and 1970, and most of the rest in the late 1950s. The typical house is a wide bungalow on a generous lot, with hardwood under the broadloom and a low-slung roofline that keeps the eaves close to grade, so dust from outside finds its way onto the sills quickly. Interiors of this vintage reward patience: original doors and casings mean more hand-wiped trim than a new build.",
           "Ottewell sits under a mature canopy, and homes back onto schoolyards and green strips that generate season-long tracking — spring mud from the fields, summer playground sand, autumn leaves. Back entrances here work harder than front doors and are the first place a visit should start.",
         ]}
       />

@@ -88,7 +88,7 @@ export default function Riverdale() {
   url: "https://dutycleaners.ca/locations/riverdale-edmonton",
   areaServed: "Riverdale, Edmonton, AB",
   description: "House cleaning on Riverdale's river flats in Edmonton, where morning fog damps entry floors and spring silt comes when the river runs high.",
-  geo: { latitude: "53.56", longitude: "-113.47" },
+  geo: { latitude: "53.544", longitude: "-113.469" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/riverdale-edmonton/" />
@@ -232,7 +232,7 @@ export default function Riverdale() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.56, -113.47]} label="Riverdale, Edmonton" />
+                  <LocationMap center={[53.544, -113.469]} label="Riverdale, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

@@ -87,7 +87,7 @@ export default function Hairsine() {
   url: "https://dutycleaners.ca/locations/hairsine-edmonton",
   areaServed: "Hairsine, Edmonton, AB",
   description: "In Hairsine's 1970s townhouse courts in Edmonton, a clean centres on kitchens, interior stairs and the one entry every foot crosses.",
-  geo: { latitude: "53.601", longitude: "-113.406" },
+  geo: { latitude: "53.605", longitude: "-113.390" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/hairsine-edmonton/" />
@@ -231,7 +231,7 @@ export default function Hairsine() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.601, -113.406]} label="Hairsine, Edmonton" />
+                  <LocationMap center={[53.605, -113.39]} label="Hairsine, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

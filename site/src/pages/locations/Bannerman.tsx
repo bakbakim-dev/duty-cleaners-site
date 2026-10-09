@@ -101,7 +101,7 @@ export default function Bannerman() {
     <>
       <Helmet>
         <title>Bannerman, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Most homes in Bannerman, Edmonton, date from the 1970s, and clay from the river valley to the east comes back up on boots and paws." />
+        <meta name="description" content="House cleaning in Bannerman, Edmonton, where most homes date from the 1970s and river valley clay comes back up on boots and paws." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Bannerman, Edmonton",
@@ -113,12 +113,12 @@ export default function Bannerman() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/bannerman/" />
         <meta property="og:title" content="Bannerman, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Most homes in Bannerman, Edmonton, date from the 1970s, and clay from the river valley to the east comes back up on boots and paws." />
+        <meta property="og:description" content="House cleaning in Bannerman, Edmonton, where most homes date from the 1970s and river valley clay comes back up on boots and paws." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bannerman/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Bannerman, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Most homes in Bannerman, Edmonton, date from the 1970s, and clay from the river valley to the east comes back up on boots and paws." />
+        <meta name="twitter:description" content="House cleaning in Bannerman, Edmonton, where most homes date from the 1970s and river valley clay comes back up on boots and paws." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

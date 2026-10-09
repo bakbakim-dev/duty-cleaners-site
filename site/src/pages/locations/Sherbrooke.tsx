@@ -87,7 +87,7 @@ export default function Sherbrooke() {
   url: "https://dutycleaners.ca/locations/sherbrooke-edmonton",
   areaServed: "Sherbrooke, Edmonton, AB",
   description: "Sherbrooke, Edmonton house cleaning for post-war bungalows with coved plaster and original casings, and north sills filmed by Yellowhead traffic.",
-  geo: { latitude: "53.587", longitude: "-113.52" },
+  geo: { latitude: "53.577", longitude: "-113.548" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/sherbrooke-edmonton/" />
@@ -234,7 +234,7 @@ export default function Sherbrooke() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.587, -113.52]} label="Sherbrooke, Edmonton" />
+                  <LocationMap center={[53.577, -113.548]} label="Sherbrooke, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

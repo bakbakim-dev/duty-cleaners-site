@@ -51,6 +51,10 @@ export const ALLOWED_PROP_KEYS = [
   "metric_value",
   "metric_rating",
   "connection",
+  // The path of the page the measurement belongs to. INP and CLS are sent when
+  // the visitor leaves, often after moving to another page, so page_location
+  // alone files them under the wrong page (AuditSpur #317).
+  "metric_page",
 ] as const;
 
 /** Keys that name personal data. Dropped even if a later edit allowlists them. */

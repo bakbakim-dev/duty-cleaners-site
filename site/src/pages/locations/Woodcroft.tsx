@@ -79,25 +79,25 @@ export default function Woodcroft() {
     <>
       <Helmet>
         <title>House Cleaners in Woodcroft, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="In Woodcroft, Edmonton, some late-1950s homes still have milk-door cubbies and boot closets, and those cavities hold decades of settled grime." />
+        <meta name="description" content="We clean homes in Woodcroft, Edmonton, where some late-1950s houses still have milk-door cubbies and boot closets holding decades of settled grime." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Woodcroft, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/woodcroft-edmonton",
   areaServed: "Woodcroft, Edmonton, AB",
-  description: "In Woodcroft, Edmonton, some late-1950s homes still have milk-door cubbies and boot closets, and those cavities hold decades of settled grime.",
-  geo: { latitude: "53.566", longitude: "-113.541" },
+  description: "We clean homes in Woodcroft, Edmonton, where some late-1950s houses still have milk-door cubbies and boot closets holding decades of settled grime.",
+  geo: { latitude: "53.566", longitude: "-113.558" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/woodcroft-edmonton/" />
         <meta property="og:title" content="House Cleaners in Woodcroft, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="In Woodcroft, Edmonton, some late-1950s homes still have milk-door cubbies and boot closets, and those cavities hold decades of settled grime." />
+        <meta property="og:description" content="We clean homes in Woodcroft, Edmonton, where some late-1950s houses still have milk-door cubbies and boot closets holding decades of settled grime." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/woodcroft-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Woodcroft, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="In Woodcroft, Edmonton, some late-1950s homes still have milk-door cubbies and boot closets, and those cavities hold decades of settled grime." />
+        <meta name="twitter:description" content="We clean homes in Woodcroft, Edmonton, where some late-1950s houses still have milk-door cubbies and boot closets holding decades of settled grime." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -231,7 +231,7 @@ export default function Woodcroft() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.566, -113.541]} label="Woodcroft, Edmonton" />
+                  <LocationMap center={[53.566, -113.558]} label="Woodcroft, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

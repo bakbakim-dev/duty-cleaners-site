@@ -80,25 +80,25 @@ export default function CentralMcDougall() {
     <>
       <Helmet>
         <title>House Cleaning in Central McDougall, Edmonton</title>
-        <meta name="description" content="When a Central McDougall household in Edmonton works hospital shifts, book an afternoon arrival window and tell us which room someone sleeps in." />
+        <meta name="description" content="House cleaning in Central McDougall, Edmonton: if you work hospital shifts, book an afternoon arrival and tell us which room someone sleeps in." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Central McDougall, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/central-mcdougall-edmonton",
   areaServed: "Central McDougall, Edmonton, AB",
-  description: "When a Central McDougall household in Edmonton works hospital shifts, book an afternoon arrival window and tell us which room someone sleeps in.",
+  description: "House cleaning in Central McDougall, Edmonton: if you work hospital shifts, book an afternoon arrival and tell us which room someone sleeps in.",
   geo: { latitude: "53.555", longitude: "-113.496" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/central-mcdougall-edmonton/" />
         <meta property="og:title" content="House Cleaning in Central McDougall, Edmonton" />
-        <meta property="og:description" content="When a Central McDougall household in Edmonton works hospital shifts, book an afternoon arrival window and tell us which room someone sleeps in." />
+        <meta property="og:description" content="House cleaning in Central McDougall, Edmonton: if you work hospital shifts, book an afternoon arrival and tell us which room someone sleeps in." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/central-mcdougall-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Central McDougall, Edmonton" />
-        <meta name="twitter:description" content="When a Central McDougall household in Edmonton works hospital shifts, book an afternoon arrival window and tell us which room someone sleeps in." />
+        <meta name="twitter:description" content="House cleaning in Central McDougall, Edmonton: if you work hospital shifts, book an afternoon arrival and tell us which room someone sleeps in." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

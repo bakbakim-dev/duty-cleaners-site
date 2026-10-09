@@ -359,7 +359,7 @@ export const SERVICE_TERMS = [
   // Owner, 2026-09-26 (decide-13).
   "If you ask the team to stop after they've started, you're charged for the work already done: for a flat-rate clean, up to the full price, depending on how much was completed; for an hourly clean, the time worked, with the booked minimum.",
   // Owner, 2026-09-26 (decide-07, option C): far addresses book by phone.
-  "Homes more than 40 minutes' drive from Edmonton, past its surrounding cities, pay a higher travel fee and book by phone, so we can quote it before you book.",
+  "Homes more than 40 minutes' drive from Edmonton, past its surrounding cities, pay a higher travel fee and book by phone, so we can quote it before you book. This does not apply in or around Red Deer: homes there pay the standard travel fee outside city limits and book online.",
 ] as const;
 
 /**

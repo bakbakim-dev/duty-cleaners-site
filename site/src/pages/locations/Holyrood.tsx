@@ -87,7 +87,7 @@ export default function Holyrood() {
   url: "https://dutycleaners.ca/locations/holyrood-edmonton",
   areaServed: "Holyrood, Edmonton, AB",
   description: "Holyrood's 1950s houses in Edmonton hold dust in their coved plaster corners. Book a flat-rate clean by home size and pay once it is done.",
-  geo: { latitude: "53.527", longitude: "-113.43" },
+  geo: { latitude: "53.532", longitude: "-113.450" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/holyrood-edmonton/" />
@@ -233,7 +233,7 @@ export default function Holyrood() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.527, -113.43]} label="Holyrood, Edmonton" />
+                  <LocationMap center={[53.532, -113.45]} label="Holyrood, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

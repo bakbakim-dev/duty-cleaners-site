@@ -67,12 +67,12 @@ export default function Manchester() {
     <>
       <Helmet>
         <title>House Cleaning in Manchester, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Industrial land wraps Manchester, Calgary on three sides, so blind slats and baseboards there read dusty sooner than the same rooms a few blocks west." />
+        <meta name="description" content="We clean homes in Manchester, Calgary, where industrial land on three sides makes blinds and baseboards dusty sooner than rooms a few blocks west." />
         <meta property="og:title" content="House Cleaning in Manchester, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Manchester, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Industrial land wraps Manchester, Calgary on three sides, so blind slats and baseboards there read dusty sooner than the same rooms a few blocks west." />
-        <meta property="og:description" content="Industrial land wraps Manchester, Calgary on three sides, so blind slats and baseboards there read dusty sooner than the same rooms a few blocks west." />
+        <meta name="twitter:description" content="We clean homes in Manchester, Calgary, where industrial land on three sides makes blinds and baseboards dusty sooner than rooms a few blocks west." />
+        <meta property="og:description" content="We clean homes in Manchester, Calgary, where industrial land on three sides makes blinds and baseboards dusty sooner than rooms a few blocks west." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/manchester-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/manchester-calgary/" />

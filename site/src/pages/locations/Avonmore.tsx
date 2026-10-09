@@ -80,7 +80,7 @@ export default function Avonmore() {
     <>
       <Helmet>
         <title>Avonmore, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Avonmore's 1950s and 60s homes in Edmonton sit between ravine pollen and 75 Street road dust; original bungalows keep first-generation hardwood." />
+        <meta name="description" content="Avonmore house cleaning in Edmonton: 1950s-60s homes between ravine pollen and 75 Street dust, original bungalows with first-generation hardwood." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Avonmore, Edmonton",
@@ -88,17 +88,17 @@ export default function Avonmore() {
   url: "https://dutycleaners.ca/locations/avonmore-edmonton",
   areaServed: "Avonmore, Edmonton, AB",
   description: "House cleaning in Avonmore, Edmonton, where many 1950s and 1960s bungalows keep their first-generation hardwood floors.",
-  geo: { latitude: "53.518", longitude: "-113.452" },
+  geo: { latitude: "53.509", longitude: "-113.452" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/avonmore-edmonton/" />
         <meta property="og:title" content="Avonmore, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Avonmore's 1950s and 60s homes in Edmonton sit between ravine pollen and 75 Street road dust; original bungalows keep first-generation hardwood." />
+        <meta property="og:description" content="Avonmore house cleaning in Edmonton: 1950s-60s homes between ravine pollen and 75 Street dust, original bungalows with first-generation hardwood." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/avonmore-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Avonmore, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Avonmore's 1950s and 60s homes in Edmonton sit between ravine pollen and 75 Street road dust; original bungalows keep first-generation hardwood." />
+        <meta name="twitter:description" content="Avonmore house cleaning in Edmonton: 1950s-60s homes between ravine pollen and 75 Street dust, original bungalows with first-generation hardwood." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -232,7 +232,7 @@ export default function Avonmore() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.518, -113.452]} label="Avonmore, Edmonton" />
+                  <LocationMap center={[53.509, -113.452]} label="Avonmore, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

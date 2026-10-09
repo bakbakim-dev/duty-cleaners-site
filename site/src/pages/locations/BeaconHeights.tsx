@@ -88,7 +88,7 @@ export default function BeaconHeights() {
   url: "https://dutycleaners.ca/locations/beacon-heights-edmonton",
   areaServed: "Beacon Heights, Edmonton, AB",
   description: "For 1950s-60s Beacon Heights homes in Edmonton, most with a back-lane garage, house cleaning starts at the rear door.",
-  geo: { latitude: "53.56", longitude: "-113.421" },
+  geo: { latitude: "53.574", longitude: "-113.400" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/beacon-heights-edmonton/" />
@@ -232,7 +232,7 @@ export default function BeaconHeights() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.56, -113.421]} label="Beacon Heights, Edmonton" />
+                  <LocationMap center={[53.574, -113.4]} label="Beacon Heights, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

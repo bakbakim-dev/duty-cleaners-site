@@ -67,12 +67,12 @@ export default function Parkhill() {
     <>
       <Helmet>
         <title>House Cleaning Services in Parkhill, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Parkhill homes near Macleod Trail get a wet pass on entry tile for winter brine; those on the Elbow River valley side collect fine pathway dust on sills." />
+        <meta name="description" content="Parkhill house cleaning in Calgary: entry tile near Macleod Trail gets a wet pass for winter brine; homes by the Elbow River get pathway dust on sills." />
         <meta property="og:title" content="House Cleaning Services in Parkhill, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Parkhill, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Parkhill homes near Macleod Trail get a wet pass on entry tile for winter brine; those on the Elbow River valley side collect fine pathway dust on sills." />
-        <meta property="og:description" content="Parkhill homes near Macleod Trail get a wet pass on entry tile for winter brine; those on the Elbow River valley side collect fine pathway dust on sills." />
+        <meta name="twitter:description" content="Parkhill house cleaning in Calgary: entry tile near Macleod Trail gets a wet pass for winter brine; homes by the Elbow River get pathway dust on sills." />
+        <meta property="og:description" content="Parkhill house cleaning in Calgary: entry tile near Macleod Trail gets a wet pass for winter brine; homes by the Elbow River get pathway dust on sills." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/parkhill-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/parkhill-calgary/" />

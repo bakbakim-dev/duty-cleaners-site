@@ -80,25 +80,25 @@ export default function Mayfield() {
     <>
       <Helmet>
         <title>House Cleaners in Mayfield, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Seven in ten Mayfield homes in Edmonton went up between 1946 and 1960, and the basement under the compact main floor can go months without a turn." />
+        <meta name="description" content="House cleaning in Mayfield, Edmonton, where seven in ten homes went up from 1946 to 1960 and the basement can go months without a turn." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Mayfield, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/mayfield-edmonton",
   areaServed: "Mayfield, Edmonton, AB",
-  description: "Seven in ten Mayfield homes in Edmonton went up between 1946 and 1960, and the basement under the compact main floor can go months without a turn.",
-  geo: { latitude: "53.561", longitude: "-113.568" },
+  description: "House cleaning in Mayfield, Edmonton, where seven in ten homes went up from 1946 to 1960 and the basement can go months without a turn.",
+  geo: { latitude: "53.555", longitude: "-113.599" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/mayfield-edmonton/" />
         <meta property="og:title" content="House Cleaners in Mayfield, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Seven in ten Mayfield homes in Edmonton went up between 1946 and 1960, and the basement under the compact main floor can go months without a turn." />
+        <meta property="og:description" content="House cleaning in Mayfield, Edmonton, where seven in ten homes went up from 1946 to 1960 and the basement can go months without a turn." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mayfield-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Mayfield, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Seven in ten Mayfield homes in Edmonton went up between 1946 and 1960, and the basement under the compact main floor can go months without a turn." />
+        <meta name="twitter:description" content="House cleaning in Mayfield, Edmonton, where seven in ten homes went up from 1946 to 1960 and the basement can go months without a turn." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -232,7 +232,7 @@ export default function Mayfield() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.561, -113.568]} label="Mayfield, Edmonton" />
+                  <LocationMap center={[53.555, -113.599]} label="Mayfield, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

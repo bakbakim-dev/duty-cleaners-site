@@ -83,17 +83,17 @@ export default function Balwin() {
     <>
       <Helmet>
         <title>House Cleaners in Balwin, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Row housing, duplexes and walk-up rental suites sit beside detached houses in Balwin, Edmonton, a neighbourhood built out by the early 1980s." />
+        <meta name="description" content="House cleaning in Balwin, Edmonton, built out by the early 1980s, where row housing, duplexes and walk-up rental suites sit beside detached houses." />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/balwin-edmonton/" />
         <meta property="og:title" content="House Cleaners in Balwin, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Row housing, duplexes and walk-up rental suites sit beside detached houses in Balwin, Edmonton, a neighbourhood built out by the early 1980s." />
+        <meta property="og:description" content="House cleaning in Balwin, Edmonton, built out by the early 1980s, where row housing, duplexes and walk-up rental suites sit beside detached houses." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/balwin-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Balwin, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Row housing, duplexes and walk-up rental suites sit beside detached houses in Balwin, Edmonton, a neighbourhood built out by the early 1980s." />
+        <meta name="twitter:description" content="House cleaning in Balwin, Edmonton, built out by the early 1980s, where row housing, duplexes and walk-up rental suites sit beside detached houses." />
       </Helmet>
 
       <div className="min-h-screen">

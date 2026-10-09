@@ -747,8 +747,8 @@ export default function Contact() {
                         Gift card{giftDesignLabel ? ` — ${giftDesignLabel} design` : ""}
                       </p>
                       <p className="mt-1 text-sm text-foreground/80">
-                        We've noted your choice. Add your details and the office will contact you
-                        with payment and delivery options.
+                        Add your details below and the office will contact you about this card, with
+                        payment and delivery options.
                       </p>
                     </div>
                   )}

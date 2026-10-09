@@ -88,7 +88,7 @@ export default function Canora() {
   url: "https://dutycleaners.ca/locations/canora-edmonton",
   areaServed: "Canora, Edmonton, AB",
   description: "House cleaning in Canora, Edmonton, where about seven in ten homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves.",
-  geo: { latitude: "53.536", longitude: "-113.557" },
+  geo: { latitude: "53.547", longitude: "-113.584" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/canora-edmonton/" />
@@ -232,7 +232,7 @@ export default function Canora() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.536, -113.557]} label="Canora, Edmonton" />
+                  <LocationMap center={[53.547, -113.584]} label="Canora, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

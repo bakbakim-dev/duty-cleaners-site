@@ -58,16 +58,16 @@ export default function Greenfield() {
     <>
       <Helmet>
         <title>House Cleaning in Greenfield Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Most Greenfield houses in Edmonton went up in the 1960s. In kitchens and baths never redone, porous grout and stained tub surrounds set the pace." />
+        <meta name="description" content="House cleaning in Greenfield, Edmonton: most houses are 1960s builds, and where kitchens and baths were never redone, porous grout sets the pace." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/greenfield-edmonton/" />
         <meta property="og:title" content="House Cleaning in Greenfield Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Most Greenfield houses in Edmonton went up in the 1960s. In kitchens and baths never redone, porous grout and stained tub surrounds set the pace." />
+        <meta property="og:description" content="House cleaning in Greenfield, Edmonton: most houses are 1960s builds, and where kitchens and baths were never redone, porous grout sets the pace." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/greenfield-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Greenfield Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Most Greenfield houses in Edmonton went up in the 1960s. In kitchens and baths never redone, porous grout and stained tub surrounds set the pace." />
-        <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Greenfield Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/greenfield-edmonton", areaServed: "Greenfield, Edmonton, AB", geo: { latitude: "53.475", longitude: "-113.511" },
+        <meta name="twitter:description" content="House cleaning in Greenfield, Edmonton: most houses are 1960s builds, and where kitchens and baths were never redone, porous grout sets the pace." />
+        <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Greenfield Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/greenfield-edmonton", areaServed: "Greenfield, Edmonton, AB", geo: { latitude: "53.471", longitude: "-113.524" },
 }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -137,7 +137,7 @@ export default function Greenfield() {
           <div className="container mx-auto max-w-4xl">
             <div className="rounded-lg overflow-hidden shadow-lg border border-border">
               <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse" />}>
-                <LocationMap center={[53.475, -113.511]} label="Greenfield, Edmonton" />
+                <LocationMap center={[53.471, -113.524]} label="Greenfield, Edmonton" />
               </Suspense>
             </div>
           </div>

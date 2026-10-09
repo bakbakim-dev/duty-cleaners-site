@@ -20,8 +20,6 @@ const DC_GHL_ALLOWED_ORIGINS = [
     'https://dutycleaners.ca',
     'https://www.dutycleaners.ca',
     'https://mikaily131.sg-host.com',
-    'http://127.0.0.1:5173',
-    'http://localhost:5173',
 ];
 const DC_GHL_FIELD_MAP = [
     'contact.what_type_of_service_would_you_like' => 'service',

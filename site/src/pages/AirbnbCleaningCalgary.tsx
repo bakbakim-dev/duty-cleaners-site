@@ -25,8 +25,8 @@ import imgBedroom from "@/assets/hero-family-bedroom.webp?card";
 import imgBathroom from "@/assets/gallery/calgary-bathroom-clean.webp?card";
 import imgKitchen from "@/assets/gallery/calgary-kitchen-clean.webp?card";
 import imgLiving from "@/assets/gallery/calgary-living-room-clean.webp?card";
-import imgLaundry from "@/assets/cleaning-equipment-flatlay.webp?card";
-import imgEssentials from "@/assets/gallery/calgary-eco-products.webp?card";
+import imgLaundry from "@/assets/blog/cleaning-supplies-cost.webp?card";
+import imgEssentials from "@/assets/airbnb/turnover-linens.webp?card";
 
 import heroBg from "@/assets/airbnb/calgary-hero-living.webp?hero";
 import gal1 from "@/assets/airbnb/turnover-living.webp?card";

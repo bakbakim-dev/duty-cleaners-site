@@ -88,7 +88,7 @@ export default function McLeod() {
   url: "https://dutycleaners.ca/locations/mcleod-edmonton",
   areaServed: "McLeod, Edmonton, AB",
   description: "McLeod, Edmonton: dark-stained trim in the 1960s and 1970s split-levels shows dust readily, so a clean here dusts the reachable stained trim and doors.",
-  geo: { latitude: "53.585", longitude: "-113.421" },
+  geo: { latitude: "53.612", longitude: "-113.437" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/mcleod-edmonton/" />
@@ -232,7 +232,7 @@ export default function McLeod() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.585, -113.421]} label="McLeod, Edmonton" />
+                  <LocationMap center={[53.612, -113.437]} label="McLeod, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

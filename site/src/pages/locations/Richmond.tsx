@@ -67,12 +67,12 @@ export default function Richmond() {
     <>
       <Helmet>
         <title>House Cleaning Services in Richmond, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Richmond is Calgary infill country, where homes between two builds take drywall and cut-stone dust through their window seals for months." />
+        <meta name="description" content="House cleaning in Richmond, Calgary infill country, where homes between two builds take drywall and cut-stone dust through window seals for months." />
         <meta property="og:title" content="House Cleaning Services in Richmond, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Richmond, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Richmond is Calgary infill country, where homes between two builds take drywall and cut-stone dust through their window seals for months." />
-        <meta property="og:description" content="Richmond is Calgary infill country, where homes between two builds take drywall and cut-stone dust through their window seals for months." />
+        <meta name="twitter:description" content="House cleaning in Richmond, Calgary infill country, where homes between two builds take drywall and cut-stone dust through window seals for months." />
+        <meta property="og:description" content="House cleaning in Richmond, Calgary infill country, where homes between two builds take drywall and cut-stone dust through window seals for months." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/richmond-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/richmond-calgary/" />

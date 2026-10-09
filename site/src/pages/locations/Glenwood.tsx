@@ -88,7 +88,7 @@ export default function Glenwood() {
   url: "https://dutycleaners.ca/locations/glenwood-edmonton",
   areaServed: "Glenwood, Edmonton, AB",
   description: "Glenwood's 1950s Edmonton bungalows pack trim, doors and built-ins into few rooms, and a garden suite adds a second small kitchen to clean.",
-  geo: { latitude: "53.53", longitude: "-113.621" },
+  geo: { latitude: "53.536", longitude: "-113.598" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/glenwood-edmonton/" />
@@ -235,7 +235,7 @@ export default function Glenwood() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.53, -113.621]} label="Glenwood, Edmonton" />
+                  <LocationMap center={[53.536, -113.598]} label="Glenwood, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

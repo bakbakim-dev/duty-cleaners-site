@@ -67,12 +67,12 @@ export default function Greenview() {
     <>
       <Helmet>
         <title>Greenview, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Over half of Greenview's households in Calgary rent, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
+        <meta name="description" content="House cleaning in Greenview, Calgary: over half of households rent, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
         <meta property="og:title" content="Greenview, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Greenview, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Over half of Greenview's households in Calgary rent, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
-        <meta property="og:description" content="Over half of Greenview's households in Calgary rent, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
+        <meta name="twitter:description" content="House cleaning in Greenview, Calgary: over half of households rent, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
+        <meta property="og:description" content="House cleaning in Greenview, Calgary: over half of households rent, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/greenview-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/greenview-calgary/" />

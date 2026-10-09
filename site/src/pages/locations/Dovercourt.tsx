@@ -80,25 +80,25 @@ export default function Dovercourt() {
     <>
       <Helmet>
         <title>House Cleaning in Dovercourt, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Dovercourt's 1950s Edmonton homes are boxed in by 118 Avenue, Yellowhead Trail, St. Albert Trail and 142 Street, so fine arterial dust reaches their sills." />
+        <meta name="description" content="Dovercourt house cleaning in Edmonton: 1950s homes boxed in by 118 Avenue, Yellowhead Trail, St. Albert Trail and 142 Street get arterial dust on sills." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Dovercourt, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/dovercourt-edmonton",
   areaServed: "Dovercourt, Edmonton, AB",
-  description: "Dovercourt's 1950s Edmonton homes are boxed in by 118 Avenue, Yellowhead Trail, St. Albert Trail and 142 Street, so fine arterial dust reaches their sills.",
-  geo: { latitude: "53.58", longitude: "-113.547" },
+  description: "Dovercourt house cleaning in Edmonton: 1950s homes boxed in by 118 Avenue, Yellowhead Trail, St. Albert Trail and 142 Street get arterial dust on sills.",
+  geo: { latitude: "53.574", longitude: "-113.559" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/dovercourt-edmonton/" />
         <meta property="og:title" content="House Cleaning in Dovercourt, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Dovercourt's 1950s Edmonton homes are boxed in by 118 Avenue, Yellowhead Trail, St. Albert Trail and 142 Street, so fine arterial dust reaches their sills." />
+        <meta property="og:description" content="Dovercourt house cleaning in Edmonton: 1950s homes boxed in by 118 Avenue, Yellowhead Trail, St. Albert Trail and 142 Street get arterial dust on sills." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/dovercourt-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Dovercourt, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Dovercourt's 1950s Edmonton homes are boxed in by 118 Avenue, Yellowhead Trail, St. Albert Trail and 142 Street, so fine arterial dust reaches their sills." />
+        <meta name="twitter:description" content="Dovercourt house cleaning in Edmonton: 1950s homes boxed in by 118 Avenue, Yellowhead Trail, St. Albert Trail and 142 Street get arterial dust on sills." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -235,7 +235,7 @@ export default function Dovercourt() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.58, -113.547]} label="Dovercourt, Edmonton" />
+                  <LocationMap center={[53.574, -113.559]} label="Dovercourt, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

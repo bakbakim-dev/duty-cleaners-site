@@ -2456,7 +2456,7 @@ export default function QuoteFlow({
                   <ul className="funnel-tally mt-2" aria-label="Your price is worked out from">
                     {[
                       `${bedrooms} bedroom${bedrooms === 1 ? "" : "s"}`,
-                      `${bathrooms} bathroom${bathrooms === 1 ? "" : "s"}`,
+                      ...(baths.length > 0 ? [`${bathrooms} bathroom${bathrooms === 1 ? "" : "s"}`] : []),
                       ...(halfBaths > 0 ? [`${halfBaths} half bath${halfBaths === 1 ? "" : "s"}`] : []),
                       ...(hasPets === null || !petsExtra ? [] : [hasPets ? "pets" : "no pets"]),
                       ...(area?.outside === true ? ["travel fee"] : []),
@@ -3518,7 +3518,7 @@ export default function QuoteFlow({
                     ? ` · ${addedCount} add-on${addedCount === 1 ? "" : "s"}`
                     : ""}
                 </p>
-                <p className="text-lg font-bold leading-tight text-foreground">{priceLabel}</p>
+                <p className="text-lg font-bold leading-tight text-foreground" aria-live="polite">{priceLabel}</p>
               </div>
             )}
             {/* No button here (owner, 2026-09-23): the only orange button is the

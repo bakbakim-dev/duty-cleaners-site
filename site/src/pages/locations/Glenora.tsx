@@ -75,15 +75,15 @@ export default function Glenora() {
     <>
       <Helmet>
         <title>Home Cleaning You Can Count On in Glenora, Edmonton</title>
-        <meta name="description" content="More than eight in ten Glenora homes in Edmonton were standing by 1980, and their plaster, deep milled trim and original hardwood take no saturated mop." />
+        <meta name="description" content="House cleaning in Glenora, Edmonton: over eight in ten homes stood by 1980, and their plaster, milled trim and original hardwood take no saturated mop." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/glenora-edmonton/" />
         <meta property="og:title" content="Home Cleaning You Can Count On in Glenora, Edmonton" />
-        <meta property="og:description" content="More than eight in ten Glenora homes in Edmonton were standing by 1980, and their plaster, deep milled trim and original hardwood take no saturated mop." />
+        <meta property="og:description" content="House cleaning in Glenora, Edmonton: over eight in ten homes stood by 1980, and their plaster, milled trim and original hardwood take no saturated mop." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/glenora-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Home Cleaning You Can Count On in Glenora, Edmonton" />
-        <meta name="twitter:description" content="More than eight in ten Glenora homes in Edmonton were standing by 1980, and their plaster, deep milled trim and original hardwood take no saturated mop." />
+        <meta name="twitter:description" content="House cleaning in Glenora, Edmonton: over eight in ten homes stood by 1980, and their plaster, milled trim and original hardwood take no saturated mop." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Glenora Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/glenora-edmonton", areaServed: "Glenora, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>

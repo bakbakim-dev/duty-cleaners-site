@@ -88,7 +88,7 @@ export default function Kilkenny() {
   url: "https://dutycleaners.ca/locations/kilkenny-edmonton",
   areaServed: "Kilkenny, Edmonton, AB",
   description: "In Kilkenny, Edmonton, late-1960s bungalows have basement drop-ceiling tiles that shed dust when bumped, so basement cleans start at the top.",
-  geo: { latitude: "53.601", longitude: "-113.466" },
+  geo: { latitude: "53.611", longitude: "-113.451" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/kilkenny-edmonton/" />
@@ -237,7 +237,7 @@ export default function Kilkenny() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.601, -113.466]} label="Kilkenny, Edmonton" />
+                  <LocationMap center={[53.611, -113.451]} label="Kilkenny, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

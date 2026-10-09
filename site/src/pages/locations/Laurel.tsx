@@ -7,7 +7,7 @@ export default function Laurel() {
       region="edmonton"
       title="House Cleaning Services Laurel Edmonton | Duty Cleaners"
       description="Newer Laurel homes keep shedding drywall and sanding dust from vents, closet shelves and door frames for a year or two after possession. That dust is the main reason a first deep clean is worth more here than a standard one."
-      seoDescription="Laurel homes in southeast Edmonton gather mud on entry mats in spring and autumn, and grit off the Anthony Henday along baseboards in winter."
+      seoDescription="Laurel house cleaning in southeast Edmonton: mud on entry mats in spring and autumn, and grit off the Anthony Henday along baseboards in winter."
       localNote={{
         heading: "What a Laurel home needs",
         paragraphs: [

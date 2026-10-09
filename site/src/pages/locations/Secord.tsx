@@ -88,7 +88,7 @@ export default function Secord() {
   url: "https://dutycleaners.ca/locations/secord-edmonton",
   areaServed: "Secord, Edmonton, AB",
   description: "Secord house cleaning in west Edmonton, where homes on the 231 Street edge face open Parkland County land and take the wind unbroken.",
-  geo: { latitude: "53.531", longitude: "-113.681" },
+  geo: { latitude: "53.534", longitude: "-113.701" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/secord-edmonton/" />
@@ -235,7 +235,7 @@ export default function Secord() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.531, -113.681]} label="Secord, Edmonton" />
+                  <LocationMap center={[53.534, -113.701]} label="Secord, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

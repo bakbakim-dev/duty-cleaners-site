@@ -18,7 +18,7 @@ import { ORG_ID } from "@/data/proof";
 import cleaningScheduleHero from "@/assets/blog/cleaning-schedule-hero.webp?card";
 import cleaningFrequencyHero from "@/assets/blog/cleaning-frequency-hero.webp?card";
 import vinegarBakingSodaHero from "@/assets/blog/vinegar-baking-soda-hero.webp?card";
-import houseCleaningCostHero from "@/assets/blog/house-cleaning-cost-hero.webp?card";
+import houseCleaningCostHero from "@/assets/blog/house-cleaning-cost-hero-v2.webp?card";
 import choosingCleaningCompanyHero from "@/assets/blog/choosing-cleaning-company-hero.webp?card";
 import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
 import type { Picture } from "vite-imagetools";
