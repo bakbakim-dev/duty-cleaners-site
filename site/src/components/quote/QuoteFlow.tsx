@@ -71,6 +71,7 @@ import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen
 import { intentParams, intentQuery } from "@/lib/url-intent";
 import { setQuoteBranch, setQuoteStep } from "@/lib/quote-progress";
 import { track } from "@/lib/analytics";
+import { createEnquiryReceiptRecorder } from "@/lib/enquiry-receipt-analytics";
 import { CLEANLINESS_OPTIONS, FLEXIBILITY_OPTIONS, cleanerNotesLimit, validateCleanerDetails } from "@/lib/booking-details";
 import { ENTRY_NOTE_MAX, entryNoteLine } from "@/lib/booking-redirect";
 import { clearQuoteReturn, readQuoteReturn, saveQuoteReturn } from "@/lib/quote-return";
@@ -431,6 +432,7 @@ export default function QuoteFlow({
   const leadPayloadFingerprintRef = useRef<string | null>(null);
   const confirmPayloadFingerprintRef = useRef<string | null>(restored?.confirmFingerprint ?? null);
   const leadPayloadRef = useRef<Partial<QuotePayload> | null>(null);
+  const recordLeadReceipt = useMemo(() => createEnquiryReceiptRecorder(track), []);
   if (leadRequestIdRef.current === null) leadRequestIdRef.current = createQuoteRequestId();
   if (confirmRequestIdRef.current === null) confirmRequestIdRef.current = createQuoteRequestId();
   /** This visit, for leave detection: the lead, the confirmation and the "still here" reports share it. */
@@ -1284,8 +1286,10 @@ export default function QuoteFlow({
       source: tooFast ? `${fields.source} (fast fill — verify)` : fields.source,
     } as Partial<QuotePayload>;
     leadPayloadRef.current = payload;
+    const requestId = requestIdForPayload(payload, leadRequestIdRef, leadPayloadFingerprintRef);
+    const analyticsProps = funnelProps();
     const result = await submitQuote(payload, {
-      requestId: requestIdForPayload(payload, leadRequestIdRef, leadPayloadFingerprintRef),
+      requestId,
       timeoutMs: 5_000,
       sessionId: presenceSessionRef.current ?? undefined,
     });
@@ -1295,8 +1299,7 @@ export default function QuoteFlow({
     if (result.ok) {
       // This means the private lead row exists. GHL can be delivered or queued;
       // either way, the required contact gate has done its job.
-      track("generate_lead", funnelProps());
-      track("contact_submitted", funnelProps());
+      recordLeadReceipt(requestId, ["generate_lead", "contact_submitted"], analyticsProps);
       track("quote_revealed", funnelProps());
       setStep(2);
       return;
@@ -1313,16 +1316,17 @@ export default function QuoteFlow({
   const retryLeadCapture = async () => {
     setSubmitting(true);
     const payload = leadPayloadRef.current ?? homeFields();
+    const requestId = requestIdForPayload(payload, leadRequestIdRef, leadPayloadFingerprintRef);
+    const analyticsProps = funnelProps();
     const result = await submitQuote(payload, {
-      requestId: requestIdForPayload(payload, leadRequestIdRef, leadPayloadFingerprintRef),
+      requestId,
       timeoutMs: 5_000,
       sessionId: presenceSessionRef.current ?? undefined,
     });
     setSubmitting(false);
     if (!result.ok) return;
     setLeadCaptureFailed(false);
-    track("generate_lead", funnelProps());
-    track("contact_submitted", funnelProps());
+    recordLeadReceipt(requestId, ["generate_lead", "contact_submitted"], analyticsProps);
   };
 
   /** What is in the price: the deep package, the extras and travel fee, and the area answer. */

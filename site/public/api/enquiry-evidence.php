@@ -3,8 +3,14 @@ declare(strict_types=1);
 
 function dc_enquiry_candidate(array $payload): bool {
     $source=(string)($payload['source']??'');
-    return !str_starts_with($source,'careers-application')
-        && (str_starts_with($source,'contact-form') || ($payload['stage']??'')==='confirm');
+    // General messages can be complaints or access updates; they do not
+    // automatically establish a new purchase enquiry for marketing.
+    return ($payload['stage']??'')==='confirm' && in_array($source,[
+        'dutycleaners.ca instant quote',
+        'dutycleaners.ca instant quote (call-back requested)',
+        'dutycleaners.ca instant quote (fast fill — verify)',
+        'dutycleaners.ca instant quote (fast fill — verify) (call-back requested)',
+    ],true);
 }
 
 /** Original durable server receipt only; client submitted_at is never used. */

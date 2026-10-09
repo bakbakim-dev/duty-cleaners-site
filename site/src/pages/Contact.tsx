@@ -2,7 +2,7 @@ import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import { useLocation } from "react-router-dom";
 import { Calculator, Phone, Users, Star, Mail, CheckCircle2, MessageSquare, Heart, Shield, Building2, LucideIcon, Send } from "lucide-react";
 import { quoteHrefFor } from "@/lib/quote-link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -26,6 +26,7 @@ import { formatPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote } from "@/lib/quote-submit";
 import { track } from "@/lib/analytics";
+import { createEnquiryReceiptRecorder } from "@/lib/enquiry-receipt-analytics";
 import { z } from "zod";
 import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, branchGeoField, RED_DEER_HANDLED_LINE, RED_DEER_OPENS_LINE, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM, branchRatingClaim, RED_DEER_PATH, hasGoogleRating, hoursLineFor, hoursRowsFor, openingHoursSpecFor, type Branch } from "@/data/proof";
 
@@ -378,6 +379,7 @@ export default function Contact() {
     message: string;
   } | null>(null);
   const requestIdRef = useRef(createQuoteRequestId());
+  const recordEnquiryReceipt = useMemo(() => createEnquiryReceiptRecorder(track), []);
   const requestFingerprintRef = useRef<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -422,7 +424,9 @@ export default function Contact() {
         requestIdRef.current = createQuoteRequestId();
       }
       requestFingerprintRef.current = fingerprint;
-      const outcome = await submitQuote(payload, { requestId: requestIdRef.current });
+      const requestId = requestIdRef.current;
+      const analyticsProps = { city: formData.city, service: formData.service };
+      const outcome = await submitQuote(payload, { requestId });
 
       setIsSubmitting(false);
 
@@ -435,7 +439,7 @@ export default function Contact() {
       }
 
       setSubmissionStatus({ kind: "success", message: "Message sent. It is with the office now." });
-      track("contact_enquiry_submitted", { city: formData.city, service: formData.service });
+      recordEnquiryReceipt(requestId, ["contact_enquiry_submitted"], analyticsProps);
       requestIdRef.current = createQuoteRequestId();
       requestFingerprintRef.current = null;
       setFormData({

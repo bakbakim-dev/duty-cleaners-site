@@ -3,7 +3,7 @@ import { hasRelayPhp, relayHarness, type RelayHarness } from "./ghl-relay-php-ha
 
 /**
  * Enquiry evidence (enquiry-evidence.php, live since 2026-10-03, reviewed
- * 2026-10-06). A confirmed quote, call-back or contact form writes "Last
+ * 2026-10-06). A confirmed quote or quote call-back writes "Last
  * qualifying enquiry date" and "Qualifying enquiry evidence" on the contact,
  * which Long Term Nurture's consent gates read. The date comes from the
  * server's own receipt, never the browser. The three extra GoHighLevel calls
@@ -41,7 +41,7 @@ describe.skipIf(!hasRelayPhp)("enquiry evidence", () => {
     expect([out.impossible, out.future, out.anonymous]).toEqual([true, true, true]);
   });
 
-  it("counts a confirmed quote, call-back or contact form, never a price check or a job application", () => {
+  it("counts confirmed quote requests, excluding general contact messages, price checks and job applications", () => {
     const out = relay.run(`echo json_encode([
       dc_enquiry_candidate(['source' => 'dutycleaners.ca instant quote', 'stage' => 'confirm']),
       dc_enquiry_candidate(['source' => 'dutycleaners.ca instant quote (call-back requested)', 'stage' => 'confirm']),
@@ -49,7 +49,7 @@ describe.skipIf(!hasRelayPhp)("enquiry evidence", () => {
       dc_enquiry_candidate(['source' => 'dutycleaners.ca instant quote', 'stage' => 'lead']),
       dc_enquiry_candidate(['source' => 'careers-application', 'stage' => 'confirm']),
     ]);`);
-    expect(out).toEqual([true, true, true, false, false]);
+    expect(out).toEqual([true, true, false, false, false]);
   });
 
   it("never shortens a newer enquiry date or overwrites same-day evidence", () => {
@@ -137,7 +137,7 @@ describe.skipIf(!hasRelayPhp)("enquiry evidence", () => {
   it("that keeps failing is retried on the lead's schedule, six tries at most, then reported once", () => {
     const out = relay.run(`
       fake_fail('#^GET /contacts/contact-1$#', ...array_fill(0, 10, 503));
-      $path = fake_store($config, ['source' => 'contact-form main', 'stage' => 'lead', 'first_clean_price' => null]);
+      $path = fake_store($config, ['source' => 'dutycleaners.ca instant quote (call-back requested)', 'stage' => 'confirm']);
       $state = dc_ghl_attempt($config, fake_record($path), $path)['enquiry_evidence'];
       $delays = [$state['next_retry_at'] - time()];
       for ($i = 0; $i < 5; $i++) {
@@ -157,10 +157,10 @@ describe.skipIf(!hasRelayPhp)("enquiry evidence", () => {
     expect(out.minutes).toEqual([5, 30, 120, 720, 1440]);
     expect(out.reads).toBe(6);
     expect(out.owed).toBeNull();
-    // The contact form itself stays delivered and tagged once.
+    // The qualifying quote itself stays delivered and tagged once.
     expect(out.delivery).toEqual(["delivered", 1]);
     expect(out.tags).toBe(1);
-    expect(out.health).toEqual([{ event: "failed", form: "contact-form", stage: "ghl-delivery", category: "delivery", status: 0, path: "/server/ghl-quote" }]);
+    expect(out.health).toEqual([{ event: "failed", form: "quote-funnel", stage: "ghl-delivery", category: "delivery", status: 0, path: "/server/ghl-quote" }]);
   });
 
   it("is never written for a price check", () => {
