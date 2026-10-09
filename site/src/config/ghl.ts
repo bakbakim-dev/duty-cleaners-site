@@ -30,7 +30,7 @@ export const GHL_HOME_TYPE_LABELS: Record<number, string> = {
   90: "Two Storey Detached Home (Main Floor & Upper Floor)",
   89: "Two Storey Townhouse/Duplex",
   54: "Bungalow (Single Storey Home)",
-  56: "Bungalow (Single Storey Home)",
+  56: "Basement Suite Only",
   55: "Apartment/Condo (Single Storey)",
 };
 
