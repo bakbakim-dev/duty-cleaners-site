@@ -66,11 +66,11 @@ export default function BridgelandRiverside() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Bridgeland-Riverside, Calgary</title>
+        <title>House Cleaning Bridgeland-Riverside Calgary | Duty Cleaners</title>
         <meta name="description" content="South sun through big hillside windows shows every streak in Calgary's Bridgeland-Riverside, where we clean condos, heritage cottages and infills." />
-        <meta property="og:title" content="House Cleaning in Bridgeland-Riverside, Calgary" />
+        <meta property="og:title" content="House Cleaning Bridgeland-Riverside Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Bridgeland-Riverside, Calgary" />
+        <meta name="twitter:title" content="House Cleaning Bridgeland-Riverside Calgary | Duty Cleaners" />
         <meta name="twitter:description" content="South sun through big hillside windows shows every streak in Calgary's Bridgeland-Riverside, where we clean condos, heritage cottages and infills." />
         <meta property="og:description" content="South sun through big hillside windows shows every streak in Calgary's Bridgeland-Riverside, where we clean condos, heritage cottages and infills." />
         <meta property="og:type" content="website" />

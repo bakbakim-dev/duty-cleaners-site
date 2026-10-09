@@ -353,11 +353,14 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
       {/* The bar takes the header's own quote target: on the Calgary blog post it
           opened the Edmonton quote while every other CTA opened Calgary's (AuditSpur #205). */}
       <AnnouncementBar quoteHref={quoteTarget} />
-      <nav
+      {/* The sticky bar is the page's header landmark; the menu inside it is the
+          main navigation (AuditSpur baseline, 2026-10-09: no banner landmark). */}
+      <header
         className={`nav-glass sticky top-0 z-40 bg-background/95 backdrop-blur-md transition-shadow duration-300 ${
           scrolled ? "shadow-lg shadow-primary/10" : "shadow-md"
         }`}
       >
+      <nav aria-label="Main">
       <div className="container mx-auto px-4">
         <div
           className={`flex items-center justify-between transition-all duration-300 ${
@@ -601,8 +604,9 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
         )}
       </div>
       </nav>
+      </header>
 
-      {/* Mobile Sticky CTA Bar — rendered outside <nav> because the nav's
+      {/* Mobile Sticky CTA Bar — rendered outside <header> because the header's
           backdrop-blur creates a containing block that would break fixed positioning */}
       {!mobileCtaHidden && (
         <aside

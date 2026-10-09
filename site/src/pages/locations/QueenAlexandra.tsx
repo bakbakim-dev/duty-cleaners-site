@@ -53,15 +53,15 @@ const QueenAlexandra = () => {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Queen Alexandra, Edmonton</title>
+        <title>House Cleaning Queen Alexandra Edmonton | Duty Cleaners</title>
         <meta name="description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where about seven in ten homes are rented and possession dates cluster at month end." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/queen-alexandra-edmonton/" />
-        <meta property="og:title" content="House Cleaning in Queen Alexandra, Edmonton" />
+        <meta property="og:title" content="House Cleaning Queen Alexandra Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where about seven in ten homes are rented and possession dates cluster at month end." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/queen-alexandra-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Queen Alexandra, Edmonton" />
+        <meta name="twitter:title" content="House Cleaning Queen Alexandra Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where about seven in ten homes are rented and possession dates cluster at month end." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Queen Alexandra Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/queen-alexandra-edmonton", areaServed: "Queen Alexandra, Edmonton, AB",   geo: { latitude: "53.518", longitude: "-113.504" },
 }))}</script>

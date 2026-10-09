@@ -76,15 +76,15 @@ export default function Terwillegar() {
   return (
     <>
       <Helmet>
-        <title>Home Cleaning You Can Count On in Terwillegar, Edmonton</title>
+        <title>House Cleaning Terwillegar Edmonton | Duty Cleaners</title>
         <meta name="description" content="Terwillegar, Edmonton: lane-access homes built after 1995, where house cleaning meets gravel at the back door and uses damp cloths on laminate." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/terwillegar/" />
-        <meta property="og:title" content="Home Cleaning You Can Count On in Terwillegar, Edmonton" />
+        <meta property="og:title" content="House Cleaning Terwillegar Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Terwillegar, Edmonton: lane-access homes built after 1995, where house cleaning meets gravel at the back door and uses damp cloths on laminate." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/terwillegar/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Home Cleaning You Can Count On in Terwillegar, Edmonton" />
+        <meta name="twitter:title" content="House Cleaning Terwillegar Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Terwillegar, Edmonton: lane-access homes built after 1995, where house cleaning meets gravel at the back door and uses damp cloths on laminate." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Terwillegar, Edmonton",

@@ -66,11 +66,11 @@ export default function KillarneyGlengarry() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Killarney-Glengarry, Calgary</title>
+        <title>House Cleaning Killarney-Glengarry Calgary | Duty Cleaners</title>
         <meta name="description" content="Killarney-Glengarry house cleaning for 1950s bungalows and the three-storey infills going up beside them, quoted flat by home size and type." />
-        <meta property="og:title" content="House Cleaning in Killarney-Glengarry, Calgary" />
+        <meta property="og:title" content="House Cleaning Killarney-Glengarry Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Killarney-Glengarry, Calgary" />
+        <meta name="twitter:title" content="House Cleaning Killarney-Glengarry Calgary | Duty Cleaners" />
         <meta name="twitter:description" content="Killarney-Glengarry house cleaning for 1950s bungalows and the three-storey infills going up beside them, quoted flat by home size and type." />
         <meta property="og:description" content="Killarney-Glengarry house cleaning for 1950s bungalows and the three-storey infills going up beside them, quoted flat by home size and type." />
         <meta property="og:type" content="website" />
