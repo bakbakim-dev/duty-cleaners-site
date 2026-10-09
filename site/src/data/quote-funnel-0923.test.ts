@@ -49,7 +49,10 @@ describe("the flexibility question", () => {
       expect(option.label).toMatch(/flexible|Flexible/);
     }
     const src = codeOf(FLOW);
-    expect(src).toMatch(/\{option\.display\}/);
+    // The flexibility buttons themselves render `display` (the cleanliness scale
+    // has its own {option.display} since 2026-10-09, so look inside this map).
+    const flexibility = src.slice(src.indexOf("FLEXIBILITY_OPTIONS.map("), src.indexOf("FLEXIBILITY_OPTIONS.map(") + 3000);
+    expect(flexibility).toMatch(/\{option\.display\}/);
     expect(src).toMatch(/You pick your date and time on the next page/);
   });
 });
