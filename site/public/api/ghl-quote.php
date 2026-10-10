@@ -970,6 +970,10 @@ const DC_GHL_NO_BRANCH_PHONE = 'Edmonton (780) 913-6565 or Calgary (403) 768-134
  * GoHighLevel filters may already use.
  */
 const DC_GHL_REFERRER_CHANNELS = [
+    // Gmail (web and the Android app's referrer) and Gemini are Google hosts too;
+    // they come first so they are not filed as Google search (AuditSpur #612).
+    '/^(mail\.google\.com|com\.google\.android\.gm)$/' => 'Gmail',
+    '/^gemini\.google\.com$/' => 'Gemini',
     '/(^|\.)google\.[a-z.]+$/' => 'Google (search, Maps or Business Profile)',
     '/(^|\.)bing\.com$/' => 'Bing',
     '/(^|\.)duckduckgo\.com$/' => 'DuckDuckGo',
@@ -1106,7 +1110,9 @@ function dc_ghl_session_link(array $config, array $session, array $lead, string 
     $query = is_array($shown) ? (string) ($shown['booking_query'] ?? '') : '';
     if ($query === '' || $sessionKey === '') return DC_GHL_BOOKING_ORIGIN . '/booknow';
     $person = dc_ghl_decrypt((array) ($lead['payload'] ?? []), $config['encryption_key']);
-    return dc_ghl_resume_save($config, 'session:' . $sessionKey, $query, $person);
+    // Keyed on the quote too: a visitor who prices Standard, leaves, switches to
+    // Deep and leaves again gets the Deep link, not the first one (AuditSpur #620).
+    return dc_ghl_resume_save($config, 'session:' . $sessionKey . ':' . substr(hash('sha256', $query), 0, 16), $query, $person);
 }
 
 /** @return array{query:string,fields:array<string,string>}|null  Null when unknown or expired. */

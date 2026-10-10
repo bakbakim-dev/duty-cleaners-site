@@ -238,9 +238,24 @@ function watchRouteChanges(): void {
   const { history } = window;
   if (!history || typeof window.addEventListener !== "function") return;
   let timer: ReturnType<typeof setTimeout> | undefined;
+  // The page title is written by react-helmet-async on the next animation
+  // frame after the new route renders, and a lazy route can take longer than
+  // 300 ms on a slow phone, so the page_view waits (up to 2 s) for the title to
+  // change; a page that shares the previous title is sent after the wait.
   const schedule = () => {
     if (timer !== undefined) clearTimeout(timer);
-    timer = setTimeout(sendPageView, 300);
+    const titleBefore = typeof document === "undefined" ? "" : document.title;
+    const startedAt = Date.now();
+    const attempt = () => {
+      const changed = typeof document === "undefined" || document.title !== titleBefore;
+      if (changed || Date.now() - startedAt >= 2000) {
+        timer = undefined;
+        sendPageView();
+        return;
+      }
+      timer = setTimeout(attempt, 100);
+    };
+    timer = setTimeout(attempt, 300);
   };
   for (const method of ["pushState", "replaceState"] as const) {
     const original = history[method];

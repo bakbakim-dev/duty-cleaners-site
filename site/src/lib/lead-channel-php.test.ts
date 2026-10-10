@@ -20,6 +20,9 @@ describe.skipIf(!hasRelayPhp)("lead channel", () => {
       $channel = fn (array $tracking): string => dc_ghl_source_values(['city' => '', 'tracking' => $tracking])['contact.lead_channel'];
       echo json_encode([
           $channel(['referrer_host' => 'google.ca']),
+          $channel(['referrer_host' => 'mail.google.com']),
+          $channel(['referrer_host' => 'com.google.android.gm']),
+          $channel(['referrer_host' => 'gemini.google.com']),
           $channel(['referrer_host' => 'm.facebook.com']),
           $channel(['referrer_host' => 'chatgpt.com']),
           $channel(['referrer_host' => 'homestars.com']),
@@ -32,6 +35,9 @@ describe.skipIf(!hasRelayPhp)("lead channel", () => {
     `);
     expect(out).toEqual([
       "Google (search, Maps or Business Profile)",
+      "Gmail",
+      "Gmail",
+      "Gemini",
       "Facebook",
       "ChatGPT",
       "HomeStars",

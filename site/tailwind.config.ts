@@ -5,6 +5,10 @@ export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
+  // The menus build their icon class at runtime (`dc-icon-${item.icon}`), which the
+  // content scan cannot see, so eight menu icons shipped with no mask and drew as
+  // solid squares (AuditSpur #823). Keep every icon rule.
+  safelist: [{ pattern: /^dc-icon-/ }],
   theme: {
     // em, not px: em media queries scale with the visitor's default font size, so
     // "Large" or "Very large" text gets the narrower layout instead of a header
