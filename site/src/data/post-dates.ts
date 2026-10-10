@@ -2,12 +2,12 @@
 // Dates come from content-revisions.json, also used by the sitemap generator.
 // Approve substantive rendered changes with bun run content-dates --approve YYYY-MM-DD.
 export const POST_MODIFIED: Readonly<Record<string, string>> = {
-  "/blog/choosing-cleaning-company": "2026-10-07",
+  "/blog/choosing-cleaning-company": "2026-10-10",
   "/blog/cleaning-schedule": "2026-10-07",
   "/blog/cleaning-services-calgary": "2026-10-07",
   "/blog/spotless-home-tips": "2026-10-07",
   "/cleaning-with-vinegar-and-baking-soda": "2026-10-07",
-  "/how-much-does-a-house-cleaning-cost": "2026-10-09",
+  "/how-much-does-a-house-cleaning-cost": "2026-10-10",
   "/how-often-should-a-cleaning-service-clean-my-house": "2026-09-30",
   "/the-top-5-must-have-cleaning-products-for-a-spotless-home": "2026-10-07",
 };
