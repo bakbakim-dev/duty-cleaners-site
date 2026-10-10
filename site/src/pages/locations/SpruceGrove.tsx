@@ -218,7 +218,7 @@ export default function SpruceGrove() {
                   </Button>
                 </div>
                 <p>
-                  The quote is set before the team arrives, for the condition you describe. It goes up for what is booked: more bathrooms, a larger home type, a pet or an add-on such as interior windows. If a house turns out to need substantially more work than was described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.
+                  The quote is set before the team arrives, for the condition you describe. It goes up for what is booked: more bathrooms, a larger home type, a pet or an add-on such as interior windows. If a house turns out to need much more work than was described, such as heavy build-up or far more glass or cabinetry than stated, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on.
                 </p>
                 <p>
                   Spruce Grove is outside Edmonton city limits, which is why the travel fee applies; post-construction carries {PC_TRAVEL_FEE} instead. Inside the city there is no trip fee, and everything else on a Spruce Grove quote matches the{" "}

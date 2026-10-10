@@ -223,7 +223,7 @@ export default function StAlbert() {
                   </Button>
                 </div>
                 <p>
-                  More bathrooms, a larger home type and add-ons such as the inside of the oven, the inside of the fridge or interior windows all raise a St. Albert quote, and eco-friendly products add {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}.  If a home needs substantially more work than described, such as heavy build-up or far more glass than stated, the team explains what it found and the options before continuing.
+                  More bathrooms, a larger home type and add-ons such as the inside of the oven, the inside of the fridge or interior windows all raise a St. Albert quote, and eco-friendly products add {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}.  If a home needs much more work than described, such as heavy build-up or far more glass than stated, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on.
                 </p>
                 <p>
                   The Edmonton branch cleans St. Albert homes to the same checklist and flat rates as its{" "}

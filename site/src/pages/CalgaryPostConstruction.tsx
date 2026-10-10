@@ -94,7 +94,7 @@ const faqs: Faq[] = [
   },
   {
     q: "How much does post-construction cleaning cost in Calgary?",
-    a: `From ${startingPriceLabel} for the smallest square-footage band to ${topPriceLabel} for the largest, before 5% GST. The band is set by the square footage of the finished space. Outside Calgary city limits a post-construction clean adds a ${pcTravelFee} travel fee. If any space needs substantially more work than described, the team explains what it found and the options before continuing.`,
+    a: `From ${startingPriceLabel} for the smallest square-footage band to ${topPriceLabel} for the largest, before 5% GST. The band is set by the square footage of the finished space. Outside Calgary city limits a post-construction clean adds a ${pcTravelFee} travel fee. If any space needs much more work than described, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on.`,
   },
   {
     q: "Do you remove construction debris or leftover materials?",

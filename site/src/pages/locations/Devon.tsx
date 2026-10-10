@@ -340,7 +340,7 @@ export default function Devon() {
                   </Button>
                 </div>
                 <p>
-                  What else moves the figure is the home and the extras. More bathrooms than the table assumes raise it, and so do add-ons: on a standard clean, inside the oven is from {OVEN_FROM} and inside the fridge from {FRIDGE_FROM}, both before GST.  If a home needs substantially more work than described, such as heavy build-up, the team explains what it found and the options before continuing.
+                  What else moves the figure is the home and the extras. More bathrooms than the table assumes raise it, and so do add-ons: on a standard clean, inside the oven is from {OVEN_FROM} and inside the fridge from {FRIDGE_FROM}, both before GST.  If a home needs much more work than described, such as heavy build-up, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on.
                 </p>
                 <p>
                   Every line shows on the instant price before you book, and nothing is charged at booking. The day before the clean, a temporary hold for the price goes on the card; on a debit card the amount is set aside until the card is charged once the clean is complete.

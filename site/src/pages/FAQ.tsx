@@ -255,7 +255,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "How does your pricing work?",
-        answer: "Homes are priced flat by home size, and the exact figure shows before you book, plus 5% GST. It is set for the condition you describe when you book. The pet charge, a larger home type and the travel fee outside city limits are added on the quote where they apply. If the home needs substantially more work than you described, such as heavy build-up or far more glass or cabinetry, the team explains what it found and the options before continuing.",
+        answer: "Homes are priced flat by home size, and the exact figure shows before you book, plus 5% GST. It is set for the condition you describe when you book. The pet charge, a larger home type and the travel fee outside city limits are added on the quote where they apply. If the home needs much more work than you described, such as heavy build-up or far more glass or cabinetry, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on.",
       },
       {
         question: "What payment methods do you accept?",

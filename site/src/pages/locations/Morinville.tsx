@@ -218,7 +218,7 @@ export default function Morinville() {
                   </Button>
                 </div>
                 <p>
-                  The rate is flat by home size, for the condition you describe. What raises it is what you book: more bathrooms than the table assumes, a larger home type, a pet, or an add-on such as the inside of the oven or the fridge. If a Morinville home needs substantially more work than was described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.
+                  The rate is flat by home size, for the condition you describe. What raises it is what you book: more bathrooms than the table assumes, a larger home type, a pet, or an add-on such as the inside of the oven or the fridge. If a Morinville home needs much more work than was described, such as heavy build-up or far more glass or cabinetry than stated, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on.
                 </p>
                 <p>
                   The travel fee is there because Morinville is outside Edmonton city limits, and a post-construction booking carries {PC_TRAVEL_FEE} instead. Inside the city there is no trip fee; otherwise a quote here is built exactly like one for{" "}

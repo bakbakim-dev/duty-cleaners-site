@@ -335,7 +335,7 @@ export default function FortSaskatchewan() {
                   </Button>
                 </div>
                 <p>
-                  The figure moves with the home and the extras. More bathrooms than the table assumes raise it. On a later standard clean, an add-on such as inside the oven, from {OVEN_FROM} before GST, raises the price of that visit. If a home needs substantially more work than described, such as heavy build-up, the team explains what it found and the options before continuing.
+                  The figure moves with the home and the extras. More bathrooms than the table assumes raise it. On a later standard clean, an add-on such as inside the oven, from {OVEN_FROM} before GST, raises the price of that visit. If a home needs much more work than described, such as heavy build-up, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on.
                 </p>
                 <p>
                   Every line, the travel fee included, shows on the instant price before you book. Nothing is charged at booking, and the card is charged once the clean is complete.

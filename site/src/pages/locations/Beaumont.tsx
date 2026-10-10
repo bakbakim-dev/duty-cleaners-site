@@ -338,7 +338,7 @@ export default function Beaumont() {
                   </Button>
                 </div>
                 <p>
-                  The size of the house and the condition you describe set the price. If a house turns out to need substantially more work than described, such as heavy build-up or far more glass or cabinetry than the booking said, the team explains what it found and the options before carrying on. Add-ons such as the inside of the oven, the inside of the fridge and interior windows carry their own prices, shown on the quote.
+                  The size of the house and the condition you describe set the price. If a house turns out to need much more work than described, such as heavy build-up or far more glass or cabinetry than the booking said, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on. Add-ons such as the inside of the oven, the inside of the fridge and interior windows carry their own prices, shown on the quote.
                 </p>
                 <p>
                   Payment comes last. Nothing is charged at booking; the day before, a temporary hold for the price goes on the card (on a debit card the amount is set aside). The card is charged once the clean is complete, by Visa, Mastercard, American Express or debit; e-transfer is arranged by phone. You can{" "}

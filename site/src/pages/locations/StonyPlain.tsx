@@ -220,7 +220,7 @@ export default function StonyPlain() {
                   <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We do not promise the deposit comes back; the landlord decides.
                 </p>
                 <p>
-                  The same arithmetic works for any Stony Plain booking. The bedroom and bathroom count sets the table price, a townhouse adds {HOME_TYPE.townhouse} and a two-storey house {HOME_TYPE.twoStorey}, and eco-friendly products add {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}. If a home needs far more work than described, the team says what it found and the options before going on. These are the rates the Edmonton branch charges for its{" "}
+                  The same arithmetic works for any Stony Plain booking. The bedroom and bathroom count sets the table price, a townhouse adds {HOME_TYPE.townhouse} and a two-storey house {HOME_TYPE.twoStorey}, and eco-friendly products add {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}. If a home needs far more work than described, we tell you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on. These are the rates the Edmonton branch charges for its{" "}
                   <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Edmonton</Link>.
                 </p>
               </div>
