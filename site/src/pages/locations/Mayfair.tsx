@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/mayfair-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0010", longitude: "-114.0760" },
+  geo: { latitude: "50.996", longitude: "-114.092" },
 });
 
 export default function Mayfair() {

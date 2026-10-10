@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/spruce-cliff-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0410", longitude: "-114.1320" },
+  geo: { latitude: "51.049", longitude: "-114.136" },
 });
 
 export default function SpruceCliff() {

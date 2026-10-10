@@ -54,7 +54,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/highland-park-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0900", longitude: "-114.0750" },
+  geo: { latitude: "51.089", longitude: "-114.066" },
 });
 
 export default function HighlandPark() {

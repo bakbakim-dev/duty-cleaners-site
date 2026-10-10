@@ -57,7 +57,7 @@ const structuredData = buildLocationSchema({
   url: "https://dutycleaners.ca/locations/scenic-acres",
   description: "House cleaning in Scenic Acres, Calgary, where coulee trail mud and late-summer burrs end up on entry mats and stair treads. Rates go by home size. Call (403) 768-1341.",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0983", longitude: "-114.1933" },
+  geo: { latitude: "51.119", longitude: "-114.218" },
 });
 
 export default function ScenicAcres() {

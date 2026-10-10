@@ -54,7 +54,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/tuscany",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.1289", longitude: "-114.2247" },
+  geo: { latitude: "51.116", longitude: "-114.244" },
 });
 
 export default function Tuscany() {

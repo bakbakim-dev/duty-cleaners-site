@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/auburn-bay",
   priceRange: sitePriceRange(),
-  geo: { latitude: "50.8867", longitude: "-113.9725" },
+  geo: { latitude: "50.893", longitude: "-113.958" },
 });
 
 export default function AuburnBay() {

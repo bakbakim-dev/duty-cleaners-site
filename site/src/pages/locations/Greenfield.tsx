@@ -86,7 +86,7 @@ export default function Greenfield() {
               Greenfield House Cleaning Professionals
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Greenfield is almost all detached houses, most of them built in the 1960s. Our Edmonton branch cleans them at a flat rate by home size before GST, and a bungalow or a two-storey house adds a home-type surcharge to the condo price.
+              Nearly nine in ten Greenfield homes are detached houses, most of them built in the 1960s. Our Edmonton branch cleans them at a flat rate by home size before GST, and a bungalow or a two-storey house adds a home-type surcharge to the condo price.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -107,7 +107,7 @@ export default function Greenfield() {
         heading="Built in one decade, kept ever since"
         paragraphs={[
           "Seventy-seven per cent of these houses went up in the 1960s and another fifth in the 1970s, so the whole neighbourhood reaches the same wear points at the same time. Kitchens and bathrooms of that vintage that have never been redone are the slow rooms: original tile grout that has gone porous, and tub surrounds where staining sits in the material rather than on it.",
-          "Ninety-two per cent of it is detached, which means whole-home visits rather than suites — more floor area per stop, more separate rooms, more trim.",
+          "In the City's 2016 municipal census 87 per cent of its homes were single-detached houses, which means whole-home visits rather than suites — more floor area per stop, more separate rooms, more trim.",
         ]}
       />
 

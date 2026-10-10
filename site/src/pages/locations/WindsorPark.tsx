@@ -107,7 +107,7 @@ export default function WindsorPark() {
                 Professional House Cleaning in Windsor Park
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Two-thirds of Windsor Park's buildings are apartments or condominiums, and most of the housing is rented. Our Calgary branch handles move-out and regular cleans here at a flat rate by home size.
+                Over two-thirds of Windsor Park's homes are apartments, and most households rent, in the 2021 census. Our Calgary branch handles move-out and regular cleans here at a flat rate by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -237,7 +237,7 @@ export default function WindsorPark() {
         eyebrow="From the route"
         heading="Mostly apartments, mostly rented"
         paragraphs={[
-          "Two-thirds of the buildings here are apartments or condominiums and most of the housing is rented, which is an unusual mix for a community that started building in 1940. Rentals turn over, and a move-out clean here works to a fixed list: inside the oven and fridge, inside every cabinet, drawer and closet, and the window tracks.",
+          "In the 2021 census over two-thirds of the homes here were apartments and most households rented, which is an unusual mix for a community that started building in 1940. Rentals turn over, and a move-out clean here works to a fixed list: inside the oven and fridge, inside every cabinet, drawer and closet, and the window tracks.",
           "The community runs from 50 Avenue south to 58, with Macleod Trail along its entire eastern edge and Chinook Centre just beyond the south-east corner. Arterial traffic throws off winter sanding grit and summer road film, and it lands on window tracks and entry mats first. The grit is abrasive, so on a move-out clean the tracks are vacuumed out before the cloth arrives.",
         ]}
         accent="calgary"

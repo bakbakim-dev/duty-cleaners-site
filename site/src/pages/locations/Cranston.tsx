@@ -40,7 +40,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/cranston",
   priceRange: sitePriceRange(),
-  geo: { latitude: "50.9017", longitude: "-114.0167" },
+  geo: { latitude: "50.876", longitude: "-113.979" },
 });
 
 export default function Cranston() {

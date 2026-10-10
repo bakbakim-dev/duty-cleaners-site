@@ -52,7 +52,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/forest-lawn-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0418", longitude: "-113.9890" },
+  geo: { latitude: "51.040", longitude: "-113.973" },
 });
 
 export default function ForestLawn() {

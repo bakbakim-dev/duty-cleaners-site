@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/sunalta-west-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0410", longitude: "-114.1010" },
+  geo: { latitude: "51.042", longitude: "-114.115" },
 });
 
 export default function SunaltaWest() {

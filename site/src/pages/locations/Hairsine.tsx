@@ -226,7 +226,7 @@ export default function Hairsine() {
               <div className="max-w-4xl mx-auto text-center mb-10">
                 <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">Serving the Hairsine Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Victoria Trail runs along Hairsine's flank with the river valley beyond it. The whole neighbourhood is inside Edmonton city limits, so no trip fee applies.
+                  Victoria Trail runs along Hairsine's east side, with Bannerman across it. The whole neighbourhood is inside Edmonton city limits, so no trip fee applies.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -265,7 +265,7 @@ export default function Hairsine() {
         heading="Hairsine's row-and-court layout"
         paragraphs={[
           "Hairsine mixes 1970s townhouse courts with compact detached homes, and the courts set the workload: interior stair runs, shared walls that hold cooking films, and court-facing entries that funnel all foot traffic across one threshold. A Hairsine row clean concentrates into kitchens, stairs and entries in a way detached plans spread out.",
-          "Victoria Trail's traffic runs the neighbourhood's flank and the river valley sits just beyond it, so window tracks on the trail side collect fine road dust while valley winds deliver the season's pollen and leaf fragments. The court interiors, sheltered from both, stay noticeably cleaner between visits.",
+          "Victoria Trail's traffic runs along the neighbourhood's east side, so window tracks on the trail side collect fine road dust, while spring and summer winds deliver the season's pollen and leaf fragments. The court interiors, sheltered from both, stay noticeably cleaner between visits.",
         ]}
       />
 

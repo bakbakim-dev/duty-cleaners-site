@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/rideau-park-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0312", longitude: "-114.0700" },
+  geo: { latitude: "51.025", longitude: "-114.074" },
 });
 
 export default function RideauPark() {

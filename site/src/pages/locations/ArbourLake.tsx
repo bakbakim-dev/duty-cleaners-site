@@ -57,7 +57,7 @@ const structuredData = buildLocationSchema({
   url: "https://dutycleaners.ca/locations/arbour-lake",
   description: "In northwest Calgary, Arbour Lake beach sand works into carpet backing and hardwood seams, so house cleaning here means a slow vacuum pass.",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.1011", longitude: "-114.2031" },
+  geo: { latitude: "51.132", longitude: "-114.206" },
 });
 
 export default function ArbourLake() {

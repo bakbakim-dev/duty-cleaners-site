@@ -79,25 +79,25 @@ export default function HollickKenyon() {
     <>
       <Helmet>
         <title>House Cleaners in Hollick-Kenyon, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Hollick-Kenyon's 1990s plan-book homes share oak spindle staircases, two-storey foyers and jetted tubs. The Edmonton team cleans them at a flat rate." />
+        <meta name="description" content="Hollick-Kenyon homes, mostly built after 2000, share spindle staircases, two-storey foyers and jetted tubs. The Edmonton team cleans them at a flat rate." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Hollick-Kenyon, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/hollick-kenyon-edmonton",
   areaServed: "Hollick-Kenyon, Edmonton, AB",
-  description: "Hollick-Kenyon's 1990s plan-book homes share oak spindle staircases, two-storey foyers and jetted tubs. The Edmonton team cleans them at a flat rate.",
+  description: "Hollick-Kenyon homes, mostly built after 2000, share spindle staircases, two-storey foyers and jetted tubs. The Edmonton team cleans them at a flat rate.",
   geo: { latitude: "53.624", longitude: "-113.422" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/hollick-kenyon-edmonton/" />
         <meta property="og:title" content="House Cleaners in Hollick-Kenyon, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Hollick-Kenyon's 1990s plan-book homes share oak spindle staircases, two-storey foyers and jetted tubs. The Edmonton team cleans them at a flat rate." />
+        <meta property="og:description" content="Hollick-Kenyon homes, mostly built after 2000, share spindle staircases, two-storey foyers and jetted tubs. The Edmonton team cleans them at a flat rate." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/hollick-kenyon-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Hollick-Kenyon, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Hollick-Kenyon's 1990s plan-book homes share oak spindle staircases, two-storey foyers and jetted tubs. The Edmonton team cleans them at a flat rate." />
+        <meta name="twitter:description" content="Hollick-Kenyon homes, mostly built after 2000, share spindle staircases, two-storey foyers and jetted tubs. The Edmonton team cleans them at a flat rate." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -118,7 +118,7 @@ export default function HollickKenyon() {
                   Professional House Cleaning in Hollick-Kenyon
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Hollick-Kenyon's 1990s homes come with two-storey foyers, oak spindle staircases and corner gas fireplaces with dust-holding mantels. The Edmonton team cleans them to a checklist, at a flat rate by home size.
+                  Hollick-Kenyon's homes, built from the early 1990s on, come with two-storey foyers, oak spindle staircases and corner gas fireplaces with dust-holding mantels. The Edmonton team cleans them to a checklist, at a flat rate by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -264,7 +264,7 @@ export default function HollickKenyon() {
         eyebrow="Local knowledge"
         heading="Hollick-Kenyon's plan-book interiors"
         paragraphs={[
-          "Hollick-Kenyon's 1990s plan-book homes share a repertoire that shapes every clean: two-storey foyers whose ledges sit above stool height, oak spindle staircases that are all hand-work, corner gas fireplaces with dust-holding mantels, and ensuites with jetted tubs whose decks and skirts collect film. Ledges beyond the reach of a two-step stool are outside a clean. The era's oak trim shows dust readily and rewards a proper wipe visibly.",
+          "Building began here in the early 1990s, and in the 2016 federal census nearly two in three of Hollick-Kenyon's homes dated from after 2000. Its plan-book homes share a repertoire that shapes every clean: two-storey foyers whose ledges sit above stool height, oak spindle staircases that are all hand-work, corner gas fireplaces with dust-holding mantels, and ensuites with jetted tubs whose decks and skirts collect film. Ledges beyond the reach of a two-step stool are outside a clean. The era's oak trim shows dust readily and rewards a proper wipe visibly.",
           "The neighbourhood's schools and pocket parks keep family traffic steady through the garage-mudroom route, and 167 Avenue's retail strip adds errand-run comings and goings. Winter is the heavy season, when rink bags and boot slush come through the same mudroom that handles cleats in June.",
         ]}
       />

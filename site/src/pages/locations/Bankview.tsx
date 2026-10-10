@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/bankview-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0380", longitude: "-114.0995" },
+  geo: { latitude: "51.034", longitude: "-114.100" },
 });
 
 export default function Bankview() {

@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/greenview-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0830", longitude: "-114.0610" },
+  geo: { latitude: "51.094", longitude: "-114.057" },
 });
 
 export default function Greenview() {

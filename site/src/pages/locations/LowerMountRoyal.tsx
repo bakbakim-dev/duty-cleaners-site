@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/lower-mount-royal-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0395", longitude: "-114.0810" },
+  geo: { latitude: "51.037", longitude: "-114.083" },
 });
 
 export default function LowerMountRoyal() {

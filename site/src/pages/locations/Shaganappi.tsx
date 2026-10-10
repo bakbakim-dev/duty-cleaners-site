@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/shaganappi-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0432", longitude: "-114.1163" },
+  geo: { latitude: "51.042", longitude: "-114.125" },
 });
 
 export default function Shaganappi() {

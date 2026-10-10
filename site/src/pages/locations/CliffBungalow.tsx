@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/cliff-bungalow-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0388", longitude: "-114.0700" },
+  geo: { latitude: "51.036", longitude: "-114.074" },
 });
 
 export default function CliffBungalow() {

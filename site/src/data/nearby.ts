@@ -37,6 +37,16 @@
  * the river from a straight-line neighbour (Sherwood Park, Abbottsfield, Bonnie
  * Doon, Riverdale), opposite-bank neighbours are dropped and the list is filled
  * with the next-nearest same-bank pages inside 12 km.
+ *
+ * Regenerated 2026-10-10 (AuditSpur #646, #879): 25 Calgary pins that sat
+ * outside the community they name (City of Calgary community district
+ * boundaries, data.calgary.ca surr-xmvs) were moved to an interior point of
+ * that community, and every list was recomputed; no Edmonton list moved except
+ * Glastonbury, which now gets the river rule too (it sits on the west bank and
+ * linked Riverbend and Brookside across the river). Pages named after no City
+ * community (Kensington, Marda Loop, Mount Royal, Stanley Park, Victoria Park,
+ * West Calgary) kept their pins. Across all lists the median linked neighbour
+ * is now 1.7 km away and the furthest 11.8.
  */
 export interface NearbyPlace {
   readonly name: string;
@@ -96,9 +106,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/altadore-calgary/": [
     { name: "Marda Loop", to: "/locations/marda-loop/" },
     { name: "Elbow Park", to: "/locations/elbow-park-calgary/" },
+    { name: "Bankview", to: "/locations/bankview-calgary/" },
     { name: "Mount Royal", to: "/locations/mount-royal/" },
-    { name: "Meadowlark Park", to: "/locations/meadowlark-park-calgary/" },
-    { name: "Richmond", to: "/locations/richmond-calgary/" },
+    { name: "Rideau Park", to: "/locations/rideau-park-calgary/" },
   ],
   "/locations/ambleside-edmonton/": [
     { name: "Windermere", to: "/cleaning-services-windermere/" },
@@ -109,10 +119,10 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/arbour-lake/": [
     { name: "Scenic Acres", to: "/locations/scenic-acres/" },
-    { name: "Bowness", to: "/locations/bowness-calgary/" },
-    { name: "Montgomery", to: "/locations/montgomery-calgary/" },
     { name: "Tuscany", to: "/locations/tuscany/" },
+    { name: "Bowness", to: "/locations/bowness-calgary/" },
     { name: "Dalhousie", to: "/locations/dalhousie-calgary/" },
+    { name: "Montgomery", to: "/locations/montgomery-calgary/" },
   ],
   "/locations/aspen-gardens-edmonton/": [
     { name: "Greenfield", to: "/locations/greenfield-edmonton/" },
@@ -132,6 +142,7 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Mahogany", to: "/locations/mahogany/" },
     { name: "Cranston", to: "/locations/cranston/" },
     { name: "Southwood", to: "/locations/southwood-calgary/" },
+    { name: "Ogden", to: "/locations/ogden-calgary/" },
   ],
   "/locations/avonmore-edmonton/": [
     { name: "Hazeldean", to: "/locations/hazeldean/" },
@@ -148,11 +159,11 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Montrose", to: "/locations/montrose/" },
   ],
   "/locations/bankview-calgary/": [
-    { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
-    { name: "Sunalta", to: "/locations/sunalta-calgary/" },
-    { name: "Scarboro", to: "/locations/scarboro-calgary/" },
-    { name: "Richmond", to: "/locations/richmond-calgary/" },
     { name: "Mount Royal", to: "/locations/mount-royal/" },
+    { name: "Marda Loop", to: "/locations/marda-loop/" },
+    { name: "Sunalta", to: "/locations/sunalta-calgary/" },
+    { name: "Richmond", to: "/locations/richmond-calgary/" },
+    { name: "Scarboro", to: "/locations/scarboro-calgary/" },
   ],
   "/locations/bannerman/": [
     { name: "Clareview", to: "/locations/clareview/" },
@@ -183,8 +194,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Miller", to: "/locations/miller-edmonton/" },
   ],
   "/locations/beltline-calgary/": [
-    { name: "Cliff Bungalow", to: "/locations/cliff-bungalow-calgary/" },
     { name: "Mission", to: "/locations/mission/" },
+    { name: "Cliff Bungalow", to: "/locations/cliff-bungalow-calgary/" },
     { name: "Lower Mount Royal", to: "/locations/lower-mount-royal-calgary/" },
     { name: "Erlton", to: "/locations/erlton-calgary/" },
     { name: "Victoria Park", to: "/locations/victoria-park-calgary/" },
@@ -207,11 +218,11 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Ottewell", to: "/locations/ottewell-edmonton/" },
   ],
   "/locations/bowness-calgary/": [
-    { name: "Scenic Acres", to: "/locations/scenic-acres/" },
-    { name: "Arbour Lake", to: "/locations/arbour-lake/" },
     { name: "Montgomery", to: "/locations/montgomery-calgary/" },
     { name: "Dalhousie", to: "/locations/dalhousie-calgary/" },
+    { name: "Scenic Acres", to: "/locations/scenic-acres/" },
     { name: "Varsity", to: "/locations/varsity-calgary/" },
+    { name: "Brentwood", to: "/locations/brentwood-calgary/" },
   ],
   "/locations/boyle-street-edmonton/": [
     { name: "Downtown", to: "/locations/downtown-edmonton/" },
@@ -225,7 +236,7 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Dalhousie", to: "/locations/dalhousie-calgary/" },
     { name: "Montgomery", to: "/locations/montgomery-calgary/" },
     { name: "Capitol Hill", to: "/locations/capitol-hill-calgary/" },
-    { name: "Scenic Acres", to: "/locations/scenic-acres/" },
+    { name: "Bowness", to: "/locations/bowness-calgary/" },
   ],
   "/locations/bridgeland-riverside-calgary/": [
     { name: "East Village", to: "/locations/east-village-calgary/" },
@@ -264,10 +275,10 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/capitol-hill-calgary/": [
     { name: "Mount Pleasant", to: "/locations/mount-pleasant-calgary/" },
-    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
-    { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
     { name: "Kensington", to: "/locations/kensington/" },
     { name: "Hillhurst", to: "/locations/hillhurst-calgary/" },
+    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
+    { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
   ],
   "/locations/casselman-edmonton/": [
     { name: "Miller", to: "/locations/miller-edmonton/" },
@@ -295,11 +306,11 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Forest Lawn", to: "/locations/forest-lawn-calgary/" },
   ],
   "/locations/cityscape/": [
-    { name: "Skyview Ranch", to: "/locations/skyview-ranch/" },
     { name: "Saddle Ridge", to: "/locations/saddle-ridge/" },
+    { name: "Skyview Ranch", to: "/locations/skyview-ranch/" },
     { name: "Huntington Hills", to: "/locations/huntington-hills-calgary/" },
-    { name: "Thorncliffe", to: "/locations/thorncliffe-calgary/" },
     { name: "Greenview", to: "/locations/greenview-calgary/" },
+    { name: "Thorncliffe", to: "/locations/thorncliffe-calgary/" },
   ],
   "/locations/clareview/": [
     { name: "Hairsine", to: "/locations/hairsine-edmonton/" },
@@ -310,31 +321,29 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/cliff-bungalow-calgary/": [
     { name: "Mission", to: "/locations/mission/" },
-    { name: "Beltline", to: "/locations/beltline-calgary/" },
     { name: "Erlton", to: "/locations/erlton-calgary/" },
     { name: "Lower Mount Royal", to: "/locations/lower-mount-royal-calgary/" },
-    { name: "Rideau Park", to: "/locations/rideau-park-calgary/" },
+    { name: "Beltline", to: "/locations/beltline-calgary/" },
+    { name: "Mount Royal", to: "/locations/mount-royal/" },
   ],
   "/locations/cranston/": [
     { name: "Auburn Bay", to: "/locations/auburn-bay/" },
     { name: "Mahogany", to: "/locations/mahogany/" },
     { name: "Southwood", to: "/locations/southwood-calgary/" },
-    { name: "Ogden", to: "/locations/ogden-calgary/" },
-    { name: "Mayfair", to: "/locations/mayfair-calgary/" },
   ],
   "/locations/crescent-heights-calgary/": [
-    { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
+    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
     { name: "Eau Claire", to: "/locations/eau-claire-calgary/" },
     { name: "Renfrew", to: "/locations/renfrew-calgary/" },
-    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
+    { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
     { name: "Bridgeland-Riverside", to: "/locations/bridgeland-riverside-calgary/" },
   ],
   "/locations/dalhousie-calgary/": [
     { name: "Brentwood", to: "/locations/brentwood-calgary/" },
     { name: "Varsity", to: "/locations/varsity-calgary/" },
-    { name: "Scenic Acres", to: "/locations/scenic-acres/" },
     { name: "Montgomery", to: "/locations/montgomery-calgary/" },
     { name: "Bowness", to: "/locations/bowness-calgary/" },
+    { name: "Capitol Hill", to: "/locations/capitol-hill-calgary/" },
   ],
   "/locations/delton/": [
     { name: "Eastwood", to: "/locations/eastwood-edmonton/" },
@@ -367,9 +376,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/downtown-west-end-calgary/": [
     { name: "Hillhurst", to: "/locations/hillhurst-calgary/" },
     { name: "Kensington", to: "/locations/kensington/" },
-    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
-    { name: "Lower Mount Royal", to: "/locations/lower-mount-royal-calgary/" },
     { name: "Eau Claire", to: "/locations/eau-claire-calgary/" },
+    { name: "Beltline", to: "/locations/beltline-calgary/" },
+    { name: "Lower Mount Royal", to: "/locations/lower-mount-royal-calgary/" },
   ],
   "/locations/east-village-calgary/": [
     { name: "Victoria Park", to: "/locations/victoria-park-calgary/" },
@@ -386,9 +395,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "McCauley", to: "/locations/mccauley-edmonton/" },
   ],
   "/locations/eau-claire-calgary/": [
+    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
     { name: "Downtown West End", to: "/locations/downtown-west-end-calgary/" },
     { name: "Crescent Heights", to: "/locations/crescent-heights-calgary/" },
-    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
     { name: "Beltline", to: "/locations/beltline-calgary/" },
     { name: "Hillhurst", to: "/locations/hillhurst-calgary/" },
   ],
@@ -401,17 +410,17 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/elbow-park-calgary/": [
     { name: "Mount Royal", to: "/locations/mount-royal/" },
-    { name: "Roxboro", to: "/locations/roxboro-calgary/" },
-    { name: "Marda Loop", to: "/locations/marda-loop/" },
     { name: "Rideau Park", to: "/locations/rideau-park-calgary/" },
-    { name: "Altadore", to: "/locations/altadore-calgary/" },
+    { name: "Marda Loop", to: "/locations/marda-loop/" },
+    { name: "Roxboro", to: "/locations/roxboro-calgary/" },
+    { name: "Lower Mount Royal", to: "/locations/lower-mount-royal-calgary/" },
   ],
   "/locations/erlton-calgary/": [
-    { name: "Rideau Park", to: "/locations/rideau-park-calgary/" },
     { name: "Mission", to: "/locations/mission/" },
     { name: "Cliff Bungalow", to: "/locations/cliff-bungalow-calgary/" },
     { name: "Roxboro", to: "/locations/roxboro-calgary/" },
-    { name: "Parkhill", to: "/locations/parkhill-calgary/" },
+    { name: "Beltline", to: "/locations/beltline-calgary/" },
+    { name: "Victoria Park", to: "/locations/victoria-park-calgary/" },
   ],
   "/locations/evansdale-edmonton/": [
     { name: "Northmount", to: "/locations/northmount-edmonton/" },
@@ -438,8 +447,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Lewis Estates", to: "/locations/lewis-estates/" },
     { name: "Secord", to: "/locations/secord-edmonton/" },
     { name: "Glenwood", to: "/locations/glenwood-edmonton/" },
-    { name: "Riverbend", to: "/locations/riverbend/" },
-    { name: "Brookside", to: "/locations/brookside-edmonton/" },
+    { name: "Mayfield", to: "/locations/mayfield-edmonton/" },
+    { name: "Canora", to: "/locations/canora-edmonton/" },
   ],
   "/locations/glengarry-edmonton/": [
     { name: "Northmount", to: "/locations/northmount-edmonton/" },
@@ -471,10 +480,10 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/greenview-calgary/": [
     { name: "Highland Park", to: "/locations/highland-park-calgary/" },
-    { name: "Mount Pleasant", to: "/locations/mount-pleasant-calgary/" },
-    { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
     { name: "Thorncliffe", to: "/locations/thorncliffe-calgary/" },
-    { name: "Crescent Heights", to: "/locations/crescent-heights-calgary/" },
+    { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
+    { name: "Mount Pleasant", to: "/locations/mount-pleasant-calgary/" },
+    { name: "Huntington Hills", to: "/locations/huntington-hills-calgary/" },
   ],
   "/locations/griesbach-edmonton/": [
     { name: "Rosslyn", to: "/locations/rosslyn-edmonton/" },
@@ -512,16 +521,16 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Bannerman", to: "/locations/bannerman/" },
   ],
   "/locations/highland-park-calgary/": [
-    { name: "Thorncliffe", to: "/locations/thorncliffe-calgary/" },
     { name: "Greenview", to: "/locations/greenview-calgary/" },
+    { name: "Thorncliffe", to: "/locations/thorncliffe-calgary/" },
+    { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
     { name: "Mount Pleasant", to: "/locations/mount-pleasant-calgary/" },
     { name: "Capitol Hill", to: "/locations/capitol-hill-calgary/" },
-    { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
   ],
   "/locations/hillhurst-calgary/": [
     { name: "Kensington", to: "/locations/kensington/" },
-    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
     { name: "Downtown West End", to: "/locations/downtown-west-end-calgary/" },
+    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
     { name: "Sunalta", to: "/locations/sunalta-calgary/" },
     { name: "Eau Claire", to: "/locations/eau-claire-calgary/" },
   ],
@@ -541,17 +550,17 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/huntington-hills-calgary/": [
     { name: "Thorncliffe", to: "/locations/thorncliffe-calgary/" },
-    { name: "Highland Park", to: "/locations/highland-park-calgary/" },
     { name: "Greenview", to: "/locations/greenview-calgary/" },
+    { name: "Highland Park", to: "/locations/highland-park-calgary/" },
+    { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
     { name: "Mount Pleasant", to: "/locations/mount-pleasant-calgary/" },
-    { name: "Capitol Hill", to: "/locations/capitol-hill-calgary/" },
   ],
   "/locations/inglewood-calgary/": [
     { name: "Ramsay", to: "/locations/ramsay-calgary/" },
     { name: "East Village", to: "/locations/east-village-calgary/" },
     { name: "Bridgeland-Riverside", to: "/locations/bridgeland-riverside-calgary/" },
     { name: "Victoria Park", to: "/locations/victoria-park-calgary/" },
-    { name: "Forest Lawn", to: "/locations/forest-lawn-calgary/" },
+    { name: "Erlton", to: "/locations/erlton-calgary/" },
   ],
   "/locations/inglewood/": [
     { name: "Westmount", to: "/locations/westmount-edmonton/" },
@@ -562,9 +571,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/kensington/": [
     { name: "Hillhurst", to: "/locations/hillhurst-calgary/" },
-    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
     { name: "Downtown West End", to: "/locations/downtown-west-end-calgary/" },
     { name: "Sunalta", to: "/locations/sunalta-calgary/" },
+    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
     { name: "Eau Claire", to: "/locations/eau-claire-calgary/" },
   ],
   "/locations/kildare-edmonton/": [
@@ -582,9 +591,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Delwood", to: "/locations/delwood-edmonton/" },
   ],
   "/locations/killarney-glengarry-calgary/": [
-    { name: "Richmond", to: "/locations/richmond-calgary/" },
-    { name: "Spruce Cliff", to: "/locations/spruce-cliff-calgary/" },
     { name: "Shaganappi", to: "/locations/shaganappi-calgary/" },
+    { name: "Richmond", to: "/locations/richmond-calgary/" },
+    { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
     { name: "Scarboro", to: "/locations/scarboro-calgary/" },
     { name: "West Calgary", to: "/locations/west-calgary/" },
   ],
@@ -597,10 +606,10 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/lakeview-calgary/": [
     { name: "Altadore", to: "/locations/altadore-calgary/" },
+    { name: "Mayfair", to: "/locations/mayfair-calgary/" },
     { name: "Marda Loop", to: "/locations/marda-loop/" },
     { name: "Killarney-Glengarry", to: "/locations/killarney-glengarry-calgary/" },
     { name: "Richmond", to: "/locations/richmond-calgary/" },
-    { name: "Meadowlark Park", to: "/locations/meadowlark-park-calgary/" },
   ],
   "/locations/larkspur-edmonton/": [
     { name: "Tamarack", to: "/locations/tamarack-edmonton/" },
@@ -638,24 +647,22 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Evansdale", to: "/locations/evansdale-edmonton/" },
   ],
   "/locations/lower-mount-royal-calgary/": [
-    { name: "Beltline", to: "/locations/beltline-calgary/" },
     { name: "Cliff Bungalow", to: "/locations/cliff-bungalow-calgary/" },
-    { name: "Mission", to: "/locations/mission/" },
     { name: "Mount Royal", to: "/locations/mount-royal/" },
+    { name: "Beltline", to: "/locations/beltline-calgary/" },
+    { name: "Mission", to: "/locations/mission/" },
     { name: "Downtown West End", to: "/locations/downtown-west-end-calgary/" },
   ],
   "/locations/mahogany/": [
     { name: "Auburn Bay", to: "/locations/auburn-bay/" },
     { name: "Cranston", to: "/locations/cranston/" },
-    { name: "Ogden", to: "/locations/ogden-calgary/" },
-    { name: "Southwood", to: "/locations/southwood-calgary/" },
   ],
   "/locations/manchester-calgary/": [
-    { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
     { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
-    { name: "Parkhill", to: "/locations/parkhill-calgary/" },
     { name: "Meadowlark Park", to: "/locations/meadowlark-park-calgary/" },
-    { name: "Elbow Park", to: "/locations/elbow-park-calgary/" },
+    { name: "Parkhill", to: "/locations/parkhill-calgary/" },
+    { name: "Mayfair", to: "/locations/mayfair-calgary/" },
+    { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
   ],
   "/locations/maple-ridge-edmonton/": [
     { name: "Larkspur", to: "/locations/larkspur-edmonton/" },
@@ -667,8 +674,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/marda-loop/": [
     { name: "Altadore", to: "/locations/altadore-calgary/" },
     { name: "Elbow Park", to: "/locations/elbow-park-calgary/" },
-    { name: "Mount Royal", to: "/locations/mount-royal/" },
     { name: "Bankview", to: "/locations/bankview-calgary/" },
+    { name: "Mount Royal", to: "/locations/mount-royal/" },
     { name: "Richmond", to: "/locations/richmond-calgary/" },
   ],
   "/locations/marlborough/": [
@@ -687,10 +694,10 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/mayfair-calgary/": [
     { name: "Meadowlark Park", to: "/locations/meadowlark-park-calgary/" },
-    { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
     { name: "Manchester", to: "/locations/manchester-calgary/" },
-    { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
+    { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
     { name: "Altadore", to: "/locations/altadore-calgary/" },
+    { name: "Parkhill", to: "/locations/parkhill-calgary/" },
   ],
   "/locations/mayfield-edmonton/": [
     { name: "Canora", to: "/locations/canora-edmonton/" },
@@ -721,11 +728,11 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Matt Berry", to: "/locations/matt-berry-edmonton/" },
   ],
   "/locations/meadowlark-park-calgary/": [
-    { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
-    { name: "Mayfair", to: "/locations/mayfair-calgary/" },
     { name: "Manchester", to: "/locations/manchester-calgary/" },
+    { name: "Mayfair", to: "/locations/mayfair-calgary/" },
+    { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
+    { name: "Parkhill", to: "/locations/parkhill-calgary/" },
     { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
-    { name: "Altadore", to: "/locations/altadore-calgary/" },
   ],
   "/locations/miller-edmonton/": [
     { name: "Casselman", to: "/locations/casselman-edmonton/" },
@@ -735,18 +742,18 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Hairsine", to: "/locations/hairsine-edmonton/" },
   ],
   "/locations/mission/": [
-    { name: "Cliff Bungalow", to: "/locations/cliff-bungalow-calgary/" },
     { name: "Erlton", to: "/locations/erlton-calgary/" },
+    { name: "Cliff Bungalow", to: "/locations/cliff-bungalow-calgary/" },
     { name: "Beltline", to: "/locations/beltline-calgary/" },
-    { name: "Rideau Park", to: "/locations/rideau-park-calgary/" },
     { name: "Victoria Park", to: "/locations/victoria-park-calgary/" },
+    { name: "Lower Mount Royal", to: "/locations/lower-mount-royal-calgary/" },
   ],
   "/locations/montgomery-calgary/": [
     { name: "Bowness", to: "/locations/bowness-calgary/" },
     { name: "Varsity", to: "/locations/varsity-calgary/" },
-    { name: "Scenic Acres", to: "/locations/scenic-acres/" },
     { name: "Dalhousie", to: "/locations/dalhousie-calgary/" },
     { name: "Brentwood", to: "/locations/brentwood-calgary/" },
+    { name: "Wildwood", to: "/locations/wildwood-calgary/" },
   ],
   "/locations/montrose/": [
     { name: "Bellevue", to: "/locations/bellevue-edmonton/" },
@@ -758,16 +765,16 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/mount-pleasant-calgary/": [
     { name: "Capitol Hill", to: "/locations/capitol-hill-calgary/" },
     { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
-    { name: "Greenview", to: "/locations/greenview-calgary/" },
     { name: "Highland Park", to: "/locations/highland-park-calgary/" },
     { name: "Crescent Heights", to: "/locations/crescent-heights-calgary/" },
+    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
   ],
   "/locations/mount-royal/": [
-    { name: "Elbow Park", to: "/locations/elbow-park-calgary/" },
-    { name: "Roxboro", to: "/locations/roxboro-calgary/" },
     { name: "Lower Mount Royal", to: "/locations/lower-mount-royal-calgary/" },
-    { name: "Marda Loop", to: "/locations/marda-loop/" },
+    { name: "Elbow Park", to: "/locations/elbow-park-calgary/" },
     { name: "Bankview", to: "/locations/bankview-calgary/" },
+    { name: "Cliff Bungalow", to: "/locations/cliff-bungalow-calgary/" },
+    { name: "Marda Loop", to: "/locations/marda-loop/" },
   ],
   "/locations/northmount-edmonton/": [
     { name: "Glengarry", to: "/locations/glengarry-edmonton/" },
@@ -777,11 +784,11 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Griesbach", to: "/locations/griesbach-edmonton/" },
   ],
   "/locations/ogden-calgary/": [
-    { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
-    { name: "Mayfair", to: "/locations/mayfair-calgary/" },
-    { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
     { name: "Manchester", to: "/locations/manchester-calgary/" },
+    { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
     { name: "Meadowlark Park", to: "/locations/meadowlark-park-calgary/" },
+    { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
+    { name: "Parkhill", to: "/locations/parkhill-calgary/" },
   ],
   "/locations/old-strathcona/": [
     { name: "Queen Alexandra", to: "/locations/queen-alexandra-edmonton/" },
@@ -806,8 +813,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/parkhill-calgary/": [
     { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
+    { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
     { name: "Rideau Park", to: "/locations/rideau-park-calgary/" },
-    { name: "Erlton", to: "/locations/erlton-calgary/" },
     { name: "Roxboro", to: "/locations/roxboro-calgary/" },
     { name: "Manchester", to: "/locations/manchester-calgary/" },
   ],
@@ -850,22 +857,22 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Bridgeland-Riverside", to: "/locations/bridgeland-riverside-calgary/" },
     { name: "Crescent Heights", to: "/locations/crescent-heights-calgary/" },
     { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
+    { name: "Sunnyside", to: "/locations/sunnyside-calgary/" },
     { name: "East Village", to: "/locations/east-village-calgary/" },
-    { name: "Eau Claire", to: "/locations/eau-claire-calgary/" },
   ],
   "/locations/richmond-calgary/": [
     { name: "Killarney-Glengarry", to: "/locations/killarney-glengarry-calgary/" },
+    { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
     { name: "Scarboro", to: "/locations/scarboro-calgary/" },
     { name: "Shaganappi", to: "/locations/shaganappi-calgary/" },
     { name: "Bankview", to: "/locations/bankview-calgary/" },
-    { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
   ],
   "/locations/rideau-park-calgary/": [
-    { name: "Erlton", to: "/locations/erlton-calgary/" },
     { name: "Roxboro", to: "/locations/roxboro-calgary/" },
-    { name: "Mission", to: "/locations/mission/" },
-    { name: "Cliff Bungalow", to: "/locations/cliff-bungalow-calgary/" },
+    { name: "Elbow Park", to: "/locations/elbow-park-calgary/" },
+    { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
     { name: "Parkhill", to: "/locations/parkhill-calgary/" },
+    { name: "Erlton", to: "/locations/erlton-calgary/" },
   ],
   "/locations/riverbend/": [
     { name: "Brookside", to: "/locations/brookside-edmonton/" },
@@ -891,30 +898,30 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/roxboro-calgary/": [
     { name: "Rideau Park", to: "/locations/rideau-park-calgary/" },
     { name: "Erlton", to: "/locations/erlton-calgary/" },
-    { name: "Elbow Park", to: "/locations/elbow-park-calgary/" },
-    { name: "Mount Royal", to: "/locations/mount-royal/" },
+    { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
+    { name: "Cliff Bungalow", to: "/locations/cliff-bungalow-calgary/" },
     { name: "Mission", to: "/locations/mission/" },
   ],
   "/locations/saddle-ridge/": [
     { name: "Cityscape", to: "/locations/cityscape/" },
     { name: "Skyview Ranch", to: "/locations/skyview-ranch/" },
     { name: "Huntington Hills", to: "/locations/huntington-hills-calgary/" },
+    { name: "Greenview", to: "/locations/greenview-calgary/" },
     { name: "Marlborough", to: "/locations/marlborough/" },
-    { name: "Thorncliffe", to: "/locations/thorncliffe-calgary/" },
   ],
   "/locations/scarboro-calgary/": [
-    { name: "Shaganappi", to: "/locations/shaganappi-calgary/" },
     { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
     { name: "Sunalta", to: "/locations/sunalta-calgary/" },
-    { name: "Bankview", to: "/locations/bankview-calgary/" },
     { name: "Richmond", to: "/locations/richmond-calgary/" },
+    { name: "Bankview", to: "/locations/bankview-calgary/" },
+    { name: "Shaganappi", to: "/locations/shaganappi-calgary/" },
   ],
   "/locations/scenic-acres/": [
     { name: "Arbour Lake", to: "/locations/arbour-lake/" },
-    { name: "Bowness", to: "/locations/bowness-calgary/" },
-    { name: "Montgomery", to: "/locations/montgomery-calgary/" },
-    { name: "Dalhousie", to: "/locations/dalhousie-calgary/" },
     { name: "Tuscany", to: "/locations/tuscany/" },
+    { name: "Bowness", to: "/locations/bowness-calgary/" },
+    { name: "Dalhousie", to: "/locations/dalhousie-calgary/" },
+    { name: "Montgomery", to: "/locations/montgomery-calgary/" },
   ],
   "/locations/schonsee-edmonton/": [
     { name: "Ozerna", to: "/locations/ozerna-edmonton/" },
@@ -931,11 +938,11 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Canora", to: "/locations/canora-edmonton/" },
   ],
   "/locations/shaganappi-calgary/": [
-    { name: "Scarboro", to: "/locations/scarboro-calgary/" },
-    { name: "Richmond", to: "/locations/richmond-calgary/" },
     { name: "Killarney-Glengarry", to: "/locations/killarney-glengarry-calgary/" },
+    { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
     { name: "West Calgary", to: "/locations/west-calgary/" },
-    { name: "Sunalta", to: "/locations/sunalta-calgary/" },
+    { name: "Richmond", to: "/locations/richmond-calgary/" },
+    { name: "Spruce Cliff", to: "/locations/spruce-cliff-calgary/" },
   ],
   "/locations/sherbrooke-edmonton/": [
     { name: "Prince Charles", to: "/locations/prince-charles-edmonton/" },
@@ -948,14 +955,15 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Cityscape", to: "/locations/cityscape/" },
     { name: "Saddle Ridge", to: "/locations/saddle-ridge/" },
     { name: "Huntington Hills", to: "/locations/huntington-hills-calgary/" },
+    { name: "Greenview", to: "/locations/greenview-calgary/" },
     { name: "Thorncliffe", to: "/locations/thorncliffe-calgary/" },
   ],
   "/locations/southwood-calgary/": [
     { name: "Mayfair", to: "/locations/mayfair-calgary/" },
     { name: "Meadowlark Park", to: "/locations/meadowlark-park-calgary/" },
+    { name: "Manchester", to: "/locations/manchester-calgary/" },
     { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
     { name: "Ogden", to: "/locations/ogden-calgary/" },
-    { name: "Lakeview", to: "/locations/lakeview-calgary/" },
   ],
   "/locations/spruce-avenue/": [
     { name: "Central McDougall", to: "/locations/central-mcdougall-edmonton/" },
@@ -965,18 +973,18 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Downtown", to: "/locations/downtown-edmonton/" },
   ],
   "/locations/spruce-cliff-calgary/": [
-    { name: "Killarney-Glengarry", to: "/locations/killarney-glengarry-calgary/" },
     { name: "West Calgary", to: "/locations/west-calgary/" },
-    { name: "Shaganappi", to: "/locations/shaganappi-calgary/" },
-    { name: "Richmond", to: "/locations/richmond-calgary/" },
     { name: "Wildwood", to: "/locations/wildwood-calgary/" },
+    { name: "Shaganappi", to: "/locations/shaganappi-calgary/" },
+    { name: "Killarney-Glengarry", to: "/locations/killarney-glengarry-calgary/" },
+    { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
   ],
   "/locations/stanley-park-calgary/": [
     { name: "Parkhill", to: "/locations/parkhill-calgary/" },
-    { name: "Manchester", to: "/locations/manchester-calgary/" },
-    { name: "Rideau Park", to: "/locations/rideau-park-calgary/" },
     { name: "Roxboro", to: "/locations/roxboro-calgary/" },
+    { name: "Rideau Park", to: "/locations/rideau-park-calgary/" },
     { name: "Erlton", to: "/locations/erlton-calgary/" },
+    { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
   ],
   "/locations/summerside/": [
     { name: "Laurel", to: "/locations/laurel-edmonton/" },
@@ -986,25 +994,25 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Tamarack", to: "/locations/tamarack-edmonton/" },
   ],
   "/locations/sunalta-calgary/": [
-    { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
     { name: "Scarboro", to: "/locations/scarboro-calgary/" },
+    { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
     { name: "Bankview", to: "/locations/bankview-calgary/" },
-    { name: "Shaganappi", to: "/locations/shaganappi-calgary/" },
     { name: "Downtown West End", to: "/locations/downtown-west-end-calgary/" },
+    { name: "Richmond", to: "/locations/richmond-calgary/" },
   ],
   "/locations/sunalta-west-calgary/": [
-    { name: "Sunalta", to: "/locations/sunalta-calgary/" },
-    { name: "Bankview", to: "/locations/bankview-calgary/" },
     { name: "Scarboro", to: "/locations/scarboro-calgary/" },
     { name: "Shaganappi", to: "/locations/shaganappi-calgary/" },
     { name: "Richmond", to: "/locations/richmond-calgary/" },
+    { name: "Killarney-Glengarry", to: "/locations/killarney-glengarry-calgary/" },
+    { name: "Sunalta", to: "/locations/sunalta-calgary/" },
   ],
   "/locations/sunnyside-calgary/": [
+    { name: "Eau Claire", to: "/locations/eau-claire-calgary/" },
+    { name: "Crescent Heights", to: "/locations/crescent-heights-calgary/" },
     { name: "Hillhurst", to: "/locations/hillhurst-calgary/" },
     { name: "Kensington", to: "/locations/kensington/" },
     { name: "Downtown West End", to: "/locations/downtown-west-end-calgary/" },
-    { name: "Eau Claire", to: "/locations/eau-claire-calgary/" },
-    { name: "Crescent Heights", to: "/locations/crescent-heights-calgary/" },
   ],
   "/locations/tamarack-edmonton/": [
     { name: "Larkspur", to: "/locations/larkspur-edmonton/" },
@@ -1021,49 +1029,49 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Windermere", to: "/cleaning-services-windermere/" },
   ],
   "/locations/thorncliffe-calgary/": [
-    { name: "Highland Park", to: "/locations/highland-park-calgary/" },
     { name: "Greenview", to: "/locations/greenview-calgary/" },
+    { name: "Highland Park", to: "/locations/highland-park-calgary/" },
     { name: "Huntington Hills", to: "/locations/huntington-hills-calgary/" },
+    { name: "Tuxedo Park", to: "/locations/tuxedo-park-calgary/" },
     { name: "Mount Pleasant", to: "/locations/mount-pleasant-calgary/" },
-    { name: "Capitol Hill", to: "/locations/capitol-hill-calgary/" },
   ],
   "/locations/turner-valley/": [
     { name: "Black Diamond (Diamond Valley)", to: "/locations/black-diamond/" },
   ],
   "/locations/tuscany/": [
-    { name: "Arbour Lake", to: "/locations/arbour-lake/" },
     { name: "Scenic Acres", to: "/locations/scenic-acres/" },
+    { name: "Arbour Lake", to: "/locations/arbour-lake/" },
     { name: "Bowness", to: "/locations/bowness-calgary/" },
-    { name: "Dalhousie", to: "/locations/dalhousie-calgary/" },
     { name: "Montgomery", to: "/locations/montgomery-calgary/" },
+    { name: "Dalhousie", to: "/locations/dalhousie-calgary/" },
   ],
   "/locations/tuxedo-park-calgary/": [
-    { name: "Crescent Heights", to: "/locations/crescent-heights-calgary/" },
+    { name: "Highland Park", to: "/locations/highland-park-calgary/" },
     { name: "Mount Pleasant", to: "/locations/mount-pleasant-calgary/" },
-    { name: "Renfrew", to: "/locations/renfrew-calgary/" },
-    { name: "Eau Claire", to: "/locations/eau-claire-calgary/" },
+    { name: "Crescent Heights", to: "/locations/crescent-heights-calgary/" },
     { name: "Greenview", to: "/locations/greenview-calgary/" },
+    { name: "Renfrew", to: "/locations/renfrew-calgary/" },
   ],
   "/locations/varsity-calgary/": [
     { name: "Brentwood", to: "/locations/brentwood-calgary/" },
     { name: "Dalhousie", to: "/locations/dalhousie-calgary/" },
     { name: "Montgomery", to: "/locations/montgomery-calgary/" },
     { name: "Capitol Hill", to: "/locations/capitol-hill-calgary/" },
-    { name: "Wildwood", to: "/locations/wildwood-calgary/" },
+    { name: "Spruce Cliff", to: "/locations/spruce-cliff-calgary/" },
   ],
   "/locations/victoria-park-calgary/": [
     { name: "East Village", to: "/locations/east-village-calgary/" },
     { name: "Mission", to: "/locations/mission/" },
     { name: "Ramsay", to: "/locations/ramsay-calgary/" },
-    { name: "Cliff Bungalow", to: "/locations/cliff-bungalow-calgary/" },
     { name: "Erlton", to: "/locations/erlton-calgary/" },
+    { name: "Beltline", to: "/locations/beltline-calgary/" },
   ],
   "/locations/west-calgary/": [
     { name: "Spruce Cliff", to: "/locations/spruce-cliff-calgary/" },
     { name: "Shaganappi", to: "/locations/shaganappi-calgary/" },
+    { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
     { name: "Killarney-Glengarry", to: "/locations/killarney-glengarry-calgary/" },
     { name: "Wildwood", to: "/locations/wildwood-calgary/" },
-    { name: "Scarboro", to: "/locations/scarboro-calgary/" },
   ],
   "/locations/westmount-edmonton/": [
     { name: "Inglewood", to: "/locations/inglewood/" },
@@ -1075,16 +1083,16 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/wildwood-calgary/": [
     { name: "Spruce Cliff", to: "/locations/spruce-cliff-calgary/" },
     { name: "West Calgary", to: "/locations/west-calgary/" },
-    { name: "Killarney-Glengarry", to: "/locations/killarney-glengarry-calgary/" },
     { name: "Shaganappi", to: "/locations/shaganappi-calgary/" },
-    { name: "Richmond", to: "/locations/richmond-calgary/" },
+    { name: "Killarney-Glengarry", to: "/locations/killarney-glengarry-calgary/" },
+    { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
   ],
   "/locations/windsor-park-calgary/": [
-    { name: "Meadowlark Park", to: "/locations/meadowlark-park-calgary/" },
     { name: "Manchester", to: "/locations/manchester-calgary/" },
-    { name: "Mayfair", to: "/locations/mayfair-calgary/" },
-    { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
     { name: "Parkhill", to: "/locations/parkhill-calgary/" },
+    { name: "Meadowlark Park", to: "/locations/meadowlark-park-calgary/" },
+    { name: "Stanley Park", to: "/locations/stanley-park-calgary/" },
+    { name: "Rideau Park", to: "/locations/rideau-park-calgary/" },
   ],
   "/locations/woodcroft-edmonton/": [
     { name: "Dovercourt", to: "/locations/dovercourt-edmonton/" },

@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/sunnyside-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0566", longitude: "-114.0865" },
+  geo: { latitude: "51.059", longitude: "-114.074" },
 });
 
 export default function Sunnyside() {

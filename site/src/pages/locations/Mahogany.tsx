@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/mahogany",
   priceRange: sitePriceRange(),
-  geo: { latitude: "50.9142", longitude: "-113.9517" },
+  geo: { latitude: "50.896", longitude: "-113.925" },
 });
 
 export default function Mahogany() {

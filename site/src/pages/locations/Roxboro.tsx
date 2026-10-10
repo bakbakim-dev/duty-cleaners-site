@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/roxboro-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0298", longitude: "-114.0750" },
+  geo: { latitude: "51.027", longitude: "-114.068" },
 });
 
 export default function Roxboro() {

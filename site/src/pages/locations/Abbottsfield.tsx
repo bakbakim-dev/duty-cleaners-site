@@ -269,7 +269,7 @@ export default function Abbottsfield() {
         heading="Abbottsfield's compact stock"
         paragraphs={[
           "Abbottsfield, in the northeast, is 1970s townhouse rows and low-rise walk-ups more than detached homes. Row-house cleaning has its own economics: stair runs carry every footstep, galley kitchens film faster than open plans, and shared-wall units hold humidity in still corners. Compact homes here are denser work than their floor area suggests.",
-          "The neighbourhood sits against Abbottsfield Road's transit loop with the river valley's Rundle Park a walk east, so entries collect both bus-stop grit and valley debris in season. Units facing the road show sill film first; units facing the green get the leaf-and-pollen calendar instead.",
+          "The neighbourhood sits against Abbottsfield Road's transit loop with the river valley's Rundle Park a walk south, so entries collect both bus-stop grit and valley debris in season. Units facing the road show sill film first; units facing the green get the leaf-and-pollen calendar instead.",
         ]}
       />
 

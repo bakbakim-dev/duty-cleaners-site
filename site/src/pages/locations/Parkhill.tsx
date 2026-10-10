@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/parkhill-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0250", longitude: "-114.0623" },
+  geo: { latitude: "51.016", longitude: "-114.068" },
 });
 
 export default function Parkhill() {

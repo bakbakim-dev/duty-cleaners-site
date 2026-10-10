@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/manchester-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0153", longitude: "-114.0680" },
+  geo: { latitude: "51.003", longitude: "-114.068" },
 });
 
 export default function Manchester() {

@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/meadowlark-park-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0072", longitude: "-114.0790" },
+  geo: { latitude: "50.998", longitude: "-114.077" },
 });
 
 export default function MeadowlarkPark() {

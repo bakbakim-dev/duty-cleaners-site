@@ -54,7 +54,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/tuxedo-park-calgary",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.0680", longitude: "-114.0680" },
+  geo: { latitude: "51.078", longitude: "-114.061" },
 });
 
 export default function TuxedoPark() {

@@ -107,7 +107,7 @@ export default function Wildwood() {
                 Professional House Cleaning in Wildwood
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Nearly every Wildwood home is a single detached house, and which way it faces decides whether it gets trail mud from the Edworthy Park end or sanding grit off Bow Trail. The Calgary branch cleans these houses at a flat rate by home size.
+                Nine in ten Wildwood homes are single detached houses, and which way one faces decides whether it gets trail mud from the Edworthy Park end or sanding grit off Bow Trail. The Calgary branch cleans these houses at a flat rate by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -242,7 +242,7 @@ export default function Wildwood() {
         heading="Bungalows between a park and an expressway"
         paragraphs={[
           "Edworthy Park and the Bow close the north side and Bow Trail runs six lanes along the south, which is an unusual pair of neighbours for a street of bungalows. The park end sends needle litter, trail mud and cottonwood down the back lanes; the expressway end throws winter sanding grit at the front. A house takes one or the other depending on which way it faces, rarely both.",
-          "Ninety-four per cent of the homes are single detached, most of them on wide lots with rear laneways. Rear-lane access means the back door is the working entrance, so the mudroom and the run of floor inside it do more work than the front hall ever will.",
+          "In the 2021 census nine in ten of the homes were single detached houses, most of them on wide lots with rear laneways. Rear-lane access means the back door is the working entrance, so the mudroom and the run of floor inside it do more work than the front hall ever will.",
         ]}
         accent="calgary"
       />

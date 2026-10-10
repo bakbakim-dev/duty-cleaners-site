@@ -55,7 +55,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/skyview-ranch",
   priceRange: sitePriceRange(),
-  geo: { latitude: "51.1745", longitude: "-113.9587" },
+  geo: { latitude: "51.160", longitude: "-113.960" },
 });
 
 export default function SkyviewRanch() {

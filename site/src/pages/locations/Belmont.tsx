@@ -119,7 +119,7 @@ export default function Belmont() {
                   Professional House Cleaning in Belmont
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Most of Belmont's homes date from the 1970s and about one in five from the 1990s, and fewer than two in five are single-family houses in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Structure-Type-Neighb/xxgm-nnaq" target="_blank" rel="noopener noreferrer" className="text-accent-on-dark underline underline-offset-2">City of Edmonton's 2016 municipal census</a>. In its duplexes and row houses, stair runs and landings take more of the clean than their floor area suggests.
+                  Close to half of Belmont's homes date from 1961 to 1980 and about one in five from the 1990s in the 2016 federal census, and fewer than two in five are single-family houses in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Structure-Type-Neighb/xxgm-nnaq" target="_blank" rel="noopener noreferrer" className="text-accent-on-dark underline underline-offset-2">City of Edmonton's 2016 municipal census</a>. In its duplexes and row houses, stair runs and landings take more of the clean than their floor area suggests.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -268,7 +268,7 @@ export default function Belmont() {
         eyebrow="Local knowledge"
         heading="Belmont homes, specifically"
         paragraphs={[
-          "Almost two in three of Belmont's homes were built in the 1970s and about one in five in the 1990s, by the 2001 federal census, and its housing mix is the detail that changes a clean: in the City's 2016 municipal census single-family houses were about 38% of the stock, row houses 28%, low-rise apartments 19% and duplexes or fourplexes 15%. Attached-wall homes stack their living space vertically, so stair runs, landings and stair-nose dust lines carry a share of the work well out of proportion to the floor area they occupy. Shared walls hold cooking humidity in the still corners longer than a detached plan does.",
+          "In the 2016 federal census close to half of Belmont's homes dated from 1961 to 1980 and about one in five from 1991 to 2000, and its housing mix is the detail that changes a clean: in the City's 2016 municipal census single-family houses were about 38% of the stock, row houses 28%, low-rise apartments 19% and duplexes or fourplexes 15%. Attached-wall homes stack their living space vertically, so stair runs, landings and stair-nose dust lines carry a share of the work well out of proportion to the floor area they occupy. Shared walls hold cooking humidity in the still corners longer than a detached plan does.",
           "The neighbourhood sits off 137 Avenue with steady traffic feeding the retail strip, so road grit rides in year-round rather than only in winter. Entry mats and the first two metres of hallway take the wear, and in homes near the avenue the front-facing sills pick up a grey film noticeably faster than the back of the house.",
         ]}
       />
