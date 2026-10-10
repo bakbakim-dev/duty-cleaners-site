@@ -69,7 +69,8 @@ describe("one main button on the last screen", () => {
     const src = codeOf(FLOW);
     expect(src).not.toContain("Ask us to call me instead");
     // Label since 2026-09-23 (owner): "Pick my date & arrival time".
-    expect(src).toMatch(/Pick my date &amp; arrival time[\s\S]{0,900}<button\s+type="button"\s+onClick=\{requestCallback\}/);
+    // 1500: the line under the button names the card hold and links /terms/ (AuditSpur #906).
+    expect(src).toMatch(/Pick my date &amp; arrival time[\s\S]{0,1500}<button\s+type="button"\s+onClick=\{requestCallback\}/);
   });
 });
 

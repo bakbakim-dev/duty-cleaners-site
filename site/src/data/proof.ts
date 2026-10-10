@@ -357,7 +357,9 @@ export const BOOKINGS_CLAIM = `${BOOKINGS} Alberta bookings since ${COMPANY.foun
  */
 export const RISK_REVERSAL: { id: string; label: string; enabled: boolean }[] = [
   { id: "no-charge", label: confirm("You won't be charged today", { by: "owner", on: "2026-09-10" }), enabled: true },
-  { id: "reschedule", label: "Free to reschedule or cancel with 24 hours' notice", enabled: true },
+  // The $50 inside 24 hours is POLICY.cancellationFee; policy.ts imports this
+  // file, so it is checked against POLICY in policy.test.ts, not imported (AuditSpur #906).
+  { id: "reschedule", label: "Free to reschedule or cancel with 24 hours' notice ($50 inside 24 hours)", enabled: true },
   { id: "no-contract", label: confirm("No contracts. Book one clean or many.", { by: "owner", on: "2026-09-10", note: "punctuation only changed 2026-09-18" }), enabled: true },
 ];
 

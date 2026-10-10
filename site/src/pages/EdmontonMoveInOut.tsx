@@ -550,7 +550,8 @@ export default function EdmontonMoveInOut() {
                   the tenant. Within 10 days of the tenant moving out, the landlord must return the security
                   deposit (the damage deposit in everyday use), or return what is left with a written statement
                   of any deductions (an estimate is allowed, with the final statement within 30 days). That report is where a landlord notes cleaning, so
-                  our <strong>move out cleaners in Edmonton</strong> clean to the inspection checklist.
+                  our <strong>move out cleaners in Edmonton</strong> work through the cleaning items it covers. Interior
+                  windows (a paid add-on), steam-cleaned carpets and repairs are outside the clean.
                 </p>
                 <p>
                   A spring move-out in Edmonton meets the whole winter at once. The sand and salt tracked in

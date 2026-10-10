@@ -118,7 +118,7 @@ const GROUPS: { id: GroupId; heading: string; intro: string; links: { to: string
   {
     id: "move",
     heading: "Move-out cleaning reviews",
-    intro: "A move-in or move-out clean is done to the standard an inspection looks for: the deep checklist plus the inside of the oven, fridge, cabinets, drawers and closets.",
+    intro: "A move-in or move-out clean is done in the empty home: the deep checklist plus the inside of the oven, fridge, cabinets, drawers and closets.",
     links: [
       { to: "/move-out-cleaning-edmonton/", label: "move-out cleaning in Edmonton" },
       { to: "/move-out-cleaning-calgary/", label: "move-out cleaning in Calgary" },

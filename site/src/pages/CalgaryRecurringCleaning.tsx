@@ -209,8 +209,8 @@ export default function CalgaryRecurringCleaning() {
             <>
               <p>
                 Pick a cadence and a first date; the quote shows the one-time rate for the first visit and the
-                discounted rate for the rest. Nothing is charged when you book, and the card is charged after each
-                clean is done.
+                discounted rate for the rest. Nothing is charged when you book. The day before each clean a temporary
+                hold for the price goes on the card, and the card is charged once that clean is done.
               </p>
               <p>
                 Our Calgary team is rated {CALGARY_RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}

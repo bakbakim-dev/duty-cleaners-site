@@ -217,7 +217,7 @@ const SECTIONS = [
     id: "what-changes",
     h2: "What changes the price of a house cleaning?",
     q: "What changes the price of a house cleaning?",
-    a: `The price of a house cleaning moves with the size and type of the home, the service, how often you book, and any add-ons. Three charges apply whenever they fit the home: up to ${HOUSE_MAX} for a house rather than an apartment or condo, ${PET_FEE} a visit for a home with pets, and a ${TRAVEL_FEE} travel fee outside Edmonton or Calgary city limits. Condition matters too: if a home needs substantially more work than described, the team explains what it found and the options before continuing.`,
+    a: `The price of a house cleaning moves with the size and type of the home, the service, how often you book, and any add-ons. These charges apply whenever they fit the home: up to ${HOUSE_MAX} for a house rather than an apartment or condo, ${PET_FEE} a visit for a home with pets, a ${TRAVEL_FEE} travel fee outside Edmonton or Calgary city limits, a smoke surcharge from ${POLICY.smokeSurchargeFrom} for a home that has been smoked in (quoted before you book), and the parking cost, at the amount we paid, where the only parking near the home is paid. Condition matters too: if a home needs much more work than described, we contact you as soon as we know, and again about halfway with an estimate of the time and cost; you decide whether to continue, add some time, or switch to a priority list at your booked price.`,
   },
 ] as const;
 
@@ -573,7 +573,7 @@ export default function BlogHouseCleaningCost() {
                   <div className="p-5 bg-muted/30 rounded-xl border">
                     <h4 className="font-semibold text-foreground mb-2">You should not need an estimate visit</h4>
                     <p className="text-muted-foreground text-sm">
-                      A company that prices by home size can show you the number before you book. Ours shows on screen before you book, as a set price before 5% GST for the home and condition you describe. If a home needs substantially more work than described, the team explains what it found and the options before continuing. Treat &ldquo;we&rsquo;ll assess it on arrival&rdquo; as a reason to ask more questions.{" "}
+                      A company that prices by home size can show you the number before you book. Ours shows on screen before you book, as a set price before 5% GST for the home and condition you describe. If a home needs much more work than described, we contact you as soon as we know, and again about halfway with an estimate of the time and cost, and you decide how to go on. Treat &ldquo;we&rsquo;ll assess it on arrival&rdquo; as a reason to ask more questions.{" "}
                       <Link to="/reviews/" className="text-primary underline">Read the reviews</Link> from both cities before you decide.
                     </p>
                   </div>

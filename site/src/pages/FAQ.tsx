@@ -170,7 +170,7 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "What's included in a move-out cleaning?",
-        answer: "A move-in or move-out clean is the deep-clean checklist plus inside all cabinets, drawers and closets, the window sills, and inside the oven, fridge and microwave. The home is cleaned empty, to the standard a move-out inspection looks for. We do not promise a deposit comes back; the landlord decides.",
+        answer: "A move-in or move-out clean is the deep-clean checklist plus inside all cabinets, drawers and closets, the window sills, and inside the oven, fridge and microwave. The home is cleaned empty. An inspection can also look at things outside the clean, such as interior windows (a paid add-on), steam-cleaned carpets and repairs. We do not promise a deposit comes back; the landlord decides.",
       },
       {
         question: "How long does a move-out cleaning take?",

@@ -92,7 +92,7 @@ const MOVE_SIZES = pickThree(MOVE_ROWS).map((row) => ({ label: row.beds, price: 
 const POST_FROM = from(startingPrice("post-construction"));
 const HOURLY = formatPrice(HOURLY_RATE);
 const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
-const PET_LINE = PET_FEE === null ? "a pet charge we quote when you book" : `${formatPrice(PET_FEE)} on every visit`;
+const PET_LINE = PET_FEE === null ? "a pet charge we quote when you book" : `${formatPrice(PET_FEE)} on every visit, less the plan discount on a recurring plan`;
 const TRAVEL_HOME = travelFee("standard");
 const TRAVEL_POST = travelFee("post-construction");
 const money = (v: number | null) => (v === null ? "a fee quoted when you book" : formatPrice(v));
@@ -277,7 +277,7 @@ const faqs = [
   },
   {
     q: "Are Calgary prices shown with or without GST?",
-    a: `Without. GST of ${GST_PCT} goes on top of every figure we quote in Calgary: the flat rate for the home, any add-on, the pet charge, and the travel fee to Airdrie, Cochrane and the other towns outside city limits. You are not charged at booking; a temporary hold for the price goes on the card the day before, and the charge goes through when the clean is finished. Visa, Mastercard, American Express, debit and e-transfer all work.`,
+    a: `Without. GST of ${GST_PCT} goes on top of every figure we quote in Calgary: the flat rate for the home, any add-on, the pet charge, and the travel fee to Airdrie, Cochrane and the other towns outside city limits. You are not charged at booking; a temporary hold for the price goes on the card the day before, and the charge goes through when the clean is finished. Visa, Mastercard, American Express and debit all work. E-transfer can be arranged by phone; with no card to hold, an e-transfer booking is paid in full the day before the clean.`,
   },
   {
     q: "How much do I save by booking recurring cleaning?",

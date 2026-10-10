@@ -115,7 +115,8 @@ export default function LocationPricing({ place }: LocationPricingProps) {
           <p className="text-muted-foreground text-lg leading-relaxed mb-4">
             A bungalow or basement suite adds{" "}
             {HOME_TYPE_EXTRA.bungalow}, a townhouse {HOME_TYPE_EXTRA.townhouse} and a two-storey house{" "}
-            {HOME_TYPE_EXTRA.twoStorey}, and a home with pets pays a compulsory {PET_FEE} on every visit.
+            {HOME_TYPE_EXTRA.twoStorey}, and a home with pets pays a compulsory {PET_FEE} on every visit, less the plan
+            discount on a recurring plan.
             {/* The fee is charged against the branch this page belongs to, so
                 that is the boundary to name. "outside Edmonton and Calgary city
                 limits" was true of the company and useless to the reader: an

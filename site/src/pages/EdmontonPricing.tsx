@@ -270,8 +270,8 @@ export default function EdmontonPricing() {
             <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
               Flat rates for an apartment or condo, before 5% GST and any pet, home-type or travel charge:{" "}
               {priceSpan(standardPricing)} for a standard clean, {priceSpan(deepPricing)} for a deep clean and{" "}
-              {priceSpan(moveInOutPricing)} for a move-in or move-out clean. You see the figure before you book and
-              pay after the clean.
+              {priceSpan(moveInOutPricing)} for a move-in or move-out clean. You see the figure before you book, a
+              temporary hold goes on the card the day before, and the card is charged after the clean.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">

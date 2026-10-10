@@ -183,3 +183,16 @@ describe("the Google figures are re-read at least quarterly", () => {
     }
   });
 });
+
+/**
+ * The "free to reschedule" line beside every funnel button left out the fee
+ * inside the notice window (AuditSpur #906). proof.ts cannot import POLICY
+ * (policy.ts imports proof.ts), so the line is checked against it here.
+ */
+describe("the reschedule line beside the funnel buttons", () => {
+  it("names the notice window and the fee inside it", () => {
+    const label = RISK_REVERSAL.find((line) => line.id === "reschedule")?.label ?? "";
+    expect(label).toContain(`${POLICY.cancellationNoticeHours} hours' notice`);
+    expect(label).toContain(`${POLICY.cancellationFee} inside ${POLICY.cancellationNoticeHours} hours`);
+  });
+});

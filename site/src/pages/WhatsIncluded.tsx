@@ -462,7 +462,7 @@ export default function WhatsIncluded() {
             <CleaningTypeCard
               icon={Truck}
               title="Move-out cleaning checklist"
-              description={`The home is cleaned empty, to the standard a move-out inspection looks for, from ${MOVE[0].price} for a 1-bedroom home before GST. The same list applies to a move-in.`}
+              description={`The home is cleaned empty, inside every cabinet, the oven and the fridge, from ${MOVE[0].price} for a 1-bedroom home before GST. The same list applies to a move-in.`}
               items={moveOutItems}
               links={[
                 { to: "/move-out-cleaning-edmonton/", label: "move-out cleaning in Edmonton" },

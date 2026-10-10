@@ -3402,7 +3402,18 @@ export default function QuoteFlow({
                         charged today"; this line says what the page switch is. */}
                     <p className="text-center text-sm text-fine-print">
                       <span className="font-semibold text-foreground">Opens our secure booking page.</span>{" "}
-                      There you add your address and card. We charge after the clean.
+                      There you add your address and card. The day before the clean a temporary hold for the
+                      price goes on the card (on a debit card the amount is set aside), and the card is charged
+                      after the clean. See our{" "}
+                      <a
+                        href="/terms/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-foreground underline underline-offset-4"
+                      >
+                        terms
+                      </a>
+                      .
                     </p>
                     {deepCleanIntent && (
                       <p className="text-center text-sm text-fine-print">Your Deep Cleaning package is already added.</p>

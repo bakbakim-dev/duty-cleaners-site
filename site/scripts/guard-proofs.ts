@@ -75,6 +75,9 @@ export const GUARD_PROOFS: GuardProof[] = [
   { guard: "src/lib/callback-task-php.test.ts", target: "public/api/ghl-quote.php", find: "        $state = [...$state, ...(array) ($record['callback_task'] ?? []), 'attempts' => $state['attempts'], 'issue' => 'task attempt failed'];", replace: "        throw new RuntimeException('task step fault');", failing: "treat a fault inside the task step as one failed try, never the end of the cron run", why: "One fault in the task step aborts the whole cron run, so every lead queued behind it waits, for good if the fault persists." },
   { guard: "src/lib/enquiry-evidence-php.test.ts", target: "public/api/enquiry-evidence.php", find: "'date'=>$at->setTimezone(new DateTimeZone('America/Edmonton'))->format('Y-m-d')", replace: "'date'=>$at->format('Y-m-d')", failing: "is dated from the server's receipt in Edmonton time, never the browser's clock", why: "An evening enquiry is dated the next day (UTC), so its consent window starts a day late." },
   { guard: "src/lib/enquiry-evidence-php.test.ts", target: "public/api/enquiry-evidence.php", find: "return ($payload['stage']??'')==='confirm' && in_array($source,[", replace: "return in_array($source,[", failing: "counts confirmed quote requests, excluding general contact messages, price checks and job applications", why: "A price check that never became an enquiry would count as consent evidence for Long Term Nurture." },
+  // ---- 2026-10-10 (AuditSpur #823): menu icons named at runtime keep their rules ----
+  { guard: "src/data/policy.test.ts", target: "src/data/proof.ts", find: " ($50 inside 24 hours)", replace: "", failing: "names the notice window and the fee inside it", why: "The line beside every funnel button says cancelling is free again without the fee inside the notice window." },
+  { guard: "src/data/menu-icons.test.ts", target: "tailwind.config.ts", find: "  safelist: [{ pattern: /^dc-icon-/ }],", replace: "", failing: "the Tailwind build keeps every runtime-named icon rule", why: "The content scan drops the icon rules it cannot see, and eight menu icons draw as solid squares again." },
   // ---- 2026-10-09 (deep audit): the home-type radio group answers the arrow keys ----
   { guard: "src/data/quote-keyboard.test.ts", target: "src/components/quote/QuoteFlow.tsx", find: "                                setHomeType(homeTypes[next].id);", replace: "", failing: "the home-type choices take one tab stop and move with the arrow keys", why: "The arrow keys stop choosing a home type, so a keyboard user is stuck on the first option of a radio group." },
   // ---- 2026-10-09: the referring site names the lead channel (AuditSpur #320) ----
@@ -2199,8 +2202,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0922.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
-    find: "We charge after the clean.",
-    replace: "The hold moves no money. We charge after the clean.",
+    find: "(on a debit card the amount is set aside)",
+    replace: "(the hold moves no money)",
     failing: "no hold claim, no arrival-window or comment-section explainer",
     why: "Restores a hold claim that is false for debit cards.",
   },
